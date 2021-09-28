@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "DataExporterConsole (prod)": {
+      "commandName": "Project"
+    },
+    "DataExporterConsole (dev)": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+﻿<Application x:Class="Maxsys.MediaManager.MusicContext.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Dictionaries/GlobalStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Separator" BasedOn="{StaticResource AppSeparator}" />
+            <Style TargetType="UserControl" BasedOn="{StaticResource AppUserControl}" />
+            <Style TargetType="GroupBox" BasedOn="{StaticResource AppGroupBoxStyle}" />
+            <Style TargetType="StatusBar" BasedOn="{StaticResource AppStatusBar}" />
+            <!--<Style TargetType="Rectangle" BasedOn="{StaticResource AppRectangle}" />-->
+
+            <!--<Style TargetType="Button" BasedOn="{StaticResource AppButtonStyle}" />
+            <Style TargetType="TextBox" BasedOn="{StaticResource AppTextBoxStyle}" />
+            <Style TargetType="Label" BasedOn="{StaticResource AppLabelStyle}" />
+            <Style TargetType="TextBlock" BasedOn="{StaticResource AppTextBlockStyle}" />
+            <Style TargetType="ComboBox" BasedOn="{StaticResource AppComboBoxStyle}" />
+            <Style TargetType="DataGrid" BasedOn="{StaticResource AppDataGridStyle}" />-->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

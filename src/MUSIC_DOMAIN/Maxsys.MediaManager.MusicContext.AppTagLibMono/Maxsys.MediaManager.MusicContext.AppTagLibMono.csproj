@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Maxsys.MediaManager.Music_AppTagLibMono</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Services\_notes.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="_notes.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,541 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Theme.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--#region CONTS -->
+
+    <!--#region FONTS -->
+    <FontFamily x:Key="DefaultFont">Segoe UI</FontFamily>
+
+    <sys:Double x:Key="FontSize-Nano">9</sys:Double>
+    <sys:Double x:Key="FontSize-Micro">12</sys:Double>
+    <sys:Double x:Key="FontSize-Smallest">16</sys:Double>
+    <sys:Double x:Key="FontSize-Smaller">20</sys:Double>
+    <sys:Double x:Key="FontSize-Normal">24</sys:Double>
+    <!--#endregion-->
+
+    <CornerRadius x:Key="CornerRadiusValue">7</CornerRadius>
+    <sys:Double x:Key="Micro-button-width">40</sys:Double>
+    <sys:Double x:Key="Micro-button-height">20</sys:Double>
+
+    <Geometry x:Key="RefreshIcon">
+        M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z
+    </Geometry>
+
+    <!--#endregion CONTS -->
+
+    <!--#region CONTROLS -->
+
+    <!--#region TEXT -->
+    <!-- #region TEXTBOX -->
+    <!--#region CONTROL_TEMPLATE -->
+    <ControlTemplate x:Key="RoundedTextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+
+        <Border Background="{TemplateBinding Background}"
+                x:Name="Bd" BorderBrush="Black"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource CornerRadiusValue}">
+            <ScrollViewer x:Name="PART_ContentHost" />
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource TextBoxBGBrush}" TargetName="Bd" />
+                <Setter Property="Foreground" Value="{StaticResource TextBoxFGBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!-- TextBox STYLE -->
+    <Style x:Key="TextBoxBaseStyle" TargetType="TextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlHLBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextFGBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Normal}" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="MaxLength" Value="50" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="{StaticResource ControlShadow}" ShadowDepth="1" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderHLBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SquaredTextBoxBaseStyle" TargetType="TextBox" BasedOn="{StaticResource TextBoxBaseStyle}" />
+    <Style x:Key="RoundedTextBoxBaseStyle" TargetType="TextBox" BasedOn="{StaticResource TextBoxBaseStyle}">
+        <Setter Property="Template" Value="{StaticResource RoundedTextBoxBaseControlTemplate}" />
+    </Style>
+
+    <!-- #endregion TEXTBOX -->
+
+    <!-- #region LABEL -->
+
+    <Style x:Key="LabelBaseStyle" TargetType="Label">
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Smallest}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBoxFGBrush}" />
+    </Style>
+
+    <!-- #endregion LABEL -->
+
+    <!-- #region TEXTBLOCK -->
+    <!-- Style -->
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Smallest}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBoxFGBrush}" />
+        <Setter Property="Padding" Value="0,0,0,5" />
+    </Style>
+
+    <!-- #endregion TEXTBLOCK -->
+    <!--#endregion TEXT -->
+
+    <!--#region COMBOBOX -->
+    <!-- Based on this post: https://stackoverflow.com/a/41446653/4121969 -->
+
+    <Style x:Key="ComboBoxToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="2"
+                                    CornerRadius="{TemplateBinding Tag}"
+                                    BorderThickness="1"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}" />
+
+                        <TextBlock Grid.Column="1" Text=" ▾ "
+                                       FontSize="{TemplateBinding FontSize}"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Smallest}" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border Name="Border"
+                            Padding="5" Margin="2"
+                            BorderThickness="2,0,0,0"
+                            CornerRadius="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent">
+                        <TextBlock TextAlignment="Left">
+                                <ContentPresenter />
+                        </TextBlock>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource MaxsysBlueBrush}" />
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource ControlHLBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="ComboBoxTextBoxTemplate" TargetType="TextBox">
+        <Border x:Name="PART_ContentHost" Focusable="True" />
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBoxFGBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ComboBoxTemplate" TargetType="ComboBox">
+        <Grid>
+            <ToggleButton Name="ToggleButton" Tag="{TemplateBinding Border.CornerRadius}"
+                          Style="{StaticResource ComboBoxToggleButtonStyle}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          Background="{TemplateBinding Background}"
+                          Foreground="{TemplateBinding Foreground}"
+                          Cursor="Hand"
+                          Grid.Column="2"
+                          Focusable="false"
+                          IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                          ClickMode="Press" />
+            <Grid x:Name="ContentGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="{Binding ActualHeight, ElementName=ContentGrid}" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter Grid.Column="0" Name="ContentSite"
+                                    IsHitTestVisible="False"
+                                    Content="{TemplateBinding SelectionBoxItem}"
+                                    ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                    Margin="10,3,10,3"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left" />
+            </Grid>
+            <TextBox x:Name="PART_EditableTextBox"
+                     Style="{x:Null}"
+                     Template="{StaticResource ComboBoxTextBoxTemplate}"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Margin="3,3,23,3"
+                     Focusable="True"
+                     Visibility="Hidden"
+                     IsReadOnly="{TemplateBinding IsReadOnly}" />
+            <Popup Name="Popup"
+                       Placement="Bottom"
+                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                       AllowsTransparency="True"
+                       Focusable="False"
+                       PopupAnimation="Slide">
+                <Grid Name="DropDown"
+                          SnapsToDevicePixels="True"
+                          MinWidth="{TemplateBinding ActualWidth}"
+                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                    <Border x:Name="DropDownBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="1"
+                                BorderBrush="{StaticResource ControlBorderBrush}" />
+                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                    </ScrollViewer>
+                </Grid>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="HasItems" Value="false">
+                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+            </Trigger>
+            <Trigger Property="IsGrouping" Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+            </Trigger>
+            <Trigger Property="IsEditable" Value="true">
+                <Setter Property="IsTabStop" Value="false" />
+                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}" />
+        <Setter Property="Background" Value="{StaticResource TextBoxBGBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBoxFGBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Smaller}" />
+        <Setter Property="MinWidth" Value="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}" />
+        <Setter Property="MinHeight" Value="10" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Tag" Value="0" />
+        <Setter Property="Border.CornerRadius" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="{StaticResource ControlShadow}" ShadowDepth="1" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderHLBrush}" />
+            </Trigger>
+            <Trigger Property="IsDropDownOpen" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderHLBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion COMBOBOX-->
+
+    <!--#region CONTAINERS -->
+
+    <!-- GroupBox -->
+    <BorderGapMaskConverter x:Key="BorderGapMaskConverter" />
+    <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource TextBoxFGBrush}" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource dgvExternalBordersBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="6" />
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="4" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{TemplateBinding Background}" />
+                        <Border Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Border Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="4">
+                            <Border.OpacityMask>
+                                <MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+                                    <Binding ElementName="Header" Path="ActualWidth" />
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+                                </MultiBinding>
+                            </Border.OpacityMask>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion CONTAINERS -->
+
+    <!--#region DATA -->
+
+    <!--#region DataGrid -->
+
+    <Style x:Key="DefaultCellStyle" TargetType="DataGridCell">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+
+        <Setter Property="Background" Value="{StaticResource dgvCellBGBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource dgvCellFGBrush}" />
+
+        <Setter Property="FontFamily" Value="Consolas" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Micro}" />
+        <Setter Property="Height" Value="{StaticResource FontSize-Normal}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="FontStyle" Value="Italic" />
+
+                <Setter Property="Background" Value="{StaticResource dgvSelectedCellBGBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource dgvSelectedCellFGBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="InvalidCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource DefaultCellStyle}">
+        <Setter Property="Background" Value="{StaticResource dgvErrorCellBGBrush}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource dgvErrorSelectedCellBGBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CellStyle" TargetType="DataGridCell" BasedOn="{StaticResource DefaultCellStyle}">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Tag" Value="InvalidCell" />
+                    <Condition Property="IsSelected" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource dgvErrorSelectedCellBGBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Tag" Value="InvalidCell" />
+                    <Condition Property="IsSelected" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource dgvErrorCellBGBrush}" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="HeaderCellStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding}" TextAlignment="Center" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="{StaticResource ContentBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="-1" />
+
+        <Setter Property="Background" Value="{StaticResource dgvHeaderBGBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource dgvHeaderFGBrush}" />
+
+        <!--<Setter Property="FontFamily" Value="Consolas" />-->
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Smallest}" />
+
+        <Setter Property="Width" Value="Auto" />
+    </Style>
+
+    <Style x:Key="DataGridStyle" TargetType="DataGrid">
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource HeaderCellStyle}" />
+        <Setter Property="CellStyle" Value="{StaticResource CellStyle}" />
+
+        <Setter Property="Background" Value="{StaticResource dgvBGBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{StaticResource dgvExternalBordersBrush}" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserResizeRows" Value="False" />
+        <Setter Property="SelectionMode" Value="Extended" />
+        <Setter Property="HeadersVisibility" Value="Column" />
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource dgvBGBrush}" />
+        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource dgvBGBrush}" />
+        <Setter Property="GridLinesVisibility" Value="All" />
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource ContentBrush}" />
+        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource ContentBrush}" />
+    </Style>
+
+    <!--#endregion DataGrid-->
+
+    <Style x:Key="ListBoxStyle" TargetType="ListBox">
+        <Setter Property="Background" Value="{StaticResource dgvBGBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextFGBrush}" />
+    </Style>
+    
+    
+    <!--#endregion DATA-->
+
+    <!--#region BUTTON -->
+
+    <!--#region CONTROL_TEMPLATE -->
+    <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
+        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+
+            <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding Background}"
+                        CornerRadius="7">
+
+                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            Margin="1" BorderThickness="1" CornerRadius="6">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          Margin="0" RecognizesAccessKey="True" />
+                </Border>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property ="IsPressed" Value ="True">
+                <Setter TargetName="RootGrid" Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="SquaredButtonTemplate" TargetType="Button">
+        <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
+
+            <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Background}"
+                            CornerRadius="0">
+
+                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                        Margin="1" BorderThickness="1" CornerRadius="0">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              Margin="0" RecognizesAccessKey="True" />
+                </Border>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property ="IsPressed" Value ="True">
+                <Setter TargetName="RootGrid" Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!-- Base -->
+    <Style x:Key="ButtonBaseStyle" TargetType="Button">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Content" Value="Button" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Smaller}" />
+        <Setter Property="Background" Value="{StaticResource StatusBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BtnTextLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource BtnTextLightBrush}" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="{StaticResource ControlShadow}" ShadowDepth="1" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource StatusDarkBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BtnTextLightHLBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource BtnTextLightHLBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SquaredButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonBaseStyle}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template" Value="{StaticResource SquaredButtonTemplate}" />
+    </Style>
+    <Style x:Key="RoundedButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonBaseStyle}">
+        <Setter Property="Template" Value="{StaticResource RoundedButtonTemplate}" />
+    </Style>
+
+    <!--#endregion BUTTON -->
+
+    <!--#endregion CONTROLS -->
+</ResourceDictionary>

@@ -1,0 +1,135 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    x:Name="ColorsResource">
+
+    <!--#region COLORS -->
+    <!-- Named Colors -->
+    <Color x:Key="Dark10" >#1a1a1a</Color>
+    <Color x:Key="Dark20" >#333333</Color>
+    <Color x:Key="Dark50" >#808080</Color>
+    <Color x:Key="Light20" >#cccccc</Color>
+    <Color x:Key="Light10" >#e6e6e6</Color>
+    <Color x:Key="Light00" >#FFF</Color>
+
+    <!-- Maxsys colors -->
+    <Color x:Key="MaxsysBlue">#0096DA</Color>
+    <Color x:Key="MaxsysDeepBlue">#0052A0</Color>
+    <Color x:Key="MaxsysRed">#BC2103</Color>
+
+    <!-- Control colors-->
+    <Color x:Key="Window" >#252423</Color>
+    <Color x:Key="ControlShadow">#000</Color>
+    <Color x:Key="ControlText">#ccc</Color>
+    <Color x:Key="ControlTextHL">#FFF</Color>
+    <Color x:Key="ControlTextDS">#808080</Color>
+    <Color x:Key="Control">#323130</Color>
+    <Color x:Key="ControlHL">#3a3938</Color>
+    <Color x:Key="ControlDS">#333</Color>
+    <Color x:Key="ControlRed" >#ff4d4d</Color>
+    <Color x:Key="ControlRedHL" >#d27979</Color>
+
+    <Color x:Key="BtnBlue" >#005ba1</Color>
+    <Color x:Key="BtnBlueHL" >#0067b5</Color>
+    <Color x:Key="BtnGray">#363534</Color>
+    <Color x:Key="BtnGrayHL">#4c4c4b</Color>
+    <Color x:Key="BtnRed">#a10000</Color>
+    <Color x:Key="BtnRedHL">#b50000</Color>
+    <Color x:Key="BtnGreen">#5ba100</Color>
+    <Color x:Key="BtnGreenHL">#67b500</Color>
+
+
+    <Color x:Key="StatusColor">#177DDC</Color>
+    <Color x:Key="InformationColor">#007E33</Color>
+    <Color x:Key="WarningColor">#e86900</Color>
+    <Color x:Key="CriticalColor">#A61D24</Color>
+
+    <Color x:Key="StatusDarkColor">#1263b0</Color>
+    <Color x:Key="InformationDarkColor">#006428</Color>
+    <Color x:Key="WarningDarkColor">#b95400</Color>
+    <Color x:Key="CriticalDarkColor">#84171c</Color>
+
+    <!--#endregion COLORS -->
+
+    <!--#region Brushes -->
+    <SolidColorBrush x:Key="WindowBrush" Color="{StaticResource Window}" />
+    <SolidColorBrush x:Key="ContentBrush" Color="{StaticResource Window}" />
+    <SolidColorBrush x:Key="ShadowBrush" Color="{StaticResource ControlShadow}" />
+    <SolidColorBrush x:Key="ControlBrush" Color="{StaticResource Control}" />
+    <SolidColorBrush x:Key="ControlHLBrush" Color="{StaticResource ControlHL}" />
+    <SolidColorBrush x:Key="ControlDisabledBrush" Color="{StaticResource ControlDS}" />
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="ControlBorderHLBrush" Color="{StaticResource MaxsysDeepBlue}" />
+    <SolidColorBrush x:Key="ControlBorderDisabledBrush" Color="{StaticResource ControlTextDS}" />
+    <SolidColorBrush x:Key="TextFGBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="TextFGDisabledBrush" Color="{StaticResource ControlTextDS}" />
+
+    <!--#region Brushes DataGrid -->
+    <SolidColorBrush x:Key="dgvBGBrush" Color="{StaticResource Window}" />
+
+    <!--Header-->
+    <SolidColorBrush x:Key="dgvHeaderBGBrush" Color="{StaticResource Dark20}" />
+    <SolidColorBrush x:Key="dgvHeaderFGBrush" Color="{StaticResource ControlText}" />
+
+    <!--Default Cell-->
+    <SolidColorBrush x:Key="dgvCellBGBrush" Color="{StaticResource Control}" />
+    <SolidColorBrush x:Key="dgvCellFGBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="dgvSelectedCellBGBrush" Color="{StaticResource ControlHL}" />
+    <SolidColorBrush x:Key="dgvSelectedCellFGBrush" Color="{StaticResource ControlText}" />
+
+    <!--Error Cell-->
+    <SolidColorBrush x:Key="dgvErrorCellBGBrush" Color="{StaticResource ControlRed}" />
+    <SolidColorBrush x:Key="dgvErrorCellFGBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="dgvErrorSelectedCellBGBrush" Color="{StaticResource ControlRedHL}" />
+    <SolidColorBrush x:Key="dgvErrorSelectedCellFGBrush" Color="{StaticResource ControlText}" />
+
+    <!-- Borders -->
+    <SolidColorBrush x:Key="dgvExternalBordersBrush" Color="{StaticResource ControlHL}" />
+    <SolidColorBrush x:Key="dgvInternalBordersBrush" Color="{StaticResource ControlHL}" />
+    <!--#endregion Brushes DataGrid -->
+
+    <!--#region Button Brushes -->
+    <SolidColorBrush x:Key="BtnTextLightBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="BtnTextLightHLBrush" Color="{StaticResource ControlTextHL}" />
+
+    <SolidColorBrush x:Key="BtnFillBrush" Color="{StaticResource BtnBlue}" />
+    <SolidColorBrush x:Key="BtnFillHLBrush" Color="{StaticResource BtnBlueHL}" />
+    <SolidColorBrush x:Key="BtnGrayFillBrush" Color="{StaticResource BtnGray}" />
+    <SolidColorBrush x:Key="BtnGrayFillHLBrush" Color="{StaticResource BtnGrayHL}" />
+    <SolidColorBrush x:Key="BtnSaveFillBrush" Color="{StaticResource BtnGreen}" />
+    <SolidColorBrush x:Key="BtnSaveFillHLBrush" Color="{StaticResource BtnGreenHL}" />
+    <SolidColorBrush x:Key="BtnCancelFillBrush" Color="{StaticResource BtnRed}" />
+    <SolidColorBrush x:Key="BtnCancelFillHLBrush" Color="{StaticResource BtnRedHL}" />
+    <!--#endregion Button Brushes -->
+
+    <!--#region TextBox-->
+    <SolidColorBrush x:Key="TextBoxBGBrush" Color="{StaticResource Control}" />
+    <SolidColorBrush x:Key="TextBoxFGBrush" Color="{StaticResource ControlText}" />
+    <!--#endregion TextBox-->
+
+    <SolidColorBrush x:Key="MaxsysBlueBrush" Color="{StaticResource MaxsysBlue}" />
+    <SolidColorBrush x:Key="MaxsysDeepBlueBrush" Color="{StaticResource MaxsysDeepBlue}" />
+    <SolidColorBrush x:Key="MaxsysRedBrush" Color="{StaticResource MaxsysRed}" />
+    <!--#endregion Brushes-->
+
+    <!--#region Menu -->
+
+    <SolidColorBrush x:Key="MenuBorderBrush" Color="{StaticResource ControlHL}" />
+    <SolidColorBrush x:Key="MenuFGBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="MenuFGDisabledBrush" Color="{StaticResource ControlTextDS}" />
+
+    <SolidColorBrush x:Key="MenuSelectedMenuBrush" Color="{StaticResource Dark10}" />
+    <SolidColorBrush x:Key="MenuSelectedItemMenuBrush" Color="{StaticResource ControlHL}" />
+    <!--#endregion Menu -->
+    
+    <!--#region Message Colors -->
+    <SolidColorBrush x:Key="StatusBrush"   Color="{StaticResource StatusColor}" />
+    <SolidColorBrush x:Key="InfoBrush"     Color="{StaticResource InformationColor}" />
+    <SolidColorBrush x:Key="WarningBrush"  Color="{StaticResource WarningColor}" />
+    <SolidColorBrush x:Key="CriticalBrush" Color="{StaticResource CriticalColor}" />
+
+    <SolidColorBrush x:Key="StatusDarkBrush"   Color="{StaticResource StatusDarkColor}" />
+    <SolidColorBrush x:Key="InfoDarkBrush"     Color="{StaticResource InformationDarkColor}" />
+    <SolidColorBrush x:Key="WarningDarkBrush"  Color="{StaticResource WarningDarkColor}" />
+    <SolidColorBrush x:Key="CriticalDarkBrush" Color="{StaticResource CriticalDarkColor}" />
+    <!--#endregion Message Colors -->
+</ResourceDictionary>

@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
+  <PropertyGroup>
+    <!-- DOTNET_ENVIRONMENT must be 'Development' -->
+    <EnvironmentName>Development</EnvironmentName>
+  </PropertyGroup>
+  
+  <Choose>
+    <When Condition=" '$(EnvironmentName)' == 'Production' ">
+      <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <DisableWinExeOutputInference>false</DisableWinExeOutputInference>
+        <AssemblyName>Maxsys MediaManager Music</AssemblyName>
+        <Description></Description>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
+        <AssemblyName>Maxsys MediaManager Music Debug</AssemblyName>
+        <Description>Non Realease version</Description>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\icon\media-manager-music.ico</ApplicationIcon>
+    <Version>0.9.1-alpha</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.ApplicationMVVM\Maxsys.MediaManager.MusicContext.ApplicationMVVM.csproj" />
+    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
+  </ItemGroup>
+
+
+  <!--appsettings config begin-->
+
+  <!--  WARNING: 
+        Make sure to add DOTNET_ENVIRONMENT variable, otherwise it will be set as 'Production'.
+        When publishing, DOTNET_ENVIRONMENT will be missing and when is missing it will be set as 'Production'.
+        BUT to copy the file appsettings.Production.json to output, the <EnvironmentName> must be setted to 'Production'.
+        Make sure to add <EnvironmentName>Production</EnvironmentName> in Publish Profile file.      
+  -->
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(EnvironmentName)' == 'Production' ">
+    <Content Include="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(EnvironmentName)' == 'Development' ">
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!--appsettings config end-->
+  
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\mainWnd-music.png" />
+    <Resource Include="Resources\Images\mainWnd-music.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\icon\" />
+  </ItemGroup>
+</Project>

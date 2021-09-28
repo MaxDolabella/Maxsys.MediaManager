@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "WPF (Dev)": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "WPF (Prod)": {
+      "commandName": "Project"
+    }
+  }
+}
