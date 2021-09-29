@@ -10,6 +10,7 @@ using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Validators;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
@@ -44,9 +45,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 : await Task.FromResult(validationResult);
         }
 
-        public async Task<IReadOnlyList<MusicCatalogInfoDTO>> GetMusicCatalogsAsync()
+        public async Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync()
         {
-            return await _repository.GetMusicCatalogListAsync();
+            var dtos = await _repository.GetMusicCatalogListAsync();
+
+            return dtos.Select(dto => new MusicCatalogInfoModel(dto)).ToList();
         }
 
         #region DIPOSABLE IMPLEMENTATION

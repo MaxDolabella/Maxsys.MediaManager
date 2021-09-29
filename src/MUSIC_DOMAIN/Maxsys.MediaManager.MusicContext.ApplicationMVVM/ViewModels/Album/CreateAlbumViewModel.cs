@@ -4,7 +4,6 @@ using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.CoreDomain.Properties;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -23,21 +22,21 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         private readonly ICreateAlbumAppService _appService;
 
         private ReadOnlyObservableCollection<string> _genres;
-        private ReadOnlyObservableCollection<ArtistInfoDTO> _artists;
-        private ReadOnlyObservableCollection<AlbumInfoDTO> _albums;
-        private ArtistInfoDTO _selectedArtist;
+        private ReadOnlyObservableCollection<ArtistInfoModel> _artists;
+        private ReadOnlyObservableCollection<AlbumInfoModel> _albums;
+        private ArtistInfoModel _selectedArtist;
 
         #endregion FIELDS
 
         #region PROPS
 
-        public ReadOnlyObservableCollection<AlbumInfoDTO> DisplayableAlbums
+        public ReadOnlyObservableCollection<AlbumInfoModel> DisplayableAlbums
             => _albums
             ?.Where(a => a.ArtistId == SelectedArtist?.ArtistId)
             ?.OrderBy(a => a.AlbumDirectory)
             ?.ToReadOnlyObservableCollection();
 
-        public ReadOnlyObservableCollection<ArtistInfoDTO> Artists
+        public ReadOnlyObservableCollection<ArtistInfoModel> Artists
         {
             get => _artists;
             private set => SetProperty(ref _artists, value);
@@ -49,7 +48,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             private set => SetProperty(ref _genres, value);
         }
 
-        public ArtistInfoDTO SelectedArtist
+        public ArtistInfoModel SelectedArtist
         {
             get => _selectedArtist;
             set

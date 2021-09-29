@@ -10,6 +10,7 @@ using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Validators;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
@@ -78,14 +79,18 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             return validationResult;
         }
 
-        public async Task<IReadOnlyList<ArtistInfoDTO>> GetArtistsAsync()
+        public async Task<IReadOnlyList<ArtistInfoModel>> GetArtistsAsync()
         {
-            return await _artistRepository.GetArtistInfosAsync();
+            var dtos = await _artistRepository.GetArtistInfosAsync();
+
+            return dtos.Select(dto => new ArtistInfoModel(dto)).ToList();
         }
 
-        public async Task<IReadOnlyList<AlbumInfoDTO>> GetAlbumsAsync()
+        public async Task<IReadOnlyList<AlbumInfoModel>> GetAlbumsAsync()
         {
-            return await _albumRepository.GetAlbumInfosAsync();
+            var dtos = await _albumRepository.GetAlbumInfosAsync();
+
+            return dtos.Select(dto => new AlbumInfoModel(dto)).ToList();
         }
 
         public async Task<IReadOnlyList<string>> GetGenresAsync()

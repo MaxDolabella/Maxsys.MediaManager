@@ -57,17 +57,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         {
             var dtos = await _albumRepository.GetAlbumListsAsync();
 
-            return dtos.Select(dto => new AlbumListModel
-            {
-                AlbumMusicCatalogName = dto.AlbumMusicCatalogName,
-                AlbumArtistName = dto.AlbumArtistName,
-                AlbumId = dto.AlbumId,
-                AlbumName = dto.AlbumName,
-                AlbumType = dto.AlbumType.ToString(),
-                AlbumYear = dto.AlbumYear.HasValue ? dto.AlbumYear.Value.ToString() : string.Empty,
-                AlbumMusicCount = dto.AlbumMusicCount,
-                AlbumDirectory = dto.AlbumDirectory
-            }).ToList();
+            return dtos.Select(dto => new AlbumListModel(dto)).ToList();
         }
     }
 }

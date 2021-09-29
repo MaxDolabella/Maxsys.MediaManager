@@ -39,7 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maxsys.MediaManager.MusicCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maxsys.MediaManager.MusicContext.AppTagLibMono", "src\MUSIC_DOMAIN\Maxsys.MediaManager.MusicContext.AppTagLibMono\Maxsys.MediaManager.MusicContext.AppTagLibMono.csproj", "{1781F2BD-198D-4472-A3E2-592F4F63C8B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxsys.MediaManager.MusicContext.DataExporterConsole", "src\MUSIC_DOMAIN\Maxsys.MediaManager.MusicContext.DataExporterConsole\Maxsys.MediaManager.MusicContext.DataExporterConsole.csproj", "{ED95DB76-71EF-44CC-86A8-F225E76E6278}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maxsys.MediaManager.MusicContext.DataExporterConsole", "src\MUSIC_DOMAIN\Maxsys.MediaManager.MusicContext.DataExporterConsole\Maxsys.MediaManager.MusicContext.DataExporterConsole.csproj", "{ED95DB76-71EF-44CC-86A8-F225E76E6278}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D94FABB4-3342-49AF-BEB2-F0C104B7E913}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxsys.MediaManager.MusicContext.Tests", "tests\Maxsys.MediaManager.MusicContext.Tests\Maxsys.MediaManager.MusicContext.Tests.csproj", "{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +125,14 @@ Global
 		{ED95DB76-71EF-44CC-86A8-F225E76E6278}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED95DB76-71EF-44CC-86A8-F225E76E6278}.Release|x64.ActiveCfg = Release|Any CPU
 		{ED95DB76-71EF-44CC-86A8-F225E76E6278}.Release|x64.Build.0 = Release|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Debug|x64.Build.0 = Debug|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Release|x64.ActiveCfg = Release|Any CPU
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +155,7 @@ Global
 		{1AADFAE0-F59C-4C0D-AE2A-F61EF5334150} = {01FD6057-863C-49B0-9FFB-2009A1E0535D}
 		{1781F2BD-198D-4472-A3E2-592F4F63C8B2} = {BD97E16D-AADE-40CB-A00A-955402F4D025}
 		{ED95DB76-71EF-44CC-86A8-F225E76E6278} = {01FD6057-863C-49B0-9FFB-2009A1E0535D}
+		{5DEDC478-DF2A-45B6-BAB9-399ECD90A108} = {D94FABB4-3342-49AF-BEB2-F0C104B7E913}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EE9D740-60B4-4C01-BFFC-29AD87A3CBBD}

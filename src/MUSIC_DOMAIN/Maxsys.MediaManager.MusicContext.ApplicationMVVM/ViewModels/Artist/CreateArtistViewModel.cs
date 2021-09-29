@@ -2,10 +2,8 @@
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,27 +19,27 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         private readonly ICreateArtistAppService _appService;
 
-        private ReadOnlyObservableCollection<ArtistInfoDTO> _artists;
-        private ReadOnlyObservableCollection<MusicCatalogInfoDTO> _musicCatalogs;
-        private MusicCatalogInfoDTO _selectedMusicCatalog;
+        private ReadOnlyObservableCollection<ArtistInfoModel> _artists;
+        private ReadOnlyObservableCollection<MusicCatalogInfoModel> _musicCatalogs;
+        private MusicCatalogInfoModel _selectedMusicCatalog;
 
         #endregion FIELDS
 
         #region PROPS
 
-        public ReadOnlyObservableCollection<ArtistInfoDTO> DisplayableArtists
+        public ReadOnlyObservableCollection<ArtistInfoModel> DisplayableArtists
             => _artists
             ?.Where(a => a.MusicCatalogId == SelectedMusicCatalog?.MusicCatalogId)
             ?.OrderBy(a => a.ArtistName)
             ?.ToReadOnlyObservableCollection();
 
-        public ReadOnlyObservableCollection<MusicCatalogInfoDTO> MusicCatalogs
+        public ReadOnlyObservableCollection<MusicCatalogInfoModel> MusicCatalogs
         {
             get => _musicCatalogs;
             private set => SetProperty(ref _musicCatalogs, value);
         }
 
-        public MusicCatalogInfoDTO SelectedMusicCatalog
+        public MusicCatalogInfoModel SelectedMusicCatalog
         {
             get => _selectedMusicCatalog;
             set
@@ -74,8 +72,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             MusicCatalogs = (await _appService.GetMusicCatalogsAsync()).ToReadOnlyObservableCollection();
 
-            //SelectedMusicCatalog = MusicCatalogs?.FirstOrDefault();
-
             _logger.LogInformation("Registered MusicCatalogs loaded.");
         }
 
@@ -92,38 +88,41 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             _logger.LogInformation("Registering Artist [{Name}].", Model.Name);
 
-            Model.MusicCatalogId = SelectedMusicCatalog.MusicCatalogId;
+            Model.SetMusicCatalog(SelectedMusicCatalog);
 
             var validationResult = Model.IsValid
                 ? await _appService.AddNewArtistAsync(Model)
-                : Model.ValidationResult;
+                : await Task.FromResult(Model.ValidationResult);
 
             if (validationResult.IsValid)
-            {
-                _logger.LogInformation("Artist [{Name}] registered.", Model.Name);
-                _dialogService.ShowMessage(MessageType.Information, $"Artist [{Model.Name}] saved!");
-
                 await OnArtistSaved();
-            }
             else
-            {
-                var errors = validationResult.ToString(Environment.NewLine);
-                _dialogService.ShowMessage(MessageType.Error, $"Error at registering Artist: {errors}");
-                _logger.LogError("Error at registering Artist [{Name}]: {Errors}"
-                    , Model.Name, errors);
-            }
+                OnArtistSaveFail(validationResult);
 
-            return await Task.FromResult(validationResult);
+            return validationResult;
         }
 
         private async Task OnArtistSaved()
         {
+            var message = $"Artist [{Model.Name}] registered!";
+
+            _logger.LogInformation(message);
+            _dialogService.ShowMessage(MessageType.Information, message);
+
             Model = new();
 
             await LoadArtistsAsync();
 
             // Update Artist ListView
             OnPropertyChanged(nameof(DisplayableArtists));
+        }
+
+        private void OnArtistSaveFail(ValidationResult validationResult)
+        {
+            var message = $"Error while registering artist:\n{validationResult}";
+
+            _dialogService.ShowMessage(MessageType.Error, message);
+            _logger.LogError(message);
         }
 
         private void CloseAction()

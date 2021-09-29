@@ -24,7 +24,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Entities
             Artists = new List<Artist>();
         }
 
-        internal MusicCatalog(Guid id, string name)
+        internal MusicCatalog(Guid id, string name) : this()
         {
             Id = id;
             Name = name;

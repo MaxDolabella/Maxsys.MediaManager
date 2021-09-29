@@ -12,14 +12,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
         Task<ValidationResult> AddNewAlbumAsync(CreateAlbumModel model);
 
         /// <summary>
-        /// Returns a readonly list of <see cref="ArtistInfoDTO"/> asynchronous.
+        /// Returns a readonly list of <see cref="ArtistInfoModel"/> asynchronous.
         /// </summary>
-        Task<IReadOnlyList<ArtistInfoDTO>> GetArtistsAsync();
+        Task<IReadOnlyList<ArtistInfoModel>> GetArtistsAsync();
 
         /// <summary>
-        /// Returns a readonly list of <see cref="AlbumInfoDTO"/> asynchronous.
+        /// Returns a readonly list of <see cref="AlbumInfoModel"/> asynchronous.
         /// </summary>
-        Task<IReadOnlyList<AlbumInfoDTO>> GetAlbumsAsync();
+        Task<IReadOnlyList<AlbumInfoModel>> GetAlbumsAsync();
 
         Task<IReadOnlyList<string>> GetGenresAsync();
     }

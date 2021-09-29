@@ -56,12 +56,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         {
             var dtos = await _repository.GetMusicCatalogListsAsync();
 
-            return dtos.Select(dto => new MusicCatalogListModel
-            {
-                MusicCatalogId = dto.MusicCatalogId,
-                MusicCatalogName = dto.MusicCatalogName,
-                ArtistCount = dto.ArtistCount
-            }).ToList();
+            return dtos.Select(dto => new MusicCatalogListModel(dto)).ToList();
         }
     }
 }

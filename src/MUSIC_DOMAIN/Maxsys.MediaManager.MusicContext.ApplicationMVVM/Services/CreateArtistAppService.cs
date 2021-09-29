@@ -3,12 +3,12 @@ using Maxsys.AppCore;
 using Maxsys.DataCore.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Factories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Validators;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
@@ -45,14 +45,18 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 : await Task.FromResult(validationResult);
         }
 
-        public async Task<IReadOnlyList<MusicCatalogInfoDTO>> GetMusicCatalogsAsync()
+        public async Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync()
         {
-            return await _musicCatalogRepository.GetMusicCatalogListAsync();
+            var dtos = await _musicCatalogRepository.GetMusicCatalogListAsync();
+
+            return dtos.Select(dto => new MusicCatalogInfoModel(dto)).ToList();
         }
 
-        public async Task<IReadOnlyList<ArtistInfoDTO>> GetArtistsAsync()
+        public async Task<IReadOnlyList<ArtistInfoModel>> GetArtistsAsync()
         {
-            return await _artistRepository.GetArtistInfosAsync();
+            var dtos = await _artistRepository.GetArtistInfosAsync();
+
+            return dtos.Select(dto => new ArtistInfoModel(dto)).ToList();
         }
     }
 }

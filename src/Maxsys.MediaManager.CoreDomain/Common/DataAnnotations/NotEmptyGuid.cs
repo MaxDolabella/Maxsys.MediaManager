@@ -9,7 +9,7 @@
         {
             var result = value is Guid guid && guid != Guid.Empty
                 ? ValidationResult.Success
-                : new ValidationResult($"{validationContext.MemberName} cannot be an empty guid.");
+                : new ValidationResult(ErrorMessage ?? $"{validationContext.MemberName} cannot be an empty guid.");
 
             return result;
         }

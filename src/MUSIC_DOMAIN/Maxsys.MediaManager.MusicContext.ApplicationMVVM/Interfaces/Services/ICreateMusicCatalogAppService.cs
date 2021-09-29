@@ -12,8 +12,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
         Task<ValidationResult> AddNewMusicCatalogAsync(CreateMusicCatalogModel model);
 
         /// <summary>
-        /// Returns a readonly list of <see cref="MusicCatalogInfoDTO"/> asynchronous.
+        /// Returns a readonly list of <see cref="MusicCatalogInfoModel"/> asynchronous.
         /// </summary>
-        Task<IReadOnlyList<MusicCatalogInfoDTO>> GetMusicCatalogsAsync();
+        Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync();
     }
 }

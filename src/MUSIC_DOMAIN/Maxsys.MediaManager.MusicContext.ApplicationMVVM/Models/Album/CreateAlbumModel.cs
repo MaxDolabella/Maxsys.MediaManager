@@ -1,5 +1,4 @@
 ﻿using Maxsys.Core.Helpers;
-using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 using System;
 using System.ComponentModel;
@@ -67,20 +66,18 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
         #region Artist
 
         // Field
-        private ArtistInfoDTO _artist;
+        private ArtistInfoModel _artist;
 
         // Props
-        [Required(ErrorMessage = "{0} is required.")]
         [Browsable(false)]
-        public ArtistInfoDTO Artist
+        [Required(ErrorMessage = "Artist is required.")]
+        public ArtistInfoModel Artist
         {
             get => _artist;
             set
             {
                 if (SetProperty(ref _artist, value, true))
-                {
                     OnPropertyChanged(nameof(ArtistName));
-                }
             }
         }
 
@@ -88,10 +85,10 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
         public Guid ArtistId => Artist?.ArtistId ?? default;
 
         [Browsable(false)]
-        public string ArtistName => Artist?.ArtistName;
+        public string ArtistName => Artist?.ArtistName ?? default;
 
         // Methods
-        public void SetArtist(ArtistInfoDTO artist) => Artist = artist;
+        public void SetArtist(ArtistInfoModel artist) => Artist = artist;
 
         #endregion Artist
 

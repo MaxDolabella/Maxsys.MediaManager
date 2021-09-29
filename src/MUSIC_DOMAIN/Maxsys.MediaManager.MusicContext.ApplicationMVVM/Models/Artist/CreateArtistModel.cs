@@ -13,9 +13,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
         public Guid Id { get; } = GuidGen.NewSequentialGuid();
 
         [Browsable(false)]
-        [Required]
-        [NotEmptyGuid]
-        public Guid MusicCatalogId { get; set; }
+        [NotEmptyGuid(ErrorMessage = "Music Catalog is required.")]
+        public Guid MusicCatalogId { get; private set; }
 
         [Display(Name = nameof(Name), Description = "Is the name of Catalog.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} is required.")]
@@ -28,5 +27,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
             get => _name;
             set => SetProperty(ref _name, value, true);
         }
+
+        #region Methods
+
+        public void SetMusicCatalog(MusicCatalogInfoModel musicCatalog)
+            => MusicCatalogId = musicCatalog?.MusicCatalogId ?? default;
+
+        #endregion Methods
     }
 }

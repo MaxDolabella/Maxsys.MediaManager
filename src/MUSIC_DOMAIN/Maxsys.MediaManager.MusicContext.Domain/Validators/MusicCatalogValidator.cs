@@ -74,6 +74,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
             RuleFor(x => x.Name).NotEmpty()
                 .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
                 .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
+                .MinimumLength(2)
                 .MaximumLength(50);
         }
 

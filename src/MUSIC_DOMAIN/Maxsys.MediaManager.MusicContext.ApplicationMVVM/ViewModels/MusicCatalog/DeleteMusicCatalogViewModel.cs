@@ -137,7 +137,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
                 }
                 catch (System.Exception ex)
                 {
-                    _logger.LogError("Folder cannot be deleted: {errors}", ex.Message);
+                    _logger.LogError("Folder cannot be deleted:\n{errors}", ex.Message);
                 }
             });
         }
