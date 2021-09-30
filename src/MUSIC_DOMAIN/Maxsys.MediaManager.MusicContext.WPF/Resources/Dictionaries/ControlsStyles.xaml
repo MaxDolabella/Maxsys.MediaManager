@@ -511,7 +511,7 @@
         <Setter Property="Width" Value="Auto" />
         <Setter Property="Height" Value="Auto" />
         <Setter Property="FontSize" Value="{StaticResource FontSize-Smaller}" />
-        <Setter Property="Background" Value="{StaticResource StatusBrush}" />
+        <Setter Property="Background" Value="{StaticResource MaxsysDeepBlueBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BtnTextLightBrush}" />
         <Setter Property="Foreground" Value="{StaticResource BtnTextLightBrush}" />
         <Setter Property="Effect">

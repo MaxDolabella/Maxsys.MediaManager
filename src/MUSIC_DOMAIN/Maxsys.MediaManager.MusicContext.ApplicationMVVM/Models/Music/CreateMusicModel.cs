@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public sealed class CreateMusicModel : ModelBase
+    public sealed class CreateMusicModel : ValidableModelBase
     {
         #region FIELDS
 
@@ -15,7 +15,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
         private string _title;
         private string _lyrics;
         private string _comments;
-        private byte _rating;
+        private byte _stars10;
         private bool _isBonusTrack;
         private VocalGender _vocalGender;
         private string _coveredArtist;
@@ -64,10 +64,10 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
         [RegularExpression(RegexHelper.PATTERN_NUMBERS, ErrorMessage = "{0} must contains only numbers.")]
         [Range(0, 10, ErrorMessage = "{0} must be a number between {1} and {2}.")]
         [DisplayName("RATING (0-10)")]
-        public byte Rating
+        public byte Stars10
         {
-            get => _rating;
-            set => SetProperty(ref _rating, value, true);
+            get => _stars10;
+            set => SetProperty(ref _stars10, value, true);
         }
 
         [Required]

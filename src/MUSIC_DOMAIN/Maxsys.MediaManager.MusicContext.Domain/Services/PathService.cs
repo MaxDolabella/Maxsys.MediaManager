@@ -28,9 +28,16 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services
                                                dto.MusicCatalogName,
                                                dto.ArtistName);
 
-            var albumTypeFolder = dto.AlbumType is AlbumType.Undefined or AlbumType.Various
-                    ? string.Empty
-                    : $@"{dto.AlbumType.AlbumTypeToString()}";
+            var albumTypeFolder = dto.AlbumType switch
+            {
+                AlbumType.Studio => "Studio",
+                AlbumType.Live => "Live",
+                AlbumType.Compilation => "Compilation",
+                AlbumType.Bootleg => "Bootleg",
+                AlbumType.Others => "Others",
+                //AlbumType.Undefined or AlbumType.Various => string.Empty
+                _ => string.Empty
+            };
 
             var name = IOHelper.ReplaceAndRemoveInvalidDirectoryChars(dto.AlbumName);
             var albumFolder = dto.AlbumYear.HasValue

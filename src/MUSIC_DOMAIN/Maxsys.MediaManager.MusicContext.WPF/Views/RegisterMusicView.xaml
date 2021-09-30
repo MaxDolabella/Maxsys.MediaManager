@@ -297,7 +297,7 @@
                                     </DataGridTextColumn.EditingElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="Album" Binding="{Binding AlbumName}" IsReadOnly="True" MinWidth="200" />
-                                <DataGridTextColumn Header="Rating (0-10)" Binding="{Binding Rating}" Width="70">
+                                <DataGridTextColumn Header="Rating (0-10)" Binding="{Binding Stars10}" Width="70">
                                     <DataGridTextColumn.EditingElementStyle>
                                         <Style TargetType="{x:Type TextBox}">
                                             <Setter Property="MaxLength" Value="2" />

@@ -1,113 +1,154 @@
-//using FluentValidation;
-//using FluentValidation.TestHelper;
-//using Maxsys.MediaManager.MusicContext.Domain.Entities;
-//using Maxsys.MediaManager.MusicContext.Domain.Factories;
-//using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
-//using Maxsys.MediaManager.MusicContext.Domain.Validation.ArtistValidators;
-//using Maxsys.MediaManager.Tests.MockMusicContext;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using System.Linq;
+using Maxsys.MediaManager.MusicContext.Domain.Entities;
+using Maxsys.MediaManager.MusicContext.Domain.Factories;
+using Maxsys.MediaManager.MusicContext.Domain.Validators;
+using Maxsys.MediaManager.MusicContext.Tests.Mock;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-//namespace Maxsys.MediaManager.Tests.EntitiesTests
-//{
-//    [TestClass]
-//    public class ArtistTest
-//    {
-//        #region Fields
-//        const string CATEGORY = "Domain.Entity: " + nameof(Artist);
-//        static readonly IArtistRepository _repository = new ArtistMockRepository();
-//        static readonly IValidator<Artist> _businessValidator = new ArtistBusinessValidator(); 
-//        static readonly IValidator<Artist> _persistenceValidator = new ArtistPersistenceValidator(_repository);
-//        #endregion
+namespace Maxsys.MediaManager.Tests.EntitiesTests
+{
+    [TestClass]
+    [TestCategory("Domain.Entity: " + nameof(Artist))]
+    public class ArtistTest
+    {
+        #region Fields
 
-//        #region Business
-//        [TestMethod][TestCategory(CATEGORY)]
-//        public void MusicCatalog_cannot_be_null()
-//        {
-//            // Arrange
-//            var validator = _businessValidator;
-//            var validMusicCatalog = _repository.GetAll(false).First().MusicCatalog;
-//            var rightArtist = ArtistFactory.Create("Name", validMusicCatalog);
-//            var wrongArtist = ArtistFactory.Create("Name", default(MusicCatalog));
+        private const string VALID_NAME = "123 right-name γικντόη";
+        private static readonly Guid VALID_ID = Guid.NewGuid();
+        private static readonly MusicCatalog MUSIC_CATALOG = MusicCatalogFactory.Create(VALID_ID, VALID_NAME);
 
-//            // Act
-//            var rightResult = validator.TestValidate(rightArtist);
-//            var wrongResult = validator.TestValidate(wrongArtist);
+        #endregion Fields
 
+        [TestMethod]
+        public void Artist_must_be_valid()
+        {
+            // Arrange
+            var artist = ArtistFactory.Create(VALID_ID, VALID_NAME, VALID_ID);
+            var validator = new ArtistValidator(null);
+            validator.AddRuleForId();
+            validator.AddRuleForName();
+            validator.AddRuleForMusicCatalog();
+            //validator.AddRuleForUniqueNameInMusicCatalog();
 
-//            // Assert
-//            rightResult.ShouldNotHaveValidationErrorFor(x => x.MusicCatalog);
-//            wrongResult.ShouldHaveValidationErrorFor(x => x.MusicCatalog);
-//        }
+            // Act
+            var result = validator.Validate(artist);
 
+            // Assert
+            Assert.IsTrue(result.IsValid);
+        }
 
-//        [TestMethod][TestCategory(CATEGORY)]
-//        public void Name_cannot_be_null_or_empty()
-//        {
-//            // Arrange
-//            var validator = _businessValidator;
-//            var validMusicCatalog = _repository.GetAll(false).First().MusicCatalog;
-//            var rightArtist = ArtistFactory.Create("123 right-name γικντόη", validMusicCatalog);
-//            var wrongArtist_null = ArtistFactory.Create(null, validMusicCatalog);
-//            var wrongArtist_empty = ArtistFactory.Create("   ", validMusicCatalog);
+        [TestMethod]
+        public void MusicCatalog_cannot_be_null()
+        {
+            // Arrange
+            var validArtist = ArtistFactory.Create(VALID_ID, VALID_NAME, VALID_ID);
+            var invalidArtist = ArtistFactory.Create(VALID_ID, VALID_NAME, default);
+            var validator = new ArtistValidator(null).AddRuleForMusicCatalog();
 
+            // Act
+            var rightResult = validator.Validate(validArtist);
+            var wrongResult = validator.Validate(invalidArtist);
 
-//            // Act
-//            var right = validator.Validate(rightArtist).IsValid;
-//            var wrongNull = validator.Validate(wrongArtist_null).IsValid;
-//            var wrongEmpty = validator.Validate(wrongArtist_empty).IsValid;
+            // Assert
+            Assert.IsTrue(rightResult.IsValid);
+            Assert.IsFalse(wrongResult.IsValid);
+        }
 
+        [TestMethod]
+        public void Name_cannot_be_null()
+        {
+            // Arrange
+            var artist = ArtistFactory.Create(VALID_ID, null, VALID_ID);
+            var validator = new ArtistValidator(null).AddRuleForName();
 
-//            // Assert
-//            Assert.IsTrue(right);
-//            Assert.IsFalse(wrongNull, "null value");
-//            Assert.IsFalse(wrongEmpty, "empty value");
-//        }
+            // Act
+            var result = validator.Validate(artist);
 
-        
-//        [TestMethod][TestCategory(CATEGORY)]
-//        public void Name_must_have_50chars_max_length()
-//        {
-//            // Arrange
-//            var validator = _businessValidator;
-//            var validMusicCatalog = _repository.GetAll(false).First().MusicCatalog;
-//            var rightArtist = ArtistFactory.Create(StringHelper.GetWord(50), validMusicCatalog);
-//            var wrongArtist = ArtistFactory.Create(StringHelper.GetWord(51), validMusicCatalog);
+            // Assert
+            Assert.IsFalse(result.IsValid);
+        }
 
+        [TestMethod]
+        public void Name_cannot_be_empty()
+        {
+            // Arrange
+            var artist = ArtistFactory.Create(VALID_ID, "   ", VALID_ID);
+            var validator = new ArtistValidator(null).AddRuleForName();
 
-//            // Act
-//            var right = validator.Validate(rightArtist).IsValid;
-//            var wrong = validator.Validate(wrongArtist).IsValid;
+            // Act
+            var result = validator.Validate(artist);
 
+            // Assert
+            Assert.IsFalse(result.IsValid);
+        }
 
-//            // Assert
-//            Assert.IsTrue(right);
-//            Assert.IsFalse(wrong);
-//        }
-//        #endregion
+        [TestMethod]
+        public void Name_must_have_50chars_max_length()
+        {
+            // Arrange
+            var rightArtist = ArtistFactory.Create(VALID_ID, StringHelper.GetWord(50), VALID_ID);
+            var wrongArtist = ArtistFactory.Create(VALID_ID, StringHelper.GetWord(51), VALID_ID);
+            var validator = new ArtistValidator(null).AddRuleForName();
 
-//        #region Persistence
-//        [TestMethod][TestCategory(CATEGORY)]
-//        public void Name_must_be_unique_in_MusicCatalog()
-//        {
-//            // Arrange
-//            var validator = _persistenceValidator;
-//            var validMusicCatalog = _repository.GetAll(false).First().MusicCatalog;
-//            var repeatedName = _repository.GetAll(false).First().Name;
-//            var rightArtist = ArtistFactory.Create("Unique Name", validMusicCatalog);
-//            var wrongArtist = ArtistFactory.Create(repeatedName, validMusicCatalog);
+            // Act
+            var right = validator.Validate(rightArtist);
+            var wrong = validator.Validate(wrongArtist);
 
+            // Assert
+            Assert.IsTrue(right.IsValid);
+            Assert.IsFalse(wrong.IsValid);
+        }
 
-//            // Act
-//            var right = validator.Validate(rightArtist).IsValid;
-//            var wrong = validator.Validate(wrongArtist).IsValid;
+        [TestMethod]
+        public void Name_must_contains_only_letters_numbers_spaces_hyphens()
+        {
+            // Arrange
+            var artist = ArtistFactory.Create(VALID_ID, "(wrong_name){[]=-+.}", VALID_ID);
+            var validator = new ArtistValidator(null).AddRuleForName();
 
+            // Act
+            var result = validator.Validate(artist);
 
-//            // Assert
-//            Assert.IsTrue(right);
-//            Assert.IsFalse(wrong);
-//        }
-//        #endregion
-//    }
-//}
+            // Assert
+            Assert.IsFalse(result.IsValid);
+        }
 
+        [TestMethod]
+        public async Task Name_must_be_unique_in_musicCatalog()
+        {
+            // Arrange
+            var context = new MockContext();
+            var repository = context.Artists;
+            var musicCatalog = context.MusicCatalogs.GetAll().First();
+            var rightArtist = ArtistFactory.Create(Guid.NewGuid(), "Unique Name", default);
+            var wrongArtist = ArtistFactory.Create(Guid.NewGuid(), "Unique Name", default);
+            rightArtist.SetMusicCatalog(musicCatalog);
+            wrongArtist.SetMusicCatalog(musicCatalog);
+
+            var validator = new ArtistValidator(repository);
+            validator.AddRuleForUniqueNameInMusicCatalog();
+
+            // Act
+            var right = await validator.ValidateAsync(rightArtist);
+            repository.Add(rightArtist);
+            var wrong = await validator.ValidateAsync(wrongArtist);
+
+            // Assert
+            Assert.IsTrue(right.IsValid);
+            Assert.IsFalse(wrong.IsValid);
+        }
+
+        [TestMethod]
+        public async Task Must_Not_Contains_Any_Albums()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+            Assert.Inconclusive("Not implemented");
+        }
+    }
+}

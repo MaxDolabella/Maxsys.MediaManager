@@ -85,7 +85,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
 
         public AlbumValidator SetRulesForDeletion()
         {
-            RuleForId();
+            AddRuleForId();
             RuleForMustNotContainsAnyMusic();
 
             return this;

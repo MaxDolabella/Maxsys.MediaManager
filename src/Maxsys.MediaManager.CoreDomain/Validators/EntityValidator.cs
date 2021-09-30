@@ -13,9 +13,11 @@ namespace Maxsys.MediaManager.CoreDomain.Validators
         /// <summary>
         /// Adds rule to validate <see cref="EntityBase.Id"/>.
         /// </summary>
-        public void RuleForId()
+        public EntityValidator<T> AddRuleForId()
         {
             RuleFor(x => x.Id).NotEmpty();
+            
+            return this;
         }
     }
 }

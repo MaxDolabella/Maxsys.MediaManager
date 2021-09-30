@@ -42,7 +42,6 @@ namespace Maxsys.MediaManager.MusicContext.WPF
                 logger.LogWarning("AppVersion = [{AppVersion}]", AppVersion);
                 logger.LogWarning("Config:ENVIRONMENT = [{config}]", config["ENVIRONMENT"]);
                 logger.LogWarning("Config:DOTNET_ENVIRONMENT = [{config}]", config["DOTNET_ENVIRONMENT"]);
-                logger.LogWarning("Mode = [{config}]", config["Mode"]);
             }
 
             await _host.CreateDatabaseIfNotExistAndApplyMigrationsAsync();

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public class AlbumListModel : ModelBase
+    public class AlbumListModel : ValidableModelBase
     {
         private readonly AlbumListDTO _album;
         public AlbumListModel()

@@ -21,5 +21,10 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories
         /// Asynchronously returns a readonly list of <see cref="MusicInfoDTO"/>.
         /// </summary>
         Task<IReadOnlyList<MusicInfoDTO>> GetMusicsAsync();
+
+        /// <summary>
+        /// Asynchronously returns a readonly list of <see cref="MusicListDTO"/>.
+        /// </summary>
+        Task<IReadOnlyList<MusicListDTO>> GetMusicListAsync();
     }
 }

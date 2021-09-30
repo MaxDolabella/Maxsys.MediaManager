@@ -161,7 +161,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 model.VocalGender,
                 model.CoveredArtist,
                 model.FeaturedArtist,
-                model.Rating,
+                model.Stars10,
                 fileSize,
                 duration,
                 bitrate,
@@ -311,7 +311,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 MusicFullPath = model.SourceFullPath,
                 MusicTitle = model.Title,
                 MusicTrackNumber = model.TrackNumber,
-                MusicRating10 = model.Rating,
+                MusicRating10 = model.Stars10,
                 MusicComments = model.Comments,
                 MusicLyrics = model.Lyrics,
                 // TODO Add Composers in CreateMusicModel

@@ -45,5 +45,28 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories
                 .ThenBy(m => m.MusicTitle)
                 .ToListAsync();
         }
+
+        public async Task<IReadOnlyList<MusicListDTO>> GetMusicListAsync()
+        {
+            return await ReadOnlySet
+                .Include(e => e.Album.Artist.MusicCatalog)
+                .Select(e => new MusicListDTO
+                {
+                    MusicCatalogName = e.Album.Artist.MusicCatalog.Name,
+                    ArtistName = e.Album.Artist.Name,
+                    AlbumName = e.Album.Name,
+                    AlbumType = e.Album.AlbumType,
+                    MusicId = e.Id,
+                    MusicFullPath = e.FullPath,
+                    MusicTrackNumber = e.TrackNumber,
+                    MusicTitle = e.Title,
+                    MusicCoveredArtist = e.MusicDetails.CoveredArtist,
+                    MusicFeaturedArtist = e.MusicDetails.FeaturedArtist,
+                    MusicVocalGender = e.MusicDetails.VocalGender,
+                    MusicRating = e.Classification.Rating
+                })
+                .OrderBy(e => e.MusicFullPath)
+                .ToListAsync();
+        }
     }
 }

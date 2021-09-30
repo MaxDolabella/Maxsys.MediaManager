@@ -7,7 +7,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
     public abstract class ViewModelBase<TModel> : ViewModelBase
         //where TModel : ObservableObject, new()
-        where TModel : ModelBase, new()
+        where TModel : ValidableModelBase, new()
     {
         protected TModel _model;
 

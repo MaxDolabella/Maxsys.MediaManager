@@ -36,8 +36,8 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
 
         public ComposerValidator SetRulesForCreation()
         {
-            RuleForName();
-            RuleForUniqueName();
+            AddRuleForName();
+            AddRuleForUniqueName();
 
             return this;
         }
@@ -46,15 +46,16 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
 
         #region Rules
 
-        public void RuleForName()
+        public void AddRuleForName()
         {
             RuleFor(x => x.Name).NotEmpty()
                 .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
-                    .WithMessage("{PropertyName} must contain only letters, numbers, spaces or hyphens.")
+                    .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
+                .MinimumLength(2)
                 .MaximumLength(30);
         }
 
-        public void RuleForUniqueName()
+        public void AddRuleForUniqueName()
         {
             RuleFor(x => x.Name)
                 .MustAsync(IsUniqueNameAsync)

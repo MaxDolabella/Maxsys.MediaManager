@@ -59,7 +59,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
         /// <returns>the current validator with all validate methods.</returns>
         public MusicValidator SetRulesForCreation()
         {
-            RuleForId();
+            AddRuleForId();
             RuleForFullPath();
             RuleForOriginalFileName();
             RuleForTitle();
@@ -89,7 +89,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
         /// <returns>the current validator with all validate methods.</returns>
         public MusicValidator SetRulesForUpdate()
         {
-            RuleForId();
+            AddRuleForId();
             RuleForFullPath();
             RuleForOriginalFileName();
             RuleForTitle();

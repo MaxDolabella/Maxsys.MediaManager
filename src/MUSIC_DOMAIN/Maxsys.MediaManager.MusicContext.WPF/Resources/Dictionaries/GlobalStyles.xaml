@@ -98,6 +98,7 @@
         <Setter Property="Content" Value="CANCEL" />
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="35" />
+        <Setter Property="IsCancel" Value="True"/>
         <Setter Property="Background" Value="{StaticResource CriticalBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public abstract class ModelBase : ObservableValidator //ObservableObject
+    public abstract class ValidableModelBase : ObservableValidator //ObservableObject
     {
         private ValidationResult _validationResult;
 

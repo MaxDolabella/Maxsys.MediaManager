@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public sealed class CreateArtistModel : ModelBase
+    public sealed class CreateArtistModel : ValidableModelBase
     {
         private string _name;
 

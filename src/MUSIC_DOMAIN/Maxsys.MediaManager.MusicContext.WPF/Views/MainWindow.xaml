@@ -66,7 +66,10 @@
                                 <MenuItem Header="_Create Album" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateAlbumView}" />
                                 <MenuItem Header="_Delete Album" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteAlbumView}" />
                             </MenuItem>
-                            <MenuItem Header="_Music" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:RegisterMusicView}" />
+                            <MenuItem Header="_Music">
+                                <MenuItem Header="_Register Musics" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:RegisterMusicView}" />
+                                <MenuItem Header="_List All Musics" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:MusicsView}" />
+                            </MenuItem>
                             <MenuItem Header="_Playlist" IsEnabled="False" />
                         </MenuItem>
                     </MenuItem>

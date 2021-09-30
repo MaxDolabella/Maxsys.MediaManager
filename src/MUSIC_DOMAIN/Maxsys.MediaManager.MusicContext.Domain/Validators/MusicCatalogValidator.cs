@@ -48,16 +48,16 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
         /// <returns>the current validator with all validate methods.</returns>
         public MusicCatalogValidator SetRulesForCreation()
         {
-            RuleForName();
-            RuleForUniqueName();
+            AddRuleForName();
+            AddRuleForUniqueName();
 
             return this;
         }
 
         public MusicCatalogValidator SetRulesForDeletion()
         {
-            RuleForId();
-            RuleForMustNotContainsAnyArtist();
+            AddRuleForId();
+            AddRuleForMustNotContainsAnyArtist();
 
             return this;
         }
@@ -69,34 +69,40 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
         /// <summary>
         /// Adds rule to validate <see cref="MusicCatalog.Name"/>.
         /// </summary>
-        public void RuleForName()
+        public MusicCatalogValidator AddRuleForName()
         {
             RuleFor(x => x.Name).NotEmpty()
                 .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
-                .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
+                    .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
                 .MinimumLength(2)
                 .MaximumLength(50);
+
+            return this;
         }
 
         /// <summary>
         /// Adds asynchronous rule to validate wether <see cref="MusicCatalog.Name"/> is unique.
         /// </summary>
-        public void RuleForUniqueName()
+        public MusicCatalogValidator AddRuleForUniqueName()
         {
             RuleFor(x => x.Name)
                 .MustAsync(IsUniqueNameAsync)
                 .WithMessage("'{PropertyName}' {PropertyValue} already exists. Must be unique.");
+
+            return this;
         }
 
         /// <summary>
         /// Adds a rule used in deletion. To be valid for deletion, the <see cref="MusicCatalog"/>
         /// must not contains any <see cref="Artist"/> in <see cref="MusicCatalog.Artists"/>.
         /// </summary>
-        public void RuleForMustNotContainsAnyArtist()
+        public MusicCatalogValidator AddRuleForMustNotContainsAnyArtist()
         {
             RuleFor(x => x)
                 .MustAsync(NotContainsAnyArtist)
                     .WithMessage("Music Catalog contains at least one artist. Must not contains any.");
+
+            return this;
         }
 
         #endregion Rules

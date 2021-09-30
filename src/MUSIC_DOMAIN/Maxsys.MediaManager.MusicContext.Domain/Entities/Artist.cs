@@ -9,35 +9,37 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Entities
     public class Artist : EntityBase
     {
         #region PROPERTIES
-		public string Name { get; protected set; }
+
+        public string Name { get; protected set; }
         public Guid MusicCatalogId { get; protected set; }
 
         // Navigation
         public virtual MusicCatalog MusicCatalog { get; protected set; }
 
-
         // Collections
         public virtual ICollection<Album> Albums { get; protected set; }
-        #endregion
+
+        #endregion PROPERTIES
 
         #region CONSTRUCTORS
-        protected Artist() 
+
+        protected Artist()
         {
             Albums = new List<Album>();
         }
 
-        [Obsolete("Mvvm version really needs this ctor?")]
-        internal Artist(Guid id, string name, MusicCatalog musicCatalog)
-        {
-            (Id, Name, MusicCatalog) = (id, name, musicCatalog);
-
-            if (musicCatalog != null) MusicCatalogId = musicCatalog.Id;
-        }
-
         internal Artist(Guid id, string name, Guid musicCatalogId)
+            : this()
         {
             (Id, Name, MusicCatalogId) = (id, name, musicCatalogId);
         }
-        #endregion
+
+        #endregion CONSTRUCTORS
+
+        public void SetMusicCatalog(MusicCatalog newMusicCatalog)
+        {
+            MusicCatalog = newMusicCatalog;
+            MusicCatalogId = newMusicCatalog?.Id ?? default;
+        }
     }
 }

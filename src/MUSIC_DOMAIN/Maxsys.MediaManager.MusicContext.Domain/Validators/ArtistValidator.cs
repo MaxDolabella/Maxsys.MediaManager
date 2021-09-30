@@ -43,36 +43,44 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
 
         #region Rules
 
-        public void RuleForName()
+        public ArtistValidator AddRuleForName()
         {
             RuleFor(x => x.Name).NotEmpty()
                 .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
                     .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
                 .MaximumLength(50);
+
+            return this;
         }
 
-        public void RuleForMusicCatalog()
+        public ArtistValidator AddRuleForMusicCatalog()
         {
             RuleFor(x => x.MusicCatalog).NotNull()
                 .When(x => x.MusicCatalogId == default);
+
+            return this;
         }
 
-        public void RuleForUniqueNameInMusicCatalog()
+        public ArtistValidator AddRuleForUniqueNameInMusicCatalog()
         {
             RuleFor(x => x.Name)
                 .MustAsync(IsUniqueNameInCatalogAsync)
                     .WithMessage("'{PropertyName}' {PropertyValue} already exists. Must be unique.");
+
+            return this;
         }
 
         /// <summary>
         /// Adds a rule used in deletion. To be valid for deletion, the <see cref="Artist"/>
         /// must not contains any <see cref="Album"/> in <see cref="Artist.Albums"/>.
         /// </summary>
-        public void RuleForMustNotContainsAnyAlbum()
+        public ArtistValidator AddRuleForMustNotContainsAnyAlbum()
         {
             RuleFor(x => x)
                 .MustAsync(NotContainsAnyAlbum)
                     .WithMessage("Artist contains at least one album. Must not contains any.");
+
+            return this;
         }
 
         #endregion Rules
@@ -81,17 +89,17 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
 
         public ArtistValidator SetRulesForCreation()
         {
-            RuleForName();
-            RuleForMusicCatalog();
-            RuleForUniqueNameInMusicCatalog();
+            AddRuleForName();
+            AddRuleForMusicCatalog();
+            AddRuleForUniqueNameInMusicCatalog();
 
             return this;
         }
 
         public ArtistValidator SetRulesForDeletion()
         {
-            RuleForId();
-            RuleForMustNotContainsAnyAlbum();
+            AddRuleForId();
+            AddRuleForMustNotContainsAnyAlbum();
 
             return this;
         }

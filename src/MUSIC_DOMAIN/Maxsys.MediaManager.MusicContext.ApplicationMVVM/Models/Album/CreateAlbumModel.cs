@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public sealed class CreateAlbumModel : ModelBase
+    public sealed class CreateAlbumModel : ValidableModelBase
     {
         private string _name;
         private int? _year;
