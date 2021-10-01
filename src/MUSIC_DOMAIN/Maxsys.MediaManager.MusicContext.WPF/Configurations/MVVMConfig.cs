@@ -1,5 +1,4 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +22,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Configurations
             services.AddSingleton<MainWindow>();
 
             services.AddSingleton<IDialogService, MainWindowToolbarDialogService>();
+            services.AddSingleton<IQuestionDialogService, GlobalQuestionDialogService>();
             services.AddSingleton<IMainContentCloser, MainWindowContentCloser>();
         }
 

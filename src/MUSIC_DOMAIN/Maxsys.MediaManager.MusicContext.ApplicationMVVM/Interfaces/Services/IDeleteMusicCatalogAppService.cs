@@ -9,6 +9,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
     public interface IDeleteMusicCatalogAppService : IDisposable
     {
         Task<ValidationResult> DeleteMusicCatalogAsync(MusicCatalogListModel model);
+        Task DeleteMusicCatalogDirectory(MusicCatalogListModel model);
 
         /// <summary>
         /// Returns a readonly list of <see cref="MusicCatalogListModel"/> asynchronous.

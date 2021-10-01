@@ -443,8 +443,16 @@
     <!--#endregion DataGrid-->
 
     <Style x:Key="ListBoxStyle" TargetType="ListBox">
-        <Setter Property="Background" Value="{StaticResource dgvBGBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource TextFGBrush}" />
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <!--<Setter Property="Foreground" Value="{StaticResource TextFGBrush}" />
+        <Setter Property="Background" Value="{StaticResource dgvBGBrush}" />-->
+        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="IsEnabled" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Red"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
     

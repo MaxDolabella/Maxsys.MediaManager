@@ -23,6 +23,6 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
         /// <returns></returns>
         IEnumerable<PlaylistDTO> GetPlaylistsByMusic(Music music);
 
-        Playlist GetByIdWithDependencies(Guid id);
+        
     }
 }

@@ -60,24 +60,24 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
         public MusicValidator SetRulesForCreation()
         {
             AddRuleForId();
-            RuleForFullPath();
-            RuleForOriginalFileName();
-            RuleForTitle();
-            RuleForTrackNumber();
-            RuleForLyrics();
-            RuleForComments();
+            AddRuleForFullPath();
+            AddRuleForOriginalFileName();
+            AddRuleForTitle();
+            AddRuleForTrackNumber();
+            AddRuleForLyrics();
+            AddRuleForComments();
 
             // Value Objects
-            RuleForMusicDetails();
-            RuleForMusicProperties();
-            RuleForClassification();
+            AddRuleForMusicDetails();
+            AddRuleForMusicProperties();
+            AddRuleForClassification();
 
             // Navigation
-            RuleForAlbum();
+            AddRuleForAlbum();
 
             // Persistence ASYNC
-            RuleForWetherIsUniqueFullPathAsync();
-            RuleForWetherIsUniqueTrackAndTitleInAlbumAsync();
+            AddRuleForWetherIsUniqueFullPathAsync();
+            AddRuleForWetherIsUniqueTrackAndTitleInAlbumAsync();
 
             return this;
         }
@@ -90,24 +90,24 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
         public MusicValidator SetRulesForUpdate()
         {
             AddRuleForId();
-            RuleForFullPath();
-            RuleForOriginalFileName();
-            RuleForTitle();
-            RuleForTrackNumber();
-            RuleForLyrics();
-            RuleForComments();
+            AddRuleForFullPath();
+            AddRuleForOriginalFileName();
+            AddRuleForTitle();
+            AddRuleForTrackNumber();
+            AddRuleForLyrics();
+            AddRuleForComments();
 
             // Value Objects
-            RuleForMusicDetails();
-            RuleForMusicProperties();
-            RuleForClassification();
+            AddRuleForMusicDetails();
+            AddRuleForMusicProperties();
+            AddRuleForClassification();
 
             // Navigation
-            RuleForAlbum();
+            AddRuleForAlbum();
 
             // Persistence ASYNC
-            RuleForWetherIsUniqueFullPathAsync();
-            RuleForWetherIsUniqueTrackAndTitleInAlbumAsync();
+            AddRuleForWetherIsUniqueFullPathAsync();
+            AddRuleForWetherIsUniqueTrackAndTitleInAlbumAsync();
 
             return this;
         }
@@ -116,7 +116,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
 
         #region Rules
 
-        public void RuleForFullPath()
+        public void AddRuleForFullPath()
         {
             RuleFor(mediaFile => mediaFile.FullPath).NotEmpty()
                 .MaximumLength(260).WithMessage("Path lenght must be lower than 260.");
@@ -125,40 +125,40 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
             //.Matches(RegexHelper.REGEX_PATTERN_FOR_VALID_FILENAME).WithMessage("{PropertyName} must be a valid filename")
         }
 
-        public void RuleForOriginalFileName()
+        public void AddRuleForOriginalFileName()
         {
             RuleFor(mediaFile => mediaFile.OriginalFileName).NotEmpty()
                 .MaximumLength(100);
         }
 
-        public void RuleForTitle()
+        public void AddRuleForTitle()
         {
             RuleFor(music => music.Title).NotEmpty()
                 .MaximumLength(100);
         }
 
-        public void RuleForTrackNumber()
+        public void AddRuleForTrackNumber()
         {
             RuleFor(music => music.TrackNumber)
                 .GreaterThan(0)
                 .When(music => music.TrackNumber is not null);
         }
 
-        public void RuleForLyrics()
+        public void AddRuleForLyrics()
         {
             RuleFor(music => music.Lyrics)
                 .MaximumLength(5000)
                 .When(music => music.Lyrics is not null);
         }
 
-        public void RuleForComments()
+        public void AddRuleForComments()
         {
             RuleFor(music => music.Comments)
                 .MaximumLength(300)
                 .When(music => music.Comments is not null);
         }
 
-        public void RuleForMusicDetails()
+        public void AddRuleForMusicDetails()
         {
             RuleFor(music => music.MusicDetails).NotNull();
             RuleFor(music => music.MusicDetails.VocalGender).IsInEnum();
@@ -170,7 +170,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
                 .When(music => music.MusicDetails.FeaturedArtist is not null);
         }
 
-        public void RuleForMusicProperties()
+        public void AddRuleForMusicProperties()
         {
             RuleFor(music => music.MusicProperties).NotNull();
             RuleFor(music => music.MusicProperties.Duration)
@@ -179,27 +179,27 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Validators
                 .GreaterThan(96);
         }
 
-        public void RuleForClassification()
+        public void AddRuleForClassification()
         {
             RuleFor(music => music.Classification).NotNull();
             RuleFor(music => music.Classification.Rating)
                 .GreaterThanOrEqualTo(0);
         }
 
-        public void RuleForAlbum()
+        public void AddRuleForAlbum()
         {
             RuleFor(music => music.Album).NotNull()
                 .When(music => music.AlbumId == default);
         }
 
-        public void RuleForWetherIsUniqueTrackAndTitleInAlbumAsync()
+        public void AddRuleForWetherIsUniqueTrackAndTitleInAlbumAsync()
         {
             RuleFor(x => x.Album)
                 .MustAsync(IsUniqueTitleAndTrackInAlbumAsync)
                 .WithMessage("Title '{PropertyValue}' already exists in the album. Must be unique.");
         }
 
-        public void RuleForWetherIsUniqueFullPathAsync()
+        public void AddRuleForWetherIsUniqueFullPathAsync()
         {
             RuleFor(x => x.FullPath)
                 .MustAsync(IsUniqueFullPathAsync)

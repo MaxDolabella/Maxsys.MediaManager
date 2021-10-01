@@ -1,5 +1,4 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.ModelCore.Interfaces.Services;
@@ -15,12 +14,13 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
         public MusicsView(
             ILogger<MusicsView> logger,
             IDialogService dialogService,
+            IQuestionDialogService questionDialogService,
             IMainContentCloser contentCloser,
             IMusicListAppService appService)
         {
             InitializeComponent();
 
-            DataContext = _viewModel = new(logger, dialogService, contentCloser, appService);
+            DataContext = _viewModel = new(logger, dialogService, questionDialogService, contentCloser, appService);
 
             Loaded += async (s, o) => await _viewModel.ViewLoadedAsync();
         }

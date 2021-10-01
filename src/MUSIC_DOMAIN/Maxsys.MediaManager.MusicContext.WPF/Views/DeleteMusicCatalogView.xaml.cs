@@ -17,12 +17,11 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
             ILogger<DeleteMusicCatalogView> logger,
             IDialogService dialogService,
             IMainContentCloser contentCloser,
-            IPathService pathService,
             IDeleteMusicCatalogAppService appService)
         {
             InitializeComponent();
 
-            DataContext = _viewModel = new(logger, dialogService, contentCloser, pathService, appService);
+            DataContext = _viewModel = new(logger, dialogService, contentCloser, appService);
 
             Loaded += async (s, o) => await _viewModel.ViewLoadedAsync();
         }

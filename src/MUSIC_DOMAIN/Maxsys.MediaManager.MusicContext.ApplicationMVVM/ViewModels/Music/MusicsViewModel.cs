@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.ModelCore.Interfaces.Services;
@@ -21,6 +22,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         private string _searchTerm;
         private ReadOnlyObservableCollection<MusicListModel> _models;
         private ReadOnlyObservableCollection<MusicListModel> _displayedMusics;
+        private MusicListModel _selectedMusic;
 
         #endregion FIELDS
 
@@ -38,6 +40,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             set => SetProperty(ref _displayedMusics, value);
         }
 
+        public MusicListModel SelectedMusic
+        {
+            get => _selectedMusic;
+            set => SetProperty(ref _selectedMusic, value);
+        }
+
         public string SearchTerm
         {
             get => _searchTerm;
@@ -49,6 +57,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand SearchCommand { get; }
+        public ICommand DeleteMusicCommand { get; }
         public ICommand CloseCommand { get; }
 
         #endregion COMMANDS
@@ -110,13 +119,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         public MusicsViewModel(
             ILogger logger,
             IDialogService dialogService,
+            IQuestionDialogService questionDialogService,
             IMainContentCloser contentCloser,
             IMusicListAppService appService)
             : base(logger, dialogService, contentCloser)
         {
             _appService = appService;
 
-            //SearchCommand = new RelayCommand(SearchAction);
+            DeleteMusicCommand = new DeleteMusicCommand(this, logger, questionDialogService, dialogService, appService);
             SearchCommand = new AsyncRelayCommand(SearchActionAsync);
             CloseCommand = new RelayCommand(CloseAction);
         }

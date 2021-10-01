@@ -71,6 +71,9 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Entities
             MusicDetails = musicDetails;
             Classification = classification;
             MusicProperties = musicProperties;
+
+            Composers = new List<Composer>();
+            //Playlists = new List<Playlist>();
         }
 
         #endregion CONSTRUCTORS
@@ -128,41 +131,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Entities
 
         public void UpdateTrackNumber(int? trackNumber) => TrackNumber = trackNumber;
 
-        //public string ComposersToString()
-        //{
-        //    return (MusicComposer is null)
-        //        ? string.Empty
-        //        : string.Join("; ", System.Linq.Enumerable.Select(MusicComposer, x => x.Composer.Name));
-        //}
-
-        ///// <summary>
-        ///// Update <see cref="MediaFile.OriginalFileName"/>, <see cref="MediaFile.FileSize"/> and <see cref="Music.MusicProperties"/>
-        ///// </summary>
-        ///// <param name="musicPropertiesReader"></param>
-        ///// <param name="source"></param>
-        //public void UpdateFilePropertiesFrom(IMusicPropertiesReader musicPropertiesReader, Music source)
-        //{
-        //    this.OriginalFileName = musicPropertiesReader.GetFileNameWithoutExtension(source.FullPath);
-        //    this.FileSize = musicPropertiesReader.GetFileSize(source.FullPath);
-
-        //    this.MusicProperties.UpdateFrom(source.MusicProperties);
-        //}
-
-        //public void UpdateFilePropertiesFrom(Music source)
-        //{
-        //    this.UpdateMediaFileFrom(source);
-        //    this.UpdateMusicPropertiesFrom(source.MusicProperties);
-        //}
-        //public void UpdateMusicPropertiesFrom(MusicProperties source)
-        //{
-        //    this.MusicProperties.UpdateFrom(source);
-        //}
-        //public void UpdateFilePropertiesFrom(string filePath, MusicProperties source)
-        //{
-        //    this.UpdateMediaFileFrom(filePath);
-        //    this.UpdateMusicPropertiesFrom(source);
-        //}
-
+        
         #endregion METHODS
     }
 }

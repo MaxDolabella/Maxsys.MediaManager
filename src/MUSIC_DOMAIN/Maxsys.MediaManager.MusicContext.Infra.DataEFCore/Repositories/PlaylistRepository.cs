@@ -4,27 +4,41 @@ using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories
 {
     public class PlaylistRepository : RepositoryBase<Playlist>, IPlaylistRepository
     {
-        public PlaylistRepository(MusicAppContext dbContext) : base(dbContext) { }
+        public PlaylistRepository(MusicAppContext dbContext) : base(dbContext)
+        { }
 
-
-        public Playlist GetByName(string name)
+        public async Task<IReadOnlyList<PlaylistItem>> GetPlaylistItemsByMusicIdAsync(Guid musicId, bool @readonly = false)
         {
-            return DbSet.Where(x => x.Name == name).FirstOrDefault();
+            return await DbSet.AsNoTracking(!@readonly)
+                .SelectMany(p => p.Items)
+                .Where(i => i.MusicId == musicId)
+                .ToListAsync();
         }
 
-        public Playlist GetByIdWithDependencies(Guid id)
+        public bool RemovePlaylistItem(PlaylistItem item)
         {
-            return DbSet
-                .Include(pl => pl.Items)
-                    .ThenInclude(i => i.Music)
-                    .ThenInclude(m => m.Album)
-                .FirstOrDefault(pl => pl.Id == id);
+            var tracker = Context.Set<PlaylistItem>().Remove(item);
+
+            return tracker.State
+                is EntityState.Detached
+                or EntityState.Deleted;
+        }
+
+        public bool RemovePlaylistItems(IEnumerable<PlaylistItem> items)
+        {
+            Context.Set<PlaylistItem>().RemoveRange(items);
+
+            var result = items.All(i => Context.Entry(i).State is EntityState.Detached or EntityState.Deleted);
+
+            return result;
         }
     }
 }

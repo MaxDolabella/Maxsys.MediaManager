@@ -3,7 +3,6 @@ using FluentValidation.Results;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -18,7 +17,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region FIELDS
 
         private readonly IDeleteMusicCatalogAppService _appService;
-        private readonly IPathService _pathService;
 
         private MusicCatalogListModel _selectedModel;
 
@@ -108,7 +106,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _logger.LogInformation(message);
             _dialogService.ShowMessage(MessageType.Information, message);
 
-            _ = DeleteMusicCatalogDirectory().ConfigureAwait(false);
+            _ = _appService.DeleteMusicCatalogDirectory(SelectedModel)
+                .ConfigureAwait(false);
 
             await ViewLoadedAsync();
         }
@@ -119,27 +118,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             _logger.LogError(message);
             _dialogService.ShowMessage(MessageType.Error, message);
-        }
-
-        private async Task DeleteMusicCatalogDirectory()
-        {
-            await Task.Run(() =>
-            {
-                try
-                {
-                    var musicCatalogDirectory = _pathService.GetMusicCatalogDirectory(SelectedModel.MusicCatalogName);
-
-                    _logger.LogDebug($"Deleting folder <{musicCatalogDirectory}>.");
-
-                    System.IO.Directory.Delete(musicCatalogDirectory, true);
-
-                    _logger.LogWarning($"Folder deleted.");
-                }
-                catch (System.Exception ex)
-                {
-                    _logger.LogError("Folder cannot be deleted:\n{errors}", ex.Message);
-                }
-            });
         }
 
         private void CloseAction()
@@ -155,7 +133,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             ILogger logger,
             IDialogService dialogService,
             IMainContentCloser contentCloser,
-            IPathService pathService,
             IDeleteMusicCatalogAppService appService)
             : base(logger, dialogService, contentCloser)
         {
@@ -163,7 +140,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             DeleteMusicCatalogCommand = new AsyncRelayCommand(DeleteMusicCatalogAction);
             CloseCommand = new RelayCommand(CloseAction);
-            _pathService = pathService;
         }
 
         #endregion CTOR

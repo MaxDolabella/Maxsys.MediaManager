@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
+﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
 using System;
 using System.Windows.Input;
 

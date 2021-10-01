@@ -17,16 +17,19 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         : ApplicationServiceBase, IDeleteMusicCatalogAppService
     {
         private readonly ILogger _logger;
+        private readonly IPathService _pathService;
         private readonly IMusicCatalogService _service;
         private readonly IMusicCatalogRepository _repository;
 
         public DeleteMusicCatalogAppService(IUnitOfWork uow,
+            ILogger<DeleteMusicCatalogAppService> logger,
+            IPathService pathService,
             IMusicCatalogService service,
-            IMusicCatalogRepository repository,
-            ILogger<DeleteMusicCatalogAppService> logger)
+            IMusicCatalogRepository repository)
             : base(uow)
         {
             _logger = logger;
+            _pathService = pathService;
             _service = service;
             _repository = repository;
         }
@@ -57,6 +60,27 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             var dtos = await _repository.GetMusicCatalogListsAsync();
 
             return dtos.Select(dto => new MusicCatalogListModel(dto)).ToList();
+        }
+
+        public async Task DeleteMusicCatalogDirectory(MusicCatalogListModel model)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    var musicCatalogDirectory = _pathService.GetMusicCatalogDirectory(model.MusicCatalogName);
+
+                    _logger.LogDebug($"Deleting folder <{musicCatalogDirectory}>.");
+
+                    System.IO.Directory.Delete(musicCatalogDirectory, true);
+
+                    _logger.LogWarning($"Folder deleted.");
+                }
+                catch (System.Exception ex)
+                {
+                    _logger.LogError("Folder cannot be deleted:\n{errors}", ex.Message);
+                }
+            });
         }
     }
 }

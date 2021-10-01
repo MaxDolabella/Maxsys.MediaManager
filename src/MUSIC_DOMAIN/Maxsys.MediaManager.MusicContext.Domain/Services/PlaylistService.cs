@@ -99,13 +99,14 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services
             return playlists;
         }
 
-        public Playlist GetByIdWithDependencies(Guid id)
-        {
-            var pl = _repository.GetByIdWithDependencies(id);
 
-            if (pl is not null) pl.Items.Sort();
+        //public Playlist GetByIdWithDependencies(Guid id)
+        //{
+        //    var pl = _repository.GetByIdWithDependencies(id);
 
-            return pl;
-        }
+        //    if (pl is not null) pl.Items.Sort();
+
+        //    return pl;
+        //}
     }
 }

@@ -6,18 +6,18 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig
 {
     internal class PlaylistItemConfig : IEntityTypeConfiguration<PlaylistItem>
     {
-		public void Configure(EntityTypeBuilder<PlaylistItem> builder)
-		{
-			builder.ToTable("PlaylistItems");
+        public void Configure(EntityTypeBuilder<PlaylistItem> builder)
+        {
+            builder.ToTable("PlaylistItems");
 
-			builder.HasKey(playlistItem => new { playlistItem.PlaylistId, playlistItem.MusicId });
+            builder.HasKey(playlistItem => new { playlistItem.PlaylistId, playlistItem.MusicId });
 
-			builder.Property(playlistItem => playlistItem.Order).IsRequired();
+            builder.Property(playlistItem => playlistItem.Order).IsRequired();
 
-			builder.HasOne(playlistItem => playlistItem.Music);
-			
-			builder.HasOne(playlistItem => playlistItem.Playlist)
-				.WithMany(playlist => playlist.Items);
-		}
-	}
+            builder.HasOne(playlistItem => playlistItem.Music);
+
+            builder.HasOne(playlistItem => playlistItem.Playlist)
+                .WithMany(playlist => playlist.Items);
+        }
+    }
 }

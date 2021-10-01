@@ -11,6 +11,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Services
             Owner = window;
         }
 
+        // TODO Make Owner readonly
         public object Owner { get; set; }
         private MainWindow Window => (MainWindow)Owner;//Owner is not DependencyObject dObj ? null : Window.GetWindow(dObj);
 

@@ -1,7 +1,11 @@
-﻿using Maxsys.AppCore;
+﻿using FluentValidation.Results;
+using Maxsys.AppCore;
+using Maxsys.Core.Helpers;
+using Maxsys.DataCore.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
+using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -14,20 +18,26 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         : ApplicationServiceBase, IMusicListAppService
     {
         private readonly ILogger _logger;
-        private readonly IMusicRepository _musicRepository;
+        private readonly IMusicService _service;
+        private readonly IMusicRepository _repository;
+        private readonly IPlaylistRepository _playlistRepository;
 
-        public MusicListAppService(
+        public MusicListAppService(IUnitOfWork uow,
             ILogger<MusicListAppService> logger,
-            IMusicRepository musicRepository)
-            : base(null)
+            IMusicService service,
+            IMusicRepository repository,
+            IPlaylistRepository playlistRepository)
+            : base(uow)
         {
             _logger = logger;
-            _musicRepository = musicRepository;
+            _service = service;
+            _repository = repository;
+            _playlistRepository = playlistRepository;
         }
 
         public async Task<IReadOnlyList<MusicListModel>> GetMusicsAsync()
         {
-            var dtos = await _musicRepository.GetMusicListAsync();
+            var dtos = await _repository.GetMusicListAsync();
 
             return dtos.Select(dto => new MusicListModel
             {
@@ -48,6 +58,63 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             })
             .OrderBy(m => m.MusicFullPath)
             .ToList();
+        }
+
+        public async Task<ValidationResult> DeleteMusicAsync(MusicListModel model)
+        {
+            BeginTransaction();
+
+            var entityForDeletion = await _service.GetByIdAsync(model.MusicId, @readonly: false);
+
+            // Deletion
+            var validationResult = await _service.RemoveAsync(entityForDeletion.Id);
+            if (!validationResult.IsValid) return validationResult;
+
+            // Playlists
+            validationResult = await RemovePlaylistItemsAsync(model);
+            if (!validationResult.IsValid) return validationResult;
+
+            return validationResult.IsValid
+                ? await CommitAsync()
+                : validationResult;
+        }
+
+        private async Task<ValidationResult> RemovePlaylistItemsAsync(MusicListModel model)
+        {
+            var validationResult = new ValidationResult();
+
+            var playlistItems = await _playlistRepository.GetPlaylistItemsByMusicIdAsync(model.MusicId, @readonly: false);
+
+            if (playlistItems.Any())
+            {
+                var isAllItemsSettedToRemove = _playlistRepository.RemovePlaylistItems(playlistItems);
+                if (!isAllItemsSettedToRemove)
+                {
+                    validationResult.AddFailure("One or more playlist item cannot be removed.");
+                }
+            }
+
+            return validationResult;
+        }
+
+        public async Task DeleteMusicFileAsync(MusicListModel model)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    _logger.LogDebug($"Deleting music <{model.MusicFullPath}>.");
+
+                    _ = IOHelper.DeleteFileAsync(model.MusicFullPath)
+                    .ConfigureAwait(false);
+
+                    _logger.LogWarning($"Music deleted.");
+                }
+                catch (System.Exception ex)
+                {
+                    _logger.LogError("Music cannot be deleted:\n{errors}", ex.Message);
+                }
+            });
         }
     }
 }
