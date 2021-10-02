@@ -35,7 +35,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand DeleteMusicCatalogCommand { get; }
-        public ICommand CloseCommand { get; }
 
         #endregion COMMANDS
 
@@ -120,11 +119,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _dialogService.ShowMessage(MessageType.Error, message);
         }
 
-        private void CloseAction()
-        {
-            _mainContentCloser.CloseMainContent();
-        }
-
         #endregion METHODS
 
         #region CTOR
@@ -139,7 +133,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             DeleteMusicCatalogCommand = new AsyncRelayCommand(DeleteMusicCatalogAction);
-            CloseCommand = new RelayCommand(CloseAction);
         }
 
         #endregion CTOR

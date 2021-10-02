@@ -25,7 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Style="{StaticResource CriticalButtonStyle}" Command="{Binding DeleteMusicCatalogCommand}"  Content="DELETE"/>
-            <Button Grid.Column="1" Style="{StaticResource WarningButtonStyle}" Command="{Binding CloseCommand}" Content="CLOSE" />
+            <Button Grid.Column="1" Style="{StaticResource CloseMainContentButtonStyle}"/>
         </Grid>
 
         <GroupBox Header="Music Catalogs List">

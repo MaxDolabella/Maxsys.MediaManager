@@ -1,13 +1,12 @@
 ﻿using FluentValidation.Results;
+using Maxsys.MediaManager.CoreDomain.Commands;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 {
@@ -44,7 +43,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         public override bool CanExecute(object parameter)
         {
-            return SelectedMusic is not null 
+            return SelectedMusic is not null
                 && base.CanExecute(parameter);
         }
 

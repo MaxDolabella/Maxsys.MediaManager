@@ -123,6 +123,11 @@
         </Style.Triggers>
     </Style>
 
+    <!-- CloseMainContentButtonStyle Button -->
+    <Style x:Key="CloseMainContentButtonStyle" TargetType="Button" BasedOn="{StaticResource WarningButtonStyle}">
+        <Setter Property="Command" Value="{Binding CloseMainContentCommand}"/>
+        <Setter Property="Content" Value="CLOSE"/>
+    </Style>
 
     <!-- Reload Button -->
     <!--<Style x:Key="ReloadButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">

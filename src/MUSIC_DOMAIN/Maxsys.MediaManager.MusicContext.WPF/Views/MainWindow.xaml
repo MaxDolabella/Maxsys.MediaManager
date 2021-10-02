@@ -77,7 +77,7 @@
                     </MenuItem>
                     <MenuItem Visibility="Collapsed" Header="_TOOLS" />
                     <MenuItem Header="_VIEWS">
-                        <MenuItem Header="Close View" Command="{Binding CloseViewCommand}" />
+                        <MenuItem Header="Close View" Command="{Binding CloseMainContentCommand}" />
                     </MenuItem>
                     <MenuItem Visibility="Collapsed" Header="_HELP" />
                 </Menu>

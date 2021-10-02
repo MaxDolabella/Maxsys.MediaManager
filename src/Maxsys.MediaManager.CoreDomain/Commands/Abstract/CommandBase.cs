@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
+namespace Maxsys.MediaManager.CoreDomain.Commands
 {
     public abstract class CommandBase : ICommand
     {

@@ -54,7 +54,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand SaveCommand { get; }
-        public ICommand CloseCommand { get; }
 
         #endregion COMMANDS
 
@@ -125,11 +124,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _logger.LogError(message);
         }
 
-        private void CloseAction()
-        {
-            _mainContentCloser.CloseMainContent();
-        }
-
         #endregion METHODS
 
         #region CTOR
@@ -144,7 +138,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             SaveCommand = new AsyncRelayCommand(SaveAction);
-            CloseCommand = new RelayCommand(CloseAction);
         }
 
         #endregion CTOR

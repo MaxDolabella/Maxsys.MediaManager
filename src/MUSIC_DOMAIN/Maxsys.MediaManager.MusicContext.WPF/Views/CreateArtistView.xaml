@@ -67,7 +67,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0" Style="{StaticResource SuccessButtonStyle}" Command="{Binding SaveCommand}"  Content="SAVE"/>
-                    <Button Grid.Column="1" Style="{StaticResource WarningButtonStyle}" Command="{Binding CloseCommand}" Content="CLOSE" />
+                    <Button Grid.Column="1" Style="{StaticResource CloseMainContentButtonStyle}"/>
                 </Grid>
             </StackPanel>
         </GroupBox>

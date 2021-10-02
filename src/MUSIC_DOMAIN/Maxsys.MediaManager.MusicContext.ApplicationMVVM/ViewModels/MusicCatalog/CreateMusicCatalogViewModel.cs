@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
@@ -9,13 +8,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
     public class CreateMusicCatalogViewModel : ViewModelBase<CreateMusicCatalogModel>
     {
-
         private readonly ICreateMusicCatalogAppService _appService;
 
         #region CTOR
@@ -30,15 +27,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             SaveCommand = new CreateMusicCatalogCommand(logger, this, appService, dialogService);
-            CloseCommand = new RelayCommand(CloseAction);
         }
 
         #endregion CTOR
 
-
         #region PROPS
 
         private ReadOnlyObservableCollection<MusicCatalogInfoModel> _musicCatalogs;
+
         public ReadOnlyObservableCollection<MusicCatalogInfoModel> MusicCatalogs
         {
             get => _musicCatalogs;
@@ -50,7 +46,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand SaveCommand { get; }
-        public ICommand CloseCommand { get; }
 
         #endregion COMMANDS
 
@@ -70,13 +65,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _logger.LogInformation("Registered MusicCatalogs loaded.");
         }
 
-        private void CloseAction()
-        {
-            _mainContentCloser.CloseMainContent();
-        }
-
         #endregion METHODS
-
-        
     }
 }

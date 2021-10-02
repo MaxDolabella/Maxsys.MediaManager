@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -61,7 +60,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand OpenViewCommand { get; set; }
-        public ICommand CloseViewCommand { get; set; }
         public ICommand CloseAppCommand { get; set; }
 
         #endregion COMMANDS
@@ -73,7 +71,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             await Task.Run(() =>
             {
                 _logger.LogDebug("MainWindow Loaded.");
-                
+
                 CurrentMessage = "READY.";
                 CurrentMessageType = MessageType.Status;
             });
@@ -101,8 +99,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         private void CloseAppAction() => _appCloser.CloseApp();
 
-        private void CloseViewAction() => _mainContentOwner.CloseMainContent();
-
         #endregion METHODS
 
         #region CTOR
@@ -112,14 +108,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             IHost host,
             IMainContentOwner mainContentOwner,
             IAppCloser appCloser)
-            : base(logger, null, null)
+            : base(logger, null, mainContentOwner)
         {
             _serviceProvider = host.Services.CreateScope().ServiceProvider;
             _mainContentOwner = mainContentOwner;
             _appCloser = appCloser;
 
             OpenViewCommand = new OpenViewCommand(OpenViewAction);
-            CloseViewCommand = new RelayCommand(CloseViewAction);
             CloseAppCommand = new RelayCommand(CloseAppAction);
         }
 

@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
@@ -10,7 +12,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
     {
         protected readonly ILogger _logger;
         protected readonly IDialogService _dialogService;
-        protected readonly IMainContentCloser _mainContentCloser;
+
+        public ICommand CloseMainContentCommand { get; }
 
         public abstract Task ViewLoadedAsync();
 
@@ -18,7 +21,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             _logger = logger;
             _dialogService = dialogService;
-            _mainContentCloser = mainContentCloser;
+
+            CloseMainContentCommand = new CloseMainContentCommand(mainContentCloser);
         }
     }
 }

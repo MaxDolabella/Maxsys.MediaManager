@@ -35,7 +35,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand DeleteAlbumCommand { get; }
-        public ICommand CloseCommand { get; }
 
         #endregion COMMANDS
 
@@ -76,11 +75,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         private ValidationResult ValidateSelectedModel()
         {
             var validationResult = new ValidationResult();
-            
+
             if (SelectedModel is null)
             {
                 var message = "No item is selected.";
-                
+
                 validationResult.AddFailure(message);
                 _dialogService.ShowMessage(MessageType.Warning, message);
 
@@ -90,9 +89,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             if (!SelectedModel.IsValid)
             {
                 var message = $"Selected item is invalid:\n{SelectedModel.ValidationResult}";
-                
+
                 _dialogService.ShowMessage(MessageType.Warning, message);
-                
+
                 return SelectedModel.ValidationResult;
             }
 
@@ -138,11 +137,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             });
         }
 
-        private void CloseAction()
-        {
-            _mainContentCloser.CloseMainContent();
-        }
-
         #endregion METHODS
 
         #region CTOR
@@ -157,7 +151,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             DeleteAlbumCommand = new AsyncRelayCommand(DeleteAlbumAction);
-            CloseCommand = new RelayCommand(CloseAction);
         }
 
         #endregion CTOR

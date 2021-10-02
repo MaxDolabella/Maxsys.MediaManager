@@ -146,12 +146,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand SaveCommand { get; }
-        public ICommand CloseCommand { get; }
 
         public ICommand TrimTitleStartCommand { get; }
         public ICommand TrimTitleEndCommand { get; }
         public ICommand IncreaseTitleTrimCharCountCommand { get; }
-        public ICommand DecreaseTitleTrimCharCountCommand { get; }      
+        public ICommand DecreaseTitleTrimCharCountCommand { get; }
         public ICommand IncreaseTitlePatternIndexCommand { get; }
         public ICommand DecreaseTitlePatternIndexCommand { get; }
         public ICommand RemovePatternCommand { get; }
@@ -208,11 +207,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _musics = (await _appService.GetMusicsAsync()).ToReadOnlyObservableCollection();
 
             _logger.LogDebug("ComboBoxes loaded.");
-        }
-
-        private void CloseAction()
-        {
-            _mainContentCloser.CloseMainContent();
         }
 
         #region Operation Panel
@@ -328,14 +322,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             var validationResult = ValidateModels();
             if (!validationResult.IsValid)
                 return;
-                
 
             var validationResults = await RegisterMusicsAsync();
             if (!validationResult.IsValid)
             {
                 return;
             }
-                
 
             var validItems = GetValidValidationResults(validationResults);
             var invalidItems = GetInvalidValidationResults(validationResults);
@@ -452,12 +444,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             SaveCommand = new AsyncRelayCommand(SaveActionAsync);
-            CloseCommand = new RelayCommand(CloseAction);
 
             SetVocalGenderCommand = new RelayCommand(SetVocalGenderAction);
             SetAlbumCommand = new RelayCommand(SetAlbumAction);
-
-            
 
             IncreaseTitleTrimCharCountCommand = new RelayCommand(IncreaseTitleTrimCharCountAction);
             DecreaseTitleTrimCharCountCommand = new RelayCommand(DecreaseTitleTrimCharCountAction);
