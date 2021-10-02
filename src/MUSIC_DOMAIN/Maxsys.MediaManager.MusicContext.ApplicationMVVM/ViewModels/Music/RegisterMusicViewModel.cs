@@ -150,6 +150,10 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         public ICommand TrimTitleStartCommand { get; }
         public ICommand TrimTitleEndCommand { get; }
+        public ICommand IncreaseTitleTrimCharCountCommand { get; }
+        public ICommand DecreaseTitleTrimCharCountCommand { get; }      
+        public ICommand IncreaseTitlePatternIndexCommand { get; }
+        public ICommand DecreaseTitlePatternIndexCommand { get; }
         public ICommand RemovePatternCommand { get; }
         public ICommand InsertPatternStartCommand { get; }
         public ICommand InsertPatternEndCommand { get; }
@@ -212,6 +216,20 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         }
 
         #region Operation Panel
+
+        private void IncreaseTitleTrimCharCountAction() => TitleTrimCharCount++;
+
+        private void DecreaseTitleTrimCharCountAction()
+        {
+            if (TitleTrimCharCount > 0) TitleTrimCharCount--;
+        }
+
+        private void IncreaseTitlePatternIndexAction() => TitlePatternIndex++;
+
+        private void DecreaseTitlePatternIndexAction()
+        {
+            if (TitlePatternIndex > 0) TitlePatternIndex--;
+        }
 
         private void TrimTitleStartAction()
         {
@@ -296,7 +314,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
                 foreach (var model in SelectedModels)
                     model.SetVocalGender(SelectedVocalGender);
         }
+
         #endregion Operation Panel
+
         #endregion METHODS
 
         #region SAVING
@@ -307,9 +327,15 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             var validationResult = ValidateModels();
             if (!validationResult.IsValid)
-                return;// await Task.FromResult(validationResult);
+                return;
+                
 
             var validationResults = await RegisterMusicsAsync();
+            if (!validationResult.IsValid)
+            {
+                return;
+            }
+                
 
             var validItems = GetValidValidationResults(validationResults);
             var invalidItems = GetInvalidValidationResults(validationResults);
@@ -324,8 +350,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
                 _dialogService.ShowMessage(MessageType.Warning, "One or more items are not saved!");
         }
 
-        
-
         private ValidationResult ValidateModels()
         {
             var validationResult = new ValidationResult();
@@ -338,7 +362,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
                 _logger.LogWarning(message);
                 _dialogService.ShowMessage(MessageType.Warning, $"Music list is empty.");
-                
+
                 return validationResult;
             }
 
@@ -371,12 +395,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
                 _dialogService.ShowMessage(MessageType.Status,
                     $"Registering {i + 1:00} of {modelsCount:00} items: [{model.TargetFullPath}]...");
-                
+
                 results.Add(model, await _appService.RegisterMusicAsync(model));
             }
 
             return results;
         }
+
         private static IReadOnlyDictionary<CreateMusicModel, ValidationResult> GetValidValidationResults(
             IReadOnlyDictionary<CreateMusicModel, ValidationResult> validationResults)
         {
@@ -388,6 +413,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             return validationResults.Where(kv => !kv.Value.IsValid).ToDictionary(kv => kv.Key, kv => kv.Value);
         }
+
         private void ClearSavedModels(IReadOnlyDictionary<CreateMusicModel, ValidationResult> validItems)
         {
             foreach (var model in validItems.Keys)
@@ -411,6 +437,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
                 _logger.LogError($"Music <{model.SourceFullPath}> not saved. Errors:\n\t{result}");
             }
         }
+
         #endregion SAVING
 
         #region CTOR
@@ -430,6 +457,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             SetVocalGenderCommand = new RelayCommand(SetVocalGenderAction);
             SetAlbumCommand = new RelayCommand(SetAlbumAction);
 
+            
+
+            IncreaseTitleTrimCharCountCommand = new RelayCommand(IncreaseTitleTrimCharCountAction);
+            DecreaseTitleTrimCharCountCommand = new RelayCommand(DecreaseTitleTrimCharCountAction);
+            IncreaseTitlePatternIndexCommand = new RelayCommand(IncreaseTitlePatternIndexAction);
+            DecreaseTitlePatternIndexCommand = new RelayCommand(DecreaseTitlePatternIndexAction);
             TrimTitleStartCommand = new RelayCommand(TrimTitleStartAction);
             TrimTitleEndCommand = new RelayCommand(TrimTitleEndAction);
             RemovePatternCommand = new RelayCommand(RemovePatternAction);

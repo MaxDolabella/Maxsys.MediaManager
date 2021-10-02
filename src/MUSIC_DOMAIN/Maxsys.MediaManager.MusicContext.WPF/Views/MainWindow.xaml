@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="MAXSYS TECH MEDIA MANAGER"
         Background="{StaticResource WindowBrush}" Foreground="{StaticResource TextFGBrush}"
-        Height="765" Width="1360" WindowStartupLocation="CenterScreen" Icon="/Resources/Images/mainWnd-music.png">
+        Height="765" MinHeight="765"
+        Width="1360" MinWidth="1360"
+        WindowStartupLocation="CenterScreen" Icon="/Resources/Images/mainWnd-music.png">
     <Window.Resources>
         <ResourceDictionary>
 
@@ -91,8 +93,8 @@
                        Foreground="White" />
         </StatusBar>
 
-        <StackPanel VerticalAlignment="Center">
+        <DockPanel  >
             <ContentControl x:Name="ContentContainer" />
-        </StackPanel>
+        </DockPanel>
     </DockPanel>
 </Window>

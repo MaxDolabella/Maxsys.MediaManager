@@ -4,184 +4,181 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Height="650" Width="1200">
+             MinHeight="650" d:Height="650"
+             MinWidth="1200" d:Width="1200">
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label" BasedOn="{StaticResource AppLabelStyle}" />
-            <Style TargetType="ComboBox" BasedOn="{StaticResource AppComboBoxStyle}" />
-            <Style TargetType="Button" BasedOn="{StaticResource AppButtonStyle}" />
-            <Style TargetType="Rectangle" BasedOn="{StaticResource AppRectangle}" />
+            
+            <Style TargetType="Expander">
+                <Setter Property="Foreground" Value="{StaticResource BtnTextLightBrush}"/>
+                <Setter Property="IsExpanded" Value="True"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource dgvExternalBordersBrush}"/>
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
-    <!--<UserControl.DataContext>
-        <vm:RegisterMusicViewModel />
-    </UserControl.DataContext>-->
-    <Grid>
+    <DockPanel>
         <GroupBox Header="Register new Artist">
 
             <DockPanel>
 
-                <!--#region Operation GBox -->
-                <StackPanel DockPanel.Dock="Top">
-                    <Expander Foreground="{StaticResource BtnTextLightBrush}"
-                              Header="Operations:" IsExpanded="True"
-                              BorderThickness="1" BorderBrush="{StaticResource dgvExternalBordersBrush}">
-                        <StackPanel x:Name="OperationsPanel" Orientation="Horizontal" HorizontalAlignment="Center" Height="75">
+                <!--#region Operations GroupBox -->
 
-                            <Rectangle />
-                            <!-- Grids for Trim Title From -->
-                            <Grid Width="Auto">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                <Expander Header="Operations:" DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                                Height="75" Margin="0 5">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource MicroButtonStyle}">
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Width" Value="Auto"/>
+                            </Style>
+                            <Style TargetType="Label" BasedOn="{StaticResource MicroLabelStyle}"/>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource MicroTextBoxStyle}"/>
+                            <Style TargetType="ComboBox" BasedOn="{StaticResource MicroComboBoxStyle}"/>
+                            <Style TargetType="Rectangle" BasedOn="{StaticResource AppRectangle}" />
+                        </StackPanel.Resources>
 
-                                <!-- Row 0 -->
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                                       Style="{StaticResource MicroLabelStyle}"
-                                       Content="Trim Title From:" />
+                        <Rectangle />
+                        <!-- Grids for Trim Title From -->
+                        <Grid Width="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
 
-                                <!-- Col 0 -->
-                                <TextBox Style="{StaticResource MicroNumericTextBlockStyle}"
-                                         Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
-                                         Text="{Binding TitleTrimCharCount}" d:Text="##" />
+                            <!-- Row 0 -->
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Content="Trim Title From:" />
 
-                                <!-- Row 1 & 2 -->
-                                <Button Style="{StaticResource MicroButtonStyle}"
-                                        Grid.Row="1" Grid.Column="1" Content="Start"
-                                        Height="Auto" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                        Command="{Binding TrimTitleStartCommand}" />
-                                <Button Style="{StaticResource MicroButtonStyle}"
-                                        Grid.Row="2" Grid.Column="1" Content="End"
-                                        Height="Auto" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                        Command="{Binding TrimTitleEndCommand}" />
-                            </Grid>
-                            <Rectangle />
+                            <!-- Col 0 -->
+                            <TextBox Style="{StaticResource MicroNumericTextBlockStyle}"
+                                        Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+                                        Text="{Binding TitleTrimCharCount}" d:Text="##">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Up" Command="{Binding IncreaseTitleTrimCharCountCommand}"/>
+                                    <KeyBinding Key="Down" Command="{Binding DecreaseTitleTrimCharCountCommand}"/>
+                                </TextBox.InputBindings>
+                            </TextBox>
 
-                            <!-- Grids for Title Pattern -->
-                            <Grid Width="300">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                            <!-- Row 1 & 2 -->
+                            <Button Grid.Row="1" Grid.Column="1" Content="Start"
+                                    Command="{Binding TrimTitleStartCommand}" />
+                            <Button Grid.Row="2" Grid.Column="1" Content="End"
+                                    Command="{Binding TrimTitleEndCommand}" />
+                        </Grid>
+                        <Rectangle />
 
-                                <!-- Row 0 -->
-                                <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-                                    <Label Style="{StaticResource MicroLabelStyle}" Margin="2,0"
-                                       Width="{Binding ActualWidth, ElementName=txtPattern}"
-                                       Content="Title Pattern:" />
+                        <!-- Grids for Title Pattern -->
+                        <Grid Width="300">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                                    <Label Style="{StaticResource MicroLabelStyle}"
-                                           Margin="2,0" HorizontalAlignment="Left" Content="Index:" />
-                                </DockPanel>
+                            <!-- Row 0 -->
+                            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                <Label Margin="2,0" Width="{Binding ActualWidth, ElementName=txtPattern}"
+                                    Content="Title Pattern:" />
 
-                                <!-- Row 1 -->
-                                <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" LastChildFill="True">
-                                    <TextBox x:Name="ntxtIndexInsertPattern"
-                                         Style="{StaticResource MicroTextBoxStyle}"
-                                         DockPanel.Dock="Right" Width="25" TextAlignment="Center"
-                                         d:Text="##" Text="{Binding TitlePatternIndex}" />
+                                <Label Margin="2,0" HorizontalAlignment="Left" Content="Index:" />
+                            </DockPanel>
 
-                                    <TextBox x:Name="txtPattern"
-                                             Style="{StaticResource MicroTextBoxStyle}"
-                                             d:Text="This is a Pattern text" Text="{Binding TitlePatternText}" />
-                                </DockPanel>
-                                <Button Style="{StaticResource MicroButtonStyle}"
-                                        Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Stretch"
-                                        Content="Insert at Index"
-                                        Command="{Binding InsertPatternIndexCommand}" />
+                            <!-- Row 1 -->
+                            <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" LastChildFill="True">
+                                <TextBox DockPanel.Dock="Right" Width="25" TextAlignment="Center"
+                                         Text="{Binding TitlePatternIndex}" >
+                                    <TextBox.InputBindings>
+                                        <KeyBinding Key="Up" Command="{Binding IncreaseTitlePatternIndexCommand}"/>
+                                        <KeyBinding Key="Down" Command="{Binding DecreaseTitlePatternIndexCommand}"/>
+                                    </TextBox.InputBindings>
+                                </TextBox>
 
-                                <!-- Row 2 -->
-                                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource MicroButtonStyle}"
-                                        Width="Auto" HorizontalAlignment="Stretch"
-                                        Content="Remove Pattern"
-                                        Command="{Binding RemovePatternCommand}" />
-                                <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource MicroButtonStyle}"
-                                    Width="Auto" HorizontalAlignment="Stretch"
-                                        x:Name="btnInsertPatternStart" Content="Insert at Start"
-                                        Command="{Binding InsertPatternStartCommand}" />
-                                <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource MicroButtonStyle}"
-                                    Width="Auto" HorizontalAlignment="Stretch"
-                                        x:Name="btnInsertPatternEnd" Content="Insert at End"
-                                        Command="{Binding InsertPatternEndCommand}" />
-                            </Grid>
-                            <Rectangle />
+                                <TextBox x:Name="txtPattern" 
+                                         Text="{Binding TitlePatternText}" />
+                            </DockPanel>
+                            <Button Grid.Row="1" Grid.Column="2" Content="Insert at Index"
+                                    Command="{Binding InsertPatternIndexCommand}" />
 
-                            <!-- Grids for Track Number -->
-                            <Grid Width="Auto">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                            <!-- Row 2 -->
+                            <Button Grid.Row="2" Grid.Column="0" Content="Remove Pattern"
+                                    Command="{Binding RemovePatternCommand}" />
+                            <Button Grid.Row="2" Grid.Column="1" Content="Insert at Start"
+                                    Command="{Binding InsertPatternStartCommand}" />
+                            <Button Grid.Row="2" Grid.Column="2" Content="Insert at End"
+                                    Command="{Binding InsertPatternEndCommand}" />
+                        </Grid>
+                        <Rectangle />
 
-                                <Label Grid.Row="0" Style="{StaticResource MicroLabelStyle}" Content="Track Number:" />
-                                <Button Grid.Row="1" Style="{StaticResource MicroButtonStyle}" Width="Auto"
-                                        x:Name="btnTrackNumberRemove" Content="Remove From Selected"
-                                        Command="{Binding RemoveTrackNumberCommand}" />
-                                <Button Grid.Row="2" Style="{StaticResource MicroButtonStyle}" Width="Auto"
-                                        x:Name="btnTrackNumberSet" Content="Set Selected"
-                                        Command="{Binding InsertTrackNumberCommand}" />
-                            </Grid>
-                            <Rectangle />
+                        <!-- Grids for Track Number -->
+                        <Grid Width="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                            <!-- Grids for Vocal Gender -->
-                            <Grid Width="125">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Track Number:" />
+                            <Button Grid.Row="1" Content="Remove From Selected"
+                                    Command="{Binding RemoveTrackNumberCommand}" />
+                            <Button Grid.Row="2" Content="Set Selected"
+                                    Command="{Binding InsertTrackNumberCommand}" />
+                        </Grid>
+                        <Rectangle />
 
-                                <Label Grid.Row="0" Style="{StaticResource MicroLabelStyle}"
-                                           Content="Vocal Gender:" />
+                        <!-- Grids for Vocal Gender -->
+                        <Grid Width="125">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                                <ComboBox Grid.Row="1" x:Name="cboxVocalGender"
-                                          Style="{StaticResource MicroComboBoxStyle}"
-                                          ItemsSource="{Binding VocalGenders}"
-                                          SelectedItem="{Binding SelectedVocalGender}" />
+                            <Label Grid.Row="0" Content="Vocal Gender:" />
 
-                                <Button Grid.Row="2" Style="{StaticResource MicroButtonStyle}" Width="Auto"
-                                        x:Name="btnSetVocalGender" Content="Set Selected"
-                                        Command="{Binding SetVocalGenderCommand}" />
-                            </Grid>
-                            <Rectangle />
+                            <ComboBox Grid.Row="1"
+                                      ItemsSource="{Binding VocalGenders}"
+                                      SelectedItem="{Binding SelectedVocalGender}" />
 
-                            <!-- Grids for Set Album -->
-                            <Grid Width="100">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                            <Button Grid.Row="2" Content="Set Selected"
+                                    Command="{Binding SetVocalGenderCommand}" />
+                        </Grid>
+                        <Rectangle />
 
-                                <TextBlock Style="{StaticResource MicroTextBlockStyle}"
-                                           Grid.Row="0" Grid.RowSpan="2"
-                                           VerticalAlignment="Bottom" Margin="2"
-                                           Text="Set Album to Selected Musics:" />
+                        <!-- Grids for Set Album -->
+                        <Grid Width="100">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                                <Button Style="{StaticResource MicroButtonStyle}"
-                                        Grid.Row="2" Width="Auto"
-                                        x:Name="btnSetAlbum" Content="Set Album"
-                                        Command="{Binding SetAlbumCommand}" />
-                            </Grid>
-                            <Rectangle />
-                        </StackPanel>
-                    </Expander>
-                </StackPanel>
-                <!--#endregion Operation GBox -->
+                            <TextBlock Grid.Row="0" Grid.RowSpan="2" 
+                                       TextWrapping="Wrap" TextAlignment="Center" 
+                                       Text="Set Album to Selected Musics:" />
+
+                            <Button Grid.Row="2" Content="Set Album"
+                                    Command="{Binding SetAlbumCommand}" />
+                        </Grid>
+                        <Rectangle />
+                    </StackPanel>
+                </Expander>
+
+                <!--#endregion Operations GroupBox -->
 
                 <!-- #region Save/Cancel Buttons -->
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
@@ -191,95 +188,121 @@
                 <!-- #endregion Save/Cancel Buttons -->
 
                 <!-- region Main Contents -->
-                <DockPanel x:Name="mainPanel">
+                <DockPanel >
 
+                    <!-- region Right Contents -->
+                    <DockPanel DockPanel.Dock="Right"  Width="250">
+                        <DockPanel.Resources>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource MicroTextBoxStyle}">
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="TextAlignment" Value="Justify"/>
+                            </Style>
+                        </DockPanel.Resources>
+
+                        <!-- region Music Comments -->
+                        <DockPanel DockPanel.Dock="Bottom">
+                            <GroupBox Header="Music Comments:">
+                                <DockPanel>
+                                    <TextBox Height="100"
+                                             Text="{Binding ElementName=dgvMusics, Path=SelectedItem.Comments}"
+                                             d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porta quis nisl sed hendrerit. Phasellus arcu libero, pulvinar id efficitur nec, dictum sit amet lorem. Phasellus aliquet dictum porta. In lacinia tellus nec erat facilisis, nec gravida felis efficitur. Suspendisse ut tincidunt efficitur." />
+                                </DockPanel>
+                            </GroupBox>
+                        </DockPanel>
+                        <!-- endregion Music Comments -->
+
+                        <!-- region Music list -->
+                        <DockPanel>
+                            <GroupBox Header="Musics from selected Album:"
+                                      VerticalContentAlignment="Stretch"
+                                      HorizontalContentAlignment="Stretch">
+                                <ListBox Style="{StaticResource ListBoxStyle}"
+                                         ItemsSource="{Binding DisplayableMusics}" >
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="20"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding MusicTrack}"
+                                                           Margin="0 0 5 0" TextAlignment="Right"  />
+                                                <TextBlock Grid.Column="1" Text="{Binding MusicTitle}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+
+                                </ListBox>
+                            </GroupBox>
+                        </DockPanel>
+                        <!-- endregion Music list -->
+
+
+                    </DockPanel>
+                    <!-- endregion Right Contents -->
+                    
                     <!-- region Left Contents -->
-                    <DockPanel DockPanel.Dock="Left" Width="880">
+                    <DockPanel >
 
                         <!--#region ComboBoxes GBox -->
-                        <StackPanel DockPanel.Dock="Top">
-                            <GroupBox  Padding="0" Margin="0,5">
-                                <DockPanel>
+                        <DockPanel DockPanel.Dock="Top">
+                            <DockPanel.Resources>
+                                <Style TargetType="Label" BasedOn="{StaticResource AppLabelStyle}" />
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource AppComboBoxStyle}" />
+                            </DockPanel.Resources>
+                            <GroupBox DockPanel.Dock="Left" Padding="0" Margin="0,5" >
+                                <StackPanel Orientation="Horizontal">
 
                                     <!-- cboxMusicCatalogs -->
                                     <DockPanel Width="250">
-                                        <Label DockPanel.Dock="Top" Content="MUSIC CATALOG:" />
+                                        <Label DockPanel.Dock="Top" Content="Music Catalog:" />
                                         <ComboBox ItemsSource="{Binding MusicCatalogs}"
-                                                  SelectedItem="{Binding SelectedMusicCatalog}">
-                                            <ComboBox.ToolTip>
-                                                <TextBlock Text="{Binding SelectedMusicCatalog.MusicCatalogName}" />
-                                            </ComboBox.ToolTip>
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <DockPanel>
-                                                        <TextBlock Text="{Binding MusicCatalogName}" />
-                                                    </DockPanel>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
+                                                  SelectedItem="{Binding SelectedMusicCatalog}"
+                                                  ToolTip="{Binding SelectedMusicCatalog.MusicCatalogName}"
+                                                  DisplayMemberPath="MusicCatalogName" />
                                     </DockPanel>
                                     <Separator />
 
                                     <!-- cboxArtists -->
                                     <DockPanel Width="250">
-                                        <Label Content="ARTIST NAME:"
-                                               DockPanel.Dock="Top" />
+                                        <Label DockPanel.Dock="Top" Content="Artist:" />
                                         <ComboBox ItemsSource="{Binding DisplayableArtists}"
-                                                  SelectedItem="{Binding SelectedArtist}">
-                                            <ComboBox.ToolTip>
-                                                <TextBlock Text="{Binding SelectedArtist.ArtistName}" />
-                                            </ComboBox.ToolTip>
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <DockPanel>
-                                                        <TextBlock Text="{Binding ArtistName}" />
-                                                    </DockPanel>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
+                                                  SelectedItem="{Binding SelectedArtist}"
+                                                  ToolTip="{Binding SelectedArtist.ArtistName}"
+                                                  DisplayMemberPath="ArtistName" />
                                     </DockPanel>
                                     <Separator />
 
                                     <!-- cboxAlbums -->
-                                    <DockPanel DockPanel.Dock="Right">
-                                        <Label Content="ALBUMS:"
-                                               DockPanel.Dock="Top" />
-                                        <ComboBox Width="Auto" x:Name="cboxAlbums"
-                                                  ItemsSource="{Binding DisplayableAlbums}"
-                                                  SelectedItem="{Binding SelectedAlbum}">
-                                            <ComboBox.ToolTip>
-                                                <TextBlock Text="{Binding SelectedAlbum.AlbumName}" />
-                                            </ComboBox.ToolTip>
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <DockPanel>
-                                                        <TextBlock Text="{Binding AlbumName}" />
-                                                    </DockPanel>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
-                                        <!--<Button Style="{StaticResource ReloadButtonStyle}"
-                                                Height="{Binding ActualHeight, ElementName=cboxAlbums}"
-                                                Margin="5,0,0,0" DockPanel.Dock="Right"
-                                                Command="{Binding LoadMainComboBoxesCommand}" />-->
+                                    <DockPanel Width="300">
+                                        <Label DockPanel.Dock="Top" Content="Albums:"/>
+                                        <ComboBox ItemsSource="{Binding DisplayableAlbums}"
+                                                  SelectedItem="{Binding SelectedAlbum}"
+                                                  ToolTip="{Binding SelectedAlbum.AlbumName}"
+                                                  DisplayMemberPath="AlbumName" />
                                     </DockPanel>
-                                </DockPanel>
+                                </StackPanel>
                             </GroupBox>
-                        </StackPanel>
+                        </DockPanel>
                         <!--#endregion ComboBoxes GBox -->
 
                         <!--#region Datagrid -->
-                        <DataGrid x:Name="dgvMusics" Style="{StaticResource AppDataGridStyle}"
-                                  AllowDrop="True"
-                                  DragEnter="OnDgvMusics_DragEnter"
-                                  Drop="OnDgvMusics_DragDrop"
+                        <DataGrid x:Name="dgvMusics"
                                   ItemsSource="{Binding Models}"
-                                  SelectionMode="Extended"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  AutoGenerateColumns="False"
-                                  MinWidth="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DockPanel}}, Path=ActualWidth}">
-                            <DataGrid.Resources>
-                            </DataGrid.Resources>
+                                  DragEnter="OnDgvMusics_DragEnter"
+                                  Drop="OnDgvMusics_DragDrop" >
+                            <DataGrid.Style>
+                                <Style TargetType="DataGrid" BasedOn="{StaticResource AppDataGridStyle}">
+                                    <Setter Property="AllowDrop" Value="True"/>
+                                    <Setter Property="SelectionMode" Value="Extended"/>
+                                    <Setter Property="HorizontalScrollBarVisibility" Value="Visible"/>
+                                    <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
+                                    <Setter Property="AutoGenerateColumns" Value="False"/>
+                                    <Setter Property="MinWidth" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DockPanel}}, Path=ActualWidth}"/>
+                                </Style>
+                                
+                            </DataGrid.Style>
                             <!-- Columns -->
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" Binding="{Binding TrackNumber}" Width="30">
@@ -297,7 +320,7 @@
                                     </DataGridTextColumn.EditingElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="Album" Binding="{Binding AlbumName}" IsReadOnly="True" MinWidth="200" />
-                                <DataGridTextColumn Header="Rating (0-10)" Binding="{Binding Stars10}" Width="70">
+                                <DataGridTextColumn Header="Rating (0-10)" Binding="{Binding Stars10}" Width="70" >
                                     <DataGridTextColumn.EditingElementStyle>
                                         <Style TargetType="{x:Type TextBox}">
                                             <Setter Property="MaxLength" Value="2" />
@@ -320,67 +343,23 @@
                                         </Style>
                                     </DataGridTextColumn.EditingElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="ERRORS" Width="Auto"
+                                <DataGridTextColumn Header="ERRORS" MinWidth="300" Width="*"
                                                     Foreground="LightSalmon"
                                                     IsReadOnly="True"
                                                     Binding="{Binding Errors}" />
                             </DataGrid.Columns>
+
                         </DataGrid>
                         <!--#endregion Datagrid -->
                     </DockPanel>
                     <!-- endregion Left Contents -->
 
-                    <!-- region Right Contents -->
-                    <DockPanel>
-
-                        <!-- region Music Comments -->
-                        <DockPanel DockPanel.Dock="Bottom">
-                            <GroupBox Header="Music Comments:">
-                                <DockPanel>
-                                    <TextBox x:Name="txtComments" Style="{StaticResource MicroTextBoxStyle}"
-                                             Height="100"
-                                             TextWrapping="Wrap" TextAlignment="Justify" VerticalContentAlignment="Stretch"
-                                             Text="{Binding ElementName=dgvMusics, Path=SelectedItem.Comments}"
-                                             d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porta quis nisl sed hendrerit. Phasellus arcu libero, pulvinar id efficitur nec, dictum sit amet lorem. Phasellus aliquet dictum porta. In lacinia tellus nec erat facilisis, nec gravida felis efficitur. Suspendisse ut tincidunt efficitur." />
-                                </DockPanel>
-                            </GroupBox>
-                        </DockPanel>
-                        <!-- endregion Music Comments -->
-
-                        <!-- region Music Lyrics -->
-                        <DockPanel>
-                            <GroupBox Header="Musics from selected Album:"
-                                      VerticalContentAlignment="Stretch"
-                                      HorizontalContentAlignment="Stretch">
-                                <ListBox Style="{StaticResource ListBoxStyle}"
-                                         ItemsSource="{Binding DisplayableMusics}"
-                                         >
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock>
-                                                    <TextBlock.Text>
-                                                        <MultiBinding StringFormat="{}{0:00} {1}">
-                                                            <Binding Path="MusicTrack" />
-                                                            <Binding Path="MusicTitle" />
-                                                        </MultiBinding>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                    
-                                </ListBox>
-                            </GroupBox>
-                        </DockPanel>
-                        <!-- endregion Music Comments -->
-                        
-                        
-                    </DockPanel>
-                    <!-- endregion Right Contents -->
+                   
                 </DockPanel>
                 <!-- endregion Main Contents -->
+            
             </DockPanel>
+        
         </GroupBox>
-    </Grid>
+    </DockPanel>
 </UserControl>
