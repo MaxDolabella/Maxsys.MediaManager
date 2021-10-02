@@ -38,19 +38,46 @@
     <Color x:Key="BtnGreenHL">#67b500</Color>
 
 
-    <Color x:Key="StatusColor">#177DDC</Color>
-    <Color x:Key="InformationColor">#007E33</Color>
-    <Color x:Key="WarningColor">#e86900</Color>
-    <Color x:Key="CriticalColor">#A61D24</Color>
+    <Color x:Key="StatusColor">     #0052A0</Color>
+    <Color x:Key="InfoColor">       #8700ec</Color>
+    <Color x:Key="SuccessColor">    #007E33</Color>
+    <Color x:Key="WarningColor">    #e86900</Color>
+    <Color x:Key="CriticalColor">   #a60009</Color>
 
-    <Color x:Key="StatusDarkColor">#1263b0</Color>
-    <Color x:Key="InformationDarkColor">#006428</Color>
-    <Color x:Key="WarningDarkColor">#b95400</Color>
-    <Color x:Key="CriticalDarkColor">#84171c</Color>
+    <!-- https://pinetools.com/darken-color 20% -->
+    <Color x:Key="StatusDarkColor">     #004180</Color>
+    <Color x:Key="InfoDarkColor">       #6c00bc</Color>
+    <Color x:Key="SuccessDarkColor">    #006428</Color>
+    <Color x:Key="WarningDarkColor">    #b95400</Color>
+    <Color x:Key="CriticalDarkColor">   #840007</Color>
+
+    <!-- https://pinetools.com/greyscale-desaturate-color HSV-50% -->
+    <Color x:Key="StatusDesaturedColor">    #406080</Color>
+    <Color x:Key="InfoDesaturedColor">      #955ebd</Color>
+    <Color x:Key="SuccessDesaturedColor">   #326346</Color>
+    <Color x:Key="WarningDesaturedColor">   #ba875d</Color>
+    <Color x:Key="CriticalDesaturedColor">  #a65357</Color>
 
     <!--#endregion COLORS -->
 
-    <!--#region Brushes -->
+    
+    <!--#region BRUSHES -->
+
+    <!--#region Main Colors -->
+    <SolidColorBrush x:Key="StatusBrush"    Color="{StaticResource StatusColor}" />
+    <SolidColorBrush x:Key="InfoBrush"      Color="{StaticResource InfoColor}" />
+    <SolidColorBrush x:Key="SuccessBrush"   Color="{StaticResource SuccessColor}" />
+    <SolidColorBrush x:Key="WarningBrush"   Color="{StaticResource WarningColor}" />
+    <SolidColorBrush x:Key="CriticalBrush"  Color="{StaticResource CriticalColor}" />
+
+    <SolidColorBrush x:Key="StatusDarkBrush"    Color="{StaticResource StatusDarkColor}" />
+    <SolidColorBrush x:Key="InfoDarkBrush"      Color="{StaticResource InfoDarkColor}" />
+    <SolidColorBrush x:Key="SuccessDarkBrush"   Color="{StaticResource SuccessDarkColor}" />
+    <SolidColorBrush x:Key="WarningDarkBrush"   Color="{StaticResource WarningDarkColor}" />
+    <SolidColorBrush x:Key="CriticalDarkBrush"  Color="{StaticResource CriticalDarkColor}" />
+    <!--#endregion Main Colors -->
+    
+
     <SolidColorBrush x:Key="WindowBrush" Color="{StaticResource Window}" />
     <SolidColorBrush x:Key="ContentBrush" Color="{StaticResource Window}" />
     <SolidColorBrush x:Key="ShadowBrush" Color="{StaticResource ControlShadow}" />
@@ -87,20 +114,6 @@
     <SolidColorBrush x:Key="dgvInternalBordersBrush" Color="{StaticResource ControlHL}" />
     <!--#endregion Brushes DataGrid -->
 
-    <!--#region Button Brushes -->
-    <SolidColorBrush x:Key="BtnTextLightBrush" Color="{StaticResource ControlText}" />
-    <SolidColorBrush x:Key="BtnTextLightHLBrush" Color="{StaticResource ControlTextHL}" />
-
-    <SolidColorBrush x:Key="BtnFillBrush" Color="{StaticResource BtnBlue}" />
-    <SolidColorBrush x:Key="BtnFillHLBrush" Color="{StaticResource BtnBlueHL}" />
-    <SolidColorBrush x:Key="BtnGrayFillBrush" Color="{StaticResource BtnGray}" />
-    <SolidColorBrush x:Key="BtnGrayFillHLBrush" Color="{StaticResource BtnGrayHL}" />
-    <SolidColorBrush x:Key="BtnSaveFillBrush" Color="{StaticResource BtnGreen}" />
-    <SolidColorBrush x:Key="BtnSaveFillHLBrush" Color="{StaticResource BtnGreenHL}" />
-    <SolidColorBrush x:Key="BtnCancelFillBrush" Color="{StaticResource BtnRed}" />
-    <SolidColorBrush x:Key="BtnCancelFillHLBrush" Color="{StaticResource BtnRedHL}" />
-    <!--#endregion Button Brushes -->
-
     <!--#region TextBox-->
     <SolidColorBrush x:Key="TextBoxBGBrush" Color="{StaticResource Control}" />
     <SolidColorBrush x:Key="TextBoxFGBrush" Color="{StaticResource ControlText}" />
@@ -109,7 +122,35 @@
     <SolidColorBrush x:Key="MaxsysBlueBrush" Color="{StaticResource MaxsysBlue}" />
     <SolidColorBrush x:Key="MaxsysDeepBlueBrush" Color="{StaticResource MaxsysDeepBlue}" />
     <SolidColorBrush x:Key="MaxsysRedBrush" Color="{StaticResource MaxsysRed}" />
-    <!--#endregion Brushes-->
+
+    <!--#region Button Brushes -->
+    <SolidColorBrush x:Key="Btn_FG_Brush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="Btn_FG_Brush_HL" Color="{StaticResource ControlTextHL}" />
+    <SolidColorBrush x:Key="Btn_FG_Brush_DS" Color="{StaticResource ControlTextDS}" />
+
+    <!-- Default -->
+    <SolidColorBrush x:Key="Btn_BG_Brush"       Color="{StaticResource StatusColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Brush_HL"    Color="{StaticResource StatusDarkColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Brush_DS"    Color="{StaticResource StatusDesaturedColor}" />
+
+    <!-- Success -->
+    <SolidColorBrush x:Key="Btn_BG_Success_Brush"       Color="{StaticResource SuccessColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Success_Brush_HL"    Color="{StaticResource SuccessDarkColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Success_Brush_DS"    Color="{StaticResource SuccessDesaturedColor}" />
+
+    <!-- Warning -->
+    <SolidColorBrush x:Key="Btn_BG_Warning_Brush"       Color="{StaticResource WarningColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Warning_Brush_HL"    Color="{StaticResource WarningDarkColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Warning_Brush_DS"    Color="{StaticResource WarningDesaturedColor}" />
+
+    <!-- Critical -->
+    <SolidColorBrush x:Key="Btn_BG_Critical_Brush"       Color="{StaticResource CriticalColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Critical_Brush_HL"    Color="{StaticResource CriticalDarkColor}" />
+    <SolidColorBrush x:Key="Btn_BG_Critical_Brush_DS"    Color="{StaticResource CriticalDesaturedColor}" />
+
+    <!--#endregion Button Brushes -->
+    
+    <!--#endregion BRUSHES-->
 
     <!--#region Menu -->
 
@@ -121,15 +162,7 @@
     <SolidColorBrush x:Key="MenuSelectedItemMenuBrush" Color="{StaticResource ControlHL}" />
     <!--#endregion Menu -->
     
-    <!--#region Message Colors -->
-    <SolidColorBrush x:Key="StatusBrush"   Color="{StaticResource StatusColor}" />
-    <SolidColorBrush x:Key="InfoBrush"     Color="{StaticResource InformationColor}" />
-    <SolidColorBrush x:Key="WarningBrush"  Color="{StaticResource WarningColor}" />
-    <SolidColorBrush x:Key="CriticalBrush" Color="{StaticResource CriticalColor}" />
-
-    <SolidColorBrush x:Key="StatusDarkBrush"   Color="{StaticResource StatusDarkColor}" />
-    <SolidColorBrush x:Key="InfoDarkBrush"     Color="{StaticResource InformationDarkColor}" />
-    <SolidColorBrush x:Key="WarningDarkBrush"  Color="{StaticResource WarningDarkColor}" />
-    <SolidColorBrush x:Key="CriticalDarkBrush" Color="{StaticResource CriticalDarkColor}" />
-    <!--#endregion Message Colors -->
+    
+    
+    
 </ResourceDictionary>

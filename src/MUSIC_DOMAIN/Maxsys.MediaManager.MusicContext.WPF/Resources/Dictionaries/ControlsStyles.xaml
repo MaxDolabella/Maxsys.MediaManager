@@ -513,9 +513,9 @@
         <Setter Property="Width" Value="Auto" />
         <Setter Property="Height" Value="Auto" />
         <Setter Property="FontSize" Value="{StaticResource FontSize-Smaller}" />
-        <Setter Property="Background" Value="{StaticResource MaxsysDeepBlueBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BtnTextLightBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource BtnTextLightBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="Background" Value="{StaticResource Btn_BG_Brush}" />
+        <Setter Property="Foreground" Value="{StaticResource Btn_FG_Brush}" />
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect Color="{StaticResource ControlShadow}" ShadowDepth="1" />
@@ -523,10 +523,17 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource StatusDarkBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource BtnTextLightHLBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource BtnTextLightHLBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Brush_HL}" />
+                <Setter Property="Foreground" Value="{StaticResource Btn_FG_Brush_HL}" />
             </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderDisabledBrush}" />
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Brush_DS}" />
+                <Setter Property="Foreground" Value="{StaticResource Btn_FG_Brush_DS}" />
+            </Trigger>
+            
         </Style.Triggers>
     </Style>
     <Style x:Key="SquaredButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonBaseStyle}">

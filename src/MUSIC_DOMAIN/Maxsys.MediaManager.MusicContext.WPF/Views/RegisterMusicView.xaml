@@ -11,7 +11,7 @@
         <ResourceDictionary>
             
             <Style TargetType="Expander">
-                <Setter Property="Foreground" Value="{StaticResource BtnTextLightBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextFGBrush}"/>
                 <Setter Property="IsExpanded" Value="True"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="BorderBrush" Value="{StaticResource dgvExternalBordersBrush}"/>
@@ -181,10 +181,17 @@
                 <!--#endregion Operations GroupBox -->
 
                 <!-- #region Save/Cancel Buttons -->
-                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button Style="{StaticResource SaveButtonStyle}" Command="{Binding SaveCommand}" />
-                    <Button Style="{StaticResource CloseButtonStyle}" Command="{Binding CloseCommand}" />
-                </StackPanel>
+                <Grid DockPanel.Dock="Bottom" Width="200" Margin="0 10" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" SharedSizeGroup="mainGroup"/>
+                        <ColumnDefinition Width="*" SharedSizeGroup="mainGroup"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Style="{StaticResource SuccessButtonStyle}" Command="{Binding SaveCommand}"  Content="SAVE"/>
+                    <Button Grid.Column="1" Style="{StaticResource WarningButtonStyle}" Command="{Binding CloseCommand}" Content="CLOSE" />
+                </Grid>
+                
+                
                 <!-- #endregion Save/Cancel Buttons -->
 
                 <!-- region Main Contents -->
@@ -343,7 +350,7 @@
                                         </Style>
                                     </DataGridTextColumn.EditingElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="ERRORS" MinWidth="300" Width="*"
+                                <DataGridTextColumn Header="ERRORS" MinWidth="300" Width="auto"
                                                     Foreground="LightSalmon"
                                                     IsReadOnly="True"
                                                     Binding="{Binding Errors}" />

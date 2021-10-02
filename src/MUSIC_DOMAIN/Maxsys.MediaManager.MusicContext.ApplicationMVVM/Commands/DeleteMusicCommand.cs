@@ -11,9 +11,9 @@ using System.Windows.Input;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 {
-    public class DeleteMusicCommand : ICommand
+    public class DeleteMusicCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
+        //public event EventHandler CanExecuteChanged;
 
         private readonly MusicsViewModel _viewModel;
         private readonly ILogger _logger;
@@ -38,13 +38,17 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
             _viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == nameof(SelectedMusic))
-                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                    OnCanExecuteChanged();
             };
         }
 
-        public bool CanExecute(object parameter) => SelectedMusic is not null;
+        public override bool CanExecute(object parameter)
+        {
+            return SelectedMusic is not null 
+                && base.CanExecute(parameter);
+        }
 
-        public async void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             var result = _questionDialogService
                 .ShowQuestion($"Really wants delete the music '{SelectedMusic.MusicTitle}'?",

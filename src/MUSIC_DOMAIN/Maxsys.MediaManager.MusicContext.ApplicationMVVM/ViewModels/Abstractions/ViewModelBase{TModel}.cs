@@ -14,7 +14,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         public TModel Model
         {
             get => _model;
-            protected set => SetProperty(ref _model, value);
+            set => SetProperty(ref _model, value);
         }
 
         protected ViewModelBase(ILogger logger, IDialogService dialogService, IMainContentCloser contentCloser)

@@ -48,13 +48,16 @@
                 </DockPanel>
                 <!--#endregion Search -->
 
-                <!-- #region Save/Cancel Buttons -->
-                <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10">
-                    <Button Style="{StaticResource CancelButtonStyle}" Command="{Binding DeleteMusicCommand}" 
-                            Content="DELETE" />
-                    <Button Style="{StaticResource CloseButtonStyle}" Command="{Binding CloseCommand}" />
-                </DockPanel>
-                <!-- #endregion Save/Cancel Buttons -->
+                <!-- Delete/Cancel Buttons -->
+                <Grid DockPanel.Dock="Bottom" Width="200" Margin="0 10" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" SharedSizeGroup="mainGroup"/>
+                        <ColumnDefinition Width="*" SharedSizeGroup="mainGroup"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Style="{StaticResource CriticalButtonStyle}" Command="{Binding DeleteMusicCommand}"  Content="DELETE"/>
+                    <Button Grid.Column="1" Style="{StaticResource WarningButtonStyle}" Command="{Binding CloseCommand}" Content="CLOSE" />
+                </Grid>
 
                 <!-- region Main Contents -->
                 <DockPanel Margin="10">

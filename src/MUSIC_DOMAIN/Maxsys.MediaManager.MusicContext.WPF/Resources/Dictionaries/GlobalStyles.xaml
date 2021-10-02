@@ -81,60 +81,51 @@
 
     <!-- #region Alternative-Controls-->
 
-    <!-- Save Button -->
-    <Style x:Key="SaveButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
-        <Setter Property="Content" Value="SAVE" />
-        <Setter Property="Width" Value="100" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="Background" Value="{StaticResource InfoBrush}" />
+    <!-- Success Button -->
+    <Style x:Key="SuccessButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource Btn_BG_Success_Brush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background"  Value="{StaticResource InfoDarkBrush}" />
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Success_Brush_HL}" />
             </Trigger>
-        </Style.Triggers>
-    </Style>
-    <!-- Cancel Button -->
-    <Style x:Key="CancelButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
-        <Setter Property="Content" Value="CANCEL" />
-        <Setter Property="Width" Value="100" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="IsCancel" Value="True"/>
-        <Setter Property="Background" Value="{StaticResource CriticalBrush}" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource CriticalDarkBrush}" />
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Success_Brush_DS}" />
             </Trigger>
+
         </Style.Triggers>
     </Style>
 
-    <!-- Close Button -->
-    <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
-        <Setter Property="Content" Value="CLOSE" />
-        <Setter Property="Width" Value="100" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="Background" Value="{StaticResource WarningBrush}" />
+    <!-- Warning Button -->
+    <Style x:Key="WarningButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource Btn_BG_Warning_Brush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource WarningDarkBrush}" />
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Warning_Brush_HL}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Warning_Brush_DS}" />
+            </Trigger>
+
         </Style.Triggers>
     </Style>
 
-    <!-- Delete Button -->
-    <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
-        <Setter Property="Content" Value="DELETE" />
-        <Setter Property="Width" Value="100" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="Background" Value="{StaticResource CriticalBrush}" />
+    <!-- Critical Button -->
+    <Style x:Key="CriticalButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource Btn_BG_Critical_Brush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource CriticalDarkBrush}" />
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Critical_Brush_HL}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Btn_BG_Critical_Brush_DS}" />
+            </Trigger>
+
         </Style.Triggers>
     </Style>
-    
+
+
     <!-- Reload Button -->
-    <Style x:Key="ReloadButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
+    <!--<Style x:Key="ReloadButtonStyle" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
         <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -146,7 +137,7 @@
                           Data="{StaticResource RefreshIcon}" />
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <!-- #endregion Alternative-Controls-->
 </ResourceDictionary>
