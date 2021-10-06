@@ -54,26 +54,26 @@
                     </MenuItem>
 
                     <MenuItem Header="_MEDIA MANAGER">
-                        <MenuItem Header="_REGISTER">
-                            <MenuItem Header="Music _Category">
-                                <MenuItem Header="_Create Music Category" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateMusicCatalogView}" />
-                                <MenuItem Header="_Delete Music Category" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteMusicCatalogView}" />
-                            </MenuItem>
-                            <MenuItem Header="C_omposer" IsEnabled="False" Command="{Binding OpenViewCommand}" />
-                            <MenuItem Header="_Artist">
-                                <MenuItem Header="_Create Artist" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateArtistView}" />
-                                <MenuItem Header="_Delete Artist" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteArtistView}" />
-                            </MenuItem>
-                            <MenuItem Header="A_lbum">
-                                <MenuItem Header="_Create Album" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateAlbumView}" />
-                                <MenuItem Header="_Delete Album" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteAlbumView}" />
-                            </MenuItem>
-                            <MenuItem Header="_Music">
-                                <MenuItem Header="_Register Musics" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:RegisterMusicView}" />
-                                <MenuItem Header="_List All Musics" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:MusicsView}" />
-                            </MenuItem>
-                            <MenuItem Header="_Playlist" IsEnabled="False" />
+                        
+                        <MenuItem Header="Music _Category">
+                            <MenuItem Header="_Create Music Category" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateMusicCatalogView}" />
+                            <MenuItem Header="_Delete Music Category" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteMusicCatalogView}" />
                         </MenuItem>
+                        <MenuItem Header="C_omposer" IsEnabled="False" Command="{Binding OpenViewCommand}" />
+                        <MenuItem Header="_Artist">
+                            <MenuItem Header="_Create Artist" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateArtistView}" />
+                            <MenuItem Header="_Delete Artist" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteArtistView}" />
+                        </MenuItem>
+                        <MenuItem Header="A_lbum">
+                            <MenuItem Header="_Create Album" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:CreateAlbumView}" />
+                            <MenuItem Header="_Delete Album" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:DeleteAlbumView}" />
+                        </MenuItem>
+                        <MenuItem Header="_Music">
+                            <MenuItem Header="_Register Musics" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:RegisterMusicView}" />
+                            <MenuItem Header="_List All Musics" Command="{Binding OpenViewCommand}" CommandParameter="{x:Type views:MusicsView}" />
+                        </MenuItem>
+                        <MenuItem Header="_Playlist" IsEnabled="False" />
+                        
                     </MenuItem>
                     <MenuItem Visibility="Collapsed" Header="_TOOLS" />
                     <MenuItem Header="_VIEWS">

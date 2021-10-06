@@ -1,11 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,14 +12,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IMainContentOwner _mainContentOwner;
-        private readonly IAppCloser _appCloser;
-
         private static readonly string s_appVersion = Assembly.GetEntryAssembly()
             .GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-
-        public string AppVersion => s_appVersion;
 
         #region PROPERTIES
 
@@ -32,6 +24,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             get => _currentMessage;
             set => SetProperty(ref _currentMessage, value);
         }
+
+        public string AppVersion => s_appVersion;
 
         private MessageType _currentMessageType;
 
@@ -59,8 +53,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #region COMMANDS
 
-        public ICommand OpenViewCommand { get; set; }
-        public ICommand CloseAppCommand { get; set; }
+        public ICommand OpenViewCommand { get; }
+        public ICommand CloseAppCommand { get; }
 
         #endregion COMMANDS
 
@@ -77,28 +71,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             });
         }
 
-        private void OpenViewAction(Type viewType)
-        {
-            try
-            {
-                _logger.LogDebug($"OpenViewAction() called...");
-
-                _mainContentOwner.CloseMainContent();
-
-                var view = (IView)_serviceProvider.GetRequiredService(viewType);
-
-                _mainContentOwner.SetMainContent(view);
-
-                _logger.LogDebug($"{viewType.Name} in the content container.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error at OpenViewAction()");
-            }
-        }
-
-        private void CloseAppAction() => _appCloser.CloseApp();
-
         #endregion METHODS
 
         #region CTOR
@@ -110,12 +82,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             IAppCloser appCloser)
             : base(logger, null, mainContentOwner)
         {
-            _serviceProvider = host.Services.CreateScope().ServiceProvider;
-            _mainContentOwner = mainContentOwner;
-            _appCloser = appCloser;
-
-            OpenViewCommand = new OpenViewCommand(OpenViewAction);
-            CloseAppCommand = new RelayCommand(CloseAppAction);
+            OpenViewCommand = new OpenViewCommand(mainContentOwner, logger, host.Services.CreateScope().ServiceProvider);
+            CloseAppCommand = new CloseAppCommand(logger, appCloser);
         }
 
         #endregion CTOR

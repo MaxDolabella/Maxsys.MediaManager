@@ -12,14 +12,16 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 {
     public class DeleteMusicCommand : CommandBase
     {
-        //public event EventHandler CanExecuteChanged;
+        #region Fields
 
         private readonly MusicsViewModel _viewModel;
         private readonly ILogger _logger;
         private readonly IMusicListAppService _appService;
         private readonly IDialogService _dialogService;
         private readonly IQuestionDialogService _questionDialogService;
-        MusicListModel SelectedMusic => _viewModel.SelectedMusic;
+
+        #endregion
+        MusicListModel Model => _viewModel.SelectedMusic;
 
         public DeleteMusicCommand(
             MusicsViewModel viewModel,
@@ -36,28 +38,26 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
             _viewModel.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == nameof(SelectedMusic))
+                if (e.PropertyName == nameof(_viewModel.SelectedMusic))
                     OnCanExecuteChanged();
             };
         }
 
+        #region ICommand
+
         public override bool CanExecute(object parameter)
         {
-            return SelectedMusic is not null
+            return Model is not null
                 && base.CanExecute(parameter);
         }
 
         public override async void Execute(object parameter)
         {
-            var result = _questionDialogService
-                .ShowQuestion($"Really wants delete the music '{SelectedMusic.MusicTitle}'?",
-                "DELETE MUSIC");
-
-            if (result == IQuestionDialogService.QuestionDialogResult.Yes)
+            if (ConfirmDeletion())
             {
-                _logger.LogDebug($"Deleting music '{SelectedMusic.MusicTitle}'.");
+                _logger.LogDebug($"Deleting music '{Model.MusicTitle}'.");
 
-                var validationResult = await _appService.DeleteMusicAsync(SelectedMusic);
+                var validationResult = await _appService.DeleteMusicAsync(Model);
 
                 if (validationResult.IsValid)
                     await OnMusicDeleted();
@@ -66,14 +66,27 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
             }
         }
 
+        #endregion ICommand
+
+        #region Private Methods
+
+        private bool ConfirmDeletion()
+        {
+            var result = _questionDialogService
+                .ShowQuestion($"Really wants delete the music '{Model.MusicTitle}'?",
+                "DELETE MUSIC");
+
+            return result == IQuestionDialogService.QuestionDialogResult.Yes;
+        }
+
         private async Task OnMusicDeleted()
         {
-            var message = $"Music [{SelectedMusic.MusicTitle}] Deleted!";
+            var message = $"Music [{Model.MusicTitle}] Deleted!";
 
             _logger.LogInformation(message);
             _dialogService.ShowMessage(MessageType.Information, message);
 
-            _ = _appService.DeleteMusicFileAsync(SelectedMusic)
+            _ = _appService.DeleteMusicFileAsync(Model)
                 .ConfigureAwait(false);
 
             await _viewModel.ViewLoadedAsync();
@@ -86,5 +99,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
             _logger.LogError(message);
             _dialogService.ShowMessage(MessageType.Error, message);
         }
+
+        #endregion Private Methods
     }
 }

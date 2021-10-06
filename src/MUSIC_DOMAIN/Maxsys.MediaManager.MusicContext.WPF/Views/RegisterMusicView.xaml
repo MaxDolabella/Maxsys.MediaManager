@@ -301,6 +301,9 @@
                                   Drop="OnDgvMusics_DragDrop" >
                             <DataGrid.Style>
                                 <Style TargetType="DataGrid" BasedOn="{StaticResource AppDataGridStyle}">
+                                    <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+                                    <Setter Property="EnableRowVirtualization" Value="True"/>
+                                    <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
                                     <Setter Property="AllowDrop" Value="True"/>
                                     <Setter Property="SelectionMode" Value="Extended"/>
                                     <Setter Property="HorizontalScrollBarVisibility" Value="Visible"/>
