@@ -1,7 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Maxsys.Core.Helpers;
+﻿using Maxsys.Core.Helpers;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.CoreDomain.Properties;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.ModelCore.Interfaces.Services;
@@ -11,7 +11,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
@@ -108,46 +107,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _logger.LogDebug("Registered Albums loaded.");
         }
 
-        private async Task<ValidationResult> SaveAction()
-        {
-            _logger.LogInformation($"Registering Album [{Model.Name}]...");
-
-            Model.SetArtist(SelectedArtist);
-
-            var validationResult = Model.IsValid
-                ? await _appService.AddNewAlbumAsync(Model)
-                : await Task.FromResult(Model.ValidationResult);
-
-            if (validationResult.IsValid)
-                await OnAlbumSaved();
-            else
-                OnAlbumSaveFailed(validationResult);
-
-            return validationResult;
-        }
-
-        private async Task OnAlbumSaved()
-        {
-            var message = $"Album [{Model.Name}] registered.";
-
-            _logger.LogInformation(message);
-            _dialogService.ShowMessage(MessageType.Information, message);
-
-            Model = new();
-
-            await ViewLoadedAsync();
-
-            OnPropertyChanged(nameof(DisplayableAlbums));
-        }
-
-        private void OnAlbumSaveFailed(ValidationResult validationResult)
-        {
-            var message = $"Error while registering album:\n{validationResult}";
-
-            _dialogService.ShowMessage(MessageType.Error, message);
-            _logger.LogError(message);
-        }
-
         #endregion METHODS
 
         #region CTOR
@@ -161,7 +120,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             _appService = appService;
 
-            SaveCommand = new AsyncRelayCommand(SaveAction);
+            SaveCommand = new CreateAlbumCommand(this, logger, appService, dialogService);
         }
 
         #endregion CTOR
