@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using FluentValidation.Results;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
@@ -14,7 +14,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
@@ -196,7 +195,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
                 Models.Add(newModel);
         }
 
-        private async Task LoadMainComboBoxesActionAsync()
+        public async Task LoadMainComboBoxesActionAsync()
         {
             _logger.LogDebug("Loading comboBoxes...");
 
@@ -207,6 +206,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _musics = (await _appService.GetMusicsAsync()).ToReadOnlyObservableCollection();
 
             _logger.LogDebug("ComboBoxes loaded.");
+        }
+
+        public async Task ReloadMusicsAsync()
+        {
+            _musics = (await _appService.GetMusicsAsync()).ToReadOnlyObservableCollection();
+
+            if (SelectedAlbum is not null)
+                OnPropertyChanged(nameof(DisplayableMusics));
         }
 
         #region Operation Panel
@@ -313,125 +320,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #endregion METHODS
 
-        #region SAVING
-
-        private async Task SaveActionAsync()
-        {
-            _logger.LogDebug("Saving musics...");
-
-            var validationResult = ValidateModels();
-            if (!validationResult.IsValid)
-                return;
-
-            var validationResults = await RegisterMusicsAsync();
-            if (!validationResult.IsValid)
-            {
-                return;
-            }
-
-            var validItems = GetValidValidationResults(validationResults);
-            var invalidItems = GetInvalidValidationResults(validationResults);
-
-            ClearSavedModels(validItems);
-            SetValidationResultFromRegisterOperationIntoModel(invalidItems);
-
-            var isAllValid = !invalidItems.Any();
-            if (isAllValid)
-                _dialogService.ShowMessage(MessageType.Information, "All items are saved and moved to library.");
-            else
-                _dialogService.ShowMessage(MessageType.Warning, "One or more items are not saved!");
-        }
-
-        private ValidationResult ValidateModels()
-        {
-            var validationResult = new ValidationResult();
-
-            if (!Models.Any())
-            {
-                var message = "Music list is empty.";
-
-                validationResult.AddFailure(message);
-
-                _logger.LogWarning(message);
-                _dialogService.ShowMessage(MessageType.Warning, $"Music list is empty.");
-
-                return validationResult;
-            }
-
-            _appService.SetTargetFullPaths(Models);
-
-            var isAllModelsValid = Models.All(m => m.IsValid);
-            if (!isAllModelsValid)
-            {
-                var message = $"Some musics are invalid.";
-
-                validationResult.AddFailure(message);
-
-                _logger.LogError(message);
-                _dialogService.ShowMessage(MessageType.Error, message);
-
-                return validationResult;
-            }
-
-            return validationResult;
-        }
-
-        private async Task<IReadOnlyDictionary<CreateMusicModel, ValidationResult>> RegisterMusicsAsync()
-        {
-            var results = new Dictionary<CreateMusicModel, ValidationResult>();
-            var modelsCount = Models.Count;
-
-            for (int i = 0; i < modelsCount; i++)
-            {
-                var model = Models[i];
-
-                _dialogService.ShowMessage(MessageType.Status,
-                    $"Registering {i + 1:00} of {modelsCount:00} items: [{model.TargetFullPath}]...");
-
-                results.Add(model, await _appService.RegisterMusicAsync(model));
-            }
-
-            return results;
-        }
-
-        private static IReadOnlyDictionary<CreateMusicModel, ValidationResult> GetValidValidationResults(
-            IReadOnlyDictionary<CreateMusicModel, ValidationResult> validationResults)
-        {
-            return validationResults.Where(kv => kv.Value.IsValid).ToDictionary(kv => kv.Key, kv => kv.Value);
-        }
-
-        private static IReadOnlyDictionary<CreateMusicModel, ValidationResult> GetInvalidValidationResults(
-            IReadOnlyDictionary<CreateMusicModel, ValidationResult> validationResults)
-        {
-            return validationResults.Where(kv => !kv.Value.IsValid).ToDictionary(kv => kv.Key, kv => kv.Value);
-        }
-
-        private void ClearSavedModels(IReadOnlyDictionary<CreateMusicModel, ValidationResult> validItems)
-        {
-            foreach (var model in validItems.Keys)
-            {
-                _logger.LogInformation($"Music saved to <{model.TargetFullPath}>.");
-
-                Models.Remove(model);
-            }
-        }
-
-        private void SetValidationResultFromRegisterOperationIntoModel(
-            IReadOnlyDictionary<CreateMusicModel, ValidationResult> invalidItems)
-        {
-            foreach (var kv in invalidItems)
-            {
-                var model = kv.Key;
-                var result = kv.Value;
-
-                model.ValidationResult = result;
-
-                _logger.LogError($"Music <{model.SourceFullPath}> not saved. Errors:\n\t{result}");
-            }
-        }
-
-        #endregion SAVING
-
         #region CTOR
 
         public RegisterMusicViewModel(
@@ -443,7 +331,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             _appService = appService;
 
-            SaveCommand = new AsyncRelayCommand(SaveActionAsync);
+            //SaveCommand = new AsyncRelayCommand(SaveActionAsync);
+            SaveCommand = new RegisterMusicCommand(this, logger, appService, dialogService);
 
             SetVocalGenderCommand = new RelayCommand(SetVocalGenderAction);
             SetAlbumCommand = new RelayCommand(SetAlbumAction);

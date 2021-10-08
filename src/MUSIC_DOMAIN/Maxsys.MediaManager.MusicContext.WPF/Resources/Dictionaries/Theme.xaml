@@ -44,6 +44,12 @@
     <Color x:Key="WarningColor">    #e86900</Color>
     <Color x:Key="CriticalColor">   #a60009</Color>
 
+    <Color x:Key="StatusLightColor">#0075e6</Color>
+    <Color x:Key="InfoLightColor">#a123ff</Color>
+    <Color x:Key="SuccessLightColor">#00ca52</Color>
+    <Color x:Key="WarningLightColor">#ff8520</Color>
+    <Color x:Key="CriticalLightColor">#ea000c</Color>
+
     <!-- https://pinetools.com/darken-color 20% -->
     <Color x:Key="StatusDarkColor">     #004180</Color>
     <Color x:Key="InfoDarkColor">       #6c00bc</Color>
@@ -101,7 +107,7 @@
     <SolidColorBrush x:Key="dgvCellBGBrush" Color="{StaticResource Control}" />
     <SolidColorBrush x:Key="dgvCellFGBrush" Color="{StaticResource ControlText}" />
     <SolidColorBrush x:Key="dgvSelectedCellBGBrush" Color="{StaticResource ControlHL}" />
-    <SolidColorBrush x:Key="dgvSelectedCellFGBrush" Color="{StaticResource ControlText}" />
+    <SolidColorBrush x:Key="dgvSelectedCellFGBrush" Color="{StaticResource StatusLightColor}" />
 
     <!--Error Cell-->
     <SolidColorBrush x:Key="dgvErrorCellBGBrush" Color="{StaticResource ControlRed}" />
