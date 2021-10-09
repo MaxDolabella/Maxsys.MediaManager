@@ -42,6 +42,7 @@
                         </StackPanel.Resources>
 
                         <Rectangle />
+                        
                         <!-- Grids for Trim Title From -->
                         <Grid Width="Auto">
                             <Grid.RowDefinitions>
@@ -74,6 +75,61 @@
                                     Command="{Binding TrimTitleStartCommand}" />
                             <Button Grid.Row="2" Grid.Column="1" Content="End"
                                     Command="{Binding TrimTitleEndCommand}" />
+                        </Grid>
+                        <Rectangle />
+
+                        <!-- Grids for Replace Char From -->
+                        <Grid Width="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Row 0 -->
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="32"
+                                   Content="Replace Chars" />
+
+                            <!-- Labels -->
+                            <Label Grid.Row="1" Grid.Column="0" Content="Old:" VerticalAlignment="Center"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="New:" VerticalAlignment="Center" />
+
+                            <!-- TextBoxes -->
+                            <TextBox Grid.Row="1" Grid.Column="1" TextAlignment="Center"
+                                     Text="{Binding CharToBeReplaced}" d:Text="#" MaxLength="1"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" TextAlignment="Center"
+                                     Text="{Binding CharToReplace}" d:Text="#" MaxLength="1"/>
+
+                            <!-- Button -->
+                            <Button Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" 
+                                    Content="Replace"
+                                    Command="{Binding ReplaceCharCommand}" />
+                        </Grid>
+                        <Rectangle />
+
+                        <!-- Grids for Replace Char From -->
+                        <Grid Width="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Button -->
+                            <Button  Width="60" Height="Auto" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
+                                    Command="{Binding CapitalizeToTitleCaseCommand}">
+                                <Button.Content>
+                                    <TextBlock TextAlignment="Center" Text="Capitalize Each Word" TextWrapping="Wrap"/>
+                                </Button.Content>
+                            </Button>
                         </Grid>
                         <Rectangle />
 

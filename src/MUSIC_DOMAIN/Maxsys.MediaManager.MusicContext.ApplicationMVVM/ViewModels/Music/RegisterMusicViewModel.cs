@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -140,6 +141,22 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             set => SetProperty(ref _titlePatternIndex, value);
         }
 
+        private char _charToReplace;
+
+        public char CharToReplace
+        {
+            get => _charToReplace;
+            set => SetProperty(ref _charToReplace, value);
+        }
+
+        private char _charToBeReplaced;
+
+        public char CharToBeReplaced
+        {
+            get => _charToBeReplaced;
+            set => SetProperty(ref _charToBeReplaced, value);
+        }
+
         #endregion PROPS
 
         #region COMMANDS
@@ -158,6 +175,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         public ICommand InsertPatternIndexCommand { get; }
         public ICommand RemoveTrackNumberCommand { get; }
         public ICommand InsertTrackNumberCommand { get; }
+        public ICommand ReplaceCharCommand { get; }
+        public ICommand CapitalizeToTitleCaseCommand { get; }
 
         public ICommand SetVocalGenderCommand { get; }
         public ICommand SetAlbumCommand { get; }
@@ -302,6 +321,23 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             }
         }
 
+        private void ReplaceCharAction()
+        {
+            if (!(char.IsWhiteSpace(CharToReplace) || char.IsWhiteSpace(CharToBeReplaced)))
+            {
+                foreach (var model in SelectedModels)
+                    model.Title = model.Title.Replace(CharToBeReplaced, CharToReplace);
+            }
+        }
+
+        private void CapitalizeToTitleCaseAction()
+        {
+            var textInfo = new CultureInfo("en-US", false).TextInfo;
+
+            foreach (var model in SelectedModels)
+                model.Title = textInfo.ToTitleCase(model.Title);
+        }
+
         private void SetAlbumAction()
         {
             if (SelectedModels.Any())
@@ -349,6 +385,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             InsertPatternIndexCommand = new RelayCommand(InsertPatternIndexAction);
             RemoveTrackNumberCommand = new RelayCommand(RemoveTrackNumberAction);
             InsertTrackNumberCommand = new RelayCommand(InsertTrackNumberAction);
+            ReplaceCharCommand = new RelayCommand(ReplaceCharAction);
+            CapitalizeToTitleCaseCommand = new RelayCommand(CapitalizeToTitleCaseAction);
         }
 
         #endregion CTOR

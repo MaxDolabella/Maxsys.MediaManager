@@ -90,6 +90,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
                 .ConfigureAwait(false);
 
             await _viewModel.ViewLoadedAsync();
+            _viewModel.SearchCommand.Execute(null);
         }
 
         private void OnMusicDeleteFail(ValidationResult validationResult)

@@ -79,31 +79,29 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         private async Task SearchActionAsync()
         {
-            await Task.Run(() => SearchAction());
-        }
-
-        private void SearchAction()
-        {
-            _logger.LogDebug("Searching musics...");
-
-            if (string.IsNullOrWhiteSpace(SearchTerm))
+            await Task.Run(() =>
             {
-                DisplayedMusics = Models;
-            }
-            else
-            {
-                var searchTerm = SearchTerm.ToUpper();
+                _logger.LogDebug("Searching musics...");
 
-                DisplayedMusics = Models.Where(m
-                    => m.MusicTitle.ToUpper().Contains(searchTerm)
-                    || m.MusicCatalogName.ToUpper().Contains(searchTerm)
-                    || m.ArtistName.ToUpper().Contains(searchTerm)
-                    || m.AlbumName.ToUpper().Contains(searchTerm)
-                    || m.MusicCoveredArtist.ToUpper().Contains(searchTerm)
-                    || m.MusicFeaturedArtist.ToUpper().Contains(searchTerm))
-                    .OrderBy(m => m.MusicFullPath)
-                    .ToReadOnlyObservableCollection();
-            }
+                if (string.IsNullOrWhiteSpace(SearchTerm))
+                {
+                    DisplayedMusics = Models;
+                }
+                else
+                {
+                    var searchTerm = SearchTerm.ToUpper();
+
+                    DisplayedMusics = Models.Where(m
+                        => m.MusicTitle.ToUpper().Contains(searchTerm)
+                        || m.MusicCatalogName.ToUpper().Contains(searchTerm)
+                        || m.ArtistName.ToUpper().Contains(searchTerm)
+                        || m.AlbumName.ToUpper().Contains(searchTerm)
+                        || m.MusicCoveredArtist.ToUpper().Contains(searchTerm)
+                        || m.MusicFeaturedArtist.ToUpper().Contains(searchTerm))
+                        .OrderBy(m => m.MusicFullPath)
+                        .ToReadOnlyObservableCollection();
+                }
+            });
         }
 
         #endregion METHODS
