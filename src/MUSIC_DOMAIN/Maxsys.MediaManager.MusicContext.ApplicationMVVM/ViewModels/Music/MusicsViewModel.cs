@@ -7,6 +7,7 @@ using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -58,6 +59,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         public ICommand SearchCommand { get; }
         public ICommand DeleteMusicCommand { get; }
+        public ICommand OpenContainingFolderCommand { get; }
+        public ICommand PlayMusicCommand { get; }
 
         #endregion COMMANDS
 
@@ -120,6 +123,37 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             DeleteMusicCommand = new DeleteMusicCommand(this, logger, questionDialogService, dialogService, appService);
             SearchCommand = new AsyncRelayCommand(SearchActionAsync);
+            OpenContainingFolderCommand = new RelayCommand(OpenContainingFolderAction);
+            PlayMusicCommand = new RelayCommand(PlayMusicAction);
+        }
+
+        private void PlayMusicAction()
+        {
+            using var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = SelectedMusic.MusicFullPath,
+                    UseShellExecute = true
+                }
+            };
+
+            process.Start();
+        }
+
+        private void OpenContainingFolderAction()
+        {
+            using var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    Arguments = $"/select, \"{SelectedMusic.MusicFullPath}\"",
+                    FileName = "explorer",
+                    //UseShellExecute = true
+                }
+            };
+
+            process.Start();
         }
 
         #endregion CTOR

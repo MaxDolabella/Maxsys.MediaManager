@@ -95,6 +95,7 @@
 
         <DockPanel  >
             <ContentControl x:Name="ContentContainer" />
+            <!--<ContentControl Content="{Binding CurrentView}" />-->
         </DockPanel>
     </DockPanel>
 </Window>

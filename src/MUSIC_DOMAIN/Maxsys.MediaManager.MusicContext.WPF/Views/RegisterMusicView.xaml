@@ -61,11 +61,11 @@
                                    Content="Trim Title From:" />
 
                             <!-- Col 0 -->
-                            <TextBox Style="{StaticResource MicroNumericTextBlockStyle}"
+                            <TextBox x:Name="TitleTrimCharCountTextBox" Style="{StaticResource MicroNumericTextBlockStyle}"
                                         Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                                         Text="{Binding TitleTrimCharCount}" d:Text="##">
                                 <TextBox.InputBindings>
-                                    <KeyBinding Key="Up" Command="{Binding IncreaseTitleTrimCharCountCommand}"/>
+                                    <KeyBinding Key="Up" Command="{Binding IncreaseTitleTrimCharCountCommand}" />
                                     <KeyBinding Key="Down" Command="{Binding DecreaseTitleTrimCharCountCommand}"/>
                                 </TextBox.InputBindings>
                             </TextBox>

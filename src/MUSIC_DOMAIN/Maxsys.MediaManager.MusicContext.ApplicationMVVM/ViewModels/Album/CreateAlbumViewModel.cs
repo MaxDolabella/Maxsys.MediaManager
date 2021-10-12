@@ -62,6 +62,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand SaveCommand { get; }
+        public ICommand AlbumCoverDropCommand { get; }
 
         #endregion COMMANDS
 
@@ -121,6 +122,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             SaveCommand = new CreateAlbumCommand(this, logger, appService, dialogService);
+            AlbumCoverDropCommand = new AlbumCoverDropCommand(this, dialogService);
         }
 
         #endregion CTOR

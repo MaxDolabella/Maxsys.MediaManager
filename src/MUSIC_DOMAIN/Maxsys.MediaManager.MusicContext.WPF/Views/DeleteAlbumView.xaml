@@ -5,6 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Height="450" Width="1000">
+    <UserControl.Resources>
+        <ContextMenu x:Key="RowMenu" DataContext="{Binding RelativeSource={RelativeSource 
+                   AncestorType=UserControl}, Path=DataContext}" >
+            <MenuItem Header="Open Folder" 
+                      Command="{Binding OpenFolderCommand}" />
+        </ContextMenu>
+        <Style x:Key="DefaultRowStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+        </Style>
+    </UserControl.Resources>
     <DockPanel LastChildFill="True">
 
         <!-- Save/Cancel Buttons -->
@@ -27,7 +37,8 @@
                       HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
                       AutoGenerateColumns="False"
-                      MinWidth="980" IsReadOnly="True">
+                      MinWidth="980" IsReadOnly="True"
+                      RowStyle="{StaticResource DefaultRowStyle}" >
 
                 <!-- Columns -->
                 <DataGrid.Columns>

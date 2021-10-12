@@ -1,4 +1,5 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,9 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Configurations
 
             // Views
             services.AddViewsByReflection();
+
+            services.AddSingleton<NavigationStore>();
+
             // Main Window as Singleton
             services.AddSingleton<MainWindow>();
 

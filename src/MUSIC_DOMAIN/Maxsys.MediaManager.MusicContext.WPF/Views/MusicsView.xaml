@@ -6,9 +6,16 @@
              mc:Ignorable="d" 
              MinHeight="650" d:Height="650"
              MinWidth="1200" d:Width="1200" >
-
     <UserControl.Resources>
-        <ResourceDictionary>
+        <ContextMenu x:Key="RowMenu" DataContext="{Binding RelativeSource={RelativeSource 
+                   AncestorType=UserControl}, Path=DataContext}" >
+            <MenuItem Header="Open Containing Folder"  Command="{Binding OpenContainingFolderCommand}" />
+            <MenuItem Header="Play music" Command="{Binding PlayMusicCommand}" />
+        </ContextMenu>
+        <Style x:Key="DefaultRowStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+        </Style>
+    
             <Style TargetType="Label" BasedOn="{StaticResource AppLabelStyle}" />
             <Style TargetType="DataGrid" BasedOn="{StaticResource AppDataGridStyle}">
                 <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
@@ -24,12 +31,11 @@
                 <Setter Property="Margin" Value="5 0"/>
                 <Setter Property="Content" Value="Search" />
             </Style>
-            <Style x:Key="SearchTextStyle" TargetType="TextBox" BasedOn="{StaticResource MicroTextBoxStyle}">
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="Width" Value="200"/>
-                <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DockPanel}}, Path=ActualHeight}"/>
-            </Style>
-        </ResourceDictionary>
+        <Style x:Key="SearchTextStyle" TargetType="TextBox" BasedOn="{StaticResource MicroTextBoxStyle}">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DockPanel}}, Path=ActualHeight}"/>
+        </Style>
     </UserControl.Resources>
     <DockPanel  >
         <GroupBox Header="Musics:">
@@ -65,7 +71,9 @@
                     <!--#region Datagrid -->
                     <DataGrid x:Name="DataGridMusics" 
                               ItemsSource="{Binding DisplayedMusics}" 
-                              SelectedItem="{Binding SelectedMusic}">
+                              SelectedItem="{Binding SelectedMusic}"
+                              RowStyle="{StaticResource DefaultRowStyle}"
+                              >
 
                         <DataGrid.Columns>
                             <DataGridTextColumn  Header="MUSIC CATALOG"  Binding="{Binding MusicCatalogName}" />

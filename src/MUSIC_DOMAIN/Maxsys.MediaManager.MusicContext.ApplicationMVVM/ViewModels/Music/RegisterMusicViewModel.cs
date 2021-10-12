@@ -367,7 +367,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             _appService = appService;
 
-            //SaveCommand = new AsyncRelayCommand(SaveActionAsync);
             SaveCommand = new RegisterMusicCommand(this, logger, appService, dialogService);
 
             SetVocalGenderCommand = new RelayCommand(SetVocalGenderAction);

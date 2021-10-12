@@ -1,10 +1,13 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using CommunityToolkit.Mvvm.Input;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -33,6 +36,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand DeleteAlbumCommand { get; }
+        public ICommand OpenFolderCommand { get; }
 
         #endregion COMMANDS
 
@@ -52,6 +56,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _logger.LogDebug("Albums loaded.");
         }
 
+        private void OpenFolderAction()
+        {
+            Process.Start("explorer.exe", SelectedModel.AlbumDirectory);
+        }
+
         #endregion METHODS
 
         #region CTOR
@@ -67,7 +76,10 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             DeleteAlbumCommand = new DeleteAlbumCommand(this, logger, questionDialogService, dialogService, appService);
+            OpenFolderCommand = new RelayCommand(OpenFolderAction);
         }
+
+        
 
         #endregion CTOR
     }

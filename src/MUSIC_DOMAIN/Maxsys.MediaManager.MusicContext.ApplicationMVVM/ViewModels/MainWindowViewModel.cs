@@ -1,5 +1,6 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,10 +16,24 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         private static readonly string s_appVersion = Assembly.GetEntryAssembly()
             .GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
+        private readonly NavigationStore _navigationStore;
+
         #region PROPERTIES
 
-        private string _currentMessage;
 
+
+        public IView CurrentView
+        {
+            get => _navigationStore.CurrentView;
+            set
+            {
+                _navigationStore.CurrentView = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _currentMessage;
         public string CurrentMessage
         {
             get => _currentMessage;
@@ -28,7 +43,6 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         public string AppVersion => s_appVersion;
 
         private MessageType _currentMessageType;
-
         public MessageType CurrentMessageType
         {
             get => _currentMessageType;
@@ -82,8 +96,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             IAppCloser appCloser)
             : base(logger, null, mainContentOwner)
         {
-            OpenViewCommand = new OpenViewCommand(mainContentOwner, logger, host.Services.CreateScope().ServiceProvider);
+            var serviceProvider = host.Services.CreateScope().ServiceProvider;
+
+            OpenViewCommand = new OpenViewCommand(mainContentOwner, logger, serviceProvider);
             CloseAppCommand = new CloseAppCommand(logger, appCloser);
+
+            _navigationStore = serviceProvider.GetRequiredService<NavigationStore>();
         }
 
         #endregion CTOR

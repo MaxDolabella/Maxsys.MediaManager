@@ -4,10 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:valueObjects="clr-namespace:Maxsys.MediaManager.MusicContext.Domain.ValueObjects;assembly=Maxsys.MediaManager.Music_Domain"
-             xmlns:markupExtensions="clr-namespace:System.Windows.Markup"
+             xmlns:markupExtensions="clr-namespace:System.Windows.Markup" xmlns:local="clr-namespace:Maxsys.MediaManager.MusicContext.WPF.Views" 
+             xmlns:customControls="clr-namespace:System.Windows.Controls"
              mc:Ignorable="d"
-             Height="400" Width="910">
-
+             Height="400" Width="910" >
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" BasedOn="{StaticResource AppLabelStyle}" />
@@ -68,12 +68,11 @@
 
                     <!-- picBoxAlbumCover -->
                     <Grid Background="{StaticResource ControlBrush}">
-                        <Image AllowDrop="True"
-                                   DragEnter="OnPicBoxAlbumCover_DragEnter"
-                                   Drop="OnPicBoxAlbumCover_DragDrop"
-                                   Stretch="UniformToFill"
-                                   Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualWidth}"
-                                   Source="{Binding Model.AlbumCover}" />
+                        <customControls:DropableImage 
+                            Stretch="UniformToFill"
+                            Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualWidth}"
+                            Source="{Binding Model.AlbumCover}"
+                            DropCommand="{Binding AlbumCoverDropCommand}" />
                     </Grid>
                 </StackPanel>
 

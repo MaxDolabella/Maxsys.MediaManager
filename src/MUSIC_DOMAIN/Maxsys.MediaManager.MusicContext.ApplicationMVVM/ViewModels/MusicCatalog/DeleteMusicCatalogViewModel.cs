@@ -1,9 +1,11 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using CommunityToolkit.Mvvm.Input;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,6 +35,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         #region COMMANDS
 
         public ICommand DeleteMusicCatalogCommand { get; }
+        public ICommand OpenFolderCommand { get; }
 
         #endregion COMMANDS
 
@@ -67,6 +70,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             _appService = appService;
 
             DeleteMusicCatalogCommand = new DeleteMusicCatalogCommand(this, logger, questionDialogService, dialogService, appService);
+            OpenFolderCommand = new RelayCommand(OpenFolderAction);
+        }
+
+        private void OpenFolderAction()
+        {
+            _logger.LogDebug(nameof(OpenFolderCommand));
         }
 
         #endregion CTOR
