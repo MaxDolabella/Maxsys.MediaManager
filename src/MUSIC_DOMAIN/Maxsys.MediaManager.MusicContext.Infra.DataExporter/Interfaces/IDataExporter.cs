@@ -1,8 +1,10 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
+﻿using FluentValidation.Results;
+using System.Threading.Tasks;
+
+namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 {
     public interface IDataExporter
     {
-        // TODO make async
-        void Export();
+        Task<ValidationResult> ExportAsync(string exportFolder);
     }
 }

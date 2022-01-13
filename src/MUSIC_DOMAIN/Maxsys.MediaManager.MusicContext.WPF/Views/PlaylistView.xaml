@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Maxsys.MediaManager.MusicContext.WPF.Views.PlaylistView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             MinHeight="500" d:Height="500"
+             MinWidth="1000" d:Width="1000" >
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ListBoxStyle" TargetType="ListBox">
+
+                <Setter Property="Background" Value="{StaticResource dgvBGBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource TextFGBrush}" />
+
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding MusicCatalogName}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Left" Width="200">
+            <GroupBox DockPanel.Dock="Top"
+                  Header="Playlist Info">
+                <Grid Margin="0"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       Style="{StaticResource MicroLabelStyle}"
+                       HorizontalAlignment="Left" Content="PLAYLIST NAME" />
+                    <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                         Style="{StaticResource MicroTextBoxStyle}"
+                         Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" d:Text="Example Text ABC" />
+
+                    <Button Grid.Row="2" Grid.Column="0" FontSize="{StaticResource FontSize-Micro}" Style="{StaticResource SuccessButtonStyle}"   Command="{Binding SaveCommand}" Content="SAVE" />
+                    <Button Grid.Row="2" Grid.Column="1" FontSize="{StaticResource FontSize-Micro}" Style="{StaticResource CriticalButtonStyle}"  Command="{Binding DeleteCommand}" Content="DELETE" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Playlists">
+                <ListBox Style="{StaticResource ListBoxStyle}" ItemsSource="{Binding Playlists}" />
+            </GroupBox>
+        </DockPanel>
+        <GroupBox Header="Musics">
+            
+        </GroupBox>
+    </DockPanel>
+</UserControl>

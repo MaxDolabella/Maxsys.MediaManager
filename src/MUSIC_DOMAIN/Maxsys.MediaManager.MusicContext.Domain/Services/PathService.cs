@@ -13,6 +13,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services
     public sealed class PathService : IPathService
     {
         private readonly MusicSettings _musicSettingsOptions;
+        private const string DEFAULT_PLAYLIST_FOLDER_NAME = "Playlists";
 
         public PathService(IOptions<MusicSettings> musicSettingsOptions)
         {
@@ -94,6 +95,11 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services
                 throw new ArgumentException($"'{nameof(dto)}' must be valid.", nameof(dto));
 
             return Path.Combine(GetMusicCatalogDirectory(dto.MusicCatalogName), dto.ArtistName);
+        }
+
+        public string GetDefaultPlaylistDirectory()
+        {            
+            return Path.Combine(_musicSettingsOptions.MusicLibraryFolder, DEFAULT_PLAYLIST_FOLDER_NAME);
         }
     }
 }

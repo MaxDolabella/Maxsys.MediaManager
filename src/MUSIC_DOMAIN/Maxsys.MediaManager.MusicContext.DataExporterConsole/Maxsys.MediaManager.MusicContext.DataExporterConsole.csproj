@@ -2,11 +2,29 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <ApplicationIcon>Assets\Icon\icon-256.ico</ApplicationIcon>
     <AssemblyName>Maxsys.MediaManager.Music_DataExporterConsole</AssemblyName>
     <EnvironmentName>Development</EnvironmentName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.Development.json" />
+    <None Remove="appsettings.json" />
+    <None Remove="appsettings.Production.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
@@ -21,21 +39,9 @@
         BUT to copy the file appsettings.Production.json to output, the <EnvironmentName> must be setted to 'Production'.
         Make sure to add <EnvironmentName>Production</EnvironmentName> in Publish Profile file.      
   -->
-  
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup Condition=" '$(EnvironmentName)' == 'Production' ">
     <Content Include="appsettings.Production.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(EnvironmentName)' == 'Development' ">
-    <Content Include="appsettings.Development.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

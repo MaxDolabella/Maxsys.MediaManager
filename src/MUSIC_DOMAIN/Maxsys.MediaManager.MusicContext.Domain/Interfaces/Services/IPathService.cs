@@ -3,6 +3,7 @@ using Maxsys.MediaManager.MusicContext.Domain.Entities;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
 {
+    // TODO replaces strings to URI?
     /// <summary>
     /// Provides methods for handle paths and file names for musics, albums and artists.
     /// </summary>
@@ -66,5 +67,16 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
         /// to retrieve the directory.</param>
         /// <returns>the directory of the <see cref="Artist"/>.</returns>
         string GetArtistDirectory(DefineArtistFolderDTO dto);
+
+        /// <summary>
+        /// Gets the default playist directory.
+        /// <br/><br/>
+        /// The pattern is "[MusicLibraryFolder]\Playlists"
+        /// <br/>
+        /// Example:
+        /// <code>"D:\Musics\Playlists\"</code>
+        /// </summary>
+        /// <returns>the default playist directory.</returns>
+        string GetDefaultPlaylistDirectory();
     }
 }
