@@ -5,7 +5,7 @@
     },
     "DataExporterConsole (dev)": {
       "commandName": "Project",
-      "commandLineArgs": "-f txt -o D:\\ARQUIVOS\\Desktop\\",
+      "commandLineArgs": "-f txtfull -o D:\\ARQUIVOS\\Desktop\\",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

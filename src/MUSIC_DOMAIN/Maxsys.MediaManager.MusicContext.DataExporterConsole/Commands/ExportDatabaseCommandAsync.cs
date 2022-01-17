@@ -88,6 +88,7 @@ Options are 'txt', 'excel' and 'sql'";
             return Format switch
             {
                 Format.txt => _serviceProvider.GetService<TxtDataExporter>(),
+                Format.txtfull => _serviceProvider.GetService<TxtFullDataExporter>(),
                 Format.excel => _serviceProvider.GetService<ExcelDataExporter>(),
                 Format.sql => _serviceProvider.GetService<SQLDataExporter>(),
                 _ => default
@@ -97,6 +98,6 @@ Options are 'txt', 'excel' and 'sql'";
 
     internal enum Format
     {
-        txt, excel, sql, nn
+        txt, txtfull, excel, sql, nn
     }
 }

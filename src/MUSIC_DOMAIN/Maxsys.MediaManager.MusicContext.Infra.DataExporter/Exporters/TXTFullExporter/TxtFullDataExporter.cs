@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters;
-using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTExporter.DTOs;
+using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTFullExporter.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 {
-    public sealed class TxtDataExporter : DataExporterBase<MusicAppContext>
+    public sealed class TxtFullDataExporter : DataExporterBase<MusicAppContext>
     {
-        public TxtDataExporter(ILogger<TxtDataExporter> logger, MusicAppContext context)
+        public TxtFullDataExporter(ILogger<TxtFullDataExporter> logger, MusicAppContext context)
             : base(logger, context)
         { }
 
         public override async Task<ValidationResult> ExportAsync(string exportFolder)
         {
             var dbName = _context.Database.GetDbConnection().Database;
-            var txtFile = $@"{exportFolder}\{dbName}_{DateTime.Now:yyyyMMddHHmmss}.txt";
+            var txtFile = $@"{exportFolder}\{dbName}_FULL_{DateTime.Now:yyyyMMddHHmmss}.txt";
             var header = GetHeader();
 
             var contents = new List<string> { header };
@@ -31,7 +31,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 
             #region Getting context data
 
-            IReadOnlyCollection<SongTxtDTO> songs = null;
+            IReadOnlyCollection<SongTxtFullDTO> songs = null;
 
             try
             {
@@ -100,24 +100,31 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             return validationResult;
         }
 
-        private static async Task<IReadOnlyCollection<SongTxtDTO>> GetDTOs(MusicAppContext context)
+        private static async Task<IReadOnlyCollection<SongTxtFullDTO>> GetDTOs(MusicAppContext context)
         {
             var query = context.Musics
                     .AsNoTrackingWithIdentityResolution()
                     .Include(song => song.Album.Artist.MusicCatalog)
                     .OrderBy(song => song.FullPath)
-                    .Select(song => new SongTxtDTO(
+                    .Select(song => new SongTxtFullDTO(
                         song.Id,
                         song.FullPath,
                         song.TrackNumber,
                         song.Title,
+                        song.Comments,
+                        song.MusicDetails.IsBonusTrack,
+                        song.MusicDetails.VocalGender,
+                        song.MusicDetails.CoveredArtist,
+                        song.MusicDetails.FeaturedArtist,
                         song.Classification.Rating,
                         song.Classification.GetStars10(),
                         song.MusicProperties.Duration,
+                        song.MusicProperties.BitRate,
                         song.AlbumId,
                         song.Album.Year,
                         song.Album.Name,
                         song.Album.Genre,
+                        song.Album.AlbumType,
                         song.Album.ArtistId,
                         song.Album.Artist.Name,
                         song.Album.Artist.MusicCatalogId,
@@ -132,27 +139,34 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
         {
             var header = string.Join('\t', new List<string>
             {
-                nameof(SongTxtDTO.SongId),
-                nameof(SongTxtDTO.SongFullPath),
-                nameof(SongTxtDTO.SongNumber),
-                nameof(SongTxtDTO.SongTitle),
-                nameof(SongTxtDTO.SongRating),
-                nameof(SongTxtDTO.SongStars10),
-                nameof(SongTxtDTO.SongDuration),
-                nameof(SongTxtDTO.AlbumId),
-                nameof(SongTxtDTO.AlbumYear),
-                nameof(SongTxtDTO.AlbumName),
-                nameof(SongTxtDTO.AlbumGenre),
-                nameof(SongTxtDTO.ArtistId),
-                nameof(SongTxtDTO.ArtistName),
-                nameof(SongTxtDTO.CatalogId),
-                nameof(SongTxtDTO.CatalogName)
+                nameof(SongTxtFullDTO.SongId),
+                nameof(SongTxtFullDTO.SongFullPath),
+                nameof(SongTxtFullDTO.SongNumber),
+                nameof(SongTxtFullDTO.SongTitle),
+                nameof(SongTxtFullDTO.SongComments),
+                nameof(SongTxtFullDTO.SongIsBonusTrack),
+                nameof(SongTxtFullDTO.SongVocalGender),
+                nameof(SongTxtFullDTO.SongCoveredArtist),
+                nameof(SongTxtFullDTO.SongFeaturedArtist),
+                nameof(SongTxtFullDTO.SongRating),
+                nameof(SongTxtFullDTO.SongStars10),
+                nameof(SongTxtFullDTO.SongDuration),
+                nameof(SongTxtFullDTO.SongBitRate),
+                nameof(SongTxtFullDTO.AlbumId),
+                nameof(SongTxtFullDTO.AlbumYear),
+                nameof(SongTxtFullDTO.AlbumName),
+                nameof(SongTxtFullDTO.AlbumGenre),
+                nameof(SongTxtFullDTO.AlbumType),
+                nameof(SongTxtFullDTO.ArtistId),
+                nameof(SongTxtFullDTO.ArtistName),
+                nameof(SongTxtFullDTO.CatalogId),
+                nameof(SongTxtFullDTO.CatalogName)
             });
 
             return header;
         }
 
-        private static string GetLine(SongTxtDTO song)
+        private static string GetLine(SongTxtFullDTO song)
         {
             var line = string.Join('\t', new List<string>
             {
@@ -160,13 +174,20 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
                 $"{song.SongFullPath}",
                 $"{song.SongNumber}",
                 $"{song.SongTitle}",
+                $"{song.SongComments}",
+                $"{song.SongIsBonusTrack}",
+                $"{song.SongVocalGender}",
+                $"{song.SongCoveredArtist}",
+                $"{song.SongFeaturedArtist}",
                 $"{song.SongRating}",
                 $"{song.SongStars10}",
                 $"{song.SongDuration:hh\\:mm\\:ss}",
+                $"{song.SongBitRate}",
                 $"{song.AlbumId}",
                 $"{song.AlbumYear}",
                 $"{song.AlbumName}",
                 $"{song.AlbumGenre}",
+                $"{song.AlbumType}",
                 $"{song.ArtistId}",
                 $"{song.ArtistName}",
                 $"{song.CatalogId}",

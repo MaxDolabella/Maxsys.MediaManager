@@ -9,6 +9,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.DependencyInjectio
             services.AddScoped<SQLDataExporter>();
             services.AddScoped<ExcelDataExporter>();
             services.AddScoped<TxtDataExporter>();
+            services.AddScoped<TxtFullDataExporter>();
 
             return services;
         }

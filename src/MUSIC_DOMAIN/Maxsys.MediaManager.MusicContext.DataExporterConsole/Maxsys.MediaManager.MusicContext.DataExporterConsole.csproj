@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <ApplicationIcon>Assets\Icon\icon-256.ico</ApplicationIcon>
-    <AssemblyName>Maxsys.MediaManager.Music_DataExporterConsole</AssemblyName>
+    <AssemblyName>Music_DataExporter</AssemblyName>
     <EnvironmentName>Development</EnvironmentName>
   </PropertyGroup>
 

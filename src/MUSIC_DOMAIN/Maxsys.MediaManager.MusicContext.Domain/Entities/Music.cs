@@ -20,7 +20,6 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Entities
 
         // Value Objects
         public Classification Classification { get; protected set; }
-
         public MusicDetails MusicDetails { get; protected set; }
         public MusicProperties MusicProperties { get; protected set; }
 
