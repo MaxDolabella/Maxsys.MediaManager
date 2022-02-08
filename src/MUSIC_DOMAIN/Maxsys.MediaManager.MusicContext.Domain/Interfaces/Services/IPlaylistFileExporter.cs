@@ -7,6 +7,6 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
     public interface IPlaylistFileExporter
     {
         // TODO destRootFolder: uses URI instead string?
-        Task<ValidationResult> ExportFile(IEnumerable<string> musicFiles, string destFolder, string playlistName);
+        Task<ValidationResult> ExportFileAsync(IEnumerable<string> musicFiles, string destFolder, string playlistName);
     }
 }

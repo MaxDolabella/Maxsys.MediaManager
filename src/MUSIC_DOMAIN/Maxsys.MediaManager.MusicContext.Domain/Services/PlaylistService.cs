@@ -105,7 +105,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services
 
 
         /// <inheritdoc/>
-        public async Task<ValidationResult> ExportPlaylistFile(Playlist playlist,
+        public async Task<ValidationResult> ExportPlaylistFileAsync(Playlist playlist,
                                                                IPlaylistFileExporter playlistFileExporter,
                                                                string destRootFolder = null)
         {
@@ -113,15 +113,20 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services
             var playlistName = playlist.Name;
             var musicFiles = playlist.Items
                 .Select(item => item.Music.FullPath)
+                .Reverse()
                 .ToList();
 
             _ = Directory.CreateDirectory(destRootFolder);
 
-            var validationResult = await playlistFileExporter.ExportFile(musicFiles, destRootFolder, playlistName);
+            var validationResult = await playlistFileExporter.ExportFileAsync(musicFiles, destRootFolder, playlistName);
 
             return validationResult;
         }
-
+        
+        public override async Task<IEnumerable<Playlist>> GetAllAsync(bool @readonly = true)
+        {
+            return await _repository.GetAllWithDependenciesAsync();
+        }
         //public Playlist GetByIdWithDependencies(Guid id)
         //{
         //    var pl = _repository.GetByIdWithDependencies(id);

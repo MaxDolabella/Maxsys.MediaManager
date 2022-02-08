@@ -40,5 +40,13 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories
 
             return result;
         }
+
+        public async Task<IEnumerable<Playlist>> GetAllWithDependenciesAsync()
+        {
+            return await DbSet.AsNoTracking(track: false)
+                .Include(p => p.Items)
+                    .ThenInclude(i => i.Music)
+                .ToListAsync();
+        }
     }
 }

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Maxsys.MediaManager.MusicContext.Domain.Options;
+using Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC
 {
@@ -39,6 +40,10 @@ namespace Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC
             // Services
             services.AddScoped<IPathService, PathService>();
             services.AddScoped<IFilePropertiesReader, FilePropertiesReader>();
+            
+            // PlaylistExporters
+            services.AddScoped<M3UPlaylistFileExporter>();
+            services.AddScoped<WMPPlaylistFileExporter>();
 
             // TagLibMono
             services.AddScoped<IMusicPropertiesReader, TagLibMono.TagLibMusicPropertiesReader>();
@@ -50,6 +55,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC
             services.AddScoped<IComposerService, ComposerService>();
             services.AddScoped<IMusicService, MusicService>();
             services.AddScoped<IPlaylistService, PlaylistService>();
+
 
             //services.AddScoped<IMusicCatalogService, MusicCatalogService>(sp => MusicCatalogServiceFactory.Create(sp.GetService<IMusicCatalogRepository>()));
             //services.AddScoped<IArtistService, ArtistService>(sp => ArtistServiceFactory.Create(sp.GetService<IArtistRepository>()));

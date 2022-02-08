@@ -13,5 +13,6 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories
         bool RemovePlaylistItem(PlaylistItem item);
         bool RemovePlaylistItems(IEnumerable<PlaylistItem> items);
         Task<IReadOnlyList<PlaylistItem>> GetPlaylistItemsByMusicIdAsync(Guid musicId, bool @readonly = false);
+        Task<IEnumerable<Playlist>> GetAllWithDependenciesAsync();
     }
 }

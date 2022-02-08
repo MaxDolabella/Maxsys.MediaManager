@@ -4,6 +4,7 @@ using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.ModelCore.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
 {
@@ -22,7 +23,6 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
         ///// <param name="music"></param>
         ///// <returns></returns>
         //IEnumerable<PlaylistDTO> GetPlaylistsByMusic(Music music);
-
-        
+        Task<ValidationResult> ExportPlaylistFileAsync(Playlist playlist, IPlaylistFileExporter playlistFileExporter, string destRootFolder = null);
     }
 }

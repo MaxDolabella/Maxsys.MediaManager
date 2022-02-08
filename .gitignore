@@ -367,3 +367,6 @@ appsettings.Production.json
 
 # Notes
 notes.txt
+
+# Dev Apps (console app for tests)
+.dev/
