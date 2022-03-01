@@ -11,6 +11,7 @@ namespace Maxsys.MediaManager.MusicContext.Tests.PlaylistExportTests
     [TestCategory("Domain - Services: " + nameof(IPlaylistFileExporter))]
     public class PlaylistExportTest
     {
+        private const string LIBRARY_FOLDER = @"D:\ARQUIVOS\Music";
         private static void ClearTestPlaylist(string file)
         {
             if (File.Exists(file))
@@ -22,15 +23,15 @@ namespace Maxsys.MediaManager.MusicContext.Tests.PlaylistExportTests
         {
             #region Arrange
 
-            var destFolder = @"D:\ARQUIVOS\Music\Playlists\";
+            var destFolder = $@"{LIBRARY_FOLDER}\Playlists\";
             var playlistName = "DevTestPlaylist";
             var musicFiles = new List<string>(5)
             {
-                @"D:\ARQUIVOS\Music\Artist1\Song1.mp3",
-                @"D:\ARQUIVOS\Music\Artist1\Song2.mp3",
-                @"D:\ARQUIVOS\Music\Artist2\Song3.mp3",
-                @"D:\ARQUIVOS\Music\Artist3\Song4.mp3",
-                @"D:\ARQUIVOS\Music\Artist3\Album1\Song6.mp3"
+                $@"{LIBRARY_FOLDER}\Artist1\Song1.mp3",
+                $@"{LIBRARY_FOLDER}\Artist1\Song2.mp3",
+                $@"{LIBRARY_FOLDER}\Artist2\Song3.mp3",
+                $@"{LIBRARY_FOLDER}\Artist3\Song4.mp3",
+                $@"{LIBRARY_FOLDER}\Artist3\Album1\Song6.mp3"
             };
             var expectedPlaylistContents = @"#EXTM3U
 ..\Artist1\Song1.mp3
@@ -68,15 +69,15 @@ namespace Maxsys.MediaManager.MusicContext.Tests.PlaylistExportTests
         {
             #region Arrange
 
-            var destFolder = @"D:\ARQUIVOS\Music\Playlists\";
+            var destFolder = $@"{LIBRARY_FOLDER}\Playlists\";
             var playlistName = "DevTestPlaylist";
             var musicFiles = new List<string>(5)
             {
-                @"D:\ARQUIVOS\Music\Artist1\Song1.mp3",
-                @"D:\ARQUIVOS\Music\Artist1\Song2.mp3",
-                @"D:\ARQUIVOS\Music\Artist2\Song3.mp3",
-                @"D:\ARQUIVOS\Music\Artist3\Song4.mp3",
-                @"D:\ARQUIVOS\Music\Artist3\Album1\Song6.mp3"
+                $@"{LIBRARY_FOLDER}\Artist1\Song1.mp3",
+                $@"{LIBRARY_FOLDER}\Artist1\Song2.mp3",
+                $@"{LIBRARY_FOLDER}\Artist2\Song3.mp3",
+                $@"{LIBRARY_FOLDER}\Artist3\Song4.mp3",
+                $@"{LIBRARY_FOLDER}\Artist3\Album1\Song6.mp3"
             };
             var expectedPlaylistContents = @"<?wpl version=""1.0""?>
 <smil>

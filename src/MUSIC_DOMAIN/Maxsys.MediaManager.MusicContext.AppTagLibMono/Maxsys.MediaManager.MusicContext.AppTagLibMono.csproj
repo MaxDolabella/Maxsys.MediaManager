@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="_notes.txt" />
+    <Compile Include="notes.txt" />
   </ItemGroup>
 
   <ItemGroup>

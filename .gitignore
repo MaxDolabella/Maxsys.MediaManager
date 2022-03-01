@@ -370,3 +370,6 @@ notes.txt
 
 # Dev Apps (console app for tests)
 .dev/
+
+# Tests (for a while)
+tests/

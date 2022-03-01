@@ -5,11 +5,6 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{174A0C4D-72F6-4E47-ABD1-C127F0592319}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root_itens", "root_itens", "{E397D866-1538-4E13-8E46-55204CE8E960}"
-	ProjectSection(SolutionItems) = preProject
-		notes.txt = notes.txt
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-CoreDomain", "0-CoreDomain", "{AA4DF9B4-0A05-4BA6-BAFB-C8E343ABD759}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maxsys.MediaManager.CoreDomain", "src\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj", "{E4272A65-D4F0-4F6D-8624-459ADB9C758D}"
@@ -52,7 +47,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Services", "1-Services", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".dev", ".dev", "{561CDF0C-356B-4EA2-97A2-98FB1EB6FD94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", ".dev\ConsoleApp\ConsoleApp.csproj", "{CCAA0943-5C9A-4849-A531-D7FF19D1CC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", ".dev\ConsoleApp\ConsoleApp.csproj", "{CCAA0943-5C9A-4849-A531-D7FF19D1CC7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{54F0E5D0-C696-4A9C-ACA8-7F1D299587E6}"
+	ProjectSection(SolutionItems) = preProject
+		docs\notes.txt = docs\notes.txt
+		docs\README.md = docs\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
