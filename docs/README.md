@@ -38,7 +38,7 @@ Também será possível exportar playlists (.wpl e .m3u). No momento não foram 
 
 2. Após isso, se edita individualmente o nome da faixa, o número da faixa e se informam os dados obrigatórios (alguns dados são possíveis de se editar em lote).
 
-3. Cada arquivo precisa estar vinculado a um álbum, que por sua vez, em sua própria tela de cadastro foi vinculado à um artista, que por sua vez, em sua própria tela de foi vinculado a um catálogo.
+3. Cada arquivo precisa estar vinculado a um álbum, que por sua vez, em sua própria tela de cadastro foi vinculado à um artista, que por sua vez, em sua própria tela de cadastro foi vinculado a um catálogo.
 
 4. Os arquivos devidamente cadastrados, são movidos para a biblioteca de música em sua devida pasta, bem como são gravadas as tags id3v2 em cada arquivo de acordo com as informações cadastradas.
 
