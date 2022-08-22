@@ -11,7 +11,7 @@ namespace Maxsys.MediaManager.MusicContext.Tests.PlaylistExportTests
     [TestCategory("Domain - Services: " + nameof(IPlaylistFileExporter))]
     public class PlaylistExportTest
     {
-        private const string LIBRARY_FOLDER = @"D:\ARQUIVOS\Music";
+        private const string LIBRARY_FOLDER = @"D:\ARQUIVOS\Song";
         private static void ClearTestPlaylist(string file)
         {
             if (File.Exists(file))

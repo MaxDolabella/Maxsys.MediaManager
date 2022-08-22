@@ -1,5 +1,4 @@
-﻿namespace Maxsys.MediaManager.CoreDomain.Interfaces
-{
-    public interface IView
-    { }
-}
+﻿namespace Maxsys.MediaManager.CoreDomain.Interfaces;
+
+public interface IView
+{ }

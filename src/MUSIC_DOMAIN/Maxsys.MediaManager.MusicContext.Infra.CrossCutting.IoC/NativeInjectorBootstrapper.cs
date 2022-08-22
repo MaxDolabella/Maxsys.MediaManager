@@ -1,21 +1,10 @@
-﻿using Maxsys.DataCore.Interfaces;
-using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
-using Maxsys.MediaManager.CoreDomain.Services;
-using TagLibMono = Maxsys.MediaManager.MusicContext.AppTagLibMono.Services;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services.Mp3;
-using Maxsys.MediaManager.MusicContext.Domain.Services;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Maxsys.MediaManager.CoreDomain.Extensions;
+using Maxsys.MediaManager.MusicContext.AppTagLibMono.Extensions;
+using Maxsys.MediaManager.MusicContext.Domain.Extensions;
+using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Maxsys.MediaManager.MusicContext.Domain.Options;
-using Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC
 {
@@ -24,62 +13,14 @@ namespace Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC
         /// <summary>
         /// Register services using native Dependency Injection
         /// </summary>
-        public static void RegisterServices(this IServiceCollection services)
+        public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddCoreDependencyInjection();
+            services.AddDomainDependencyInjection(configuration);
+            services.AddTagLibMonoDependencyInjection();
+            services.AddDataEFCoreDependencyInjection(configuration);
 
-            // Repositories
-            services.AddScoped<IMusicCatalogRepository, MusicCatalogRepository>();
-            services.AddScoped<IArtistRepository, ArtistRepository>();
-            services.AddScoped<IAlbumRepository, AlbumRepository>();
-            services.AddScoped<IComposerRepository, ComposerRepository>();
-            services.AddScoped<IMusicRepository, MusicRepository>();
-            services.AddScoped<IPlaylistRepository, PlaylistRepository>();
-            services.AddScoped<IMusicRankRepository, MusicRankRepository>();
-
-            // Services
-            services.AddScoped<IPathService, PathService>();
-            services.AddScoped<IFilePropertiesReader, FilePropertiesReader>();
-            
-            // PlaylistExporters
-            services.AddScoped<M3UPlaylistFileExporter>();
-            services.AddScoped<WMPPlaylistFileExporter>();
-
-            // TagLibMono
-            services.AddScoped<IMusicPropertiesReader, TagLibMono.TagLibMusicPropertiesReader>();
-            services.AddScoped<ITagService, TagLibMono.TagLibService>();
-
-            services.AddScoped<IMusicCatalogService, MusicCatalogService>();
-            services.AddScoped<IArtistService, ArtistService>();
-            services.AddScoped<IAlbumService, AlbumService>();
-            services.AddScoped<IComposerService, ComposerService>();
-            services.AddScoped<IMusicService, MusicService>();
-            services.AddScoped<IPlaylistService, PlaylistService>();
-
-
-            //services.AddScoped<IMusicCatalogService, MusicCatalogService>(sp => MusicCatalogServiceFactory.Create(sp.GetService<IMusicCatalogRepository>()));
-            //services.AddScoped<IArtistService, ArtistService>(sp => ArtistServiceFactory.Create(sp.GetService<IArtistRepository>()));
-            //services.AddScoped<IAlbumService, AlbumService>(sp => AlbumServiceFactory.Create(sp.GetService<IAlbumRepository>()));
-            //services.AddScoped<IComposerService, ComposerService>(sp => ComposerServiceFactory.Create(sp.GetService<IComposerRepository>()));
-            //services.AddScoped<IMusicService, MusicService>(sp => MusicServiceFactory.Create(sp.GetService<IMusicRepository>()));
-            //services.AddScoped<IPlaylistService, PlaylistService>(sp => PlaylistServiceFactory.Create(sp.GetService<IPlaylistRepository>(), sp.GetService<ITagService>()));
-        }
-
-        /// <summary>
-        /// Register database using native Dependency Injection
-        /// </summary>
-        public static void RegisterDatabase(this IServiceCollection services, IConfiguration configuration)
-        {
-            var baseConn = configuration.GetConnectionString(nameof(MusicAppContext));
-            /* Connection With Password
-            var passConn = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(baseConn)
-            {
-                UserID = configuration["DATABASE_AUTH:USER"],
-                Password = configuration["DATABASE_AUTH:PASS"]
-            }.ToString();
-            //*/
-
-            services.AddDbContext<MusicAppContext>(options => options.UseSqlServer(baseConn));
+            return services;
         }
 
         /// <summary>
@@ -122,17 +63,6 @@ namespace Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC
 
                 //*/// ================================================
                 );
-        }
-
-        /// <summary>
-        /// Adds <see cref="MusicSettings"/> options using native Dependency Injection.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        public static void RegisterOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddOptions();
-            services.Configure<MusicSettings>(configuration.GetSection(MusicSettings.Section));
         }
     }
 }

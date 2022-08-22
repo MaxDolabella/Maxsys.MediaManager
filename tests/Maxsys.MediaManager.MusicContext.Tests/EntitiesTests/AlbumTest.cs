@@ -28,7 +28,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, default(Artist));
 
@@ -48,7 +48,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "123 right-name.(γικ,ντόη)", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbumN = AlbumFactory.Create(albumDir, null, 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbumE = AlbumFactory.Create(albumDir, "   ", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
@@ -72,7 +72,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, StringHelper.GetWord(50), 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, StringHelper.GetWord(51), 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 
@@ -93,7 +93,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum1 = AlbumFactory.Create(albumDir, "Name", 1499, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum2 = AlbumFactory.Create(albumDir, "Name", 2101, "Others", new byte[] { }, AlbumType.Studio, validArtist);
@@ -117,7 +117,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "1 ok-name γικντόη", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum1 = AlbumFactory.Create(albumDir, "Name", 2020, null, new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum2 = AlbumFactory.Create(albumDir, "Name", 2020, "  ", new byte[] { }, AlbumType.Studio, validArtist);
@@ -141,7 +141,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, StringHelper.GetWord(50), new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, StringHelper.GetWord(51), new byte[] { }, AlbumType.Studio, validArtist);
 
@@ -161,7 +161,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, (AlbumType)99, validArtist);
 
@@ -182,7 +182,7 @@
 //        {
 //            // Arrange
 //            var validator = _businessValidator;
-//            var validArtist = _repository.GetAll(false).First().Artist;
+//            var validArtist = _repository.GetAllSongRanksAsync(false).First().Artist;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", null, AlbumType.Studio, validArtist);
 
@@ -204,8 +204,8 @@
 //        {
 //            // Arrange
 //            var validator = _persistenceValidator;
-//            var validArtist = _repository.GetAll(true).First().Artist;
-//            var repeatedAlbumNameFromArtist = _repository.GetAll(true).Where(x => x.Artist.Id == validArtist.Id).First().Name;
+//            var validArtist = _repository.GetAllSongRanksAsync(true).First().Artist;
+//            var repeatedAlbumNameFromArtist = _repository.GetAllSongRanksAsync(true).Where(x => x.Artist.Id == validArtist.Id).First().Name;
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Unique Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, repeatedAlbumNameFromArtist, 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 

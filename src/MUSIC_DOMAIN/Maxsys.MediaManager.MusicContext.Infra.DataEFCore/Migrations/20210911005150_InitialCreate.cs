@@ -20,7 +20,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MusicCatalogs",
+                name: "Catalogs",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -57,7 +57,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                     table.ForeignKey(
                         name: "FK_Artists_MusicCatalogs_MusicCatalogId",
                         column: x => x.MusicCatalogId,
-                        principalTable: "MusicCatalogs",
+                        principalTable: "Catalogs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -87,7 +87,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Musics",
+                name: "Songs",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -139,7 +139,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                     table.ForeignKey(
                         name: "FK_ComposerMusic_Musics_MusicsId",
                         column: x => x.MusicsId,
-                        principalTable: "Musics",
+                        principalTable: "Songs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -158,7 +158,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                     table.ForeignKey(
                         name: "FK_PlaylistItems_Musics_MusicId",
                         column: x => x.MusicId,
-                        principalTable: "Musics",
+                        principalTable: "Songs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -178,13 +178,13 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
             migrationBuilder.CreateIndex(
                 name: "AK_Artists_Name_Catalog",
                 table: "Artists",
-                columns: new[] { "Name", "MusicCatalogId" },
+                columns: new[] { "Name", "CatalogId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artists_MusicCatalogId",
                 table: "Artists",
-                column: "MusicCatalogId");
+                column: "CatalogId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComposerMusic_MusicsId",
@@ -199,25 +199,25 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "AK_MusicCatalogs_Name",
-                table: "MusicCatalogs",
+                table: "Catalogs",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "AK_Musics_FullPath",
-                table: "Musics",
+                table: "Songs",
                 column: "MediaFile_FullPath",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Musics_AlbumId",
-                table: "Musics",
+                table: "Songs",
                 column: "AlbumId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlaylistItems_MusicId",
                 table: "PlaylistItems",
-                column: "MusicId");
+                column: "Id");
 
             migrationBuilder.CreateIndex(
                 name: "AK_Playlists_Name",
@@ -238,7 +238,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                 name: "Composers");
 
             migrationBuilder.DropTable(
-                name: "Musics");
+                name: "Songs");
 
             migrationBuilder.DropTable(
                 name: "Playlists");
@@ -250,7 +250,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                 name: "Artists");
 
             migrationBuilder.DropTable(
-                name: "MusicCatalogs");
+                name: "Catalogs");
         }
     }
 }

@@ -14,19 +14,19 @@ namespace Maxsys.MediaManager.MusicContext.Tests.Mock
             Composers = new ComposerMockRepository();
 
             // MusicCatalogs
-            var CAT1 = MusicCatalogFactory.Create(Guid.NewGuid(), "CAT1");
-            var CAT2 = MusicCatalogFactory.Create(Guid.NewGuid(), "CAT2");
+            var CAT1 = CatalogFactory.Create(Guid.NewGuid(), "CAT1");
+            var CAT2 = CatalogFactory.Create(Guid.NewGuid(), "CAT2");
 
             // Artists
-            var CAT1_ART1 = ArtistFactory.Create(Guid.NewGuid(), "CAT1_ART1", CAT1.Id);
-            var CAT1_ART2 = ArtistFactory.Create(Guid.NewGuid(), "CAT1_ART2", CAT1.Id);
-            var CAT2_ART1 = ArtistFactory.Create(Guid.NewGuid(), "CAT2_ART1", CAT2.Id);
-            var CAT2_ART2 = ArtistFactory.Create(Guid.NewGuid(), "CAT2_ART2", CAT2.Id);
+            var CAT1_ART1 = ArtistFactory.Create("CAT1_ART1", Guid.NewGuid(), CAT1.Id);
+            var CAT1_ART2 = ArtistFactory.Create("CAT1_ART2", Guid.NewGuid(), CAT1.Id);
+            var CAT2_ART1 = ArtistFactory.Create("CAT2_ART1", Guid.NewGuid(), CAT2.Id);
+            var CAT2_ART2 = ArtistFactory.Create("CAT2_ART2", Guid.NewGuid(), CAT2.Id);
 
-            CAT1_ART1.SetMusicCatalog(CAT1);
-            CAT1_ART2.SetMusicCatalog(CAT1);
-            CAT2_ART1.SetMusicCatalog(CAT2);
-            CAT2_ART2.SetMusicCatalog(CAT2);
+            CAT1_ART1.SetCatalog(CAT1);
+            CAT1_ART2.SetCatalog(CAT1);
+            CAT2_ART1.SetCatalog(CAT2);
+            CAT2_ART2.SetCatalog(CAT2);
 
             // Adding to repositories
             MusicCatalogs.Add(CAT1);
@@ -38,7 +38,7 @@ namespace Maxsys.MediaManager.MusicContext.Tests.Mock
             Artists.Add(CAT2_ART2);
         }
 
-        public IMusicCatalogRepository MusicCatalogs { get; }
+        public ICatalogRepository MusicCatalogs { get; }
         public IArtistRepository Artists { get; }
         public IComposerRepository Composers { get; }
     }

@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.Tests.Mock.Repositories
 {
-    internal class MusicCatalogMockRepository : MockRepositoryBase<MusicCatalog>, IMusicCatalogRepository
+    internal class MusicCatalogMockRepository : MockRepositoryBase<Catalog>, ICatalogRepository
     {
-        public async Task<IReadOnlyList<MusicCatalogInfoDTO>> GetMusicCatalogListAsync()
+        public async Task<IReadOnlyList<CatalogDetailDTO>> GetMusicCatalogListAsync()
         {
             var items = await GetAllAsync();
 
-            return items.Select(i => new MusicCatalogInfoDTO
+            return items.Select(i => new CatalogDetailDTO
             {
                 MusicCatalogId = i.Id,
                 MusicCatalogName = i.Name
             }).ToList();
         }
 
-        public async Task<IReadOnlyList<MusicCatalogListDTO>> GetMusicCatalogListsAsync()
+        public async Task<IReadOnlyList<CatalogInfoDTO>> GetMusicCatalogListsAsync()
         {
             var items = await GetAllAsync();
 
@@ -33,7 +33,7 @@ namespace Maxsys.MediaManager.MusicContext.Tests.Mock.Repositories
             }).ToList();
         }
 
-        public async Task<int> ArtistsCountAsync(Guid id)
+        public async Task<int> ArtistCountAsync(Guid id)
         {
             var obj = await GetByIdAsync(id);
 

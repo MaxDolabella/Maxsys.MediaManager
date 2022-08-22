@@ -55,7 +55,7 @@ namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(fileFullPath, $"Error at tagging Mp3 File: {ex.Message}");
+                validationResult.AddException(ex, $"Error at tagging Mp3 File: {ex.Message}");
             }
 
             IOHelper.InsertReadOnlyAttribute(fileFullPath);
@@ -116,7 +116,7 @@ namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(filePath, $"Error at tagging Mp3 File: {ex.Message}");
+                validationResult.AddException(ex, $"Error at tagging Mp3 File: {ex.Message}");
             }
 
             IOHelper.InsertReadOnlyAttribute(filePath);
@@ -124,7 +124,7 @@ namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services
             return validationResult;
         }
 
-        public ValidationResult WritePlaylistTags(Id3v2PlaylistDTO dto)
+        public ValidationResult WritePlaylistTags(Id3v2PlaylistItemDTO dto)
         {
             var validationResult = new ValidationResult();
 
@@ -156,7 +156,7 @@ namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(dto.FullPath, $"Error at tagging Mp3 File: {ex.Message}");
+                validationResult.AddException(ex, $"Error at tagging Mp3 File: {ex.Message}");
             }
 
             IOHelper.InsertReadOnlyAttribute(dto.FullPath);

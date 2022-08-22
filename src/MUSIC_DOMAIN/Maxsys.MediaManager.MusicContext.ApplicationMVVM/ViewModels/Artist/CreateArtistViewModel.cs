@@ -67,11 +67,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         private async Task LoadMusicCatalogsAsync()
         {
-            _logger.LogInformation("Loading registered MusicCatalogs.");
+            _logger.LogInformation("Loading registered Catalogs.");
 
             MusicCatalogs = (await _appService.GetMusicCatalogsAsync()).ToReadOnlyObservableCollection();
 
-            _logger.LogInformation("Registered MusicCatalogs loaded.");
+            _logger.LogInformation("Registered Catalogs loaded.");
         }
 
         private async Task LoadArtistsAsync()
@@ -112,7 +112,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             await LoadArtistsAsync();
 
-            // Update Artist ListView
+            // UpdateSongRankAsync Artist ListView
             OnPropertyChanged(nameof(DisplayableArtists));
         }
 

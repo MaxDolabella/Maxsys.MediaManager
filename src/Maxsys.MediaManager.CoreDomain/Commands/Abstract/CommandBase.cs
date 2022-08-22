@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Maxsys.MediaManager.CoreDomain.Commands
+namespace Maxsys.MediaManager.CoreDomain.Commands;
+
+public abstract class CommandBase : ICommand
 {
-    public abstract class CommandBase : ICommand
-    {
-        public virtual bool CanExecute(object parameter) => true;
+    public virtual bool CanExecute(object? parameter) => true;
 
-        public abstract void Execute(object parameter);
+    public abstract void Execute(object? parameter);
 
-        public event EventHandler CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged;
 
-        protected void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
-    }
+    protected void OnCanExecuteChanged()
+        => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 }

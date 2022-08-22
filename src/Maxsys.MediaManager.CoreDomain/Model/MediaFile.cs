@@ -1,57 +1,61 @@
+using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
 using Maxsys.ModelCore;
 using System;
 
-namespace Maxsys.MediaManager.CoreDomain
+namespace Maxsys.MediaManager.CoreDomain;
+
+public abstract class MediaFile : EntityBase
 {
-    public abstract class MediaFile : EntityBase
+    #region PROPERTIES
+
+    /// <summary>
+    /// Path limit is 248 characters.
+    /// Path+Filename limit is 260 characters.
+    /// </summary>
+    public string FullPath { get; protected set; }
+
+    public string OriginalFileName { get; protected set; } // private set?
+
+    public long FileSize { get; protected set; } // private set?
+
+    /// <summary>
+    /// Automatic value
+    /// </summary>
+    public DateTime CreatedDate { get; protected set; }
+
+    /// <summary>
+    /// Automatic value
+    /// </summary>
+    public DateTime UpdatedDate { get; protected set; }
+
+    #endregion PROPERTIES
+
+    #region CONSTRUCTORS
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    protected MediaFile()
+    { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
+    protected MediaFile(Guid id, string fullPath, string originalFileName, long fileSize)
     {
-        #region PROPERTIES
+        Id = id;
+        FullPath = fullPath;
+        OriginalFileName = originalFileName;
+        FileSize = fileSize;
+    }
 
-        /// <summary>
-        /// Path limit is 248 characters.
-        /// Path+Filename limit is 260 characters.
-        /// </summary>
-        public string FullPath { get; protected set; }
+    #endregion CONSTRUCTORS
 
-        public string OriginalFileName { get; protected set; } // private set?
+    public void SetCreatedDate(DateTime date)
+        => CreatedDate = date;
 
-        public long FileSize { get; protected set; } // private set?
+    public void SetUpdatedDate(DateTime date)
+     => UpdatedDate = date;
 
-        /// <summary>
-        /// Automatic value
-        /// </summary>
-		public DateTime CreatedDate { get; protected set; }
-
-        /// <summary>
-        /// Automatic value
-        /// </summary>
-        public DateTime UpdatedDate { get; protected set; }
-
-        #endregion PROPERTIES
-
-        #region CONSTRUCTORS
-
-        protected MediaFile()
-        { }
-
-        protected MediaFile(Guid id, string fullPath, string originalFileName, long fileSize)
-        {
-            Id = id;
-            FullPath = fullPath;
-            OriginalFileName = originalFileName;
-            FileSize = fileSize;
-        }
-
-        #endregion CONSTRUCTORS
-
-        public void SetCreatedDate(DateTime date)
-        {
-            CreatedDate = date;
-        }
-
-        public void SetUpdatedDate(DateTime date)
-        {
-            UpdatedDate = date;
-        }
+    public void UpdateFilePropertiesFrom(IFilePropertiesReader propertiesReader, string fileToUpdateFrom)
+    {
+        OriginalFileName = propertiesReader.GetFileNameWithoutExtension(fileToUpdateFrom);
+        FileSize = propertiesReader.GetFileSize(fileToUpdateFrom);
     }
 }

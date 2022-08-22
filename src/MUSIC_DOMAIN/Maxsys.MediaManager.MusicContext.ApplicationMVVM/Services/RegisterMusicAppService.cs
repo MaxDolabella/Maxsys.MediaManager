@@ -10,7 +10,6 @@ using Maxsys.MediaManager.MusicContext.Domain.Factories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services.Mp3;
 using Maxsys.MediaManager.MusicContext.Domain.Validators;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,26 +23,26 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         : ApplicationServiceBase, IRegisterMusicAppService
     {
         private readonly ILogger _logger;
-        private readonly IMusicService _musicService;
-        private readonly IMusicRepository _musicRepository;
-        private readonly IMusicCatalogRepository _musicCatalogRepository;
+        private readonly ISongService _musicService;
+        private readonly ISongRepository _musicRepository;
+        private readonly ICatalogRepository _musicCatalogRepository;
         private readonly IArtistRepository _artistRepository;
         private readonly IAlbumRepository _albumRepository;
         private readonly IPathService _pathService;
-        private readonly IMusicPropertiesReader _musicPropertiesReader;
+        private readonly ISongPropertiesReader _musicPropertiesReader;
         private readonly ITagService _tagService;
 
         public RegisterMusicAppService(
             IUnitOfWork uow,
             ILogger<RegisterMusicAppService> logger,
-            IMusicService musicService,
-            IMusicRepository musicRepository,
-            IMusicCatalogRepository musicCatalogRepository,
+            ISongService musicService,
+            ISongRepository musicRepository,
+            ICatalogRepository musicCatalogRepository,
             IArtistRepository artistRepository,
             IAlbumRepository albumRepository,
             ITagService tagService,
             IPathService pathService,
-            IMusicPropertiesReader musicPropertiesReader)
+            ISongPropertiesReader musicPropertiesReader)
             : base(uow)
         {
             _logger = logger;
@@ -57,14 +56,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             _musicPropertiesReader = musicPropertiesReader;
         }
 
-        public async Task<IReadOnlyList<MusicCatalogInfoDTO>> GetMusicCatalogsAsync()
+        public async Task<IReadOnlyList<CatalogDetailDTO>> GetMusicCatalogsAsync()
         {
-            return await _musicCatalogRepository.GetMusicCatalogListAsync();
+            return await _musicCatalogRepository.GetCatalogDetailsAsync();
         }
 
-        public async Task<IReadOnlyList<ArtistInfoDTO>> GetArtistsAsync()
+        public async Task<IReadOnlyList<ArtistDetailsDTO>> GetArtistsAsync()
         {
-            return await _artistRepository.GetArtistInfosAsync();
+            return await _artistRepository.GetArtistDetailsAsync();
         }
 
         public async Task<IReadOnlyList<AlbumInfoDTO>> GetAlbumsAsync()
@@ -72,16 +71,16 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             return await _albumRepository.GetAlbumInfosAsync();
         }
 
-        public async Task<IReadOnlyList<MusicInfoDTO>> GetMusicsAsync()
+        public async Task<IReadOnlyList<SongInfoDTO>> GetMusicsAsync()
         {
-            return await _musicRepository.GetMusicsAsync();
+            return await _musicRepository.GetSongInfosAsync();
         }
 
         public void SetTargetFullPaths(IEnumerable<CreateMusicModel> models)
         {
             foreach (var model in models)
             {
-                var dto = new DefineMusicFileNameDTO
+                var dto = new DefineSongFileNameDTO
                 {
                     MusicTrackNumber = model.TrackNumber,
                     MusicTitle = model.Title,
@@ -93,7 +92,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
                 if (dto.IsValid())
                 {
-                    var targetFile = _pathService.DefineMusicFilePath(dto);
+                    var targetFile = _pathService.DefineSongFilePath(dto);
 
                     model.SetTargetFullPath(targetFile);
                 }
@@ -105,8 +104,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             BeginTransaction();
 
             var validationResult = new ValidationResult();
-            var validatorForUpdateMusic = new MusicValidator(_musicRepository).SetRulesForUpdate();
-            var validatorForNewMusic = new MusicValidator(_musicRepository).SetRulesForCreation();
+            var validatorForUpdateMusic = new SongValidator(_musicRepository).SetRulesForUpdate();
+            var validatorForNewMusic = new SongValidator(_musicRepository).SetRulesForCreation();
 
             var sourceIsRegistered = await _musicRepository.PathExistsAsync(model.SourceFullPath);
             var targetIsRegistered = await _musicRepository.PathExistsAsync(model.TargetFullPath);
@@ -138,7 +137,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private async Task<ValidationResult> AddNewMusicAsync(CreateMusicModel model, IValidator<Music> validator)
+        private async Task<ValidationResult> AddNewMusicAsync(CreateMusicModel model, IValidator<Song> validator)
         {
             _logger.LogDebug("Adding music async");
 
@@ -148,7 +147,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             var bitrate = _musicPropertiesReader.GetMusicBitrate(model.SourceFullPath);
             IEnumerable<Composer> composers = null;
 
-            var newMusic = MusicFactory.Create(
+            var newMusic = SongFactory.Create(
                 model.Id,
                 model.Album.AlbumId,
                 originalFileName,
@@ -172,7 +171,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             var validationResult = await _musicService.AddAsync(newMusic, validator);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music added.");
+            _logger.LogDebug("Song added.");
 
             // TAGGING
             _logger.LogDebug("Tagging music.");
@@ -180,14 +179,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             validationResult = _tagService.WriteTags(Id3v2DTO.FromDTOs(musicTagDTO, albumTagDTO));
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music tagged.");
+            _logger.LogDebug("Song tagged.");
 
             // MOVING
             _logger.LogDebug("Moving to music to library.");
             validationResult = await _musicService.MoveToLibraryAsync(model.SourceFullPath, model.TargetFullPath);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music moved to library.");
+            _logger.LogDebug("Song moved to library.");
 
             // COMMITTING
             validationResult = await CommitAsync();
@@ -200,21 +199,21 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private async Task<ValidationResult> ReplaceExistingFileAsync(CreateMusicModel model, IValidator<Music> validator)
+        private async Task<ValidationResult> ReplaceExistingFileAsync(CreateMusicModel model, IValidator<Song> validator)
         {
             // WARNING Se eu marcar por exemplo como bonus track, dá erro de Title Exists
 
             _logger.LogDebug("Replacing existing music async");
 
             var existingMusic = await _musicService.GetByPathAsync(model.TargetFullPath);
-            existingMusic.UpdateFilePropertiesFrom(_musicPropertiesReader, model.SourceFullPath);
+            existingMusic.UpdateSongPropertiesFrom(_musicPropertiesReader, model.SourceFullPath);
 
             // UPDATING
             _logger.LogDebug("Updating music.");
             var validationResult = await _musicService.UpdateAsync(existingMusic, validator);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music updated.");
+            _logger.LogDebug("Song updated.");
 
             // TAGGING
             _logger.LogDebug("Tagging music.");
@@ -222,14 +221,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             validationResult = _tagService.WriteTags(id3Tags);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music tagged.");
+            _logger.LogDebug("Song tagged.");
 
             // MOVING
             _logger.LogDebug("Replacing music file in library.");
             validationResult = await _musicService.ReplaceToLibraryAsync(model.SourceFullPath, model.TargetFullPath);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music file replaced to library.");
+            _logger.LogDebug("Song file replaced to library.");
 
             // COMMITTING
             validationResult = await CommitAsync();
@@ -241,16 +240,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         /// Gets an existing music in library and move to another album. Also updates the tags.
         /// </summary>
         /// <param name="model"></param>
-        private async Task<ValidationResult> ChangeAlbumAsync(CreateMusicModel model, IValidator<Music> validator)
+        private async Task<ValidationResult> ChangeAlbumAsync(CreateMusicModel model, IValidator<Song> validator)
         {
             _logger.LogDebug("Changing album async.");
 
             var music = await _musicService.GetByPathAsync(model.SourceFullPath);
-            var album = await _albumRepository.GetAlbumTagDTO(model.AlbumId);
+            var album = await _albumRepository.GetAlbumTagAsync(model.AlbumId);
 
-            music.UpdateFullPath(model.TargetFullPath);
-            music.UpdateTrackNumber(model.TrackNumber);
-            music.UpdateAlbum(model.AlbumId);
+            music.UpdateAlbum(model.AlbumId, model.TargetFullPath, model.TrackNumber);
 
             var updatedTags = _tagService
                 .ReadTags(model.SourceFullPath)
@@ -262,21 +259,21 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             var validationResult = await _musicService.UpdateAsync(music, validator);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music updated.");
+            _logger.LogDebug("Song updated.");
 
             // TAGGING
             _logger.LogDebug("Tagging music");
             validationResult = _tagService.WriteTags(updatedTags);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music tagged.");
+            _logger.LogDebug("Song tagged.");
 
             // MOVING
             _logger.LogDebug("Moving to music to library.");
             validationResult = await _musicService.MoveToLibraryAsync(model.SourceFullPath, model.TargetFullPath);
             if (!validationResult.IsValid) return validationResult;
 
-            _logger.LogDebug("Music moved to library.");
+            _logger.LogDebug("Song moved to library.");
 
             // COMMITTING
             validationResult = await CommitAsync();
@@ -291,7 +288,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         /// <returns>ValidationResult with errors when TrackNumber or Title are already registered</returns>
         private async Task<ValidationResult> CheckTrackAndTitleAsync(CreateMusicModel model)
         {
-            var albumsTrackTitle = await _albumRepository.GetTracksAndTitlesAsync(model.AlbumId);
+            var albumsTrackTitle = await _albumRepository.GetTrackAndTitlesAsync(model.AlbumId);
             var sameTitle = albumsTrackTitle.Any(x => x.Title == model.Title);
             var sameTrack = albumsTrackTitle.Any(t => t.Track.HasValue && t.Track == model.TrackNumber);
 
@@ -319,7 +316,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 MusicCoveredArtist = model.CoveredArtist,
                 MusicFeaturedArtist = model.FeaturedArtist
             };
-            var albumTagDTO = await _albumRepository.GetAlbumTagDTO(model.AlbumId);
+            var albumTagDTO = await _albumRepository.GetAlbumTagAsync(model.AlbumId);
 
             return (musicTagDTO, albumTagDTO);
         }

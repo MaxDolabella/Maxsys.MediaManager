@@ -31,23 +31,23 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 
             #region Getting data context
 
-            IEnumerable<MusicCatalog> catalogs = null;
+            IEnumerable<Catalog> catalogs = null;
             IEnumerable<Artist> artists = null;
             IEnumerable<Album> albums = null;
-            IEnumerable<Music> musics = null;
+            IEnumerable<Song> musics = null;
             IEnumerable<Composer> composers = null;
             IEnumerable<Playlist> playlists = null;
-            IEnumerable<(Composer c, Music m)> composerMusic = null;
+            IEnumerable<(Composer c, Song m)> composerMusic = null;
             IEnumerable<PlaylistItem> playlistItems = null;
 
             try
             {
                 _logger.LogDebug("Retrieving data from database...");
 
-                catalogs = await _context.MusicCatalogs.AsNoTracking().ToListAsync();
+                catalogs = await _context.Catalogs.AsNoTracking().ToListAsync();
                 artists = await _context.Artists.AsNoTracking().ToListAsync();
                 albums = await _context.Albums.AsNoTracking().ToListAsync();
-                musics = await _context.Musics.Include(m => m.Composers).AsNoTracking().ToListAsync();
+                musics = await _context.Songs.Include(m => m.Composers).AsNoTracking().ToListAsync();
                 composers = await _context.Composers.AsNoTracking().ToListAsync();
                 playlists = await _context.Playlists.AsNoTracking().ToListAsync();
 

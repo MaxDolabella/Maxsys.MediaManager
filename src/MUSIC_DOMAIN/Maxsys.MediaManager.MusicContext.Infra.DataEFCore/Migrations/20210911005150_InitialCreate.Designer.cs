@@ -85,7 +85,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MusicCatalogId")
+                    b.Property<Guid>("CatalogId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -95,9 +95,9 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MusicCatalogId");
+                    b.HasIndex("CatalogId");
 
-                    b.HasIndex("Name", "MusicCatalogId")
+                    b.HasIndex("Name", "CatalogId")
                         .IsUnique()
                         .HasDatabaseName("AK_Artists_Name_Catalog");
 
@@ -124,7 +124,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                     b.ToTable("Composers");
                 });
 
-            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Music", b =>
+            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Song", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -181,10 +181,10 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                         .IsUnique()
                         .HasDatabaseName("AK_Musics_FullPath");
 
-                    b.ToTable("Musics");
+                    b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.MusicCatalog", b =>
+            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Catalog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -201,7 +201,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                         .IsUnique()
                         .HasDatabaseName("AK_MusicCatalogs_Name");
 
-                    b.ToTable("MusicCatalogs");
+                    b.ToTable("Catalogs");
                 });
 
             modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Playlist", b =>
@@ -229,15 +229,15 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                     b.Property<Guid>("PlaylistId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MusicId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<long>("Order")
                         .HasColumnType("bigint");
 
-                    b.HasKey("PlaylistId", "MusicId");
+                    b.HasKey("PlaylistId", "Id");
 
-                    b.HasIndex("MusicId");
+                    b.HasIndex("Id");
 
                     b.ToTable("PlaylistItems");
                 });
@@ -250,7 +250,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.Music", null)
+                    b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.Song", null)
                         .WithMany()
                         .HasForeignKey("MusicsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -270,42 +270,42 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
 
             modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Artist", b =>
                 {
-                    b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.MusicCatalog", "MusicCatalog")
+                    b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.Catalog", "Catalog")
                         .WithMany("Artists")
-                        .HasForeignKey("MusicCatalogId")
+                        .HasForeignKey("CatalogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MusicCatalog");
+                    b.Navigation("Catalog");
                 });
 
-            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Music", b =>
+            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Song", b =>
                 {
                     b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.Album", "Album")
-                        .WithMany("Musics")
+                        .WithMany("Songs")
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.OwnsOne("Maxsys.MediaManager.MusicContext.Domain.ValueObjects.Classification", "Classification", b1 =>
                         {
-                            b1.Property<Guid>("MusicId")
+                            b1.Property<Guid>("Id")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("Rating")
                                 .HasColumnType("int");
 
-                            b1.HasKey("MusicId");
+                            b1.HasKey("Id");
 
-                            b1.ToTable("Musics");
+                            b1.ToTable("Songs");
 
                             b1.WithOwner()
-                                .HasForeignKey("MusicId");
+                                .HasForeignKey("Id");
                         });
 
-                    b.OwnsOne("Maxsys.MediaManager.MusicContext.Domain.ValueObjects.MusicDetails", "MusicDetails", b1 =>
+                    b.OwnsOne("Maxsys.MediaManager.MusicContext.Domain.ValueObjects.SongDetails", "SongDetails", b1 =>
                         {
-                            b1.Property<Guid>("MusicId")
+                            b1.Property<Guid>("Id")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("CoveredArtist")
@@ -322,17 +322,17 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                             b1.Property<byte>("VocalGender")
                                 .HasColumnType("tinyint");
 
-                            b1.HasKey("MusicId");
+                            b1.HasKey("Id");
 
-                            b1.ToTable("Musics");
+                            b1.ToTable("Songs");
 
                             b1.WithOwner()
-                                .HasForeignKey("MusicId");
+                                .HasForeignKey("Id");
                         });
 
-                    b.OwnsOne("Maxsys.MediaManager.MusicContext.Domain.ValueObjects.MusicProperties", "MusicProperties", b1 =>
+                    b.OwnsOne("Maxsys.MediaManager.MusicContext.Domain.ValueObjects.SongProperties", "SongProperties", b1 =>
                         {
-                            b1.Property<Guid>("MusicId")
+                            b1.Property<Guid>("Id")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("BitRate")
@@ -341,28 +341,28 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                             b1.Property<TimeSpan>("Duration")
                                 .HasColumnType("time");
 
-                            b1.HasKey("MusicId");
+                            b1.HasKey("Id");
 
-                            b1.ToTable("Musics");
+                            b1.ToTable("Songs");
 
                             b1.WithOwner()
-                                .HasForeignKey("MusicId");
+                                .HasForeignKey("Id");
                         });
 
                     b.Navigation("Album");
 
                     b.Navigation("Classification");
 
-                    b.Navigation("MusicDetails");
+                    b.Navigation("SongDetails");
 
-                    b.Navigation("MusicProperties");
+                    b.Navigation("SongProperties");
                 });
 
             modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.PlaylistItem", b =>
                 {
-                    b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.Music", "Music")
+                    b.HasOne("Maxsys.MediaManager.MusicContext.Domain.Entities.Song", "Song")
                         .WithMany()
-                        .HasForeignKey("MusicId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -372,14 +372,14 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Music");
+                    b.Navigation("Song");
 
                     b.Navigation("Playlist");
                 });
 
             modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Album", b =>
                 {
-                    b.Navigation("Musics");
+                    b.Navigation("Songs");
                 });
 
             modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Artist", b =>
@@ -387,7 +387,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Migrations
                     b.Navigation("Albums");
                 });
 
-            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.MusicCatalog", b =>
+            modelBuilder.Entity("Maxsys.MediaManager.MusicContext.Domain.Entities.Catalog", b =>
                 {
                     b.Navigation("Artists");
                 });

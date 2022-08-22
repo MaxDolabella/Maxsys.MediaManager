@@ -18,14 +18,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
     {
         private readonly ILogger _logger;
         private readonly IPathService _pathService;
-        private readonly IMusicCatalogService _service;
-        private readonly IMusicCatalogRepository _repository;
+        private readonly ICatalogService _service;
+        private readonly ICatalogRepository _repository;
 
         public DeleteMusicCatalogAppService(IUnitOfWork uow,
             ILogger<DeleteMusicCatalogAppService> logger,
             IPathService pathService,
-            IMusicCatalogService service,
-            IMusicCatalogRepository repository)
+            ICatalogService service,
+            ICatalogRepository repository)
             : base(uow)
         {
             _logger = logger;
@@ -41,7 +41,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             var entityForDeletion = await _repository.GetByIdAsync(model.MusicCatalogId, @readonly: false);
 
             // Validate Entity
-            var validator = new MusicCatalogValidator(_repository).SetRulesForDeletion();
+            var validator = new CatalogValidator(_repository).SetRulesForDeletion();
             var validationResult = await validator.ValidateAsync(entityForDeletion);
 
             if (!validationResult.IsValid)
@@ -57,7 +57,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
         public async Task<IReadOnlyList<MusicCatalogListModel>> GetMusicCatalogsAsync()
         {
-            var dtos = await _repository.GetMusicCatalogListsAsync();
+            var dtos = await _repository.GetCatalogInfosAsync();
 
             return dtos.Select(dto => new MusicCatalogListModel(dto)).ToList();
         }
@@ -68,7 +68,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             {
                 try
                 {
-                    var musicCatalogDirectory = _pathService.GetMusicCatalogDirectory(model.MusicCatalogName);
+                    var musicCatalogDirectory = _pathService.GetCatalogDirectory(model.MusicCatalogName);
 
                     _logger.LogDebug($"Deleting folder <{musicCatalogDirectory}>.");
 

@@ -1,51 +1,50 @@
-﻿namespace System.ComponentModel.DataAnnotations
+﻿namespace System.ComponentModel.DataAnnotations;
+
+/// <summary>
+/// Specifies whether a property is not equal another property.<br/>
+/// Source: <see href="https://stackoverflow.com/a/35208420/4121969"/>
+/// </summary>
+[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+public class UnlikeAttribute : ValidationAttribute
 {
-    /// <summary>
-    /// Specifies whether a property is not equal another property.<br/>
-    /// Source: <see href="https://stackoverflow.com/a/35208420/4121969"/>
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public class UnlikeAttribute : ValidationAttribute
+    private const string DefaultErrorMessage = "The value of {0} cannot be the same as the value of the {1}.";
+
+    public string OtherProperty { get; private set; }
+
+    public UnlikeAttribute(string otherProperty)
+        : base(DefaultErrorMessage)
     {
-        private const string DefaultErrorMessage = "The value of {0} cannot be the same as the value of the {1}.";
-
-        public string OtherProperty { get; private set; }
-
-        public UnlikeAttribute(string otherProperty)
-            : base(DefaultErrorMessage)
+        if (string.IsNullOrEmpty(otherProperty))
         {
-            if (string.IsNullOrEmpty(otherProperty))
+            throw new ArgumentNullException(nameof(otherProperty));
+        }
+
+        OtherProperty = otherProperty;
+    }
+
+    public override string FormatErrorMessage(string name)
+    {
+        return string.Format(ErrorMessageString, name, OtherProperty);
+    }
+
+    protected override ValidationResult? IsValid(object? value,
+        ValidationContext validationContext)
+    {
+        if (value != null)
+        {
+            var otherProperty = validationContext.ObjectInstance.GetType()
+                .GetProperty(OtherProperty);
+
+            var otherPropertyValue = otherProperty?
+                .GetValue(validationContext.ObjectInstance, null);
+
+            if (value.Equals(otherPropertyValue))
             {
-                throw new ArgumentNullException(nameof(otherProperty));
+                return new ValidationResult(
+                    FormatErrorMessage(validationContext.DisplayName));
             }
-
-            OtherProperty = otherProperty;
         }
 
-        public override string FormatErrorMessage(string name)
-        {
-            return string.Format(ErrorMessageString, name, OtherProperty);
-        }
-
-        protected override ValidationResult IsValid(object value,
-            ValidationContext validationContext)
-        {
-            if (value != null)
-            {
-                var otherProperty = validationContext.ObjectInstance.GetType()
-                    .GetProperty(OtherProperty);
-
-                var otherPropertyValue = otherProperty
-                    .GetValue(validationContext.ObjectInstance, null);
-
-                if (value.Equals(otherPropertyValue))
-                {
-                    return new ValidationResult(
-                        FormatErrorMessage(validationContext.DisplayName));
-                }
-            }
-
-            return ValidationResult.Success;
-        }
+        return ValidationResult.Success;
     }
 }

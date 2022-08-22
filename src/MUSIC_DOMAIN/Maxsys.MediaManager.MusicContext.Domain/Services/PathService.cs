@@ -2,104 +2,100 @@
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Options;
-using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 using Microsoft.Extensions.Options;
-using System;
 using System.IO;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Services
+namespace Maxsys.MediaManager.MusicContext.Domain.Services;
+
+///<inheritdoc cref="IPathService"/>
+public sealed class PathService : IPathService
 {
-    ///<inheritdoc cref="IPathService"/>
-    public sealed class PathService : IPathService
+    private readonly MusicSettings _musicSettings;
+
+    public PathService(IOptions<MusicSettings> musicSettingsOptions)
     {
-        private readonly MusicSettings _musicSettingsOptions;
-        private const string DEFAULT_PLAYLIST_FOLDER_NAME = "Playlists";
+        _musicSettings = musicSettingsOptions.Value;
+    }
 
-        public PathService(IOptions<MusicSettings> musicSettingsOptions)
+    public string DefineAlbumDirectory(DefineAlbumDirectoryDTO dto)
+    {
+        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+
+        var libFolder = _musicSettings.MusicLibraryFolder;
+        var artistDirectory = Path.Combine(libFolder!,
+                                           dto.MusicCatalogName,
+                                           dto.ArtistName);
+
+        var albumTypeFolder = dto.AlbumType switch
         {
-            _musicSettingsOptions = musicSettingsOptions.Value;
-        }
+            AlbumType.Studio => "Studio",
+            AlbumType.Live => "Live",
+            AlbumType.Compilation => "Compilation",
+            AlbumType.Bootleg => "Bootleg",
+            AlbumType.Others => "Others",
+            //AlbumType.Undefined or AlbumType.Various => string.Empty
+            _ => string.Empty
+        };
 
-        public string DefineAlbumDirectory(DefineAlbumDirectoryDTO dto)
-        {
-            if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+        var name = IOHelper.ReplaceAndRemoveInvalidDirectoryChars(dto.AlbumName);
+        var albumFolder = dto.AlbumYear.HasValue
+            ? $"({dto.AlbumYear.Value}) {name}"
+            : name;
 
-            var libFolder = _musicSettingsOptions.MusicLibraryFolder;
-            var artistDirectory = Path.Combine(libFolder,
-                                               dto.MusicCatalogName,
-                                               dto.ArtistName);
+        return Path.Combine(artistDirectory, albumTypeFolder, albumFolder);
+    }
 
-            var albumTypeFolder = dto.AlbumType switch
-            {
-                AlbumType.Studio => "Studio",
-                AlbumType.Live => "Live",
-                AlbumType.Compilation => "Compilation",
-                AlbumType.Bootleg => "Bootleg",
-                AlbumType.Others => "Others",
-                //AlbumType.Undefined or AlbumType.Various => string.Empty
-                _ => string.Empty
-            };
+    public string DefineSongFilePath(DefineSongFileNameDTO dto)
+    {
+        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
 
-            var name = IOHelper.ReplaceAndRemoveInvalidDirectoryChars(dto.AlbumName);
-            var albumFolder = dto.AlbumYear.HasValue
-                ? $"({dto.AlbumYear.Value}) {name}"
-                : name;
+        var fileName = DefineSongFileName(dto);
 
-            return Path.Combine(artistDirectory, albumTypeFolder, albumFolder);
-        }
+        return Path.Combine(dto.AlbumDirectory, fileName + ".mp3");
+    }
 
-        public string DefineMusicFilePath(DefineMusicFileNameDTO dto)
-        {
-            if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+    public string DefineSongFileName(DefineSongFileNameDTO dto)
+    {
+        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
 
-            var fileName = DefineMusicFileName(dto);
+        var track = dto.SongTrackNumber.HasValue
+            ? $"{dto.SongTrackNumber.Value:00} " : string.Empty;
 
-            return Path.Combine(dto.AlbumDirectory, fileName + ".mp3");
-        }
+        var bonus = dto.SongIsBonusTrack
+            ? $" [Bonus]" : string.Empty;
 
-        public string DefineMusicFileName(DefineMusicFileNameDTO dto)
-        {
-            if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+        var featured = !string.IsNullOrWhiteSpace(dto.SongFeaturedArtist)
+            ? $" (feat. {dto.SongFeaturedArtist})"
+            : string.Empty;
+        var covered = !string.IsNullOrWhiteSpace(dto.SongCoveredArtist)
+            ? $" ({dto.SongCoveredArtist} Cover)"
+            : string.Empty;
 
-            var track = dto.MusicTrackNumber.HasValue
-                ? $"{dto.MusicTrackNumber.Value:00} " : string.Empty;
+        var fileName = $@"{track}{dto.SongTitle}{bonus}{featured}{covered}"
+            .Replace(")  (", " - ").Replace("  ", "");
 
-            var bonus = dto.MusicIsBonusTrack
-                ? $" [Bonus]" : string.Empty;
+        return IOHelper.ReplaceAndRemoveInvalidFileNameChars(fileName);
+    }
 
-            var featured = !string.IsNullOrWhiteSpace(dto.MusicFeaturedArtist)
-                ? $" (feat. {dto.MusicFeaturedArtist})"
-                : string.Empty;
-            var covered = !string.IsNullOrWhiteSpace(dto.MusicCoveredArtist)
-                ? $" ({dto.MusicCoveredArtist} Cover)"
-                : string.Empty;
+    public string GetCatalogDirectory(string musicCatalogName)
+    {
+        if (string.IsNullOrWhiteSpace(musicCatalogName))
+            throw new ArgumentException($"'{nameof(musicCatalogName)}' must be valid.",
+                nameof(musicCatalogName));
 
-            var fileName = $@"{track}{dto.MusicTitle}{bonus}{featured}{covered}"
-                .Replace(")  (", " - ").Replace("  ", "");
+        return Path.Combine(_musicSettings.MusicLibraryFolder, musicCatalogName);
+    }
 
-            return IOHelper.ReplaceAndRemoveInvalidFileNameChars(fileName);
-        }
+    public string GetArtistDirectory(DefineArtistFolderDTO dto)
+    {
+        if (!dto.IsValid())
+            throw new ArgumentException($"'{nameof(dto)}' must be valid.", nameof(dto));
 
-        public string GetMusicCatalogDirectory(string musicCatalogName)
-        {
-            if (string.IsNullOrWhiteSpace(musicCatalogName))
-                throw new ArgumentException($"'{nameof(musicCatalogName)}' must be valid.",
-                    nameof(musicCatalogName));
+        return Path.Combine(GetCatalogDirectory(dto.MusicCatalogName), dto.ArtistName);
+    }
 
-            return Path.Combine(_musicSettingsOptions.MusicLibraryFolder, musicCatalogName);
-        }
-
-        public string GetArtistDirectory(DefineArtistFolderDTO dto)
-        {
-            if (!dto.IsValid())
-                throw new ArgumentException($"'{nameof(dto)}' must be valid.", nameof(dto));
-
-            return Path.Combine(GetMusicCatalogDirectory(dto.MusicCatalogName), dto.ArtistName);
-        }
-
-        public string GetDefaultPlaylistDirectory()
-        {            
-            return Path.Combine(_musicSettingsOptions.MusicLibraryFolder, DEFAULT_PLAYLIST_FOLDER_NAME);
-        }
+    public string GetDefaultPlaylistDirectory()
+    {
+        return Path.Combine(_musicSettings.MusicLibraryFolder, _musicSettings.PlaylistFolderName);
     }
 }

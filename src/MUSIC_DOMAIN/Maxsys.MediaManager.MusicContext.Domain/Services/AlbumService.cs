@@ -1,42 +1,40 @@
 using FluentValidation.Results;
 using Maxsys.Core.Helpers;
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using Maxsys.ModelCore.Services;
-using System;
 using System.IO;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Services
+namespace Maxsys.MediaManager.MusicContext.Domain.Services;
+
+/// <inheritdoc cref="IAlbumService"/>
+public class AlbumService : IAlbumService
 {
-    /// <inheritdoc cref="IAlbumService"/>
-    public class AlbumService : ServiceBase<Album>, IAlbumService
+    private const string COVER_FILE_NAME = "cover.jpg";
+    private readonly IAlbumRepository _repository;
+
+    #region CONTRUCTORS
+
+    public AlbumService(IAlbumRepository repository)
     {
-        private readonly IAlbumRepository _repository;
+        _repository = repository;
+    }
 
-        #region CONTRUCTORS
+    #endregion CONTRUCTORS
 
-        public AlbumService(IAlbumRepository repository) : base(repository)
-        {
-            _repository = repository;
-        }
+    public async ValueTask<ValidationResult> SaveCoverPictureAsync(string directory, byte[] albumCover, CancellationToken token = default)
+    {
+        ValidationResult validationResult = new();
 
-        #endregion CONTRUCTORS
+        if (string.IsNullOrWhiteSpace(directory))
+            return validationResult.AddErrorMessage($"{nameof(directory)} value is invalid (cannot be empty or null).");
 
-        public async Task<ValidationResult> SaveCoverPictureAsync(string directory, byte[] albumCover)
-        {
-            if (string.IsNullOrWhiteSpace(directory)) throw new ArgumentNullException(nameof(directory));
+        // Check wether is directory too??
 
-            // Check wether is directory too??
+        if (albumCover is null)
+            return validationResult.AddErrorMessage($"{nameof(albumCover)} is invalid (cannot be empty or null).");
 
-            if (albumCover is null) throw new ArgumentNullException(nameof(directory));
+        var imageFilePath = Path.Combine(directory, COVER_FILE_NAME);
 
-            var imageFilePath = Path.Combine(directory, "cover.jpg");
-
-            var validationResult = await ImageHelper.SaveByteArrayImageIntoJpgFileAsync(albumCover, imageFilePath);
-
-            return validationResult;
-        }
+        return await ImageHelper.SaveByteArrayImageIntoJpgFileAsync(albumCover, imageFilePath);
     }
 }

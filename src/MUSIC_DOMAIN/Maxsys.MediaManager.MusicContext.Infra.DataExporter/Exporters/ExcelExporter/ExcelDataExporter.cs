@@ -34,7 +34,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             {
                 _logger.LogDebug("Retrieving data from database...");
 
-                catalogs = await _context.MusicCatalogs
+                catalogs = await _context.Catalogs
                     .AsNoTracking()
                     .Select(c => $"{c.Id}\t{c.Name}")
                     .ToListAsync();

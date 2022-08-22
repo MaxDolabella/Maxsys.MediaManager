@@ -1,42 +1,41 @@
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.ModelCore.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories
+namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
+
+public interface IAlbumRepository : IRepositoryBase<Album>
 {
-    public interface IAlbumRepository : IRepositoryBase<Album>
-    {
-        /// <summary>
-        /// Asynchronouly retrives a readonly list of all genres in repository.
-        /// </summary>
-        Task<IReadOnlyList<string>> GetGenresAsync();
+    /// <summary>
+    /// Asynchronouly retrives a list of all genres in repository.
+    /// </summary>
+    Task<IReadOnlyList<string>> GetGenresAsync(CancellationToken token = default);
 
-        /// <summary>
-        /// Asynchronouly retrives an <see cref="AlbumTagDTO"/> dto with album/artist info for id3v2 tag.
-        /// </summary>
-        /// <param name="albumId"></param>
-        Task<AlbumTagDTO> GetAlbumTagDTO(Guid albumId);
+    /// <summary>
+    /// Asynchronouly retrives an <see cref="AlbumTagDTO"/> with album/artist info for id3v2 tag.
+    /// </summary>
+    /// <param name="albumId"></param>
+    Task<AlbumTagDTO?> GetAlbumTagAsync(Guid albumId, CancellationToken token = default);
 
-        /// <summary>
-        /// Gets a list of TrackNumber and Title from a specific album asynchronous
-        /// </summary>
-        /// <param name="albumId"></param>
-        Task<IReadOnlyList<MusicTrackAndTitleDTO>> GetTracksAndTitlesAsync(Guid albumId);
+    /// <summary>
+    /// Gets a list of TrackNumber and Title from a specific album asynchronous
+    /// </summary>
+    /// <param name="albumId"></param>
+    Task<IReadOnlyList<TrackAndTitleDTO>> GetTrackAndTitlesAsync(Guid albumId, CancellationToken token = default);
 
-        /// <summary>
-        /// Returns a readonly list of <see cref="AlbumInfoDTO"/> asynchronous.
-        /// </summary>
-        Task<IReadOnlyList<AlbumInfoDTO>> GetAlbumInfosAsync();
-        Task<IReadOnlyList<AlbumListDTO>> GetAlbumListsAsync();
+    /// <summary>
+    /// Returns a list of <see cref="AlbumInfoDTO"/>.
+    /// </summary>
+    Task<IReadOnlyList<AlbumInfoDTO>> GetAlbumInfosAsync(CancellationToken token = default);
 
-        /// <summary>
-        /// Asynchronously return the musics count in the album
-        /// </summary>
-        /// <param name="albumId">The id of the album to count the musics.</param>
-        /// <returns>The musics count.</returns>
-        Task<int> MusicsCountAsync(Guid albumId);
-    }
+    /// <summary>
+    /// Returns a list of <see cref="AlbumDetailDTO"/>.
+    /// </summary>
+    Task<IReadOnlyList<AlbumDetailDTO>> GetAlbumDetailsAsync(CancellationToken token = default);
+
+    /// <summary>
+    /// Asynchronously return the musics count in the album
+    /// </summary>
+    /// <param name="albumId">The id of the album to count the musics.</param>
+    /// <returns>The musics count.</returns>
+    Task<int> SongsCountAsync(Guid albumId, CancellationToken token = default);
 }

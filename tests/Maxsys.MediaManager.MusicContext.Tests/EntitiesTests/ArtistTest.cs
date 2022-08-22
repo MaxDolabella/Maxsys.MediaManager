@@ -17,7 +17,7 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
 
         private const string VALID_NAME = "123 right-name γικντόη";
         private static readonly Guid VALID_ID = Guid.NewGuid();
-        private static readonly MusicCatalog MUSIC_CATALOG = MusicCatalogFactory.Create(VALID_ID, VALID_NAME);
+        private static readonly Catalog MUSIC_CATALOG = CatalogFactory.Create(VALID_ID, VALID_NAME);
 
         #endregion Fields
 
@@ -25,7 +25,7 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Artist_must_be_valid()
         {
             // Arrange
-            var artist = ArtistFactory.Create(VALID_ID, VALID_NAME, VALID_ID);
+            var artist = ArtistFactory.Create(VALID_NAME, VALID_ID, VALID_ID);
             var validator = new ArtistValidator(null);
             validator.AddRuleForId();
             validator.AddRuleForName();
@@ -43,8 +43,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void MusicCatalog_cannot_be_null()
         {
             // Arrange
-            var validArtist = ArtistFactory.Create(VALID_ID, VALID_NAME, VALID_ID);
-            var invalidArtist = ArtistFactory.Create(VALID_ID, VALID_NAME, default);
+            var validArtist = ArtistFactory.Create(VALID_NAME, VALID_ID, VALID_ID);
+            var invalidArtist = ArtistFactory.Create(VALID_NAME, VALID_ID, default);
             var validator = new ArtistValidator(null).AddRuleForMusicCatalog();
 
             // Act
@@ -60,7 +60,7 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_cannot_be_null()
         {
             // Arrange
-            var artist = ArtistFactory.Create(VALID_ID, null, VALID_ID);
+            var artist = ArtistFactory.Create(null, VALID_ID, VALID_ID);
             var validator = new ArtistValidator(null).AddRuleForName();
 
             // Act
@@ -74,7 +74,7 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_cannot_be_empty()
         {
             // Arrange
-            var artist = ArtistFactory.Create(VALID_ID, "   ", VALID_ID);
+            var artist = ArtistFactory.Create("   ", VALID_ID, VALID_ID);
             var validator = new ArtistValidator(null).AddRuleForName();
 
             // Act
@@ -88,8 +88,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_must_have_50chars_max_length()
         {
             // Arrange
-            var rightArtist = ArtistFactory.Create(VALID_ID, StringHelper.GetWord(50), VALID_ID);
-            var wrongArtist = ArtistFactory.Create(VALID_ID, StringHelper.GetWord(51), VALID_ID);
+            var rightArtist = ArtistFactory.Create(StringHelper.GetWord(50), VALID_ID, VALID_ID);
+            var wrongArtist = ArtistFactory.Create(StringHelper.GetWord(51), VALID_ID, VALID_ID);
             var validator = new ArtistValidator(null).AddRuleForName();
 
             // Act
@@ -105,7 +105,7 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_must_contains_only_letters_numbers_spaces_hyphens()
         {
             // Arrange
-            var artist = ArtistFactory.Create(VALID_ID, "(wrong_name){[]=-+.}", VALID_ID);
+            var artist = ArtistFactory.Create("(wrong_name){[]=-+.}", VALID_ID, VALID_ID);
             var validator = new ArtistValidator(null).AddRuleForName();
 
             // Act
@@ -122,8 +122,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
             var context = new MockContext();
             var repository = context.Artists;
             var musicCatalog = context.MusicCatalogs.GetAll().First();
-            var rightArtist = ArtistFactory.Create(Guid.NewGuid(), "Unique Name", default);
-            var wrongArtist = ArtistFactory.Create(Guid.NewGuid(), "Unique Name", default);
+            var rightArtist = ArtistFactory.Create("Unique Name", Guid.NewGuid(), default);
+            var wrongArtist = ArtistFactory.Create("Unique Name", Guid.NewGuid(), default);
             rightArtist.SetMusicCatalog(musicCatalog);
             wrongArtist.SetMusicCatalog(musicCatalog);
 

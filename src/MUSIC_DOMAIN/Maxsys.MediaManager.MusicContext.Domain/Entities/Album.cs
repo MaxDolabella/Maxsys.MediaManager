@@ -1,60 +1,49 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 using Maxsys.ModelCore;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Entities
+namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
+
+[System.Diagnostics.DebuggerDisplay("[{Id.ToString().Substring(0,4)}] {Name}")]
+public class Album : EntityBase
 {
-    [DebuggerDisplay("[{Id.ToString().Substring(0,4)}] {Name}")]
-    public class Album : EntityBase
+    #region PROPERTIES
+
+    /// <summary>
+    /// Path limit is 248 characters.
+    /// Path+Filename limit is 260 characters.
+    /// </summary>
+    public string AlbumDirectory { get; protected set; }
+
+    public string Name { get; protected set; }
+    public short? Year { get; protected set; }
+    public string Genre { get; protected set; }
+    public AlbumType AlbumType { get; protected set; }
+
+    // TODO criar uma classe pra não repetir no banco
+    public byte[] AlbumCover { get; protected set; }
+
+    // Navigation
+    public Guid ArtistId { get; protected set; }
+
+    public Artist Artist { get; protected set; }
+
+    // Collections
+    public IEnumerable<Song> Songs { get; protected set; }
+
+    #endregion PROPERTIES
+
+    public string GetYearName()
+        => $"{(Year.HasValue ? $"({Year.Value}) " : string.Empty)}{Name}";
+
+    #region CONSTRUCTORS
+
+    protected Album()
+    { Songs = new List<Song>(); }
+
+    internal Album(Guid id, Guid artistId, string albumDirectory, string name, short? year, string genre, byte[] albumCover, AlbumType albumType) : this()
     {
-        #region PROPERTIES
-        /// <summary>
-        /// Path limit is 248 characters.
-        /// Path+Filename limit is 260 characters.
-        /// </summary>
-        public string AlbumDirectory { get; protected set; }
-        public string Name { get; protected set; }
-        public int? Year { get; protected set; }
-        public string Genre { get; protected set; }
-        public AlbumType AlbumType { get; protected set; }
-        public byte[] AlbumCover { get; protected set; }
-
-
-        // Navigation
-        public virtual Guid ArtistId { get; protected set; }
-        public virtual Artist Artist { get; protected set; }
-
-        // Collections
-		public virtual ICollection<Music> Musics { get; protected set; }
-		#endregion
-
-        public string GetYearName()
-        {
-            var yearString = Year.HasValue ? $"({Year.Value}) " : "";
-
-            return yearString + Name;
-        }
-
-        #region CONSTRUCTORS
-        protected Album() { Musics = new List<Music>(); }
-
-        [Obsolete]
-        internal Album(Guid id, string albumDirectory, string name, int? year, string genre, byte[] albumCover, AlbumType albumType, Artist artist)
-        {
-            (Id, AlbumDirectory, Name, Year, Genre, AlbumCover, AlbumType, Artist) =
-            (id, albumDirectory, name, year, genre, albumCover, albumType, artist);
-
-            if (artist != null) ArtistId = artist.Id;
-        }
-
-        internal Album(Guid id, string albumDirectory, string name, int? year, string genre, byte[] albumCover, AlbumType albumType, Guid artistId)
-        {
-            (Id, AlbumDirectory, Name, Year, Genre, AlbumCover, AlbumType, ArtistId) =
-            (id, albumDirectory, name, year, genre, albumCover, albumType, artistId);
-        }
-
-        #endregion
+        (Id, ArtistId, AlbumDirectory, Name, Year, Genre, AlbumCover, AlbumType) =
+        (id, artistId, albumDirectory, name, year, genre, albumCover, albumType);
     }
+
+    #endregion CONSTRUCTORS
 }

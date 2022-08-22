@@ -18,12 +18,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
     {
         private readonly IArtistService _service;
         private readonly IArtistRepository _artistRepository;
-        private readonly IMusicCatalogRepository _musicCatalogRepository;
+        private readonly ICatalogRepository _musicCatalogRepository;
 
         public CreateArtistAppService(IUnitOfWork uow,
             IArtistService service,
             IArtistRepository repository,
-            IMusicCatalogRepository musicCatalogRepository)
+            ICatalogRepository musicCatalogRepository)
             : base(uow)
         {
             _service = service;
@@ -35,7 +35,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         {
             BeginTransaction();
 
-            var entity = ArtistFactory.Create(model.Id, model.Name, model.MusicCatalogId);
+            var entity = ArtistFactory.Create(model.Name, model.Id, model.MusicCatalogId);
             var validator = new ArtistValidator(_artistRepository)
                 .SetRulesForCreation();
 
@@ -47,14 +47,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
         public async Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync()
         {
-            var dtos = await _musicCatalogRepository.GetMusicCatalogListAsync();
+            var dtos = await _musicCatalogRepository.GetCatalogDetailsAsync();
 
             return dtos.Select(dto => new MusicCatalogInfoModel(dto)).ToList();
         }
 
         public async Task<IReadOnlyList<ArtistInfoModel>> GetArtistsAsync()
         {
-            var dtos = await _artistRepository.GetArtistInfosAsync();
+            var dtos = await _artistRepository.GetArtistDetailsAsync();
 
             return dtos.Select(dto => new ArtistInfoModel(dto)).ToList();
         }

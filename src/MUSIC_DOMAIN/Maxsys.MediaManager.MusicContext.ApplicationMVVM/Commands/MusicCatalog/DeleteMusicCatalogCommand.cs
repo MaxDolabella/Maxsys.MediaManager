@@ -46,7 +46,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
         private bool ConfirmDeletion()
         {
             var result = _questionDialogService
-                .ShowQuestion($"Really wants delete the Music Catalog '{_viewModel.SelectedModel.MusicCatalogName}'?",
+                .ShowQuestion($"Really wants delete the Song Catalog '{_viewModel.SelectedModel.MusicCatalogName}'?",
                 "DELETE MUSIC CATALOG");
 
             return result == IQuestionDialogService.QuestionDialogResult.Yes;
@@ -54,7 +54,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         private async Task OnMusicCatalogDeleted()
         {
-            var message = $"Music Catalog [{_viewModel.SelectedModel.MusicCatalogName}] Deleted!";
+            var message = $"Song Catalog [{_viewModel.SelectedModel.MusicCatalogName}] Deleted!";
 
             _logger.LogInformation(message);
             _dialogService.ShowMessage(MessageType.Information, message);

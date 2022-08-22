@@ -5,13 +5,13 @@ using System;
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
     /// <summary>
-    /// Observable wrapper to <see cref="MusicCatalogInfoDTO"/>.
+    /// Observable wrapper to <see cref="CatalogDetailDTO"/>.
     /// </summary>
     public class MusicCatalogInfoModel : ObservableObject
     {
-        private readonly MusicCatalogInfoDTO _musicCatalog;
+        private readonly CatalogDetailDTO _musicCatalog;
 
-        public MusicCatalogInfoModel(MusicCatalogInfoDTO musicCatalog)
+        public MusicCatalogInfoModel(CatalogDetailDTO musicCatalog)
         {
             _musicCatalog = musicCatalog;
         }

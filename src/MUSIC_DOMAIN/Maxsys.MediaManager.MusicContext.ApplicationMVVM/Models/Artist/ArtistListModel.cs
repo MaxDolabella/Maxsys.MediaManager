@@ -7,12 +7,12 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
     public class ArtistListModel : ValidableModelBase
     {
-        private readonly ArtistListDTO _artist;
+        private readonly ArtistInfoDTO _artist;
 
         public ArtistListModel()
         { }
 
-        public ArtistListModel(ArtistListDTO artist)
+        public ArtistListModel(ArtistInfoDTO artist)
             => _artist = artist;
 
         [Browsable(false)]

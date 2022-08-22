@@ -1,31 +1,30 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.DTO
+﻿namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
+
+public struct MusicTagDTO
 {
-    public struct MusicTagDTO
+    public string MusicFullPath { get; init; }
+    public string SongTitle { get; init; }
+    public int? SongTrackNumber { get; init; }
+    public byte MusicRating10 { get; init; }
+    public string MusicComments { get; init; }
+    public string MusicLyrics { get; init; }
+    public string SongCoveredArtist { get; init; }
+    public string SongFeaturedArtist { get; init; }
+    public string[] MusicComposers { get; init; }
+
+    private bool IsMusicTrackNumberValid()
     {
-        public string MusicFullPath { get; init; }
-        public string MusicTitle { get; init; }
-        public int? MusicTrackNumber { get; init; }
-        public byte MusicRating10 { get; init; }
-        public string MusicComments { get; init; }
-        public string MusicLyrics { get; init; }
-        public string MusicCoveredArtist { get; init; }
-        public string MusicFeaturedArtist { get; init; }
-        public string[] MusicComposers { get; init; }
+        if (SongTrackNumber is null) return true;
 
-        private bool IsMusicTrackNumberValid()
-        {
-            if (MusicTrackNumber is null) return true;
+        return SongTrackNumber.Value >= 0;
+    }
 
-            return MusicTrackNumber.Value >= 0;
-        }
-
-        public bool IsValid()
-        {
-            return !(string.IsNullOrWhiteSpace(MusicFullPath)
-                || string.IsNullOrWhiteSpace(MusicTitle)
-                || MusicRating10 > 10
-                || IsMusicTrackNumberValid()
-                || MusicComposers is null);
-        }
+    public bool IsValid()
+    {
+        return !(string.IsNullOrWhiteSpace(MusicFullPath)
+            || string.IsNullOrWhiteSpace(SongTitle)
+            || MusicRating10 > 10
+            || IsMusicTrackNumberValid()
+            || MusicComposers is null);
     }
 }

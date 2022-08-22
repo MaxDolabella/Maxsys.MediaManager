@@ -58,11 +58,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         private async Task LoadMusicCatalogsAsync()
         {
-            _logger.LogDebug("Loading registered MusicCatalogs.");
+            _logger.LogDebug("Loading registered Catalogs.");
 
             MusicCatalogs = (await _appService.GetMusicCatalogsAsync()).ToReadOnlyObservableCollection();
 
-            _logger.LogDebug("Registered MusicCatalogs loaded.");
+            _logger.LogDebug("Registered Catalogs loaded.");
         }
 
         #endregion METHODS

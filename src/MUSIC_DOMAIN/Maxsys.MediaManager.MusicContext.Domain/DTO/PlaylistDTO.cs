@@ -1,15 +1,3 @@
-﻿using System;
+﻿namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.DTO
-{
-    public struct PlaylistDTO
-    {
-        public Guid PlaylistId { get; init; }
-        public string PlaylistName { get; init; }
-
-        public bool IsValid()
-        {
-            return !(PlaylistId == default || string.IsNullOrWhiteSpace(PlaylistName));
-        }
-    }
-}
+public readonly record struct PlaylistDTO(Guid PlaylistId, string PlaylistName);

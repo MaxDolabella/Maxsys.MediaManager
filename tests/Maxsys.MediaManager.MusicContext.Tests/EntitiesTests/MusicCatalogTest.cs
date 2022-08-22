@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Maxsys.MediaManager.Tests.EntitiesTests
 {
     [TestClass]
-    [TestCategory("Domain.Entity: " + nameof(MusicCatalog))]
+    [TestCategory("Domain.Entity: " + nameof(Catalog))]
     public class MusicCatalogTest
     {
         #region Fields
@@ -23,8 +23,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void MusicCatalog_must_be_valid()
         {
             // Arrange
-            var musicCatalog = MusicCatalogFactory.Create(VALID_ID, VALID_NAME);
-            var validator = new MusicCatalogValidator(null);
+            var musicCatalog = CatalogFactory.Create(VALID_ID, VALID_NAME);
+            var validator = new CatalogValidator(null);
             validator.AddRuleForId();
             validator.AddRuleForName();
 
@@ -39,8 +39,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_cannot_be_null()
         {
             // Arrange
-            var musicCatalog = MusicCatalogFactory.Create(VALID_ID, null);
-            var validator = new MusicCatalogValidator(null);
+            var musicCatalog = CatalogFactory.Create(VALID_ID, null);
+            var validator = new CatalogValidator(null);
             validator.AddRuleForName();
 
             // Act
@@ -54,8 +54,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_cannot_be_empty()
         {
             // Arrange
-            var musicCatalog = MusicCatalogFactory.Create(VALID_ID, "   ");
-            var validator = new MusicCatalogValidator(null);
+            var musicCatalog = CatalogFactory.Create(VALID_ID, "   ");
+            var validator = new CatalogValidator(null);
             validator.AddRuleForName();
 
             // Act
@@ -69,8 +69,8 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_must_contains_only_letters_numbers_spaces_hyphens()
         {
             // Arrange
-            var musicCatalog = MusicCatalogFactory.Create(VALID_ID, "(wrong_name){[]=-+.}");
-            var validator = new MusicCatalogValidator(null);
+            var musicCatalog = CatalogFactory.Create(VALID_ID, "(wrong_name){[]=-+.}");
+            var validator = new CatalogValidator(null);
             validator.AddRuleForName();
 
             // Act
@@ -84,9 +84,9 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_must_have_50chars_max_length()
         {
             // Arrange
-            var rightMusicCatalog = MusicCatalogFactory.Create(VALID_ID, StringHelper.GetWord(50));
-            var wrongMusicCatalog = MusicCatalogFactory.Create(VALID_ID, StringHelper.GetWord(51));
-            var validator = new MusicCatalogValidator(null);
+            var rightMusicCatalog = CatalogFactory.Create(VALID_ID, StringHelper.GetWord(50));
+            var wrongMusicCatalog = CatalogFactory.Create(VALID_ID, StringHelper.GetWord(51));
+            var validator = new CatalogValidator(null);
             validator.AddRuleForName();
 
             // Act
@@ -102,9 +102,9 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         public void Name_must_have_2chars_min_length()
         {
             // Arrange
-            var rightMusicCatalog = MusicCatalogFactory.Create(VALID_ID, "AB");
-            var wrongMusicCatalog = MusicCatalogFactory.Create(VALID_ID, "A");
-            var validator = new MusicCatalogValidator(null);
+            var rightMusicCatalog = CatalogFactory.Create(VALID_ID, "AB");
+            var wrongMusicCatalog = CatalogFactory.Create(VALID_ID, "A");
+            var validator = new CatalogValidator(null);
             validator.AddRuleForName();
 
             // Act
@@ -121,9 +121,9 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         {
             // Arrange
             var repository = new MockContext().MusicCatalogs;
-            var validator = new MusicCatalogValidator(repository);
-            var rightMusicCatalog = MusicCatalogFactory.Create(Guid.NewGuid(), "CatalogName");
-            var wrongMusicCatalog = MusicCatalogFactory.Create(Guid.NewGuid(), "CatalogName");
+            var validator = new CatalogValidator(repository);
+            var rightMusicCatalog = CatalogFactory.Create(Guid.NewGuid(), "CatalogName");
+            var wrongMusicCatalog = CatalogFactory.Create(Guid.NewGuid(), "CatalogName");
             validator.AddRuleForUniqueName();
 
             // Act
@@ -141,13 +141,13 @@ namespace Maxsys.MediaManager.Tests.EntitiesTests
         {
             // Arrange
             var repository = new MockContext().MusicCatalogs;
-            var validator = new MusicCatalogValidator(repository);
-            var rightMusicCatalog = MusicCatalogFactory.Create(Guid.NewGuid(), "ABC");
-            var wrongMusicCatalog = MusicCatalogFactory.Create(Guid.NewGuid(), "XYZ");
+            var validator = new CatalogValidator(repository);
+            var rightMusicCatalog = CatalogFactory.Create(Guid.NewGuid(), "ABC");
+            var wrongMusicCatalog = CatalogFactory.Create(Guid.NewGuid(), "XYZ");
             validator.AddRuleForMustNotContainsAnyArtist();
 
             // Act
-            wrongMusicCatalog.Artists.Add(ArtistFactory.Create(VALID_ID, "Name", VALID_ID));
+            wrongMusicCatalog.Artists.Add(ArtistFactory.Create("Name", VALID_ID, VALID_ID));
             repository.Add(rightMusicCatalog);
             repository.Add(wrongMusicCatalog);
             var right = await validator.ValidateAsync(rightMusicCatalog);

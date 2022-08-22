@@ -11,12 +11,26 @@
     <PackageTags>library;Maxsys;Data;DDD</PackageTags>
     <AssemblyName>Maxsys.MediaManager.Music_Data</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
+
+	<ItemGroup>
+		<Using Include="Maxsys.MediaManager.CoreDomain" />
+		
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Maxsys.MediaManager.MusicContext.Domain.DTO" />
+		<Using Include="Maxsys.MediaManager.MusicContext.Domain.Entities" />
+		<Using Include="Maxsys.MediaManager.MusicContext.Domain.ValueObjects" />
+
+		<Using Remove="System.Net.Http" />
+		<Using Remove="System.IO" />
+	</ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

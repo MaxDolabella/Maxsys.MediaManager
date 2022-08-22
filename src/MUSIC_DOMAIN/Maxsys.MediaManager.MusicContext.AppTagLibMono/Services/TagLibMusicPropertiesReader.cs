@@ -1,14 +1,14 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services.Mp3;
+using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 using System;
 using System.IO;
 
 namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services
 {
     /// <summary>
-    /// Implements <see cref="IMusicPropertiesReader"/> using <see href="https://github.com/mono/taglib-sharp">Taglib-Sharp</see>
+    /// Implements <see cref="ISongPropertiesReader"/> using <see href="https://github.com/mono/taglib-sharp">Taglib-Sharp</see>
     /// </summary>
-    public class TagLibMusicPropertiesReader : IMusicPropertiesReader
+    public class TagLibMusicPropertiesReader : ISongPropertiesReader
     {
         private readonly IFilePropertiesReader _filePropertiesReader;
 

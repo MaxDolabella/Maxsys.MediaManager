@@ -13,7 +13,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
         public Guid Id { get; } = GuidGen.NewSequentialGuid();
 
         [Browsable(false)]
-        [NotEmptyGuid(ErrorMessage = "Music Catalog is required.")]
+        [NotEmptyGuid(ErrorMessage = "Song Catalog is required.")]
         public Guid MusicCatalogId { get; private set; }
 
         [Display(Name = nameof(Name), Description = "Is the name of Catalog.")]

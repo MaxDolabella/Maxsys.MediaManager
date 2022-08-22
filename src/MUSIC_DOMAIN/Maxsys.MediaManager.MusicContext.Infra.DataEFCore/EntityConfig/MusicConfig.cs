@@ -1,118 +1,100 @@
-using Maxsys.MediaManager.CoreDomain;
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig
+namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig;
+
+internal class SongConfig : IEntityTypeConfiguration<Song>
 {
-    internal class MusicConfig : IEntityTypeConfiguration<Music>
+    public void Configure(EntityTypeBuilder<Song> builder)
     {
-        public void Configure(EntityTypeBuilder<Music> builder)
+        builder.ToTable("Songs")
+            .HasKey(song => song.Id);
+
+        #region MediaFile
+
+        builder.Property(mediaFile => mediaFile.FullPath)
+            .IsRequired()
+            .HasMaxLength(260)
+            .HasColumnName("MediaFile_FullPath");
+
+        builder.Property(mediaFile => mediaFile.OriginalFileName)
+            .IsRequired()
+            .HasMaxLength(100)
+            .HasColumnName("MediaFile_OriginalFileName");
+
+        builder.Property(mediaFile => mediaFile.FileSize)
+            .IsRequired()
+            .HasColumnName("MediaFile_FileSize");
+
+        builder.Property(mediaFile => mediaFile.CreatedDate)
+            .IsRequired()
+            .HasColumnType("datetime2")
+            .HasColumnName("MediaFile_CreatedDate");
+
+        builder.Property(mediaFile => mediaFile.UpdatedDate)
+            .IsRequired()
+            .HasColumnType("datetime2")
+            .HasColumnName("MediaFile_UpdatedDate");
+
+        #endregion MediaFile
+
+        // Properties
+        builder.Property(song => song.Title)
+            .HasMaxLength(100)
+            .IsRequired();
+
+        builder.Property(song => song.TrackNumber)
+            .IsRequired(false);
+
+        builder.Property(song => song.Lyrics)
+            .HasMaxLength(5000)
+            .IsRequired(false);
+
+        builder.Property(song => song.Comments)
+            .HasMaxLength(300)
+            .IsRequired(false);
+
+        // Navigation
+        builder.HasOne(song => song.Album)
+            .WithMany(album => album.Songs);
+
+        builder.HasMany(song => song.Composers)
+            .WithMany(composer => composer.Songs);
+
+        // Value Objects
+        builder.OwnsOne(song => song.SongDetails, valueObj =>
         {
-            builder.ToTable("Musics").HasKey(music => music.Id);
-
-            #region MediaFile
-
-            //Guid id, string path, string originalName, long fileSize, DateTime addedDate
-            builder.Property(mediaFile => mediaFile.FullPath)
-                .IsRequired()
-                .HasMaxLength(260)
-                .HasColumnName($"{nameof(MediaFile)}_{nameof(MediaFile.FullPath)}");
-
-            builder.Property(mediaFile => mediaFile.OriginalFileName)
-                .IsRequired()
-                .HasMaxLength(100)
-                .HasColumnName($"{nameof(MediaFile)}_{nameof(MediaFile.OriginalFileName)}");
-
-            builder.Property(mediaFile => mediaFile.FileSize)
-                .IsRequired()
-                .HasColumnName($"{nameof(MediaFile)}_{nameof(MediaFile.FileSize)}");
-
-            builder.Property(mediaFile => mediaFile.CreatedDate)
-                .IsRequired()
-                .HasColumnType("datetime2")
-                .HasColumnName($"{nameof(MediaFile)}_{nameof(MediaFile.CreatedDate)}");
-
-            builder.Property(mediaFile => mediaFile.UpdatedDate)
-                .IsRequired()
-                .HasColumnType("datetime2")
-                .HasColumnName($"{nameof(MediaFile)}_{nameof(MediaFile.UpdatedDate)}");
-
-            #endregion MediaFile
-
-            #region Properties
-
-            builder.Property(music => music.Title)
-                .HasMaxLength(100)
+            valueObj.Property(musicDetails => musicDetails.IsBonusTrack)
                 .IsRequired();
 
-            builder.Property(music => music.TrackNumber)
+            valueObj.Property(musicDetails => musicDetails.VocalGender)
+                .IsRequired();
+
+            valueObj.Property(musicDetails => musicDetails.CoveredArtist)
+                .HasMaxLength(50)
                 .IsRequired(false);
 
-            builder.Property(music => music.Lyrics)
-                .HasMaxLength(5000)
+            valueObj.Property(musicDetails => musicDetails.FeaturedArtist)
+                .HasMaxLength(50)
                 .IsRequired(false);
+        });
 
-            builder.Property(music => music.Comments)
-                .HasMaxLength(300)
-                .IsRequired(false);
+        builder.OwnsOne(song => song.SongProperties, valueObj =>
+        {
+            valueObj.Property(songProperties => songProperties.Duration)
+                .IsRequired();
 
-            #endregion Properties
+            valueObj.Property(songProperties => songProperties.BitRate)
+                .IsRequired();
+        });
 
-            #region Navigation
+        builder.OwnsOne(song => song.Classification, valueObj =>
+        {
+            valueObj.Property(classification => classification.Rating)
+                .IsRequired();
+        });
 
-            // One-to-many
-            builder.HasOne(music => music.Album)
-                .WithMany(album => album.Musics);
-
-            // many-to-many
-            builder.HasMany(music => music.Composers)
-                .WithMany(composer => composer.Musics);
-
-            #endregion Navigation
-
-            #region Value Objects
-
-            builder.OwnsOne(music => music.MusicDetails, valueObj =>
-            {
-                valueObj.Property(musicDetails => musicDetails.IsBonusTrack)
-                    .IsRequired();
-
-                valueObj.Property(musicDetails => musicDetails.VocalGender)
-                    .IsRequired();
-
-                valueObj.Property(musicDetails => musicDetails.CoveredArtist)
-                    .HasMaxLength(50)
-                    .IsRequired(false);
-
-                valueObj.Property(musicDetails => musicDetails.FeaturedArtist)
-                    .HasMaxLength(50)
-                    .IsRequired(false);
-            });
-
-            builder.OwnsOne(music => music.MusicProperties, valueObj =>
-            {
-                valueObj.Property(musicProperties => musicProperties.Duration)
-                    .IsRequired();
-
-                valueObj.Property(musicProperties => musicProperties.BitRate)
-                    .IsRequired();
-            });
-
-            builder.OwnsOne(music => music.Classification, valueObj =>
-            {
-                valueObj.Property(classification => classification.Rating)
-                    .IsRequired();
-            });
-
-            #endregion Value Objects
-
-            #region Indexes
-
-            builder.HasIndex(mediaFile => mediaFile.FullPath)
-                .IsUnique().HasDatabaseName($"AK_Musics_FullPath");
-
-            #endregion Indexes
-        }
+        // Indexes
+        builder.HasIndex(mediaFile => mediaFile.FullPath)
+            .IsUnique().HasDatabaseName($"AK_Musics_FullPath");
     }
 }

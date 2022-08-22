@@ -1,11 +1,9 @@
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.ModelCore.Interfaces.Repositories;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories
+namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
+
+public interface IComposerRepository : IRepositoryBase<Composer>
 {
-    public interface IComposerRepository : IRepositoryBase<Composer>
-    {
-        Task<Composer> GetByNameAsync(string name, bool @readonly = false);
-    }
+    // TODO ComposerDTO?
+    Task<Composer?> GetByNameAsync(string composerName, bool @readonly = false, CancellationToken token = default);
 }

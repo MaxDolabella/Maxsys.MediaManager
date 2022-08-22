@@ -77,7 +77,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
             DisplayedMusics = Models = (await _appService.GetMusicsAsync()).ToReadOnlyObservableCollection();
 
-            _logger.LogDebug("Musics loaded.");
+            _logger.LogDebug("Songs loaded.");
         }
 
         private async Task SearchActionAsync()

@@ -87,7 +87,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
         {
             foreach (var model in validItems.Keys)
             {
-                _logger.LogInformation($"Music saved to <{model.TargetFullPath}>.");
+                _logger.LogInformation($"Song saved to <{model.TargetFullPath}>.");
 
                 _viewModel.Models.Remove(model);
             }
@@ -103,7 +103,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
                 model.ValidationResult = result;
 
-                _logger.LogError($"Music <{model.SourceFullPath}> not saved. Errors:\n\t{result}");
+                _logger.LogError($"Song <{model.SourceFullPath}> not saved. Errors:\n\t{result}");
             }
         }
 

@@ -7,11 +7,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
     public class AlbumListModel : ValidableModelBase
     {
-        private readonly AlbumListDTO _album;
+        private readonly AlbumDetailDTO _album;
         public AlbumListModel()
         { }
         
-        public AlbumListModel(AlbumListDTO album)
+        public AlbumListModel(AlbumDetailDTO album)
         {
             _album = album;
         }

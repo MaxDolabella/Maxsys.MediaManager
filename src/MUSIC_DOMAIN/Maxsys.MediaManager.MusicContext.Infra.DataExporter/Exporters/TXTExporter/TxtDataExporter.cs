@@ -102,9 +102,9 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 
         private static async Task<IReadOnlyCollection<SongTxtDTO>> GetDTOs(MusicAppContext context)
         {
-            var query = context.Musics
+            var query = context.Songs
                     .AsNoTrackingWithIdentityResolution()
-                    .Include(song => song.Album.Artist.MusicCatalog)
+                    .Include(song => song.Album.Artist.Catalog)
                     .OrderBy(song => song.FullPath)
                     .Select(song => new SongTxtDTO(
                         song.Id,
@@ -113,15 +113,15 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
                         song.Title,
                         song.Classification.Rating,
                         song.Classification.GetStars10(),
-                        song.MusicProperties.Duration,
+                        song.SongProperties.Duration,
                         song.AlbumId,
                         song.Album.Year,
                         song.Album.Name,
                         song.Album.Genre,
                         song.Album.ArtistId,
                         song.Album.Artist.Name,
-                        song.Album.Artist.MusicCatalogId,
-                        song.Album.Artist.MusicCatalog.Name));
+                        song.Album.Artist.CatalogId,
+                        song.Album.Artist.Catalog.Name));
 
             var songs = await query.ToListAsync();
 

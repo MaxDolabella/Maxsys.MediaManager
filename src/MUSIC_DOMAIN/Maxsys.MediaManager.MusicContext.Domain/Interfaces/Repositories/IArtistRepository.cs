@@ -1,21 +1,16 @@
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.ModelCore.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories
+namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
+
+public interface IArtistRepository : IRepositoryBase<Artist>
 {
-    public interface IArtistRepository : IRepositoryBase<Artist>
-    {
-        /// <summary>
-        /// Asynchronously returns a readonly list of <see cref="ArtistInfoDTO"/>.
-        /// </summary>
-        Task<IReadOnlyList<ArtistInfoDTO>> GetArtistInfosAsync();
+    /// <summary>
+    /// Asynchronously returns a list of <see cref="ArtistDetailsDTO"/>.
+    /// </summary>
+    Task<IReadOnlyList<ArtistDetailsDTO>> GetArtistDetailsAsync(CancellationToken token = default);
 
-        Task<IReadOnlyList<ArtistListDTO>> GetArtistListsAsync();
+    Task<IReadOnlyList<ArtistInfoDTO>> GetArtistInfosAsync(CancellationToken token = default);
 
-        Task<int> AlbumsCountAsync(Guid artistId);
-    }
+    Task<int> AlbumsCountAsync(Guid artistId, CancellationToken token = default);
 }

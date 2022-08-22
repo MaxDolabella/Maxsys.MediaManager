@@ -3,7 +3,7 @@
     internal interface IInsertScript<T>
     {
         /// <summary>
-        /// Ex.: <code>INSERT [dbo].[MusicCatalogs] ([Id], [Name]) VALUES</code>
+        /// Ex.: <code>INSERT [dbo].[Catalogs] ([Id], [Name]) VALUES</code>
         /// </summary>
         string InsertScript { get; }
 

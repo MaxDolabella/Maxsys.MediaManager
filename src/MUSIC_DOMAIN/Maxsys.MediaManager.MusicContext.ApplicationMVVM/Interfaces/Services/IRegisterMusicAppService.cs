@@ -10,14 +10,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
     public interface IRegisterMusicAppService : IDisposable
     {
         /// <summary>
-        /// Asynchronously returns a readonly list of <see cref="MusicCatalogInfoDTO"/>.
+        /// Asynchronously returns a readonly list of <see cref="CatalogDetailDTO"/>.
         /// </summary>
-        Task<IReadOnlyList<MusicCatalogInfoDTO>> GetMusicCatalogsAsync();
+        Task<IReadOnlyList<CatalogDetailDTO>> GetMusicCatalogsAsync();
 
         /// <summary>
-        /// Asynchronously returns a readonly list of <see cref="ArtistInfoDTO"/>.
+        /// Asynchronously returns a readonly list of <see cref="ArtistDetailsDTO"/>.
         /// </summary>
-        Task<IReadOnlyList<ArtistInfoDTO>> GetArtistsAsync();
+        Task<IReadOnlyList<ArtistDetailsDTO>> GetArtistsAsync();
 
         /// <summary>
         /// Asynchronously returns a readonly list of <see cref="AlbumInfoDTO"/>.
@@ -25,9 +25,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
         Task<IReadOnlyList<AlbumInfoDTO>> GetAlbumsAsync();
 
         /// <summary>
-        /// Asynchronously returns a readonly list of <see cref="MusicInfoDTO"/>.
+        /// Asynchronously returns a readonly list of <see cref="SongInfoDTO"/>.
         /// </summary>
-        Task<IReadOnlyList<MusicInfoDTO>> GetMusicsAsync();
+        Task<IReadOnlyList<SongInfoDTO>> GetMusicsAsync();
 
         Task<ValidationResult> RegisterMusicAsync(CreateMusicModel model);
 

@@ -1,23 +1,22 @@
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig
+namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig;
+
+internal class PlaylistItemConfig : IEntityTypeConfiguration<PlaylistItem>
 {
-    internal class PlaylistItemConfig : IEntityTypeConfiguration<PlaylistItem>
+    public void Configure(EntityTypeBuilder<PlaylistItem> builder)
     {
-        public void Configure(EntityTypeBuilder<PlaylistItem> builder)
-        {
-            builder.ToTable("PlaylistItems");
+        builder.ToTable("PlaylistItems")
+            .HasKey(playlistItem => new { playlistItem.PlaylistId, playlistItem.SongId });
 
-            builder.HasKey(playlistItem => new { playlistItem.PlaylistId, playlistItem.MusicId });
+        // Properties
+        builder.Property(playlistItem => playlistItem.Order).IsRequired(false);
 
-            builder.Property(playlistItem => playlistItem.Order).IsRequired();
+        // Navigation
+        builder.HasOne(playlistItem => playlistItem.Song)
+            .WithMany();
 
-            builder.HasOne(playlistItem => playlistItem.Music);
-
-            builder.HasOne(playlistItem => playlistItem.Playlist)
-                .WithMany(playlist => playlist.Items);
-        }
+        builder.HasOne(playlistItem => playlistItem.Playlist)
+            .WithMany(playlist => playlist.Items);
     }
 }

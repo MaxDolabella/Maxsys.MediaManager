@@ -27,13 +27,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         private readonly static ReadOnlyObservableCollection<CreateMusicModel> EMPTY_COLLECTION
             = Array.Empty<CreateMusicModel>().ToReadOnlyObservableCollection();
 
-        private ReadOnlyObservableCollection<MusicCatalogInfoDTO> _musicCatalogs;
-        private ReadOnlyObservableCollection<ArtistInfoDTO> _artists;
+        private ReadOnlyObservableCollection<CatalogDetailDTO> _musicCatalogs;
+        private ReadOnlyObservableCollection<ArtistDetailsDTO> _artists;
         private ReadOnlyObservableCollection<AlbumInfoDTO> _albums;
-        private ReadOnlyObservableCollection<MusicInfoDTO> _musics;
+        private ReadOnlyObservableCollection<SongInfoDTO> _musics;
         private ReadOnlyObservableCollection<CreateMusicModel> _selectedModels;
-        private MusicCatalogInfoDTO _selectedMusicCatalog;
-        private ArtistInfoDTO _selectedArtist;
+        private CatalogDetailDTO _selectedMusicCatalog;
+        private ArtistDetailsDTO _selectedArtist;
         private AlbumInfoDTO _selectedAlbum;
         private VocalGender _selectedVocalGender;
 
@@ -48,13 +48,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         public IReadOnlyList<VocalGender> VocalGenders { get; }
             = new ReadOnlyCollection<VocalGender>(Enum.GetValues<VocalGender>());
 
-        public ReadOnlyObservableCollection<MusicCatalogInfoDTO> MusicCatalogs
+        public ReadOnlyObservableCollection<CatalogDetailDTO> MusicCatalogs
         {
             get => _musicCatalogs;
             private set => SetProperty(ref _musicCatalogs, value);
         }
 
-        public ReadOnlyObservableCollection<ArtistInfoDTO> DisplayableArtists
+        public ReadOnlyObservableCollection<ArtistDetailsDTO> DisplayableArtists
             => _artists
             ?.Where(a => a.MusicCatalogId == SelectedMusicCatalog.MusicCatalogId)
             ?.OrderBy(a => a.ArtistName)
@@ -66,7 +66,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             ?.OrderBy(a => a.AlbumDirectory)
             ?.ToReadOnlyObservableCollection();
 
-        public ReadOnlyObservableCollection<MusicInfoDTO> DisplayableMusics
+        public ReadOnlyObservableCollection<SongInfoDTO> DisplayableMusics
             => _musics
             ?.Where(m => m.AlbumId == SelectedAlbum?.AlbumId)
             ?.OrderBy(m => m.MusicTrack)
@@ -79,7 +79,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             set => SetProperty(ref _selectedModels, value);
         }
 
-        public MusicCatalogInfoDTO SelectedMusicCatalog
+        public CatalogDetailDTO SelectedMusicCatalog
         {
             get => _selectedMusicCatalog;
             set
@@ -92,7 +92,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             }
         }
 
-        public ArtistInfoDTO SelectedArtist
+        public ArtistDetailsDTO SelectedArtist
         {
             get => _selectedArtist;
             set
@@ -397,9 +397,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 //Download -> Already    |  0  |  1  |  x  | .Replace
 //Download -> NewMusic   |  0  |  0  |  1  | .AddNew
 //Download -> TrackTitle |  0  |  0  |  0  | .ERRT
-//Music    -> NewMusic   |  1  |  0  |  1  | .Change
-//Music    -> TrackTitle |  1  |  0  |  0  | .ERRT
-//Music    -> Already    |  1  |  1  |  x  | .ERR
+//Song    -> NewMusic   |  1  |  0  |  1  | .Change
+//Song    -> TrackTitle |  1  |  0  |  0  | .ERRT
+//Song    -> Already    |  1  |  1  |  x  | .ERR
 //
 //srcRegistered    |   desRegistered   |   TrackOrTitle    |  RESULT
 //      0          |          1        |         X         |   Replace

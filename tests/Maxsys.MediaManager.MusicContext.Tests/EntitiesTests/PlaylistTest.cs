@@ -106,7 +106,7 @@
 
 
 //            // Act
-//            var musics = new MusicMockRepository().GetAll(false).Take(3);
+//            var musics = new MusicMockRepository().GetAllSongRanksAsync(false).Take(3);
 //            foreach (var music in musics) 
 //                rightPlaylist.Items.Add(music, 0);
 //            var rightResult = validator.TestValidate(rightPlaylist);
@@ -127,7 +127,7 @@
 //        {
 //            // Arrange
 //            var validator = _persistenceValidator;
-//            var repeatedName = _repository.GetAll(false).First().Name;
+//            var repeatedName = _repository.GetAllSongRanksAsync(false).First().Name;
 //            var rightPlaylist = PlaylistFactory.Create("Unique Name");
 //            var wrongPlaylist = PlaylistFactory.Create(repeatedName);
 
@@ -157,7 +157,7 @@
 
 
 //            // Act
-//            var musics = new MusicMockRepository().GetAll(false).Take(3).ToList();
+//            var musics = new MusicMockRepository().GetAllSongRanksAsync(false).Take(3).ToList();
 //            var repeatedMusic = musics[0];
 //            foreach (var music in musics)
 //            {

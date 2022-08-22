@@ -1,46 +1,40 @@
 ﻿using FluentValidation.Results;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters
+namespace Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters;
+
+/// <summary>
+/// Implements <see cref="IPlaylistFileExporter"/> for Windows Media Player playlist format (WPL).
+/// </summary>
+public sealed class WMPPlaylistFileExporter : IPlaylistFileExporter
 {
-    /// <summary>
-    /// Implements <see cref="IPlaylistFileExporter"/> for Windows Media Player playlist format (WPL).
-    /// </summary>
-    public sealed class WMPPlaylistFileExporter : IPlaylistFileExporter
+    public async Task<ValidationResult> ExportFileAsync(IEnumerable<string> songFiles, string destFolder, string playlistName, CancellationToken token = default)
     {
-        // WARNING ValueTask ?
-        public async Task<ValidationResult> ExportFileAsync(IEnumerable<string> musicFiles, string destFolder, string playlistName)
+        var path = Path.Combine(destFolder, $"{playlistName}.wpl");
+        var contents = GetContents(songFiles
+            .Select(songPath => Path.GetRelativePath(destFolder, songPath)), playlistName);
+
+        ValidationResult result = new();
+        try
         {
-            var path = Path.Combine(destFolder, $"{playlistName}.wpl");
-            var contents = GetContents(musicFiles
-                .Select(musicPath => Path.GetRelativePath(destFolder, musicPath)), playlistName);
-
-            ValidationResult result;
-            try
-            {
-                await File.WriteAllTextAsync(path, contents);
-
-                result = new ValidationResult();
-            }
-            catch (Exception ex)
-            {
-                result = await Task.FromResult(ValidationResultExtensions.ValidationResultFromException(ex));
-            }
-
-            return result;
+            await File.WriteAllTextAsync(path, contents, token);
+        }
+        catch (Exception ex)
+        {
+            // TODO Log???
+            result.AddErrorMessage($"An error ocurred while exporting file: {ex.Message}");
         }
 
-        private static string GetContents(IEnumerable<string> musicFiles, string playlistName)
-        {
-            var itemCount = musicFiles.Count();
-            var srcList = GetSrcList(musicFiles);
+        return result;
+    }
 
-            return $@"<?wpl version=""1.0""?>
+    private static string GetContents(IEnumerable<string> songFiles, string playlistName)
+    {
+        var itemCount = songFiles.Count();
+        var srcList = GetSrcList(songFiles);
+
+        return $@"<?wpl version=""1.0""?>
 <smil>
     <head>
         <meta name=""Generator"" content=""Maxsys Media Manager""/>
@@ -53,17 +47,14 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters
         </seq>
     </body>
 </smil>";
-        }
+    }
 
-        private static string GetSrcList(IEnumerable<string> musicFiles)
-        {
-            var srcs = musicFiles
-                .Select(x => $@"            <media src=""{x}""/>")
-                .Select(x => x.Replace("&", "&amp;").Replace("'", "&apos;"));
-            
+    private static string GetSrcList(IEnumerable<string> songFiles)
+    {
+        var srcs = songFiles
+            .Select(x => $@"            <media src=""{x}""/>")
+            .Select(x => x.Replace("&", "&amp;").Replace("'", "&apos;"));
 
-
-            return string.Join(Environment.NewLine, srcs);
-        }
+        return string.Join(Environment.NewLine, srcs);
     }
 }

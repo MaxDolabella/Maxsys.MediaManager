@@ -10,7 +10,20 @@ namespace Maxsys.MediaManager.MusicContext.Tests.Mock.Repositories
 {
     internal class ArtistMockRepository : MockRepositoryBase<Artist>, IArtistRepository
     {
-        public async Task<IReadOnlyList<ArtistInfoDTO>> GetArtistInfosAsync()
+        public async Task<IReadOnlyList<ArtistDetailsDTO>> GetArtistInfosAsync()
+        {
+            var items = await GetAllAsync();
+
+            return items.Select(i => new ArtistDetailsDTO
+            {
+                ArtistId = i.Id,
+                ArtistName = i.Name,
+                MusicCatalogId = i.CatalogId,
+                MusicCatalogName = i.Catalog?.Name
+            }).ToList();
+        }
+
+        public async Task<IReadOnlyList<ArtistInfoDTO>> GetArtistListsAsync()
         {
             var items = await GetAllAsync();
 
@@ -18,20 +31,7 @@ namespace Maxsys.MediaManager.MusicContext.Tests.Mock.Repositories
             {
                 ArtistId = i.Id,
                 ArtistName = i.Name,
-                MusicCatalogId = i.MusicCatalogId,
-                MusicCatalogName = i.MusicCatalog?.Name
-            }).ToList();
-        }
-
-        public async Task<IReadOnlyList<ArtistListDTO>> GetArtistListsAsync()
-        {
-            var items = await GetAllAsync();
-
-            return items.Select(i => new ArtistListDTO
-            {
-                ArtistId = i.Id,
-                ArtistName = i.Name,
-                MusicCatalogName = i.MusicCatalog?.Name,
+                MusicCatalogName = i.Catalog?.Name,
                 AlbumsCount = i.Albums?.Count ?? -1
             }).ToList();
         }

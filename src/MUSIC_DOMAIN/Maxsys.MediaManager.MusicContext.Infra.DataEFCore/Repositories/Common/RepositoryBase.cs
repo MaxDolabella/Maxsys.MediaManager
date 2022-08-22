@@ -1,168 +1,134 @@
 ﻿using Maxsys.ModelCore;
 using Maxsys.ModelCore.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common
+namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
+
+// https://github.com/Arch/UnitOfWork/blob/master/src/UnitOfWork/Repository.cs
+/// <inheritdoc/>
+public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
+    where TEntity : EntityBase
 {
-    // https://github.com/Arch/UnitOfWork/blob/master/src/UnitOfWork/Repository.cs
-    /// <inheritdoc/>
-    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
-        where TEntity : EntityBase
+    #region FIELDS
+
+    protected readonly DbContext Context;
+    protected readonly DbSet<TEntity> DbSet;
+
+    #endregion FIELDS
+
+    #region PROPERTIES
+
+    public Guid Id { get; }
+    public Guid ContextId { get; }
+
+    #endregion PROPERTIES
+
+    #region CONSTRUCTOR
+
+    public RepositoryBase(DbContext dbContext)
     {
-        #region FIELDS
-
-        protected readonly DbContext Context;
-        protected readonly DbSet<TEntity> DbSet;
-        protected IQueryable<TEntity> ReadOnlySet => DbSet.AsNoTracking();
-        #endregion FIELDS
-
-        #region CONSTRUCTOR
-
-        public RepositoryBase(DbContext dbContext)
-        {
-            Context = dbContext;
-            DbSet = Context.Set<TEntity>();
-        }
-
-        #endregion CONSTRUCTOR
-
-        #region CRUD SYNCHRONOUS
-
-        /// <inheritdoc/>
-        public virtual bool Add(TEntity obj)
-        {
-            var entry = DbSet.Add(obj);
-
-            return entry.State == EntityState.Added;
-        }
-
-        /// <inheritdoc/>
-        public virtual bool Update(TEntity obj)
-        {
-            var entry = DbSet.Update(obj);
-
-            return entry.State == EntityState.Modified;
-        }
-
-        /// <inheritdoc/>
-        public virtual bool Remove(TEntity obj)
-        {
-            var tracker = DbSet.Remove(obj);
-
-            return tracker.State == EntityState.Detached
-                || tracker.State == EntityState.Deleted;
-        }
-
-        /// <inheritdoc/>
-        public virtual bool Remove(object id)
-        {
-            var entity = DbSet.Find(id);
-
-            return entity is null || Remove(entity);
-        }
-
-        /// <inheritdoc/>
-        public virtual IEnumerable<TEntity> GetAll(bool @readonly = false)
-        {
-            return DbSet.AsNoTracking(@readonly)
-                .AsEnumerable();
-        }
-
-        /// <inheritdoc/>
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate
-            , bool @readonly)
-        {
-            return DbSet.AsNoTracking(@readonly)
-                .Where(predicate)
-                .AsEnumerable();
-        }
-
-        #endregion CRUD SYNCHRONOUS
-
-        #region CRUD ASYNCHRONOUS
-
-        /// <inheritdoc/>
-        public virtual async Task<bool> AddAsync(TEntity obj)
-        {
-            var entry = await DbSet.AddAsync(obj);
-
-            return entry.State == EntityState.Added;
-        }
-
-        /// <inheritdoc/>
-        public virtual async Task<bool> UpdateAsync(TEntity obj)
-        {
-            return await Task.Run(() =>
-            {
-                return Update(obj);
-            });
-        }
-
-        /// <inheritdoc/>
-        public virtual async Task<bool> RemoveAsync(object id)
-        {
-            var entity = await DbSet.FindAsync(id);
-
-            return entity is null || await RemoveAsync(entity);
-        }
-
-        /// <inheritdoc/>
-        public virtual async Task<bool> RemoveAsync(TEntity obj)
-        {
-            return await Task.Run(() =>
-            {
-                return Remove(obj);
-            });
-        }
-
-        /*{
-            IQueryable<TEntity> query = @readonly
-                ? DbSet.AsNoTracking()
-                : DbSet;
-
-            return await query.SingleOrDefaultAsync(obj => obj.Id == (Guid)id);
-            //return await DbSet.FindAsync(id);
-        }*/
-
-        /// <inheritdoc/>
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(bool @readonly = true)
-        {
-            var query = DbSet.AsNoTracking(@readonly);
-
-            return await query.ToListAsync();
-        }
-
-
-        //public abstract TEntity GetById(object key, bool @readonly = true);
-        public virtual TEntity GetById(object key, bool @readonly = true) => DbSet.AsNoTracking(@readonly).FirstOrDefault(obj => obj.Id == (Guid)key);
-
-        //public abstract Task<TEntity> GetByIdAsync(object key, bool @readonly = true);
-        public virtual async Task<TEntity> GetByIdAsync(object key, bool @readonly = true) => await DbSet.AsNoTracking(@readonly).FirstOrDefaultAsync(obj => obj.Id == (Guid)key);
-        
-
-        /// <inheritdoc/>
-        public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, bool @readonly = true)
-        {
-            var query = DbSet.AsNoTracking(@readonly)
-                .Where(predicate);
-
-            return await query.ToListAsync();
-        }
-
-        #endregion CRUD ASYNCHRONOUS
-
-        #region DIPOSABLE IMPLEMENTATION
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion DIPOSABLE IMPLEMENTATION
+        Id = Guid.NewGuid();
+        ContextId = dbContext.ContextId.InstanceId;
+        Context = dbContext;
+        DbSet = Context.Set<TEntity>();
     }
+
+    #endregion CONSTRUCTOR
+
+    #region CRUD ASYNCHRONOUS
+
+    public virtual async ValueTask<bool> AddAsync(TEntity obj, CancellationToken token = default)
+    {
+        var entry = await DbSet.AddAsync(obj, token);
+
+        return entry.State == EntityState.Added;
+    }
+
+    public virtual async ValueTask<bool> AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken token = default)
+    {
+        // await DbSet.AddRangeAsync(entities, token);
+        foreach (var item in entities)
+        {
+            if (!await AddAsync(item, token))
+                return false;
+        }
+
+        return true;
+    }
+
+    public virtual async ValueTask<bool> UpdateAsync(TEntity obj, CancellationToken token = default)
+    {
+        if (token.IsCancellationRequested) return false;
+
+        var entry = DbSet.Update(obj);
+
+        return await Task.FromResult(entry.State == EntityState.Modified);
+    }
+
+    public virtual async ValueTask<bool> RemoveAsync(object id, CancellationToken token = default)
+    {
+        var entity = await DbSet.FindAsync(new object?[] { id }, cancellationToken: token);
+
+        return entity is null || await RemoveAsync(entity, token);
+    }
+
+    public virtual async ValueTask<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> query, bool @readonly = true, CancellationToken cancellation = default)
+    {
+        return await DbSet
+            .AsNoTracking(@readonly)
+            .Where(query)
+            .ToListAsync(cancellation);
+    }
+
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync(bool @readonly = true, CancellationToken cancellation = default)
+    {
+        return await DbSet
+            .AsNoTracking(@readonly)
+            .ToListAsync(cancellation);
+    }
+
+    public virtual async ValueTask<TEntity?> FindAsync(object id, CancellationToken cancellation = default)
+    {
+        return await DbSet.FindAsync(new object?[] { id }, cancellationToken: cancellation);
+    }
+
+    public virtual async ValueTask<bool> AnyAsync(Expression<Func<TEntity, bool>>? expression = null, CancellationToken cancellation = default)
+    {
+        if (cancellation.IsCancellationRequested)
+            return false;
+
+        return expression is null
+            ? await DbSet.AnyAsync(cancellation)
+            : await DbSet.AnyAsync(expression, cancellation);
+    }
+
+    public virtual async ValueTask<int> CountAsync(Expression<Func<TEntity, bool>>? expression = null, CancellationToken cancellation = default)
+    {
+        if (cancellation.IsCancellationRequested)
+            return 0;
+
+        return expression is null
+            ? await DbSet.CountAsync(cancellation)
+            : await DbSet.CountAsync(expression, cancellation);
+    }
+
+    protected virtual async ValueTask<bool> RemoveAsync(TEntity obj, CancellationToken token = default)
+    {
+        if (token.IsCancellationRequested) return false;
+
+        var entry = DbSet.Remove(obj);
+
+        return await Task.FromResult(entry.State == EntityState.Deleted);
+    }
+
+    #endregion CRUD ASYNCHRONOUS
+
+    #region DIPOSABLE IMPLEMENTATION
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion DIPOSABLE IMPLEMENTATION
 }

@@ -17,13 +17,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 {
     public class CreateMusicCatalogAppService : ApplicationServiceBase, ICreateMusicCatalogAppService
     {
-        private readonly IMusicCatalogService _service;
-        private readonly IMusicCatalogRepository _repository;
+        private readonly ICatalogService _service;
+        private readonly ICatalogRepository _repository;
 
         public CreateMusicCatalogAppService(
             IUnitOfWork uow,
-            IMusicCatalogService service,
-            IMusicCatalogRepository repository)
+            ICatalogService service,
+            ICatalogRepository repository)
             : base(uow)
         {
             _service = service;
@@ -34,8 +34,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         {
             BeginTransaction();
 
-            var entity = MusicCatalogFactory.Create(model.Id, model.Name);
-            var validator = new MusicCatalogValidator(_repository)
+            var entity = CatalogFactory.Create(model.Name);
+            var validator = new CatalogValidator(_repository)
                 .SetRulesForCreation();
 
             var validationResult = await _service.AddAsync(entity, validator);
@@ -47,7 +47,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
         public async Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync()
         {
-            var dtos = await _repository.GetMusicCatalogListAsync();
+            var dtos = await _repository.GetCatalogDetailsAsync();
 
             return dtos.Select(dto => new MusicCatalogInfoModel(dto)).ToList();
         }

@@ -1,12 +1,9 @@
 ﻿using FluentValidation.Results;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
+namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
+
+public interface IPlaylistFileExporter
 {
-    public interface IPlaylistFileExporter
-    {
-        // TODO destRootFolder: uses URI instead string?
-        Task<ValidationResult> ExportFileAsync(IEnumerable<string> musicFiles, string destFolder, string playlistName);
-    }
+    // TODO destRootFolder: uses URI instead string?
+    Task<ValidationResult> ExportFileAsync(IEnumerable<string> songFiles, string destFolder, string playlistName, CancellationToken token = default);
 }

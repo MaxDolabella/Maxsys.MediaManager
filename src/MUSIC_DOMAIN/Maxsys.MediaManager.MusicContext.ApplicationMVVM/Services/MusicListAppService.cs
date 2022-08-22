@@ -18,14 +18,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         : ApplicationServiceBase, IMusicListAppService
     {
         private readonly ILogger _logger;
-        private readonly IMusicService _service;
-        private readonly IMusicRepository _repository;
+        private readonly ISongService _service;
+        private readonly ISongRepository _repository;
         private readonly IPlaylistRepository _playlistRepository;
 
         public MusicListAppService(IUnitOfWork uow,
             ILogger<MusicListAppService> logger,
-            IMusicService service,
-            IMusicRepository repository,
+            ISongService service,
+            ISongRepository repository,
             IPlaylistRepository playlistRepository)
             : base(uow)
         {
@@ -37,21 +37,21 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
         public async Task<IReadOnlyList<MusicListModel>> GetMusicsAsync()
         {
-            var dtos = await _repository.GetMusicListAsync();
+            var dtos = await _repository.GetSongDetailsAsync();
 
             return dtos.Select(dto => new MusicListModel
             {
-                MusicCatalogName = dto.MusicCatalogName,
+                MusicCatalogName = dto.CatalogName,
                 ArtistName = dto.ArtistName,
                 AlbumName = dto.AlbumName,
                 AlbumType = dto.AlbumType.ToFriendlyName(),
 
                 MusicId = dto.MusicId,
-                MusicFullPath = dto.MusicFullPath,
+                MusicFullPath = dto.SongFullPath,
                 MusicTitle = dto.MusicTitle,
                 MusicTrackNumber = dto.MusicTrackNumber,
-                MusicVocalGender = dto.MusicVocalGender.ToString(),
-                MusicRating = dto.MusicRating,
+                MusicVocalGender = dto.SongVocalGender.ToString(),
+                MusicRating = dto.SongRating,
                 MusicFeaturedArtist = dto.MusicFeaturedArtist ?? string.Empty,
                 MusicCoveredArtist = dto.MusicCoveredArtist ?? string.Empty,
                 IsMusicCover = !string.IsNullOrWhiteSpace(dto.MusicCoveredArtist)
@@ -83,7 +83,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         {
             var validationResult = new ValidationResult();
 
-            var playlistItems = await _playlistRepository.GetPlaylistItemsByMusicIdAsync(model.MusicId, @readonly: false);
+            var playlistItems = await _playlistRepository.GetPlaylistItemsBySongIdAsync(model.MusicId, @readonly: false);
 
             if (playlistItems.Any())
             {
@@ -108,11 +108,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                     _ = IOHelper.DeleteFileAsync(model.MusicFullPath)
                     .ConfigureAwait(false);
 
-                    _logger.LogWarning($"Music deleted.");
+                    _logger.LogWarning($"Song deleted.");
                 }
                 catch (System.Exception ex)
                 {
-                    _logger.LogError("Music cannot be deleted:\n{errors}", ex.Message);
+                    _logger.LogError("Song cannot be deleted:\n{errors}", ex.Message);
                 }
             });
         }

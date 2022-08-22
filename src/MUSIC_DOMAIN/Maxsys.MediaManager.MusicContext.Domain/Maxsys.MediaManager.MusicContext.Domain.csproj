@@ -1,13 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Maxsys.MediaManager.Music_Domain</AssemblyName>
-    <Platforms>AnyCPU;x64</Platforms>
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
+
+	<ItemGroup>
+		<Using Include="Maxsys.MediaManager.CoreDomain" />
+		<Using Include="Maxsys.MediaManager.MusicContext.Domain.Entities" />
+		<Using Include="Maxsys.MediaManager.MusicContext.Domain.ValueObjects" />
+		
+		<Using Remove="System.Net.Http" />
+		<Using Remove="System.IO" />
+	</ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
   </ItemGroup>
 

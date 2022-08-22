@@ -1,28 +1,21 @@
 using FluentValidation.Results;
-using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
-using Maxsys.ModelCore.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services
+namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
+
+public interface IPlaylistService
 {
-    public interface IPlaylistService : IServiceBase<Playlist>
-    {
-        ///// <summary>
-        ///// Write Id3 tags on musics from a playlist and copies the files to a specific folder
-        ///// </summary>
-        ///// <param name="playlist">is a <see cref="Playlist"/></param>
-        ///// <param name="destRootFolder">is the directory that will contains the mp3 files from playlist</param>
-        //ValidationResult ExportPlaylist(in Playlist playlist, string destRootFolder);
+    ///// <summary>
+    ///// Write Id3 tags on musics from a playlist and copies the files to a specific folder
+    ///// </summary>
+    ///// <param name="playlist">is a <see cref="Playlist"/></param>
+    ///// <param name="destRootFolder">is the directory that will contains the mp3 files from playlist</param>
+    //ValidationResult ExportPlaylist(in Playlist playlist, string destRootFolder);
 
-        ///// <summary>
-        ///// Get collection of Playlist that contains a given music
-        ///// </summary>
-        ///// <param name="music"></param>
-        ///// <returns></returns>
-        //IEnumerable<PlaylistDTO> GetPlaylistsByMusic(Music music);
-        Task<ValidationResult> ExportPlaylistFileAsync(Playlist playlist, IPlaylistFileExporter playlistFileExporter, string destRootFolder = null);
-    }
+    ///// <summary>
+    ///// Get collection of Playlist that contains a given music
+    ///// </summary>
+    ///// <param name="music"></param>
+    ///// <returns></returns>
+    //IEnumerable<PlaylistDTO> GetPlaylistsByMusic(Song music);
+    Task<ValidationResult> ExportPlaylistFileAsync(Playlist playlist, IPlaylistFileExporter playlistFileExporter, string? destRootFolder = null, CancellationToken token = default);
 }

@@ -42,7 +42,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         private async Task OnMusicCatalogSaved()
         {
-            var message = $"Music catalog [{_viewModel.Model.Name}] registered!";
+            var message = $"Song catalog [{_viewModel.Model.Name}] registered!";
 
             _logger.LogInformation(message);
             _dialogService.ShowMessage(MessageType.Information, message);
@@ -62,7 +62,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         private void OnMusicCatalogSaveFail(ValidationResult validationResult)
         {
-            var message = $"Error while registering Music Catalog: {validationResult}";
+            var message = $"Error while registering Song Catalog: {validationResult}";
 
             _dialogService.ShowMessage(MessageType.Error, message);
             _logger.LogError(message);
@@ -82,7 +82,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         public override async void Execute(object parameter)
         {
-            _logger.LogInformation($"Registering MusicCatalog [{_viewModel.Model.Name}].");
+            _logger.LogInformation($"Registering Catalog [{_viewModel.Model.Name}].");
 
             // Validate Model
             if (!_viewModel.Model.IsValid)

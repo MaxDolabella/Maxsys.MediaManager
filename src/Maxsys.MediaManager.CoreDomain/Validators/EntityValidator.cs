@@ -1,23 +1,22 @@
 ﻿using FluentValidation;
-using EntityBase = Maxsys.ModelCore.EntityBase;
+using Maxsys.ModelCore;
 
-namespace Maxsys.MediaManager.CoreDomain.Validators
+namespace Maxsys.MediaManager.CoreDomain.Validators;
+
+/// <summary>
+/// Base class for entities validations.
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public abstract class EntityValidator<T> : AbstractValidator<T>
+    where T : EntityBase
 {
     /// <summary>
-    /// Base class for entities validations.
+    /// Adds rule to validate <see cref="EntityBase">EntityBase.Id</see>.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class EntityValidator<T> : AbstractValidator<T>
-        where T : EntityBase
+    public EntityValidator<T> AddRuleForId()
     {
-        /// <summary>
-        /// Adds rule to validate <see cref="EntityBase.Id"/>.
-        /// </summary>
-        public EntityValidator<T> AddRuleForId()
-        {
-            RuleFor(x => x.Id).NotEmpty();
-            
-            return this;
-        }
+        RuleFor(x => x.Id).NotEmpty();
+
+        return this;
     }
 }

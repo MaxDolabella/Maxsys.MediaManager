@@ -81,7 +81,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         private async Task OnMusicDeleted()
         {
-            var message = $"Music [{Model.MusicTitle}] Deleted!";
+            var message = $"Song [{Model.MusicTitle}] Deleted!";
 
             _logger.LogInformation(message);
             _dialogService.ShowMessage(MessageType.Information, message);

@@ -1,45 +1,46 @@
 using Maxsys.ModelCore;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.Entities
+namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
+
+[System.Diagnostics.DebuggerDisplay("{Name}")]
+public class Artist : EntityBase
 {
-    [DebuggerDisplay("{Name}")]
-    public class Artist : EntityBase
+    #region PROPERTIES
+
+    public string Name { get; protected set; }
+
+    // Navigation
+    public Guid CatalogId { get; protected set; }
+
+    public Catalog Catalog { get; protected set; }
+
+    // Collections
+    public IEnumerable<Album> Albums { get; protected set; }
+
+    #endregion PROPERTIES
+
+    #region CONSTRUCTORS
+
+    protected Artist()
     {
-        #region PROPERTIES
+        Albums = new List<Album>();
+    }
 
-        public string Name { get; protected set; }
-        public Guid MusicCatalogId { get; protected set; }
+    internal Artist(Guid id, Guid catalogId, string name)
+        : this()
+    {
+        Id = id;
+        CatalogId = catalogId;
 
-        // Navigation
-        public virtual MusicCatalog MusicCatalog { get; protected set; }
+        Name = name;
+    }
 
-        // Collections
-        public virtual ICollection<Album> Albums { get; protected set; }
+    #endregion CONSTRUCTORS
 
-        #endregion PROPERTIES
-
-        #region CONSTRUCTORS
-
-        protected Artist()
-        {
-            Albums = new List<Album>();
-        }
-
-        internal Artist(Guid id, string name, Guid musicCatalogId)
-            : this()
-        {
-            (Id, Name, MusicCatalogId) = (id, name, musicCatalogId);
-        }
-
-        #endregion CONSTRUCTORS
-
-        public void SetMusicCatalog(MusicCatalog newMusicCatalog)
-        {
-            MusicCatalog = newMusicCatalog;
-            MusicCatalogId = newMusicCatalog?.Id ?? default;
-        }
+    // TODO apagar
+    public void SetCatalog(Catalog newCatalog)
+    {
+        Catalog = newCatalog;
+        CatalogId = newCatalog?.Id ?? default;
     }
 }

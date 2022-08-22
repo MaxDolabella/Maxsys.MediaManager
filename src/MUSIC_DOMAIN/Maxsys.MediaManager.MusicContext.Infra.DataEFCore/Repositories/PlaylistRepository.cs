@@ -1,52 +1,63 @@
-using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories
+namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
+
+public class PlaylistRepository : RepositoryBase<Playlist>, IPlaylistRepository
 {
-    public class PlaylistRepository : RepositoryBase<Playlist>, IPlaylistRepository
+    public PlaylistRepository(MusicAppContext dbContext) : base(dbContext)
+    { }
+
+    public async Task<IReadOnlyList<PlaylistItem>> GetPlaylistItemsBySongIdAsync(Guid songId, bool @readonly = false, CancellationToken token = default)
     {
-        public PlaylistRepository(MusicAppContext dbContext) : base(dbContext)
-        { }
-
-        public async Task<IReadOnlyList<PlaylistItem>> GetPlaylistItemsByMusicIdAsync(Guid musicId, bool @readonly = false)
-        {
-            return await DbSet.AsNoTracking(!@readonly)
-                .SelectMany(p => p.Items)
-                .Where(i => i.MusicId == musicId)
-                .ToListAsync();
-        }
-
-        public bool RemovePlaylistItem(PlaylistItem item)
-        {
-            var tracker = Context.Set<PlaylistItem>().Remove(item);
-
-            return tracker.State
-                is EntityState.Detached
-                or EntityState.Deleted;
-        }
-
-        public bool RemovePlaylistItems(IEnumerable<PlaylistItem> items)
-        {
-            Context.Set<PlaylistItem>().RemoveRange(items);
-
-            var result = items.All(i => Context.Entry(i).State is EntityState.Detached or EntityState.Deleted);
-
-            return result;
-        }
-
-        public async Task<IEnumerable<Playlist>> GetAllWithDependenciesAsync()
-        {
-            return await DbSet.AsNoTracking(track: false)
-                .Include(p => p.Items)
-                    .ThenInclude(i => i.Music)
-                .ToListAsync();
-        }
+        return await DbSet.AsNoTracking(!@readonly)
+            .SelectMany(p => p.Items)
+            .Where(i => i.SongId == songId)
+            .ToListAsync(token);
     }
+
+    public async Task<IReadOnlyList<PlaylistDTO>> GetPlaylistBySongIdAsync(Guid songId, CancellationToken token = default)
+    {
+        var query1 = DbSet.AsNoTracking()
+            .SelectMany(p => p.Items)
+            .Where(i => i.SongId == songId)
+            .Select(i => new PlaylistDTO(i.PlaylistId, i.Playlist.Name))
+            .DistinctBy(p => p.PlaylistId);
+
+        var query2 = DbSet.AsNoTracking()
+            .Where(p => p.Items.Any(i => i.SongId == songId))
+            .Select(p => new PlaylistDTO(p.Id, p.Name))
+            .DistinctBy(p => p.PlaylistId);
+
+        // TODO Analisar queries
+
+        return await query2.ToListAsync(token);
+    }
+
+    public bool RemovePlaylistItem(PlaylistItem item)
+    {
+        var tracker = Context.Set<PlaylistItem>().Remove(item);
+
+        return tracker.State
+            is EntityState.Detached
+            or EntityState.Deleted;
+    }
+
+    public bool RemovePlaylistItems(IEnumerable<PlaylistItem> items)
+    {
+        Context.Set<PlaylistItem>().RemoveRange(items);
+
+        return items.All(i => Context.Entry(i).State
+            is EntityState.Detached
+            or EntityState.Deleted);
+    }
+
+    //public async Task<IEnumerable<Playlist>> GetAllWithDependenciesAsync(CancellationToken token = default)
+    //{
+    //    return await DbSet
+    //        .Include(p => p.Items)
+    //            .ThenInclude(i => i.Song)
+    //        .ToListAsync(token);
+    //}
 }

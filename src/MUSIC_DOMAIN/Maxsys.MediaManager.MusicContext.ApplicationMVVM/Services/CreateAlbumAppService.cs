@@ -55,14 +55,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             var albumDirectory = _pathService.DefineAlbumDirectory(defineAlbumDirectoryDTO);
 
             var entity = AlbumFactory.Create(
-                model.Id,
+                model.ArtistId,
                 albumDirectory,
                 model.Name,
                 model.Year,
                 model.Genre,
                 model.AlbumCover,
-                model.AlbumType,
-                model.ArtistId);
+                model.AlbumType);
 
             var validator = new AlbumValidator(_albumRepository).SetRulesForCreation();
 
@@ -81,7 +80,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
         public async Task<IReadOnlyList<ArtistInfoModel>> GetArtistsAsync()
         {
-            var dtos = await _artistRepository.GetArtistInfosAsync();
+            var dtos = await _artistRepository.GetArtistDetailsAsync();
 
             return dtos.Select(dto => new ArtistInfoModel(dto)).ToList();
         }

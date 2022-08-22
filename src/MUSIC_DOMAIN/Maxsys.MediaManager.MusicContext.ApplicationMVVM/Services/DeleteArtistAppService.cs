@@ -54,7 +54,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 
         public async Task<IReadOnlyList<ArtistListModel>> GetArtistsAsync()
         {
-            var dtos = await _repository.GetArtistListsAsync();
+            var dtos = await _repository.GetArtistInfosAsync();
 
             return dtos.Select(dto => new ArtistListModel(dto)).ToList();
         }

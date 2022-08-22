@@ -52,7 +52,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
         private async Task OnArtistSaved()
         {
-            var message = $"Music catalog [{_viewModel.Model.Name}] registered!";
+            var message = $"Song catalog [{_viewModel.Model.Name}] registered!";
 
             _logger.LogInformation(message);
             _dialogService.ShowMessage(MessageType.Information, message);
