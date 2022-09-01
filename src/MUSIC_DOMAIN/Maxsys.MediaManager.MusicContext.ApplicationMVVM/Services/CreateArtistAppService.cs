@@ -3,6 +3,7 @@ using Maxsys.AppCore;
 using Maxsys.DataCore.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 using Maxsys.MediaManager.MusicContext.Domain.Factories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
@@ -45,11 +46,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 : await Task.FromResult(validationResult);
         }
 
-        public async Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync()
+        public async Task<IReadOnlyList<CatalogDetailViewModel>> GetMusicCatalogsAsync()
         {
             var dtos = await _musicCatalogRepository.GetCatalogDetailsAsync();
 
-            return dtos.Select(dto => new MusicCatalogInfoModel(dto)).ToList();
+            return dtos.Select(dto => new CatalogDetailViewModel(dto)).ToList();
         }
 
         public async Task<IReadOnlyList<ArtistInfoModel>> GetArtistsAsync()

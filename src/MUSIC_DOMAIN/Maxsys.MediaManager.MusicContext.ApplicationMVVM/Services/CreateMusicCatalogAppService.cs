@@ -3,6 +3,7 @@ using Maxsys.AppCore;
 using Maxsys.DataCore.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Factories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 {
-    public class CreateMusicCatalogAppService : ApplicationServiceBase, ICreateMusicCatalogAppService
+    public class CreateMusicCatalogAppService : ApplicationServiceBase, ICatalogCreateAppService
     {
         private readonly ICatalogService _service;
         private readonly ICatalogRepository _repository;
@@ -30,7 +31,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
             _repository = repository;
         }
 
-        public async Task<ValidationResult> AddNewMusicCatalogAsync(CreateMusicCatalogModel model)
+        public async Task<ValidationResult> CreateCatalogAsync(CatalogCreateViewModel model)
         {
             BeginTransaction();
 
@@ -45,11 +46,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
                 : await Task.FromResult(validationResult);
         }
 
-        public async Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync()
+        public async Task<IReadOnlyList<CatalogDetailViewModel>> GetMusicCatalogsAsync()
         {
             var dtos = await _repository.GetCatalogDetailsAsync();
 
-            return dtos.Select(dto => new MusicCatalogInfoModel(dto)).ToList();
+            return dtos.Select(dto => new CatalogDetailViewModel(dto)).ToList();
         }
 
         #region DIPOSABLE IMPLEMENTATION

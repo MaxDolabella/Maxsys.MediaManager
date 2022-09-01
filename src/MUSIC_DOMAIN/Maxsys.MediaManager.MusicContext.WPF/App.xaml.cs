@@ -1,19 +1,15 @@
-﻿using Maxsys.MediaManager.MusicContext.WPF.Configurations;
+﻿using Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC;
 using Maxsys.MediaManager.MusicContext.WPF.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Reflection;
 using System.Windows;
 
 namespace Maxsys.MediaManager.MusicContext.WPF
 {
-    /* Notes:
-    Understanding .NET Generic Host Model: https://sahansera.dev/dotnet-core-generic-host/
-    */
-
+    // Notes: Understanding .NET Generic Host Model: https://sahansera.dev/dotnet-core-generic-host/
     public partial class App : Application
     {
         private readonly IHost _host;
@@ -26,8 +22,9 @@ namespace Maxsys.MediaManager.MusicContext.WPF
             _host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    ConfigureDomainProperties(context.Configuration);
-                    ConfigureServices(services, context.Configuration);
+                    NativeInjectorBootstrapper.RegisterServices(services, context.Configuration);
+
+                    IoCExtensions.AddUIServices(services, context.Configuration);
                 })
                 .Build();
         }
@@ -44,7 +41,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF
                 logger.LogWarning("Config:DOTNET_ENVIRONMENT = [{config}]", config["DOTNET_ENVIRONMENT"]);
             }
 
-            await _host.CreateDatabaseIfNotExistAndApplyMigrationsAsync();
+            // await _host.CreateDatabaseIfNotExistAndApplyMigrationsAsync();
 
             await _host.StartAsync();
 
@@ -52,7 +49,6 @@ namespace Maxsys.MediaManager.MusicContext.WPF
             Current.MainWindow.Show();
 
             base.OnStartup(e);
-
         }
 
         protected override async void OnExit(ExitEventArgs e)
@@ -64,51 +60,5 @@ namespace Maxsys.MediaManager.MusicContext.WPF
 
             base.OnExit(e);
         }
-
-        private static void ConfigureDomainProperties(IConfiguration configuration)
-        {
-            AppDomain.CurrentDomain.SetData("DataDirectory", configuration["CoreSettings:DataDirectory"]);
-        }
-
-        private void ConfigureServices(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddSettingsConfiguration(configuration);
-
-            services.AddLoggerConfiguration(configuration);
-
-            services.AddDatabaseConfiguration(configuration);
-
-            services.AddDependencyInjectionConfiguration();
-
-            services.AddMVVMConfiguration();
-        }
     }
-
-    /*
-    public partial class App : Application
-    {
-        public IServiceProvider ServiceProvider { get; private set; }
-        public IConfiguration Configuration { get; private set; }
-
-        // IConfiguration
-        private void ConfigureConfiguration()
-        {
-            var jsonFile = "appsettings.json";
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(jsonFile, optional: false, reloadOnChange: true);
-
-            Configuration = builder.Build();
-        }
-
-        // Domain Properties
-        private void ConfigureDomainProperties()
-        {
-            //var exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            //var exeDir = System.IO.Path.GetDirectoryName(exePath);
-            //AppDomain.CurrentDomain.SetData("DataDirectory", exeDir);
-
-            AppDomain.CurrentDomain.SetData("DataDirectory", Configuration["CoreSettings:DataDirectory"]);
-        }
-    */
 }

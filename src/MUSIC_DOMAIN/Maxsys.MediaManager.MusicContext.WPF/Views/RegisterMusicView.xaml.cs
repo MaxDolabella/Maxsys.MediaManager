@@ -26,7 +26,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
             DataContext = _viewModel = new(logger, dialogService, contentCloser, appService);
 
             dgvMusics.SelectionChanged += DgvMusics_SelectionChanged;
-            Loaded += async (s, o) => await _viewModel.ViewLoadedAsync();
+            Loaded += async (s, o) => await _viewModel.LoadedCatalogsAsync();
         }
 
         private void DgvMusics_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -89,7 +89,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
             _ = _appService.DeleteMusicFileAsync(Model)
                 .ConfigureAwait(false);
 
-            await _viewModel.ViewLoadedAsync();
+            await _viewModel.LoadedCatalogsAsync();
             _viewModel.SearchCommand.Execute(null);
         }
 

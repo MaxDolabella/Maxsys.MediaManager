@@ -2,6 +2,7 @@
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         private readonly ICreateArtistAppService _appService;
 
         private ReadOnlyObservableCollection<ArtistInfoModel> _artists;
-        private ReadOnlyObservableCollection<MusicCatalogInfoModel> _musicCatalogs;
-        private MusicCatalogInfoModel _selectedMusicCatalog;
+        private ReadOnlyObservableCollection<CatalogDetailViewModel> _musicCatalogs;
+        private CatalogDetailViewModel _selectedMusicCatalog;
 
         #endregion FIELDS
 
@@ -29,17 +30,17 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         public ReadOnlyObservableCollection<ArtistInfoModel> DisplayableArtists
             => _artists
-            ?.Where(a => a.MusicCatalogId == SelectedMusicCatalog?.MusicCatalogId)
+            ?.Where(a => a.MusicCatalogId == SelectedMusicCatalog?.CatalogId)
             ?.OrderBy(a => a.ArtistName)
             ?.ToReadOnlyObservableCollection();
 
-        public ReadOnlyObservableCollection<MusicCatalogInfoModel> MusicCatalogs
+        public ReadOnlyObservableCollection<CatalogDetailViewModel> MusicCatalogs
         {
             get => _musicCatalogs;
             private set => SetProperty(ref _musicCatalogs, value);
         }
 
-        public MusicCatalogInfoModel SelectedMusicCatalog
+        public CatalogDetailViewModel SelectedMusicCatalog
         {
             get => _selectedMusicCatalog;
             set
@@ -59,7 +60,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #region METHODS
 
-        public override async Task ViewLoadedAsync()
+        public override async Task LoadedCatalogsAsync()
         {
             await LoadMusicCatalogsAsync();
             await LoadArtistsAsync();
@@ -85,7 +86,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         private async Task<ValidationResult> SaveAction()
         {
-            _logger.LogInformation("Registering Artist [{Name}].", Model.Name);
+            _logger.LogInformation("Registering Artist [{CatalogName}].", Model.Name);
 
             Model.SetMusicCatalog(SelectedMusicCatalog);
 

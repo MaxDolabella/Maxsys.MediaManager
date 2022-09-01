@@ -15,34 +15,33 @@ using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
 {
-    public sealed class CreateAlbumAppService
-        : ApplicationServiceBase, ICreateAlbumAppService
+    public sealed class CreateAlbumAppService : ICreateAlbumAppService
     {
         private readonly ILogger _logger;
+        private readonly IUnitOfWork _uow;
         private readonly IAlbumService _service;
         private readonly IAlbumRepository _albumRepository;
         private readonly IArtistRepository _artistRepository;
         private readonly IPathService _pathService;
 
-        public CreateAlbumAppService(IUnitOfWork uow,
+        public CreateAlbumAppService(
+            ILogger<CreateAlbumAppService> logger,
+            IUnitOfWork uow,
             IAlbumService service,
             IArtistRepository artistRepository,
             IAlbumRepository albumRepository,
-            IPathService pathService,
-            ILogger<CreateAlbumAppService> logger)
-            : base(uow)
+            IPathService pathService)
         {
+            _logger = logger;
+            _uow = uow;
             _service = service;
             _albumRepository = albumRepository;
             _artistRepository = artistRepository;
             _pathService = pathService;
-            _logger = logger;
         }
 
         public async Task<ValidationResult> AddNewAlbumAsync(CreateAlbumModel model)
         {
-            BeginTransaction();
-
             var defineAlbumDirectoryDTO = new DefineAlbumDirectoryDTO
             {
                 MusicCatalogName = model.Artist.MusicCatalogName,
@@ -95,6 +94,11 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services
         public async Task<IReadOnlyList<string>> GetGenresAsync()
         {
             return await _albumRepository.GetGenresAsync();
+        }
+
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -44,7 +44,7 @@ public class CreateAlbumCommand : CommandBase
 
         RedefineModel();
 
-        await _viewModel.ViewLoadedAsync();
+        await _viewModel.LoadedCatalogsAsync();
     }
 
     private void OnAlbumSavingFail(ValidationResult validationResult)

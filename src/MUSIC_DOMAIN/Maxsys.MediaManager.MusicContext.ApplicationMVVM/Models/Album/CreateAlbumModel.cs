@@ -1,4 +1,5 @@
 ﻿using Maxsys.Core.Helpers;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
 using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 using System;
 using System.ComponentModel;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public sealed class CreateAlbumModel : ValidableModelBase
+    public sealed class CreateAlbumModel : ValidableViewModelBase
     {
         private string _name;
         private int? _year;
@@ -31,7 +32,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 
         [Range(1500, 2100, ErrorMessage = "{0} must be empty or a number between {1} and {2}")]
         [CustomValidation(typeof(CreateAlbumModel), nameof(ValidateYearByAlbumType))]
-        public int? Year
+        public short? Year
         {
             get => _year;
             set => SetProperty(ref _year, value, true);

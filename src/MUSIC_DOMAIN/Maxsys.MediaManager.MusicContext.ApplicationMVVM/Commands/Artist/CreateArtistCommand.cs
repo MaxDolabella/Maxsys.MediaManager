@@ -59,7 +59,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
             RedefineModel();
 
-            await _viewModel.ViewLoadedAsync();
+            await _viewModel.LoadedCatalogsAsync();
         }
 
         private void OnArtistSaveFail(ValidationResult validationResult)

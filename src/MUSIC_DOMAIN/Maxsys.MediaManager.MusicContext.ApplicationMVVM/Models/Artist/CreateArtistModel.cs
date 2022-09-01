@@ -1,11 +1,13 @@
 ﻿using Maxsys.Core.Helpers;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public sealed class CreateArtistModel : ValidableModelBase
+    public sealed class CreateArtistModel : ValidableViewModelBase
     {
         private string _name;
 
@@ -30,8 +32,8 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 
         #region Methods
 
-        public void SetMusicCatalog(MusicCatalogInfoModel musicCatalog)
-            => MusicCatalogId = musicCatalog?.MusicCatalogId ?? default;
+        public void SetMusicCatalog(CatalogDetailViewModel musicCatalog)
+            => MusicCatalogId = musicCatalog?.CatalogId ?? default;
 
         #endregion Methods
     }

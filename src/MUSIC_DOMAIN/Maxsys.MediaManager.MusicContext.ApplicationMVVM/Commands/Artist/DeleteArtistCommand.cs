@@ -90,7 +90,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
             _ = DeleteArtistDirectory().ConfigureAwait(false);
 
-            await _viewModel.ViewLoadedAsync();
+            await _viewModel.LoadedCatalogsAsync();
         }
 
         private void OnArtistDeleteFail(ValidationResult validationResult)

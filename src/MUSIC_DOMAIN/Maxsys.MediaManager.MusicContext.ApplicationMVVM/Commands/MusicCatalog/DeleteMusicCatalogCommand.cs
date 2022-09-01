@@ -62,7 +62,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
             _ = _appService.DeleteMusicCatalogDirectory(_viewModel.SelectedModel)
                 .ConfigureAwait(false);
 
-            await _viewModel.ViewLoadedAsync();
+            await _viewModel.LoadedCatalogsAsync();
         }
 
         private void OnMusicCatalogDeleteFail(ValidationResult validationResult)

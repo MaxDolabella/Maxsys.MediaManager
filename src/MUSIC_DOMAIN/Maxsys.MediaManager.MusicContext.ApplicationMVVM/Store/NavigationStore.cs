@@ -4,12 +4,14 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store
 {
     public class NavigationStore
     {
-        private IView _currentView;
+        //private IView _currentView;
 
-        public IView CurrentView
-        {
-            get => _currentView;
-            set => _currentView = value;
-        }
+        //public IView CurrentView
+        //{
+        //    get => _currentView;
+        //    set => _currentView = value;
+        //}
+
+        public IView CurrentView { get; set; }
     }
 }

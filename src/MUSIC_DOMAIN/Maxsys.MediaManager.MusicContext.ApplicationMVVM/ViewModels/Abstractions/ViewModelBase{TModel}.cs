@@ -1,5 +1,5 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 
@@ -7,7 +7,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
     public abstract class ViewModelBase<TModel> : ViewModelBase
         //where TModel : ObservableObject, new()
-        where TModel : ValidableModelBase, new()
+        where TModel : ValidableViewModelBase, new()
     {
         protected TModel _model;
 

@@ -77,7 +77,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
             _ = DeleteAlbumDirectory().ConfigureAwait(false);
 
-            await _viewModel.ViewLoadedAsync();
+            await _viewModel.LoadedCatalogsAsync();
         }
 
         private void OnAlbumDeleteFail(ValidationResult validationResult)

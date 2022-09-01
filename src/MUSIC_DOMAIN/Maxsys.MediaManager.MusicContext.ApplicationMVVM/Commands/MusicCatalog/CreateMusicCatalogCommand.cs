@@ -13,13 +13,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
     {
         private readonly ILogger _logger;
         private readonly CreateMusicCatalogViewModel _viewModel;
-        private readonly ICreateMusicCatalogAppService _appService;
+        private readonly ICatalogCreateAppService _appService;
         private readonly IDialogService _dialogService;
 
         public CreateMusicCatalogCommand(
             ILogger logger,
             CreateMusicCatalogViewModel viewModel,
-            ICreateMusicCatalogAppService appService,
+            ICatalogCreateAppService appService,
             IDialogService dialogService)
         {
             _logger = logger;
@@ -49,7 +49,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
 
             RedefineModel();
 
-            await _viewModel.ViewLoadedAsync();
+            await _viewModel.LoadedCatalogsAsync();
         }
 
         private void RedefineModel()
@@ -92,7 +92,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands
             }
 
             // Execute saving
-            var validationResult = await _appService.AddNewMusicCatalogAsync(_viewModel.Model);
+            var validationResult = await _appService.CreateCatalogAsync(_viewModel.Model);
             if (validationResult.IsValid)
                 await OnMusicCatalogSaved();
             else

@@ -63,17 +63,17 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
         // Value Objects
         builder.OwnsOne(song => song.SongDetails, valueObj =>
         {
-            valueObj.Property(musicDetails => musicDetails.IsBonusTrack)
+            valueObj.Property(songDetails => songDetails.IsBonusTrack)
                 .IsRequired();
 
-            valueObj.Property(musicDetails => musicDetails.VocalGender)
+            valueObj.Property(songDetails => songDetails.VocalGender)
                 .IsRequired();
 
-            valueObj.Property(musicDetails => musicDetails.CoveredArtist)
+            valueObj.Property(songDetails => songDetails.CoveredArtist)
                 .HasMaxLength(50)
                 .IsRequired(false);
 
-            valueObj.Property(musicDetails => musicDetails.FeaturedArtist)
+            valueObj.Property(songDetails => songDetails.FeaturedArtist)
                 .HasMaxLength(50)
                 .IsRequired(false);
         });

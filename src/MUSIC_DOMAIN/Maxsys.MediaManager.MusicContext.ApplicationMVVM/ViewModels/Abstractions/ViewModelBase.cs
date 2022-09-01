@@ -15,7 +15,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         public ICommand CloseMainContentCommand { get; }
 
-        public abstract Task ViewLoadedAsync();
+        public abstract Task LoadedCatalogsAsync();
 
         protected ViewModelBase(ILogger logger, IDialogService dialogService, IMainContentCloser mainContentCloser)
         {

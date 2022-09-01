@@ -40,5 +40,9 @@
     <ProjectReference Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
     <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>

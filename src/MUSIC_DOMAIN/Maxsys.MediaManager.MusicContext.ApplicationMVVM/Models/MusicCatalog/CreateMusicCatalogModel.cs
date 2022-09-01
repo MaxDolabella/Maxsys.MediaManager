@@ -1,14 +1,12 @@
 ﻿using Maxsys.Core.Helpers;
-using System;
-using System.ComponentModel;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
 using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 
-public sealed class CreateMusicCatalogModel : ValidableModelBase
+public sealed class CatalogCreateViewModel : ValidableViewModelBase
 {
     private string _name;
-
 
     [Display(Name = nameof(Name), Description = "Is the name of Catalog.")]
     [Required(AllowEmptyStrings = false, ErrorMessage = "{0} is required.")]

@@ -68,7 +68,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #region METHODS
 
-        public override async Task ViewLoadedAsync()
+        public override async Task LoadedCatalogsAsync()
         {
             LoadDefaultImage();
             await LoadGenresAsync();

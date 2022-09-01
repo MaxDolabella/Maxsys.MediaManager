@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
         Task<ValidationResult> AddNewArtistAsync(CreateArtistModel model);
 
         /// <summary>
-        /// Returns a readonly list of <see cref="MusicCatalogInfoModel"/> asynchronous.
+        /// Returns a readonly list of <see cref="CatalogDetailViewModel"/> asynchronous.
         /// </summary>
-        Task<IReadOnlyList<MusicCatalogInfoModel>> GetMusicCatalogsAsync();
+        Task<IReadOnlyList<CatalogDetailViewModel>> GetMusicCatalogsAsync();
 
         /// <summary>
         /// Returns a readonly list of <see cref="ArtistInfoModel"/> asynchronous.

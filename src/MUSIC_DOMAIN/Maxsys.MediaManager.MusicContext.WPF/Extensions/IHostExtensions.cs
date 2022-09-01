@@ -11,8 +11,9 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Extensions
 {
     public static class IHostExtensions
     {
-        public static async Task<IHost> CreateDatabaseIfNotExistAndApplyMigrationsAsync(this IHost host /*, bool seed = false*/)
+        public static async ValueTask<IHost> CreateDatabaseIfNotExistAndApplyMigrationsAsync(this IHost host /*, bool seed = false*/)
         {
+            return host;
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;

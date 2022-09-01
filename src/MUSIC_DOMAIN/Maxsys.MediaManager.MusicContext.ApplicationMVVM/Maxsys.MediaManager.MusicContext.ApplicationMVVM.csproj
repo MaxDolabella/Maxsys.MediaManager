@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <AssemblyName>Maxsys.MediaManager.Music_App</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
     <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataEFCore\Maxsys.MediaManager.MusicContext.Infra.DataEFCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Abstractions\" />
   </ItemGroup>
 
 </Project>

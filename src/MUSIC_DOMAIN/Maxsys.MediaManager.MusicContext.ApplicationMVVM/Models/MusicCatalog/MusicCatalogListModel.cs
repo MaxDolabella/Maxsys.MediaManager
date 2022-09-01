@@ -1,11 +1,12 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.DTO;
+﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
+using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public class MusicCatalogListModel : ValidableModelBase
+    public class MusicCatalogListModel : ValidableViewModelBase
     {
         private readonly CatalogInfoDTO _musicCatalog;
 

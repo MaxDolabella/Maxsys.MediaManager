@@ -1,4 +1,5 @@
 ﻿using Maxsys.Core.Helpers;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 using System;
@@ -7,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
 {
-    public sealed class CreateMusicModel : ValidableModelBase
+    public sealed class CreateMusicModel : ValidableViewModelBase
     {
         #region FIELDS
 

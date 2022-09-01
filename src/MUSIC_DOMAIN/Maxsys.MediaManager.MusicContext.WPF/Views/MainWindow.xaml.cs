@@ -19,7 +19,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF
 
             DataContext = _viewModel = new(logger, host, new MainWindowContentOwner(this), new MainWindowAppCloser(this));
 
-            Loaded += async (o, s) => { await _viewModel.ViewLoadedAsync(); };
+            Loaded += async (o, s) => { await _viewModel.LoadedCatalogsAsync(); };
         }
     }
 
@@ -37,7 +37,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF
 
             DataContext = _viewModel = new(logger, host, this, this);
 
-            Loaded += async (o, s) => { await _viewModel.ViewLoadedAsync(); };
+            Loaded += async (o, s) => { await _viewModel.LoadCatalogsAsync(); };
         }
 
         internal void UpdateToolBarText(string text)
@@ -117,7 +117,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF
 
                 SetMainContent(view);
 
-                _logger.LogDebug($"{viewType.Name} in the ContentContainer");
+                _logger.LogDebug($"{viewType.CatalogName} in the ContentContainer");
             }
             catch (Exception ex)
             {

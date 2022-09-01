@@ -1,7 +1,9 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -11,9 +13,9 @@ using System.Windows.Input;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 {
-    public class CreateMusicCatalogViewModel : ViewModelBase<CreateMusicCatalogModel>
+    public class CreateMusicCatalogViewModel : ViewModelBase<CatalogCreateViewModel>, ICatalogCreateViewModel
     {
-        private readonly ICreateMusicCatalogAppService _appService;
+        private readonly ICatalogCreateAppService _appService;
 
         #region CTOR
 
@@ -21,7 +23,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
             ILogger logger,
             IDialogService dialogService,
             IMainContentCloser contentCloser,
-            ICreateMusicCatalogAppService appService)
+            ICatalogCreateAppService appService)
             : base(logger, dialogService, contentCloser)
         {
             _appService = appService;
@@ -33,9 +35,9 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #region PROPS
 
-        private ReadOnlyObservableCollection<MusicCatalogInfoModel> _musicCatalogs;
+        private ReadOnlyObservableCollection<CatalogDetailViewModel> _musicCatalogs;
 
-        public ReadOnlyObservableCollection<MusicCatalogInfoModel> MusicCatalogs
+        public ReadOnlyObservableCollection<CatalogDetailViewModel> Catalogs
         {
             get => _musicCatalogs;
             private set => SetProperty(ref _musicCatalogs, value);
@@ -51,7 +53,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #region METHODS
 
-        public override async Task ViewLoadedAsync()
+        public override async Task LoadedCatalogsAsync()
         {
             await LoadMusicCatalogsAsync();
         }
@@ -60,7 +62,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
         {
             _logger.LogDebug("Loading registered Catalogs.");
 
-            MusicCatalogs = (await _appService.GetMusicCatalogsAsync()).ToReadOnlyObservableCollection();
+            Catalogs = (await _appService.GetMusicCatalogsAsync()).ToReadOnlyObservableCollection();
 
             _logger.LogDebug("Registered Catalogs loaded.");
         }
