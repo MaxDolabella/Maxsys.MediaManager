@@ -1,7 +1,7 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 
 namespace Maxsys.MediaManager.CoreDomain.Commands;
 

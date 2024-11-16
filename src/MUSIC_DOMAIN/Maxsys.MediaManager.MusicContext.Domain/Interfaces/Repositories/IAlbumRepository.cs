@@ -1,9 +1,9 @@
+using Maxsys.Core.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using Maxsys.ModelCore.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
-public interface IAlbumRepository : IRepositoryBase<Album>
+public interface IAlbumRepository : IRepository<Album>
 {
     /// <summary>
     /// Asynchronouly retrives a list of all genres in repository.

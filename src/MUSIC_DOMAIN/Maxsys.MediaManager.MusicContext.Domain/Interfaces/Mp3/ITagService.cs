@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Maxsys.Core.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
@@ -7,7 +8,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 /// <summary>
 /// Provides methods to read and write Id3 tags in files.
 /// </summary>
-public interface ITagService : IDisposable
+public interface ITagService : IService
 {
     /// <summary>
     /// Write rating tag on file.

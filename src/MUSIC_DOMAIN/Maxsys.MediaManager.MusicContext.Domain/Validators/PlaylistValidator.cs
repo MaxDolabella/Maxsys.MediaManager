@@ -1,11 +1,10 @@
 using FluentValidation;
 using Maxsys.Core.Helpers;
-using Maxsys.MediaManager.CoreDomain.Validators;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Validators;
 
-public class PlaylistValidator : EntityValidator<Playlist>
+public class PlaylistValidator : AbstractValidator<Playlist>
 {
     private readonly IPlaylistRepository _repository;
 
@@ -41,10 +40,15 @@ public class PlaylistValidator : EntityValidator<Playlist>
 
     #region Rules
 
+    public void AddRuleForId()
+    {
+        RuleFor(x => x.Id).NotEmpty();
+    }
+
     public void RuleForName()
     {
         RuleFor(x => x.Name).NotEmpty()
-            .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
+            .Matches(RegexHelper.GetPattern(RegexHelper.Pattern.Letters | RegexHelper.Pattern.Numbers | RegexHelper.Pattern.Spaces | RegexHelper.Pattern.Hyphen))
                 .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
             .Length(3, 20);
     }
@@ -56,12 +60,13 @@ public class PlaylistValidator : EntityValidator<Playlist>
                 .WithMessage("'{PropertyName}' {PropertyValue} already exists. Must be unique.");
     }
 
+    // TODO rever
     public void RuleForItens()
     {
-        RuleFor(x => x.Items)
-            .NotEmptyList()
-            .OnlyUniqueItens(x => x.SongId)
-                .WithMessage("'{PropertyName}' {PropertyValue} already exists. Must be unique.");
+        //RuleFor(x => x.Items)
+        //    .NotEmptyList()
+        //    .OnlyUniqueItens(x => x.SongId)
+        //        .WithMessage("'{PropertyName}' {PropertyValue} already exists. Must be unique.");
     }
 
     #endregion Rules

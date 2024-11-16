@@ -1,6 +1,8 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
+﻿using Maxsys.Core.Extensions;
 
-public struct Id3v2DTO : IEquatable<Id3v2DTO>
+namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
+
+public struct Id3v2DTO : IEquatable<Id3v2DTO?>
 {
     #region CTOR
 
@@ -105,27 +107,25 @@ public struct Id3v2DTO : IEquatable<Id3v2DTO>
 
     #region Equals & operators
 
-    public bool Equals(Id3v2DTO other)
+    public bool Equals(Id3v2DTO? other)
     {
-        var composersEquals = Composers.ArrayEquals(other.Composers);
-        var coverPictureEquals = CoverPicture.ArrayEquals(other.CoverPicture);
-
-        return FullPath == other.FullPath
-            && Title == other.Title
-            && Album == other.Album
-            && Genre == other.Genre
-            && Artist == other.Artist
-            && Rating10 == other.Rating10
-            && TrackNumber == other.TrackNumber
-            && Year == other.Year
-            && Lyrics == other.Lyrics
-            && CoveredArtist == other.CoveredArtist
-            && FeaturedArtist == other.FeaturedArtist
-            && composersEquals
-            && coverPictureEquals;
+        return other is not null
+            && FullPath == other?.FullPath
+            && Title == other?.Title
+            && Album == other?.Album
+            && Genre == other?.Genre
+            && Artist == other?.Artist
+            && Rating10 == other?.Rating10
+            && TrackNumber == other?.TrackNumber
+            && Year == other?.Year
+            && Lyrics == other?.Lyrics
+            && CoveredArtist == other?.CoveredArtist
+            && FeaturedArtist == other?.FeaturedArtist
+            && Composers.ArrayEquals(other?.Composers)
+            && CoverPicture.ArrayEquals(other?.CoverPicture);
     }
 
-    public override bool Equals(object obj) => obj is Id3v2DTO tags && Equals(tags);
+    public override bool Equals(object? obj) => obj is Id3v2DTO tags && Equals(tags);
 
     public static bool operator ==(Id3v2DTO a, Id3v2DTO b) => a.Equals(b);
 
@@ -133,10 +133,19 @@ public struct Id3v2DTO : IEquatable<Id3v2DTO>
 
     public override int GetHashCode()
     {
-        var hashcode = (FullPath, Title, Artist, Album, Genre, Rating10
-            , TrackNumber, Year, Composers, Lyrics, CoverPicture).GetHashCode();
-
-        return hashcode;
+        var hashCode = new HashCode();
+        hashCode.Add(FullPath);
+        hashCode.Add(Title);
+        hashCode.Add(Artist);
+        hashCode.Add(Album);
+        hashCode.Add(Genre);
+        hashCode.Add(Rating10);
+        hashCode.Add(TrackNumber);
+        hashCode.Add(Year);
+        hashCode.Add(Composers);
+        hashCode.Add(Lyrics);
+        hashCode.Add(CoverPicture);
+        return hashCode.ToHashCode();
     }
 
     public override string ToString()

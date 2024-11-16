@@ -1,11 +1,8 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Maxsys.Core.Extensions;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 
-public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO>
+public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
 {
     #region CTOR
 
@@ -45,8 +42,8 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO>
             stars10: song.Classification.GetStars10(),
 
             album: album?.Name ?? throw new ArgumentNullException(nameof(album)),
-            genres: new string[] { album.Genre },
-            performers: new string[] { artist.Name },
+            genres: [album.Genre],
+            performers: [artist.Name],
 
             /*Nullable values*/
             trackNumber: song.TrackNumber,
@@ -77,7 +74,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO>
     public string[] Performers { get; private set; }
 
     /// <summary>Not nullable</summary>
-    public string[] AlbumArtists => Performers;
+    public readonly string[] AlbumArtists => Performers;
 
     /// <summary>Not nullable</summary>
     public string Album { get; private set; }
@@ -114,43 +111,48 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO>
 
     #region Equals & operators
 
-    public bool Equals(Id3v2TagsDTO other)
+    public readonly bool Equals(Id3v2TagsDTO? other)
     {
-        var performersEquals = Performers.ArrayEquals(other.Performers);
-        var genresEquals = Genres.ArrayEquals(other.Genres);
-        var composersEquals = Composers.ArrayEquals(other.Composers);
-        var coverPictureEquals = CoverPicture.ArrayEquals(other.CoverPicture);
-
-        return FullPath == other.FullPath
-            && Title == other.Title
-            && Album == other.Album
-            && Stars10 == other.Stars10
-            && TrackNumber == other.TrackNumber
-            && Year == other.Year
-            && Lyrics == other.Lyrics
-            && CoveredArtist == other.CoveredArtist
-            && FeaturedArtist == other.FeaturedArtist
-            && performersEquals
-            && genresEquals
-            && composersEquals
-            && coverPictureEquals;
+        return other is not null
+            && FullPath == other?.FullPath
+            && Title == other?.Title
+            && Album == other?.Album
+            && Stars10 == other?.Stars10
+            && TrackNumber == other?.TrackNumber
+            && Year == other?.Year
+            && Lyrics == other?.Lyrics
+            && CoveredArtist == other?.CoveredArtist
+            && FeaturedArtist == other?.FeaturedArtist
+            && Performers.ArrayEquals(other?.Performers)
+            && Genres.ArrayEquals(other?.Genres)
+            && Composers.ArrayEquals(other?.Composers)
+            && CoverPicture.ArrayEquals(other?.CoverPicture);
     }
 
-    public override bool Equals(object obj) => obj is Id3v2TagsDTO tags && Equals(tags);
+    public override readonly bool Equals(object? obj) => obj is Id3v2TagsDTO tags && Equals(tags);
 
     public static bool operator ==(Id3v2TagsDTO a, Id3v2TagsDTO b) => a.Equals(b);
 
     public static bool operator !=(Id3v2TagsDTO a, Id3v2TagsDTO b) => !(a == b);
 
-    public override int GetHashCode()
+    public override readonly int GetHashCode()
     {
-        var hashcode = (FullPath, Title, Performers, Album, Genres, Stars10
-            , TrackNumber, Year, Composers, Lyrics, CoverPicture).GetHashCode();
-
-        return hashcode;
+        HashCode hash = new();
+        hash.Add(FullPath);
+        hash.Add(Title);
+        hash.Add(Performers);
+        hash.Add(Album);
+        hash.Add(Genres);
+        hash.Add(Stars10);
+        hash.Add(TrackNumber);
+        hash.Add(Year);
+        hash.Add(Composers);
+        hash.Add(Lyrics);
+        hash.Add(CoverPicture);
+        return hash.ToHashCode();
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         return GetType().Name + " [Title=" + Title + "]";
     }
@@ -159,20 +161,22 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO>
 
     #region Methods
 
+    // TODO Apagar?
     public Id3v2TagsDTO UpdateAlbum(Album album)
     {
         if (this == Empty) return Empty;
 
         Album = album?.Name ?? throw new ArgumentNullException(nameof(album));
 
-        Performers = new string[] { album.Artist.Name };
-        Genres = new string[] { album.Genre };
+        Performers = [album.Artist.Name];
+        Genres = [album.Genre];
         Year = album.Year;
         CoverPicture = album.AlbumCover;
 
         return this;
     }
 
+    // TODO Apagar?
     public Id3v2TagsDTO UpdateTrackNumber(int? trackNumber)
     {
         if (this == Empty) return Empty;
@@ -182,6 +186,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO>
         return this;
     }
 
+    // TODO Apagar?
     public Id3v2TagsDTO ToFile(string fileToTag)
     {
         if (this == Empty) return Empty;

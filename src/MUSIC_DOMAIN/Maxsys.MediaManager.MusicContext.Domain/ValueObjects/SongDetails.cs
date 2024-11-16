@@ -1,14 +1,13 @@
-﻿using Maxsys.ModelCore;
-using System;
+﻿using Maxsys.MediaManager.MusicContext.Domain.Enums;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 
-public class SongDetails : ValueObject<SongDetails>
+public class SongDetails : IEquatable<SongDetails?>
 {
     #region PROPERTIES
 
     public bool IsBonusTrack { get; protected set; }
-    public VocalGender VocalGender { get; protected set; }
+    public VocalGenders VocalGender { get; protected set; }
     public string? CoveredArtist { get; protected set; }
     public string? FeaturedArtist { get; protected set; }
 
@@ -19,7 +18,7 @@ public class SongDetails : ValueObject<SongDetails>
     protected SongDetails()
     { }
 
-    internal SongDetails(bool isBonusTrack, VocalGender vocalGender, string? coveredArtist, string? featuredArtist)
+    internal SongDetails(bool isBonusTrack, VocalGenders vocalGender, string? coveredArtist, string? featuredArtist)
     {
         IsBonusTrack = isBonusTrack;
         VocalGender = vocalGender;
@@ -31,15 +30,18 @@ public class SongDetails : ValueObject<SongDetails>
 
     #region OVERRIDES
 
-    protected override bool EqualsCore(SongDetails other)
+    public bool Equals(SongDetails? other)
     {
-        return IsBonusTrack == other.IsBonusTrack
+        return other is not null
+            && IsBonusTrack == other.IsBonusTrack
             && VocalGender == other.VocalGender
             && CoveredArtist == other.CoveredArtist
             && FeaturedArtist == other.FeaturedArtist;
     }
 
-    protected override int GetHashCodeCore()
+    public override bool Equals(object? obj) => Equals(obj as SongDetails);
+
+    public override int GetHashCode()
     {
         return HashCode.Combine(IsBonusTrack, VocalGender, CoveredArtist, FeaturedArtist);
     }

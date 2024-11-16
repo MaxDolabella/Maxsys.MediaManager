@@ -1,4 +1,6 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.Factories;
+﻿using Maxsys.MediaManager.MusicContext.Domain.Enums;
+
+namespace Maxsys.MediaManager.MusicContext.Domain.Factories;
 
 public static class AlbumFactory
 {
@@ -12,7 +14,7 @@ public static class AlbumFactory
     /// <param name="genre">Required. Album genre.</param>
     /// <param name="albumCover">Album cover picture.</param>
     /// <param name="albumType">Album type.</param>
-    public static Album Create(Guid artistId, string albumDirectory, string name, short? year, string genre, byte[] albumCover, AlbumType albumType)
+    public static Album Create(Guid artistId, string albumDirectory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType)
     {
         return new Album(GuidGen.NewSequentialGuid(), artistId, albumDirectory, name, year, genre, albumCover, albumType);
     }

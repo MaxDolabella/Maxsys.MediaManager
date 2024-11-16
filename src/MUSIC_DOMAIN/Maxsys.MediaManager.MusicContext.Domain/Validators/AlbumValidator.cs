@@ -1,11 +1,11 @@
 using FluentValidation;
 using Maxsys.Core.Helpers;
-using Maxsys.MediaManager.CoreDomain.Validators;
+using Maxsys.MediaManager.MusicContext.Domain.Enums;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Validators;
 
-public class AlbumValidator : EntityValidator<Album>
+public class AlbumValidator : AbstractValidator<Album>
 {
     private readonly IAlbumRepository _repository;
 
@@ -25,14 +25,14 @@ public class AlbumValidator : EntityValidator<Album>
     {
         bool isValid = (albumYear, album.AlbumType) switch
         {
-            (not null, AlbumType.Studio
-                or AlbumType.Live
-                or AlbumType.Compilation
-                or AlbumType.Bootleg) => true,
+            (not null, AlbumTypes.Studio
+                or AlbumTypes.Live
+                or AlbumTypes.Compilation
+                or AlbumTypes.Bootleg) => true,
 
-            (null, AlbumType.Undefined
-                or AlbumType.Various
-                or AlbumType.Others) => true,
+            (null, AlbumTypes.Undefined
+                or AlbumTypes.Various
+                or AlbumTypes.Others) => true,
 
             _ => false
         };
@@ -88,6 +88,11 @@ public class AlbumValidator : EntityValidator<Album>
 
     #region Rules
 
+    public void AddRuleForId()
+    {
+        RuleFor(x => x.Id).NotEmpty();
+    }
+
     public void RuleForArtist()
     {
         RuleFor(x => x.Artist).NotNull()
@@ -107,7 +112,7 @@ public class AlbumValidator : EntityValidator<Album>
     public void RuleForGenre()
     {
         RuleFor(x => x.Genre).NotEmpty().MaximumLength(50)
-            .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
+            .Matches(RegexHelper.GetPattern(RegexHelper.Pattern.Letters | RegexHelper.Pattern.Numbers | RegexHelper.Pattern.Spaces | RegexHelper.Pattern.Hyphen))
                 .WithMessage("{PropertyName} must contain only letters, spaces and hyphens.");
     }
 
@@ -123,7 +128,7 @@ public class AlbumValidator : EntityValidator<Album>
     public void RuleForName()
     {
         RuleFor(x => x.Name).NotEmpty().MaximumLength(50)
-            .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_PARENTHESIS_COMMA_DOT_SPACES_HYPHENS)
+            .Matches(RegexHelper.GetPattern(RegexHelper.Pattern.Letters | RegexHelper.Pattern.Numbers | RegexHelper.Pattern.Spaces | RegexHelper.Pattern.Hyphen | RegexHelper.Pattern.Parentesis | RegexHelper.Pattern.Commas | RegexHelper.Pattern.Dots))
                 .WithMessage("{PropertyName} must contain only letters, numbers, and following symbols: (),.- [space]");
     }
 

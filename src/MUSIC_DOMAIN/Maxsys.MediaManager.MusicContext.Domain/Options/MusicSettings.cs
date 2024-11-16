@@ -2,7 +2,7 @@
 
 public class MusicSettings
 {
-    public const string Section = nameof(MusicSettings);
+    public const string SECTION = nameof(MusicSettings);
 
     /// <summary>
     /// Defines the Song library folder.

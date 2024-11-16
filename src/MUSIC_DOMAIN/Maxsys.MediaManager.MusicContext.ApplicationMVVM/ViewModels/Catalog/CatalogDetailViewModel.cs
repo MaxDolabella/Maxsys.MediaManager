@@ -1,6 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using System;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog
 {

@@ -1,9 +1,9 @@
+using Maxsys.Core.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using Maxsys.ModelCore.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
-public interface IArtistRepository : IRepositoryBase<Artist>
+public interface IArtistRepository : IRepository<Artist>
 {
     /// <summary>
     /// Asynchronously returns a list of <see cref="ArtistDetailsDTO"/>.

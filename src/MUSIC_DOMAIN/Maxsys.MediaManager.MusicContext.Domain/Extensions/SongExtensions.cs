@@ -2,6 +2,7 @@
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Extensions;
 
+// TODO apagar?
 public static class SongExtensions
 {
     public static void UpdateSongPropertiesFrom(this Song song, ISongPropertiesReader songPropertiesReader, string fileToUpdateFrom)

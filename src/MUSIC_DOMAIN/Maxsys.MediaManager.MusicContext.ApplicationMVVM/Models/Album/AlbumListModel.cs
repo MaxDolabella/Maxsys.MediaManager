@@ -1,46 +1,46 @@
-﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
-using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
+//using Maxsys.MediaManager.MusicContext.Domain.DTO;
+//using System;
+//using System.ComponentModel;
+//using System.ComponentModel.DataAnnotations;
 
-namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
-{
-    public class AlbumListModel : ValidableViewModelBase
-    {
-        private readonly AlbumDetailDTO _album;
-        public AlbumListModel()
-        { }
-        
-        public AlbumListModel(AlbumDetailDTO album)
-        {
-            _album = album;
-        }
+//namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models
+//{
+//    public class AlbumListModel : ValidableViewModelBase
+//    {
+//        private readonly AlbumDetailDTO _album;
+//        public AlbumListModel()
+//        { }
 
-        [Display(Name = "MUSIC CATALOG")]
-        public string AlbumMusicCatalogName => _album.AlbumMusicCatalogName;
+//        public AlbumListModel(AlbumDetailDTO album)
+//        {
+//            _album = album;
+//        }
 
-        [Display(Name = "ARTIST")]
-        public string AlbumArtistName => _album.AlbumArtistName;
+//        [Display(Name = "MUSIC CATALOG")]
+//        public string AlbumMusicCatalogName => _album.AlbumMusicCatalogName;
 
-        [Browsable(false)]
-        public Guid AlbumId => _album.AlbumId;
+//        [Display(Name = "ARTIST")]
+//        public string AlbumArtistName => _album.AlbumArtistName;
 
-        [Display(Name = "ALBUM")]
-        public string AlbumName => _album.AlbumName;
+//        [Browsable(false)]
+//        public Guid AlbumId => _album.AlbumId;
 
-        [Display(Name = "TYPE")]
-        public string AlbumType => _album.AlbumType.ToString();
+//        [Display(Name = "ALBUM")]
+//        public string AlbumName => _album.AlbumName;
 
-        [Display(Name = "YEAR")]
-        public string AlbumYear => _album.AlbumYear.HasValue
-            ? _album.AlbumYear.Value.ToString() : string.Empty;
+//        [Display(Name = "TYPE")]
+//        public string AlbumType => _album.AlbumType.ToString();
 
-        [Display(Name = "MUSIC COUNT")]
-        [Range(0, 0, ErrorMessage = "Album must not contains any music to be deleted.")]
-        public int AlbumMusicCount => _album.AlbumMusicCount;
+//        [Display(Name = "YEAR")]
+//        public string AlbumYear => _album.AlbumYear.HasValue
+//            ? _album.AlbumYear.Value.ToString() : string.Empty;
 
-        [Browsable(false)]
-        public string AlbumDirectory => _album.AlbumDirectory;
-    }
-}
+//        [Display(Name = "MUSIC COUNT")]
+//        [Range(0, 0, ErrorMessage = "Album must not contains any music to be deleted.")]
+//        public int AlbumMusicCount => _album.AlbumMusicCount;
+
+//        [Browsable(false)]
+//        public string AlbumDirectory => _album.AlbumDirectory;
+//    }
+//}

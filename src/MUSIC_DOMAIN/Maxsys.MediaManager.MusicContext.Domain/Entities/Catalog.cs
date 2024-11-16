@@ -1,27 +1,25 @@
-using Maxsys.ModelCore;
+using Maxsys.Core.Entities;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
 [System.Diagnostics.DebuggerDisplay("{Name}")]
-public class Catalog : EntityBase
+public class Catalog : Entity<Guid>
 {
     #region PROPERTIES
 
     public string Name { get; protected set; }
 
     // Collections
-    public virtual ICollection<Artist> Artists { get; protected set; }
+    public List<Artist> Artists { get; protected set; } = [];
 
     #endregion PROPERTIES
 
     #region CONSTRUCTORS
 
     protected Catalog()
-    {
-        Artists = new List<Artist>();
-    }
+    { }
 
-    internal Catalog(Guid id, string name) : this()
+    internal Catalog(Guid id, string name)
     {
         Id = id;
         Name = name;

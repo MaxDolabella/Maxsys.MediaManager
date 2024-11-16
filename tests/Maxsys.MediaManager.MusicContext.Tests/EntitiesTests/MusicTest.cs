@@ -40,19 +40,16 @@
 //            var wrongMusicN = SongFactory.Create(_sampleFileMp3, null, "", 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrongMusicE = SongFactory.Create(_sampleFileMp3, " ", "", 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(rightMusic);
 //            var resultWrongN = validator.TestValidate(wrongMusicN);
 //            var resultWrongE = validator.TestValidate(wrongMusicE);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.FullPath);
 //            resultWrongN.ShouldHaveValidationErrorFor(x => x.FullPath);
 //            resultWrongE.ShouldHaveValidationErrorFor(x => x.FullPath);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void Path_must_have_260chars_max_length()
@@ -65,17 +62,14 @@
 //            var wrongErrorMessages = validator.Validate(wrongMusic).Errors.Select(e => e.ErrorMessage);
 //            var expectedErrorMessage = "Path lenght must be lower than 260.";
 
-
 //            // Act
 //            var right = rightErrorMessages.Contains(expectedErrorMessage);
 //            var wrong = wrongErrorMessages.Contains(expectedErrorMessage);
-
 
 //            // Assert
 //            Assert.IsFalse(right);
 //            Assert.IsTrue(wrong);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void Title_cannot_be_null_or_empty()
@@ -86,19 +80,16 @@
 //            var wrongMusic_null = SongFactory.Create("", "", null, 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrongMusic_empty = SongFactory.Create("", "", " ", 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(rightMusic);
 //            var resultWrongNull = validator.TestValidate(wrongMusic_null);
 //            var resultWrongEmpty = validator.TestValidate(wrongMusic_empty);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.Title);
 //            resultWrongNull.ShouldHaveValidationErrorFor(x => x.Title);
 //            resultWrongEmpty.ShouldHaveValidationErrorFor(x => x.Title);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void Title_must_have_100chars_max_length()
@@ -108,17 +99,14 @@
 //            var rightMusic = SongFactory.Create("", "", StringHelper.GetWord(100), 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrongMusic = SongFactory.Create("", "", StringHelper.GetWord(101), 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(rightMusic);
 //            var resultWrong = validator.TestValidate(wrongMusic);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.Title);
 //            resultWrong.ShouldHaveValidationErrorFor(x => x.Title);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void TrackNumber_must_be_greater_than_zero_when_not_null()
@@ -130,13 +118,11 @@
 //            var wrong1 = SongFactory.Create("", "", "", 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrong2 = SongFactory.Create("", "", "", -1, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight1 = validator.TestValidate(right1);
 //            var resultRight2 = validator.TestValidate(right2);
 //            var resultWrong1 = validator.TestValidate(wrong1);
 //            var resultWrong2 = validator.TestValidate(wrong2);
-
 
 //            // Assert
 //            resultRight1.ShouldNotHaveValidationErrorFor(x => x.TrackNumber);
@@ -144,7 +130,6 @@
 //            resultWrong1.ShouldHaveValidationErrorFor(x => x.TrackNumber);
 //            resultWrong2.ShouldHaveValidationErrorFor(x => x.TrackNumber);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void Lyrics_must_have_5000chars_max_length_when_not_null()
@@ -155,19 +140,16 @@
 //            var right5000 = SongFactory.Create("", "", "", 0, StringHelper.GetWord(5000), "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrong = SongFactory.Create("", "", "", 0, StringHelper.GetWord(5001), "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRightNull = validator.TestValidate(rightNull);
 //            var resultRight5000 = validator.TestValidate(right5000);
 //            var resultWrong = validator.TestValidate(wrong);
-
 
 //            // Assert
 //            resultRightNull.ShouldNotHaveValidationErrorFor(x => x.Lyrics);
 //            resultRight5000.ShouldNotHaveValidationErrorFor(x => x.Lyrics);
 //            resultWrong.ShouldHaveValidationErrorFor(x => x.Lyrics);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void Comments_must_have_300chars_max_length_when_not_null()
@@ -178,19 +160,16 @@
 //            var right300 = SongFactory.Create("", "", "", 0, null, StringHelper.GetWord(300), false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrong = SongFactory.Create("", "", "", 0, null, StringHelper.GetWord(301), false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRightNull = validator.TestValidate(rightNull);
 //            var resultRight300 = validator.TestValidate(right300);
 //            var resultWrong = validator.TestValidate(wrong);
-
 
 //            // Assert
 //            resultRightNull.ShouldNotHaveValidationErrorFor(x => x.Comments);
 //            resultRight300.ShouldNotHaveValidationErrorFor(x => x.Comments);
 //            resultWrong.ShouldHaveValidationErrorFor(x => x.Comments);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void VocalGender_must_be_a_valid_enum()
@@ -200,17 +179,14 @@
 //            var right = SongFactory.Create("", "", "", 0, "", "", false, VocalGender.Undefined, null, null, 0, _propsReader, default(Album));
 //            var wrong = SongFactory.Create("", "", "", 0, "", "", false, (VocalGender)99, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(right);
 //            var resultWrong = validator.TestValidate(wrong);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.SongDetails.VocalGender);
 //            resultWrong.ShouldHaveValidationErrorFor(x => x.SongDetails.VocalGender);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void CoveredArtist_must_have_50chars_max_length_when_not_null()
@@ -221,19 +197,16 @@
 //            var right50 = SongFactory.Create("", "", "", 0, null, "", false, 0, StringHelper.GetWord(50), null, 0, _propsReader, default(Album));
 //            var wrong51 = SongFactory.Create("", "", "", 0, null, "", false, 0, StringHelper.GetWord(51), null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRightNull = validator.TestValidate(rightNull);
 //            var resultRight50 = validator.TestValidate(right50);
 //            var resultWrong51 = validator.TestValidate(wrong51);
-
 
 //            // Assert
 //            resultRightNull.ShouldNotHaveValidationErrorFor(x => x.SongDetails.CoveredArtist);
 //            resultRight50.ShouldNotHaveValidationErrorFor(x => x.SongDetails.CoveredArtist);
 //            resultWrong51.ShouldHaveValidationErrorFor(x => x.SongDetails.CoveredArtist);
 //        }
-
 
 //        [TestMethod] [TestCategory(CATEGORY)]
 //        public void FeaturedArtist_must_have_50chars_max_length_when_not_null()
@@ -244,19 +217,16 @@
 //            var right50 = SongFactory.Create("", "", "", 0, null, "", false, 0, null, StringHelper.GetWord(50), 0, _propsReader, default(Album));
 //            var wrong51 = SongFactory.Create("", "", "", 0, null, "", false, 0, null, StringHelper.GetWord(51), 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRightNull = validator.TestValidate(rightNull);
 //            var resultRight50 = validator.TestValidate(right50);
 //            var resultWrong51 = validator.TestValidate(wrong51);
-
 
 //            // Assert
 //            resultRightNull.ShouldNotHaveValidationErrorFor(x => x.SongDetails.FeaturedArtist);
 //            resultRight50.ShouldNotHaveValidationErrorFor(x => x.SongDetails.FeaturedArtist);
 //            resultWrong51.ShouldHaveValidationErrorFor(x => x.SongDetails.FeaturedArtist);
 //        }
-
 
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Duration_must_be_greater_than_zero()
@@ -269,13 +239,11 @@
 //            var wrongNull = SongFactory.Create("", null, "", 0, null, "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrongEmpty = SongFactory.Create("", " ", "", 0, null, "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(right);
 //            var resultWrongFile = validator.TestValidate(wrongFile);
 //            var resultWrongNull = validator.TestValidate(wrongNull);
 //            var resultWrongEmpty = validator.TestValidate(wrongEmpty);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.SongProperties.Duration);
@@ -283,7 +251,6 @@
 //            resultWrongNull.ShouldHaveValidationErrorFor(x => x.SongProperties.Duration);
 //            resultWrongEmpty.ShouldHaveValidationErrorFor(x => x.SongProperties.Duration);
 //        }
-
 
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void BitRate_must_be_greater_than_96kbps()
@@ -296,13 +263,11 @@
 //            var wrongNull = SongFactory.Create(null, "", "", 0, null, "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrongEmpty = SongFactory.Create(" ", "", "", 0, null, "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(right);
 //            var resultWrongFile = validator.TestValidate(wrongFile);
 //            var resultWrongNull = validator.TestValidate(wrongNull);
 //            var resultWrongEmpty = validator.TestValidate(wrongEmpty);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.SongProperties.BitRate);
@@ -310,7 +275,6 @@
 //            resultWrongNull.ShouldHaveValidationErrorFor(x => x.SongProperties.BitRate);
 //            resultWrongEmpty.ShouldHaveValidationErrorFor(x => x.SongProperties.BitRate);
 //        }
-
 
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Album_cannot_be_null()
@@ -321,11 +285,9 @@
 //            var right = SongFactory.Create("", "", "", 0, null, "", false, 0, null, null, 0, _propsReader, validAlbum);
 //            var wrong = SongFactory.Create("", "", "", 0, null, "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var resultRight = validator.TestValidate(right);
 //            var resultWrong = validator.TestValidate(wrong);
-
 
 //            // Assert
 //            resultRight.ShouldNotHaveValidationErrorFor(x => x.Album);
@@ -344,11 +306,9 @@
 //            var right = SongFactory.Create("", _uniqueFileMp3, "", 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 //            var wrong = SongFactory.Create("", repeatedPath, "", 0, "", "", false, 0, null, null, 0, _propsReader, default(Album));
 
-
 //            // Act
 //            var rightResult = validator.TestValidate(right);
 //            var wrongResult = validator.TestValidate(wrong);
-
 
 //            // Assert
 //            rightResult.ShouldNotHaveValidationErrorFor(x => x.FullPath);
@@ -357,4 +317,3 @@
 //        #endregion
 //    }
 //}
-

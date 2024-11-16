@@ -1,13 +1,14 @@
+using AutoMapper;
+using Maxsys.Core.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 
 /// <inheritdoc cref="ISongRepository"/>
 public class SongRepository : RepositoryBase<Song>, ISongRepository
 {
-    public SongRepository(MusicAppContext context) : base(context)
+    public SongRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
     public async Task<Song?> GetByPathAsync(string musicPath, CancellationToken token = default)

@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
+﻿using Maxsys.Core.Extensions;
+using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
 using Maxsys.MediaManager.CoreDomain.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +12,6 @@ public static class IoCExtensions
     /// </summary>
     public static IServiceCollection AddCoreDependencyInjection(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
     {
-        //services.Add(new ServiceDescriptor(typeof(IFilePropertiesReader), typeof(FilePropertiesReader), lifetime));
         services.Add<IFilePropertiesReader, FilePropertiesReader>(lifetime);
 
         return services;

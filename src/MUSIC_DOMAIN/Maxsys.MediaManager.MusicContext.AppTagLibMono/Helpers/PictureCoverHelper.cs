@@ -25,13 +25,13 @@ public static class PictureCoverHelper
         var taglibVector = new ByteVector(picture);
         var taglibPicture = new Picture(taglibVector) { Type = PictureType.FrontCover };
 
-        return new IPicture[] { taglibPicture };
+        return [taglibPicture];
     }
 
-    public static IPicture[] GetPictureFromFile(string? jpgFilePath)
+    public static IPicture[]? GetPictureFromFile(string? jpgFilePath)
     {
         return System.IO.File.Exists(jpgFilePath)
-            ? new IPicture[] { new Picture(jpgFilePath) }
+            ? [new Picture(jpgFilePath)]
             : null;
     }
 }

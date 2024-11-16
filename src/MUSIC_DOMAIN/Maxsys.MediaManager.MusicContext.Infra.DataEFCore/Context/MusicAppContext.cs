@@ -1,5 +1,5 @@
-﻿using ModelBuilderExtensions;
-using System.Data;
+﻿using System.Data;
+using ModelBuilderExtensions;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 
@@ -10,6 +10,7 @@ public class MusicAppContext : DbContext
     public MusicAppContext(DbContextOptions<MusicAppContext> options) : base(options)
     {
         ChangeTracker.LazyLoadingEnabled = false;
+        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution;
     }
 
     #endregion CTOR
@@ -62,7 +63,7 @@ public class MusicAppContext : DbContext
     public DbSet<Composer> Composers { get; set; }
     public DbSet<Song> Songs { get; set; }
     public DbSet<Playlist> Playlists { get; set; }
-    
+
     #endregion DbSets
 
     #region PRIVATE METHODS

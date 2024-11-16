@@ -1,5 +1,5 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
-using System;
+﻿using System;
+using Maxsys.MediaManager.MusicContext.Domain.Enums;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTFullExporter.DTOs
 {
@@ -10,7 +10,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTFullE
         string SongTitle,
         string SongComments,
         bool SongIsBonusTrack,
-        VocalGender SongVocalGender,
+        VocalGenders SongVocalGender,
         string SongCoveredArtist,
         string SongFeaturedArtist,
         int SongRating,
@@ -21,7 +21,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTFullE
         int? AlbumYear,
         string AlbumName,
         string AlbumGenre,
-        AlbumType AlbumType,
+        AlbumTypes AlbumType,
         Guid ArtistId,
         string ArtistName,
         Guid CatalogId,

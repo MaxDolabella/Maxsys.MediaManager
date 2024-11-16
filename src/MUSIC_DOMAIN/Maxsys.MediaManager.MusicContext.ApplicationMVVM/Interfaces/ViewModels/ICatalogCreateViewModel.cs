@@ -1,8 +1,8 @@
-﻿using Maxsys.MediaManager.CoreDomain.Commands;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Maxsys.MediaManager.CoreDomain.Commands;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
 

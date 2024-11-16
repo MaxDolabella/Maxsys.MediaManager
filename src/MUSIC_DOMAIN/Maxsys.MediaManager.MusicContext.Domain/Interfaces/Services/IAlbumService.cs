@@ -1,8 +1,9 @@
 using FluentValidation.Results;
+using Maxsys.Core.Interfaces.Services;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
-public interface IAlbumService
+public interface IAlbumService : IService
 {
     /// <summary>
     /// Saves an <paramref name="albumCover">album cover</paramref> in a specific <paramref name="directory"/> asynchronous.

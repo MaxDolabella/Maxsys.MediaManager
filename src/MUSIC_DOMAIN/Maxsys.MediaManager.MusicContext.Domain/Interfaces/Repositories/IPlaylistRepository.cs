@@ -1,8 +1,8 @@
-using Maxsys.ModelCore.Interfaces.Repositories;
+using Maxsys.Core.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
-public interface IPlaylistRepository : IRepositoryBase<Playlist>
+public interface IPlaylistRepository : IRepository<Playlist>
 {
     bool RemovePlaylistItem(PlaylistItem item);
 

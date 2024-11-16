@@ -1,13 +1,14 @@
+using System.IO;
 using FluentValidation.Results;
 using Maxsys.Core.Helpers;
+using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using System.IO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
 /// <inheritdoc cref="IAlbumService"/>
-public class AlbumService : IAlbumService
+public class AlbumService : ServiceBase, IAlbumService
 {
     private const string COVER_FILE_NAME = "cover.jpg";
     private readonly IAlbumRepository _repository;
@@ -26,12 +27,12 @@ public class AlbumService : IAlbumService
         ValidationResult validationResult = new();
 
         if (string.IsNullOrWhiteSpace(directory))
-            return validationResult.AddErrorMessage($"{nameof(directory)} value is invalid (cannot be empty or null).");
+            return validationResult.AddError($"{nameof(directory)} value is invalid (cannot be empty or null).");
 
         // Check wether is directory too??
 
         if (albumCover is null)
-            return validationResult.AddErrorMessage($"{nameof(albumCover)} is invalid (cannot be empty or null).");
+            return validationResult.AddError($"{nameof(albumCover)} is invalid (cannot be empty or null).");
 
         var imageFilePath = Path.Combine(directory, COVER_FILE_NAME);
 

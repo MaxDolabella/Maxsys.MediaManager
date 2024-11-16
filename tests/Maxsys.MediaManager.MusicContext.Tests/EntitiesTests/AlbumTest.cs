@@ -18,7 +18,7 @@
 //        const string CATEGORY = "Domain.Entity: " + nameof(Album);
 //        const string albumDir = nameof(albumDir);
 //        static readonly IAlbumRepository _repository = new AlbumMockRepository();
-//        static readonly IValidator<Album> _businessValidator = new AlbumBusinessValidator(); 
+//        static readonly IValidator<Album> _businessValidator = new AlbumBusinessValidator();
 //        static readonly IValidator<Album> _persistenceValidator = new AlbumPersistenceValidator(_repository);
 //        #endregion
 
@@ -36,12 +36,10 @@
 //            var rightResult = validator.TestValidate(rightAlbum);
 //            var wrongResult = validator.TestValidate(wrongAlbum);
 
-
 //            // Assert
 //            rightResult.ShouldNotHaveValidationErrorFor(x => x.Artist);
 //            wrongResult.ShouldHaveValidationErrorFor(x => x.Artist);
 //        }
-
 
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Name_cannot_be_null_or_empty()
@@ -53,12 +51,10 @@
 //            var wrongAlbumN = AlbumFactory.Create(albumDir, null, 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbumE = AlbumFactory.Create(albumDir, "   ", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var rightResult = validator.TestValidate(rightAlbum);
 //            var wrongNResult = validator.TestValidate(wrongAlbumN);
 //            var wrongEResult = validator.TestValidate(wrongAlbumE);
-
 
 //            // Assert
 //            rightResult.ShouldNotHaveValidationErrorFor(x => x.Name);
@@ -66,7 +62,6 @@
 //            wrongEResult.ShouldHaveValidationErrorFor(x => x.Name);
 //        }
 
-        
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Name_must_have_50chars_max_length()
 //        {
@@ -76,17 +71,14 @@
 //            var rightAlbum = AlbumFactory.Create(albumDir, StringHelper.GetWord(50), 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, StringHelper.GetWord(51), 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong = validator.Validate(wrongAlbum).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
 //            Assert.IsFalse(wrong);
 //        }
-
 
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Year_must_be_between_1500_and_2100()
@@ -98,12 +90,10 @@
 //            var wrongAlbum1 = AlbumFactory.Create(albumDir, "Name", 1499, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum2 = AlbumFactory.Create(albumDir, "Name", 2101, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong1 = validator.Validate(wrongAlbum1).IsValid;
 //            var wrong2 = validator.Validate(wrongAlbum2).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
@@ -111,7 +101,6 @@
 //            Assert.IsFalse(wrong2);
 //        }
 
-        
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Genre_cannot_be_null_or_empty()
 //        {
@@ -122,12 +111,10 @@
 //            var wrongAlbum1 = AlbumFactory.Create(albumDir, "Name", 2020, null, new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum2 = AlbumFactory.Create(albumDir, "Name", 2020, "  ", new byte[] { }, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong1 = validator.Validate(wrongAlbum1).IsValid;
 //            var wrong2 = validator.Validate(wrongAlbum2).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
@@ -135,7 +122,6 @@
 //            Assert.IsFalse(wrong2, "empty value");
 //        }
 
-        
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void Genre_must_have_50chars_length()
 //        {
@@ -145,11 +131,9 @@
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, StringHelper.GetWord(50), new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, StringHelper.GetWord(51), new byte[] { }, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong = validator.Validate(wrongAlbum).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
@@ -165,18 +149,15 @@
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, (AlbumType)99, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong = validator.Validate(wrongAlbum).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
 //            Assert.IsFalse(wrong);
 //        }
 
-        
 //        [TestMethod][TestCategory(CATEGORY)]
 //        public void AlbumCover_cannot_be_null()
 //        {
@@ -186,11 +167,9 @@
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, "Name", 2020, "Others", null, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong = validator.Validate(wrongAlbum).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
@@ -209,11 +188,9 @@
 //            var rightAlbum = AlbumFactory.Create(albumDir, "Unique Name", 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 //            var wrongAlbum = AlbumFactory.Create(albumDir, repeatedAlbumNameFromArtist, 2020, "Others", new byte[] { }, AlbumType.Studio, validArtist);
 
-
 //            // Act
 //            var right = validator.Validate(rightAlbum).IsValid;
 //            var wrong = validator.Validate(wrongAlbum).IsValid;
-
 
 //            // Assert
 //            Assert.IsTrue(right);
@@ -222,4 +199,3 @@
 //        #endregion
 //    }
 //}
-

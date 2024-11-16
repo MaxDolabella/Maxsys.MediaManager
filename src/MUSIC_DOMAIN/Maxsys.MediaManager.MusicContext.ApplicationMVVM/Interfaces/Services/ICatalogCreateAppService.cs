@@ -1,15 +1,15 @@
-﻿using FluentValidation.Results;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FluentValidation.Results;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services
 {
     public interface ICatalogCreateAppService : IDisposable
     {
-        Task<ValidationResult> CreateCatalogAsync(CatalogCreateViewModel viewModel);
+        Task<ValidationResult> CreateCatalogAsync(ICatalogCreateViewModel viewModel);
 
         /// <summary>
         /// Returns a readonly list of <see cref="CatalogDetailViewModel"/> asynchronous.

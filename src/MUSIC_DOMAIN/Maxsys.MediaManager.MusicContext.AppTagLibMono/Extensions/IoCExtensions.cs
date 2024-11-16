@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.MusicContext.AppTagLibMono.Services;
+﻿using Maxsys.Core.Extensions;
+using Maxsys.MediaManager.MusicContext.AppTagLibMono.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 using Microsoft.Extensions.DependencyInjection;
 

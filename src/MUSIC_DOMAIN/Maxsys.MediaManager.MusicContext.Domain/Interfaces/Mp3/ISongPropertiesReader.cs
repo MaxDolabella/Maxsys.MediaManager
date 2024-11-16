@@ -3,7 +3,7 @@
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 
 // TODO make methods async?
-public interface ISongPropertiesReader : IFilePropertiesReader, IDisposable
+public interface ISongPropertiesReader : IFilePropertiesReader
 {
     /// <summary>
     /// Gets the music duration given a mp3 path

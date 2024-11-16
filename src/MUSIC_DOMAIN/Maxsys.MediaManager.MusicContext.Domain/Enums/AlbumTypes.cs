@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
+namespace Maxsys.MediaManager.MusicContext.Domain.Enums;
 
-public enum AlbumType : byte
+public enum AlbumTypes : byte
 {
     /// <summary>
     /// Undefined Albuns<para/>Most used for musics without albums. "Misc - Iron Maiden"
@@ -14,25 +14,25 @@ public enum AlbumType : byte
     /// Studio Albuns<para/>"Brave New World"
     /// </summary>
     [Description("Studio album")]
-    Studio = 1,
+    Studio,
 
     /// <summary>
     /// Live Albuns<para/>"Rock In Rio"
     /// </summary>
     [Description("Live album")]
-    Live = 2,
+    Live,
 
     /// <summary>
     /// Compilations Albuns<para/>"The Best of" Albuns
     /// </summary>
     [Description("Compilation album")]
-    Compilation = 3,
+    Compilation,
 
     /// <summary>
     /// Bootlegs Albuns<para/>Amateur records
     /// </summary>
     [Description("Amateur record")]
-    Bootleg = 4,
+    Bootleg,
 
     /// <summary>
     /// Various Artists Albuns<para/>"Female Metal"

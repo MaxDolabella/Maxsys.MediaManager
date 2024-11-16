@@ -1,6 +1,7 @@
+using AutoMapper;
+using Maxsys.Core.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 
@@ -9,7 +10,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 /// </summary>
 public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
 {
-    public AlbumRepository(MusicAppContext dbContext) : base(dbContext)
+    public AlbumRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
     public async Task<IReadOnlyList<string>> GetGenresAsync(CancellationToken token = default)

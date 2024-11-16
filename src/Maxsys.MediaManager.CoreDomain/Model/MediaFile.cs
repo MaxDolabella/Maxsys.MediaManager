@@ -1,10 +1,10 @@
-using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
-using Maxsys.ModelCore;
 using System;
+using Maxsys.Core.Entities;
+using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
 
 namespace Maxsys.MediaManager.CoreDomain;
 
-public abstract class MediaFile : EntityBase
+public abstract class MediaFile : Entity<Guid>
 {
     #region PROPERTIES
 
@@ -32,10 +32,8 @@ public abstract class MediaFile : EntityBase
 
     #region CONSTRUCTORS
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     protected MediaFile()
     { }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     protected MediaFile(Guid id, string fullPath, string originalFileName, long fileSize)
     {

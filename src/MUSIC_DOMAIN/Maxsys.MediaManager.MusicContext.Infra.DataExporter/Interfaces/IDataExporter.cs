@@ -1,5 +1,5 @@
-﻿using FluentValidation.Results;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using FluentValidation.Results;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 {

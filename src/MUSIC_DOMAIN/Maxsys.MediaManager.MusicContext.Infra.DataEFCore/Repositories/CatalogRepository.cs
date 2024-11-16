@@ -1,13 +1,14 @@
+using AutoMapper;
+using Maxsys.Core.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 
 /// <inheritdoc cref="ICatalogRepository" />
 public class CatalogRepository : RepositoryBase<Catalog>, ICatalogRepository
 {
-    public CatalogRepository(MusicAppContext dbContext) : base(dbContext)
+    public CatalogRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
     public async Task<IReadOnlyList<CatalogDetailDTO>> GetCatalogDetailsAsync(CancellationToken token = default)

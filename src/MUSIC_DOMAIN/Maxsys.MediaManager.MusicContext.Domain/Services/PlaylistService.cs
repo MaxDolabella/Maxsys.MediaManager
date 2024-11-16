@@ -1,12 +1,13 @@
+using System.IO;
 using FluentValidation.Results;
+using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using System.IO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
-public class PlaylistService : IPlaylistService
+public class PlaylistService : ServiceBase, IPlaylistService
 {
     private readonly IPlaylistRepository _repository;
     private readonly ITagService _tagService;

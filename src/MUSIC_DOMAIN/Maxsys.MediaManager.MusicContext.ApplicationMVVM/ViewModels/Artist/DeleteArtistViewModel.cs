@@ -1,76 +1,76 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿//using Maxsys.MediaManager.CoreDomain.Interfaces;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+//using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
+//using Maxsys.ModelCore.Interfaces.Services;
+//using Microsoft.Extensions.Logging;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
+//using System.Windows.Input;
 
-namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
-{
-    public sealed class DeleteArtistViewModel : ViewModelCollectionBase<ArtistListModel>
-    {
-        #region CTOR
+//namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
+//{
+//    public sealed class DeleteArtistViewModel : ViewModelCollectionBase<ArtistListModel>
+//    {
+//        #region CTOR
 
-        public DeleteArtistViewModel(
-            ILogger logger,
-            IDialogService dialogService,
-            IQuestionDialogService questionDialogService,
-            IMainContentCloser contentCloser,
-            IPathService pathService,
-            IDeleteArtistAppService appService)
-            : base(logger, dialogService, contentCloser)
-        {
-            _appService = appService;
+//        public DeleteArtistViewModel(
+//            ILogger logger,
+//            IDialogService dialogService,
+//            IQuestionDialogService questionDialogService,
+//            IMainContentCloser contentCloser,
+//            IPathService pathService,
+//            IDeleteArtistAppService appService)
+//            : base(logger, dialogService, contentCloser)
+//        {
+//            _appService = appService;
 
-            DeleteArtistCommand = new DeleteArtistCommand(this, logger, questionDialogService, dialogService, appService, pathService);
-        }
+//            DeleteArtistCommand = new DeleteArtistCommand(this, logger, questionDialogService, dialogService, appService, pathService);
+//        }
 
-        #endregion CTOR
+//        #endregion CTOR
 
-        #region FIELDS
+//        #region FIELDS
 
-        private readonly IDeleteArtistAppService _appService;
+//        private readonly IDeleteArtistAppService _appService;
 
-        private ArtistListModel _selectedModel;
+//        private ArtistListModel _selectedModel;
 
-        #endregion FIELDS
+//        #endregion FIELDS
 
-        #region PROPS
+//        #region PROPS
 
-        public ArtistListModel SelectedModel
-        {
-            get => _selectedModel;
-            set => SetProperty(ref _selectedModel, value);
-        }
+//        public ArtistListModel SelectedModel
+//        {
+//            get => _selectedModel;
+//            set => SetProperty(ref _selectedModel, value);
+//        }
 
-        #endregion PROPS
+//        #endregion PROPS
 
-        #region COMMANDS
+//        #region COMMANDS
 
-        public ICommand DeleteArtistCommand { get; }
+//        public ICommand DeleteArtistCommand { get; }
 
-        #endregion COMMANDS
+//        #endregion COMMANDS
 
-        #region METHODS
+//        #region METHODS
 
-        public override async Task LoadedCatalogsAsync()
-        {
-            await LoadArtistsAsync();
-        }
+//        public override async Task LoadedCatalogsAsync()
+//        {
+//            await LoadArtistsAsync();
+//        }
 
-        private async Task LoadArtistsAsync()
-        {
-            _logger.LogDebug("Loading Artists.");
+//        private async Task LoadArtistsAsync()
+//        {
+//            _logger.LogDebug("Loading Artists.");
 
-            Models = (await _appService.GetArtistsAsync()).ToObservableCollection();
+//            Models = (await _appService.GetArtistsAsync()).ToObservableCollection();
 
-            _logger.LogDebug("Artists loaded.");
-        }
+//            _logger.LogDebug("Artists loaded.");
+//        }
 
-        #endregion METHODS
-    }
-}
+//        #endregion METHODS
+//    }
+//}

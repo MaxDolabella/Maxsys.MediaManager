@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
 using Maxsys.Core.Helpers;
-using Maxsys.MediaManager.CoreDomain.Validators;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Validators;
 
-public class CatalogValidator : EntityValidator<Catalog>
+public class CatalogValidator : AbstractValidator<Catalog>
 {
     private readonly ICatalogRepository _repository;
 
@@ -61,13 +60,18 @@ public class CatalogValidator : EntityValidator<Catalog>
 
     #region Rules
 
+    public void AddRuleForId()
+    {
+        RuleFor(x => x.Id).NotEmpty();
+    }
+
     /// <summary>
     /// Adds rule to validate <see cref="Catalog.Name"/>.
     /// </summary>
     public CatalogValidator AddRuleForName()
     {
         RuleFor(x => x.Name).NotEmpty()
-            .Matches(RegexHelper.PATTERN_LETTERS_NUMBERS_SPACES_HYPHENS)
+            .Matches(RegexHelper.GetPattern(RegexHelper.Pattern.Letters | RegexHelper.Pattern.Numbers | RegexHelper.Pattern.Spaces | RegexHelper.Pattern.Hyphen))
                 .WithMessage("{PropertyName} must contain only letters, numbers, spaces and hyphens.")
             .MinimumLength(2)
             .MaximumLength(50);

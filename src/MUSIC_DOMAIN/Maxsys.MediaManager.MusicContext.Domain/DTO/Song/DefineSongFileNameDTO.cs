@@ -9,7 +9,7 @@ public struct DefineSongFileNameDTO
     public bool SongIsBonusTrack { get; init; }
     public string AlbumDirectory { get; set; }
 
-    public bool IsValid() 
-        => !(string.IsNullOrWhiteSpace(SongTitle) 
+    public bool IsValid()
+        => !(string.IsNullOrWhiteSpace(SongTitle)
         || string.IsNullOrWhiteSpace(AlbumDirectory));
 }

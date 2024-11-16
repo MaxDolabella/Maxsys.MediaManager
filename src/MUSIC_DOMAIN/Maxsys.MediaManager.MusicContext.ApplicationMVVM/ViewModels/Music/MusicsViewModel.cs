@@ -1,161 +1,161 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿//using CommunityToolkit.Mvvm.Input;
+//using Maxsys.MediaManager.CoreDomain.Interfaces;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+//using Maxsys.ModelCore.Interfaces.Services;
+//using Microsoft.Extensions.Logging;
+//using System.Collections.Generic;
+//using System.Collections.ObjectModel;
+//using System.Diagnostics;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using System.Windows.Input;
 
-namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
-{
-    public sealed class MusicsViewModel : ViewModelBase
-    {
-        #region FIELDS
+//namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
+//{
+//    public sealed class MusicsViewModel : ViewModelBase
+//    {
+//        #region FIELDS
 
-        private readonly IMusicListAppService _appService;
+//        private readonly IMusicListAppService _appService;
 
-        private string _searchTerm;
-        private ReadOnlyObservableCollection<MusicListModel> _models;
-        private ReadOnlyObservableCollection<MusicListModel> _displayedMusics;
-        private MusicListModel _selectedMusic;
+//        private string _searchTerm;
+//        private ReadOnlyObservableCollection<MusicListModel> _models;
+//        private ReadOnlyObservableCollection<MusicListModel> _displayedMusics;
+//        private MusicListModel _selectedMusic;
 
-        #endregion FIELDS
+//        #endregion FIELDS
 
-        #region PROPS
+//        #region PROPS
 
-        public ReadOnlyObservableCollection<MusicListModel> Models
-        {
-            get => _models;
-            set => SetProperty(ref _models, value);
-        }
+//        public ReadOnlyObservableCollection<MusicListModel> Models
+//        {
+//            get => _models;
+//            set => SetProperty(ref _models, value);
+//        }
 
-        public ReadOnlyObservableCollection<MusicListModel> DisplayedMusics
-        {
-            get => _displayedMusics;
-            set => SetProperty(ref _displayedMusics, value);
-        }
+//        public ReadOnlyObservableCollection<MusicListModel> DisplayedMusics
+//        {
+//            get => _displayedMusics;
+//            set => SetProperty(ref _displayedMusics, value);
+//        }
 
-        public MusicListModel SelectedMusic
-        {
-            get => _selectedMusic;
-            set => SetProperty(ref _selectedMusic, value);
-        }
+//        public MusicListModel SelectedMusic
+//        {
+//            get => _selectedMusic;
+//            set => SetProperty(ref _selectedMusic, value);
+//        }
 
-        public string SearchTerm
-        {
-            get => _searchTerm;
-            set => SetProperty(ref _searchTerm, value);
-        }
+//        public string SearchTerm
+//        {
+//            get => _searchTerm;
+//            set => SetProperty(ref _searchTerm, value);
+//        }
 
-        #endregion PROPS
+//        #endregion PROPS
 
-        #region COMMANDS
+//        #region COMMANDS
 
-        public ICommand SearchCommand { get; }
-        public ICommand DeleteMusicCommand { get; }
-        public ICommand OpenContainingFolderCommand { get; }
-        public ICommand PlayMusicCommand { get; }
+//        public ICommand SearchCommand { get; }
+//        public ICommand DeleteMusicCommand { get; }
+//        public ICommand OpenContainingFolderCommand { get; }
+//        public ICommand PlayMusicCommand { get; }
 
-        #endregion COMMANDS
+//        #endregion COMMANDS
 
-        #region METHODS
+//        #region METHODS
 
-        public override async Task LoadedCatalogsAsync()
-        {
-            await LoadMusics();
-        }
+//        public override async Task LoadedCatalogsAsync()
+//        {
+//            await LoadMusics();
+//        }
 
-        private async Task LoadMusics()
-        {
-            _logger.LogDebug("Loading musics...");
+//        private async Task LoadMusics()
+//        {
+//            _logger.LogDebug("Loading musics...");
 
-            DisplayedMusics = Models = (await _appService.GetMusicsAsync()).ToReadOnlyObservableCollection();
+//            DisplayedMusics = Models = (await _appService.GetMusicsAsync()).ToReadOnlyObservableCollection();
 
-            _logger.LogDebug("Songs loaded.");
-        }
+//            _logger.LogDebug("Songs loaded.");
+//        }
 
-        private async Task SearchActionAsync()
-        {
-            await Task.Run(() =>
-            {
-                _logger.LogDebug("Searching musics...");
+//        private async Task SearchActionAsync()
+//        {
+//            await Task.Run(() =>
+//            {
+//                _logger.LogDebug("Searching musics...");
 
-                if (string.IsNullOrWhiteSpace(SearchTerm))
-                {
-                    DisplayedMusics = Models;
-                }
-                else
-                {
-                    var searchTerm = SearchTerm.ToUpper();
+//                if (string.IsNullOrWhiteSpace(SearchTerm))
+//                {
+//                    DisplayedMusics = Models;
+//                }
+//                else
+//                {
+//                    var searchTerm = SearchTerm.ToUpper();
 
-                    DisplayedMusics = Models.Where(m
-                        => m.MusicTitle.ToUpper().Contains(searchTerm)
-                        || m.MusicCatalogName.ToUpper().Contains(searchTerm)
-                        || m.ArtistName.ToUpper().Contains(searchTerm)
-                        || m.AlbumName.ToUpper().Contains(searchTerm)
-                        || m.MusicCoveredArtist.ToUpper().Contains(searchTerm)
-                        || m.MusicFeaturedArtist.ToUpper().Contains(searchTerm))
-                        .OrderBy(m => m.MusicFullPath)
-                        .ToReadOnlyObservableCollection();
-                }
-            });
-        }
+//                    DisplayedMusics = Models.Where(m
+//                        => m.MusicTitle.ToUpper().Contains(searchTerm)
+//                        || m.MusicCatalogName.ToUpper().Contains(searchTerm)
+//                        || m.ArtistName.ToUpper().Contains(searchTerm)
+//                        || m.AlbumName.ToUpper().Contains(searchTerm)
+//                        || m.MusicCoveredArtist.ToUpper().Contains(searchTerm)
+//                        || m.MusicFeaturedArtist.ToUpper().Contains(searchTerm))
+//                        .OrderBy(m => m.MusicFullPath)
+//                        .ToReadOnlyObservableCollection();
+//                }
+//            });
+//        }
 
-        #endregion METHODS
+//        #endregion METHODS
 
-        #region CTOR
+//        #region CTOR
 
-        public MusicsViewModel(
-            ILogger logger,
-            IDialogService dialogService,
-            IQuestionDialogService questionDialogService,
-            IMainContentCloser contentCloser,
-            IMusicListAppService appService)
-            : base(logger, dialogService, contentCloser)
-        {
-            _appService = appService;
+//        public MusicsViewModel(
+//            ILogger logger,
+//            IDialogService dialogService,
+//            IQuestionDialogService questionDialogService,
+//            IMainContentCloser contentCloser,
+//            IMusicListAppService appService)
+//            : base(logger, dialogService, contentCloser)
+//        {
+//            _appService = appService;
 
-            DeleteMusicCommand = new DeleteMusicCommand(this, logger, questionDialogService, dialogService, appService);
-            SearchCommand = new AsyncRelayCommand(SearchActionAsync);
-            OpenContainingFolderCommand = new RelayCommand(OpenContainingFolderAction);
-            PlayMusicCommand = new RelayCommand(PlayMusicAction);
-        }
+//            DeleteMusicCommand = new DeleteMusicCommand(this, logger, questionDialogService, dialogService, appService);
+//            SearchCommand = new AsyncRelayCommand(SearchActionAsync);
+//            OpenContainingFolderCommand = new RelayCommand(OpenContainingFolderAction);
+//            PlayMusicCommand = new RelayCommand(PlayMusicAction);
+//        }
 
-        private void PlayMusicAction()
-        {
-            using var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = SelectedMusic.MusicFullPath,
-                    UseShellExecute = true
-                }
-            };
+//        private void PlayMusicAction()
+//        {
+//            using var process = new Process
+//            {
+//                StartInfo = new ProcessStartInfo
+//                {
+//                    FileName = SelectedMusic.MusicFullPath,
+//                    UseShellExecute = true
+//                }
+//            };
 
-            process.Start();
-        }
+//            process.Start();
+//        }
 
-        private void OpenContainingFolderAction()
-        {
-            using var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    Arguments = $"/select, \"{SelectedMusic.MusicFullPath}\"",
-                    FileName = "explorer",
-                    //UseShellExecute = true
-                }
-            };
+//        private void OpenContainingFolderAction()
+//        {
+//            using var process = new Process
+//            {
+//                StartInfo = new ProcessStartInfo
+//                {
+//                    Arguments = $"/select, \"{SelectedMusic.MusicFullPath}\"",
+//                    FileName = "explorer",
+//                    //UseShellExecute = true
+//                }
+//            };
 
-            process.Start();
-        }
+//            process.Start();
+//        }
 
-        #endregion CTOR
-    }
-}
+//        #endregion CTOR
+//    }
+//}

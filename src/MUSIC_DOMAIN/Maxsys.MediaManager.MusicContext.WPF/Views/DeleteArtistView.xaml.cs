@@ -1,6 +1,5 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.ModelCore.Interfaces.Services;
@@ -14,21 +13,21 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
     /// </summary>
     public partial class DeleteArtistView : UserControl, IView
     {
-        private readonly DeleteArtistViewModel _viewModel;
+        //private readonly DeleteArtistViewModel _viewModel;
 
-        public DeleteArtistView(
-            ILogger<DeleteArtistView> logger,
-            IDialogService dialogService,
-            IQuestionDialogService questionDialogService,
-            IMainContentCloser contentCloser,
-            IPathService pathService,
-            IDeleteArtistAppService appService)
-        {
-            InitializeComponent();
+        //public DeleteArtistView(
+        //    ILogger<DeleteArtistView> logger,
+        //    IDialogService dialogService,
+        //    IQuestionDialogService questionDialogService,
+        //    IMainContentCloser contentCloser,
+        //    IPathService pathService,
+        //    IDeleteArtistAppService appService)
+        //{
+        //    InitializeComponent();
 
-            DataContext = _viewModel = new(logger, dialogService, questionDialogService, contentCloser, pathService, appService);
+        //    DataContext = _viewModel = new(logger, dialogService, questionDialogService, contentCloser, pathService, appService);
 
-            Loaded += async (s, o) => await _viewModel.LoadedCatalogsAsync();
-        }
+        //    Loaded += async (s, o) => await _viewModel.LoadedCatalogsAsync();
+        //}
     }
 }

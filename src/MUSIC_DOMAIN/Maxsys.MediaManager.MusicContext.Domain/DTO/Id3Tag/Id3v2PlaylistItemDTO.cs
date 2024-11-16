@@ -1,6 +1,8 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
+﻿using Maxsys.Core.Extensions;
 
-public struct Id3v2PlaylistItemDTO : IEquatable<Id3v2PlaylistItemDTO>, IEquatable<Id3v2DTO>
+namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
+
+public struct Id3v2PlaylistItemDTO : IEquatable<Id3v2PlaylistItemDTO?>, IEquatable<Id3v2DTO?>
 {
     #region CTOR
 
@@ -44,35 +46,33 @@ public struct Id3v2PlaylistItemDTO : IEquatable<Id3v2PlaylistItemDTO>, IEquatabl
 
     #region Equals & operators
 
-    public bool Equals(Id3v2PlaylistItemDTO other)
+    public bool Equals(Id3v2PlaylistItemDTO? other)
     {
-        var coverPictureEquals = CoverPicture.ArrayEquals(other.CoverPicture);
+        return other is not null
+            && FullPath == other?.FullPath
+            && Title == other?.Title
+            && PlaylistName == other?.PlaylistName
+            && Stars10 == other?.Stars10
+            && TrackNumber == other?.TrackNumber
+            && Genre == other?.Genre
+            && CoverPicture.ArrayEquals(other?.CoverPicture);
+    }
 
-        return FullPath == other.FullPath
-            && Title == other.Title
-            && PlaylistName == other.PlaylistName
-            && Stars10 == other.Stars10
-            && TrackNumber == other.TrackNumber
-            && Genre == other.Genre
-            && coverPictureEquals;
+    public bool Equals(Id3v2DTO? other)
+    {
+        return other is not null
+            && FullPath == other?.FullPath
+            && Title == other?.Title
+            && PlaylistName == other?.Artist
+            && Stars10 == other?.Rating10
+            && TrackNumber == other?.TrackNumber
+            && Genre == other?.Genre
+            && CoverPicture.ArrayEquals(other?.CoverPicture);
     }
 
     public static bool operator ==(Id3v2PlaylistItemDTO a, Id3v2PlaylistItemDTO b) => a.Equals(b);
 
     public static bool operator !=(Id3v2PlaylistItemDTO a, Id3v2PlaylistItemDTO b) => !(a == b);
-
-    public bool Equals(Id3v2DTO other)
-    {
-        var coverPictureEquals = CoverPicture.ArrayEquals(other.CoverPicture);
-
-        return FullPath == other.FullPath
-            && Title == other.Title
-            && PlaylistName == other.Artist
-            && Stars10 == other.Rating10
-            && TrackNumber == other.TrackNumber
-            && Genre == other.Genre
-            && coverPictureEquals;
-    }
 
     public static bool operator ==(Id3v2PlaylistItemDTO a, Id3v2DTO b) => a.Equals(b);
 
@@ -82,14 +82,9 @@ public struct Id3v2PlaylistItemDTO : IEquatable<Id3v2PlaylistItemDTO>, IEquatabl
 
     public static bool operator !=(Id3v2DTO a, Id3v2PlaylistItemDTO b) => !(b == a);
 
-    public override int GetHashCode()
-        => (FullPath, Title, PlaylistName, Stars10, TrackNumber, Genre, CoverPicture).GetHashCode();
+    public override int GetHashCode() => HashCode.Combine(FullPath, Title, PlaylistName, Stars10, TrackNumber, Genre, CoverPicture);
 
-    public override bool Equals(object obj)
-    {
-        return obj is Id3v2PlaylistItemDTO tags
-            && Equals(tags);
-    }
+    public override bool Equals(object? obj) => obj is Id3v2PlaylistItemDTO tags && Equals(tags);
 
     public override string ToString() => GetType().Name + " [Title=" + Title + "]";
 

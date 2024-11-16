@@ -1,18 +1,20 @@
+using Maxsys.Core.Entities;
+
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
 [System.Diagnostics.DebuggerDisplay("Order={Order}|[{Id}")]
-public class PlaylistItem : IComparable, IComparable<PlaylistItem>
+public class PlaylistItem : Entity, IComparable, IComparable<PlaylistItem>
 {
     // ID = { PlaylistId, Id }
 
     #region PROPERTIES
 
+    public Guid PlaylistId { get; protected set; }
+    public Guid SongId { get; protected set; }
+
     public short? Order { get; protected set; }
 
     // Navigation
-    public Guid PlaylistId { get; protected set; }
-
-    public Guid SongId { get; protected set; }
 
     public Playlist Playlist { get; protected set; }
     public Song Song { get; protected set; }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ApplicationIcon>Assets\Icon\icon-256.ico</ApplicationIcon>
     <AssemblyName>Music_DataExporter</AssemblyName>
     <EnvironmentName>Development</EnvironmentName>
@@ -48,6 +48,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
   </ItemGroup>
   
   <!--appsettings config end-->

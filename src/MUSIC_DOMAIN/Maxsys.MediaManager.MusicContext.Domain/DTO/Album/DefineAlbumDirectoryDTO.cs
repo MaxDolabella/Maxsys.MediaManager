@@ -1,4 +1,4 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
+﻿using Maxsys.MediaManager.MusicContext.Domain.Enums;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
 
@@ -8,7 +8,7 @@ public struct DefineAlbumDirectoryDTO
     public string ArtistName { get; init; }
     public string AlbumName { get; init; }
     public int? AlbumYear { get; init; }
-    public AlbumType AlbumType { get; init; }
+    public AlbumTypes AlbumType { get; init; }
 
     public bool IsValid()
     {

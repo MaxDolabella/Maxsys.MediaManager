@@ -1,19 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <OutputType>Library</OutputType>
     <Version>1.5.0</Version>
     <Company>Maxsys</Company>
     <Authors>Max Dolabella</Authors>
-    <Description>Template para projeto DDD de Infra.Data utilizando EntityFrameworkCore</Description>
-    <PackageTags>library;Maxsys;Data;DDD</PackageTags>
     <AssemblyName>Maxsys.MediaManager.Music_Data</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
 	<ImplicitUsings>enable</ImplicitUsings>
 	<Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\T-GAMER\.nuget\packages\maxsys.core.data\12.0.0\contentFiles\any\net8.0\PackageAssets\logo.ico" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<Using Include="Maxsys.MediaManager.CoreDomain" />
@@ -28,21 +30,14 @@
 	</ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup>
     <ProjectReference Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
     <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <PackageReference Include="Maxsys.Core.Data" Version="12.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
   </ItemGroup>
 
 </Project>

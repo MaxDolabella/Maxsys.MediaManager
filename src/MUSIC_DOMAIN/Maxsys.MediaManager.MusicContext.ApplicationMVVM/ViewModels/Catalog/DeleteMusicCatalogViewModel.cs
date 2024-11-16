@@ -1,83 +1,83 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿//using CommunityToolkit.Mvvm.Input;
+//using Maxsys.MediaManager.CoreDomain.Interfaces;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
+//using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
+//using Maxsys.ModelCore.Interfaces.Services;
+//using Microsoft.Extensions.Logging;
+//using System;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
+//using System.Windows.Input;
 
-namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
-{
-    public sealed class DeleteMusicCatalogViewModel : ViewModelCollectionBase<MusicCatalogListModel>
-    {
-        #region FIELDS
+//namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
+//{
+//    public sealed class DeleteMusicCatalogViewModel : ViewModelCollectionBase<MusicCatalogListModel>
+//    {
+//        #region FIELDS
 
-        private readonly IDeleteMusicCatalogAppService _appService;
+//        private readonly IDeleteMusicCatalogAppService _appService;
 
-        #endregion FIELDS
+//        #endregion FIELDS
 
-        #region PROPS
+//        #region PROPS
 
-        private MusicCatalogListModel _selectedModel;
+//        private MusicCatalogListModel _selectedModel;
 
-        public MusicCatalogListModel SelectedModel
-        {
-            get => _selectedModel;
-            set => SetProperty(ref _selectedModel, value);
-        }
+//        public MusicCatalogListModel SelectedModel
+//        {
+//            get => _selectedModel;
+//            set => SetProperty(ref _selectedModel, value);
+//        }
 
-        #endregion PROPS
+//        #endregion PROPS
 
-        #region COMMANDS
+//        #region COMMANDS
 
-        public ICommand DeleteMusicCatalogCommand { get; }
-        public ICommand OpenFolderCommand { get; }
+//        public ICommand DeleteMusicCatalogCommand { get; }
+//        public ICommand OpenFolderCommand { get; }
 
-        #endregion COMMANDS
+//        #endregion COMMANDS
 
-        #region METHODS
+//        #region METHODS
 
-        public override async Task LoadedCatalogsAsync()
-        {
-            await LoadMusicCatalogsAsync();
-        }
+//        public override async Task LoadedCatalogsAsync()
+//        {
+//            await LoadMusicCatalogsAsync();
+//        }
 
-        private async Task LoadMusicCatalogsAsync()
-        {
-            _logger.LogDebug("Loading Song Catalogs.");
+//        private async Task LoadMusicCatalogsAsync()
+//        {
+//            _logger.LogDebug("Loading Song Catalogs.");
 
-            Models = (await _appService.GetMusicCatalogsAsync()).ToObservableCollection();
+//            Models = (await _appService.GetMusicCatalogsAsync()).ToObservableCollection();
 
-            _logger.LogDebug("Song Catalogs loaded.");
-        }
+//            _logger.LogDebug("Song Catalogs loaded.");
+//        }
 
-        #endregion METHODS
+//        #endregion METHODS
 
-        #region CTOR
+//        #region CTOR
 
-        public DeleteMusicCatalogViewModel(
-            ILogger logger,
-            IDialogService dialogService,
-            IQuestionDialogService questionDialogService,
-            IMainContentCloser contentCloser,
-            IDeleteMusicCatalogAppService appService)
-            : base(logger, dialogService, contentCloser)
-        {
-            _appService = appService;
+//        public DeleteMusicCatalogViewModel(
+//            ILogger logger,
+//            IDialogService dialogService,
+//            IQuestionDialogService questionDialogService,
+//            IMainContentCloser contentCloser,
+//            IDeleteMusicCatalogAppService appService)
+//            : base(logger, dialogService, contentCloser)
+//        {
+//            _appService = appService;
 
-            DeleteMusicCatalogCommand = new DeleteMusicCatalogCommand(this, logger, questionDialogService, dialogService, appService);
-            OpenFolderCommand = new RelayCommand(OpenFolderAction);
-        }
+//            DeleteMusicCatalogCommand = new DeleteMusicCatalogCommand(this, logger, questionDialogService, dialogService, appService);
+//            OpenFolderCommand = new RelayCommand(OpenFolderAction);
+//        }
 
-        private void OpenFolderAction()
-        {
-            _logger.LogDebug(nameof(OpenFolderCommand));
-        }
+//        private void OpenFolderAction()
+//        {
+//            _logger.LogDebug(nameof(OpenFolderCommand));
+//        }
 
-        #endregion CTOR
-    }
-}
+//        #endregion CTOR
+//    }
+//}

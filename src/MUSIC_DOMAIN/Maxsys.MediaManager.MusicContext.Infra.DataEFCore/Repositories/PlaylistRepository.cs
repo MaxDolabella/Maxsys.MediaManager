@@ -1,18 +1,18 @@
+using AutoMapper;
+using Maxsys.Core.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 
 public class PlaylistRepository : RepositoryBase<Playlist>, IPlaylistRepository
 {
-    public PlaylistRepository(MusicAppContext dbContext) : base(dbContext)
+    public PlaylistRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
     public async Task<IReadOnlyList<PlaylistItem>> GetPlaylistItemsBySongIdAsync(Guid songId, bool @readonly = false, CancellationToken token = default)
     {
-        return await DbSet.AsNoTracking(!@readonly)
-            .SelectMany(p => p.Items)
+        return await DbSet.SelectMany(p => p.Items)
             .Where(i => i.SongId == songId)
             .ToListAsync(token);
     }

@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
+﻿using Maxsys.Core.Extensions;
+using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Options;
 using Maxsys.MediaManager.MusicContext.Domain.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters;
@@ -18,7 +19,7 @@ public static class IoCExtensions
 
         services.ConfigureServices(lifetime);
 
-        services.ConfigurePlaylistExporters(lifetime);
+        //services.ConfigurePlaylistExporters(lifetime);
 
         return services;
     }
@@ -29,7 +30,7 @@ public static class IoCExtensions
     public static IServiceCollection ConfigureOptions(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOptions();
-        services.Configure<MusicSettings>(configuration.GetSection(MusicSettings.Section));
+        services.Configure<MusicSettings>(configuration.GetSection(MusicSettings.SECTION));
 
         return services;
     }

@@ -1,5 +1,6 @@
 using FluentValidation.Results;
 using Maxsys.Core.Helpers;
+using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
@@ -8,7 +9,7 @@ using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
 /// <inheritdoc cref="ISongService"/>
-public class SongService : ISongService
+public class SongService : ServiceBase, ISongService
 {
     private readonly ISongRepository _repository;
     private readonly ITagService _tagService;
@@ -62,7 +63,7 @@ public class SongService : ISongService
         {
             var result = await IOHelper.MoveOrOverwriteFileAsync(replacingFile, libraryFile, setAsReadOnly: true);
             if (!result.IsValid)
-                validationResult.AddErrorMessage($"Error replacing the file: {result}");
+                validationResult.AddError($"Error replacing the file: {result}");
         }
 
         return validationResult;
@@ -76,7 +77,7 @@ public class SongService : ISongService
         {
             var result = await IOHelper.MoveFileAsync(sourceFile, libraryFile, setAsReadOnly: true, cancellationToken: token);
             if (!result.IsValid)
-                validationResult.AddErrorMessage($"Error moving the file: {result}");
+                validationResult.AddError($"Error moving the file: {result}");
         }
 
         return validationResult;
@@ -99,7 +100,7 @@ public class SongService : ISongService
         if (songRank.RatingHasChanged())
         {
             if (!await _repository.UpdateSongRankAsync(songRank, token))
-                return result.AddErrorMessage("Error while updating rating.");
+                return result.AddError("Error while updating rating.");
 
             if (songRank.Stars10HasChanged())
                 result = _tagService.WriteRating(songRank.FullPath, songRank.GetStars10());

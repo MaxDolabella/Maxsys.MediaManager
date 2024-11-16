@@ -1,9 +1,10 @@
 using FluentValidation.Results;
+using Maxsys.Core.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
-public interface ISongService
+public interface ISongService : IService
 {
     Task<Song> GetByPathAsync(string songPath, CancellationToken token = default);
 

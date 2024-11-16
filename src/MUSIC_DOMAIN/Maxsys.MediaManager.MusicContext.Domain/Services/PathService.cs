@@ -1,14 +1,16 @@
-﻿using Maxsys.Core.Helpers;
+﻿using System.IO;
+using Maxsys.Core.Helpers;
+using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
+using Maxsys.MediaManager.MusicContext.Domain.Enums;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Options;
 using Microsoft.Extensions.Options;
-using System.IO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
 ///<inheritdoc cref="IPathService"/>
-public sealed class PathService : IPathService
+public sealed class PathService : ServiceBase, IPathService
 {
     private readonly MusicSettings _musicSettings;
 
@@ -28,11 +30,11 @@ public sealed class PathService : IPathService
 
         var albumTypeFolder = dto.AlbumType switch
         {
-            AlbumType.Studio => "Studio",
-            AlbumType.Live => "Live",
-            AlbumType.Compilation => "Compilation",
-            AlbumType.Bootleg => "Bootleg",
-            AlbumType.Others => "Others",
+            AlbumTypes.Studio => "Studio",
+            AlbumTypes.Live => "Live",
+            AlbumTypes.Compilation => "Compilation",
+            AlbumTypes.Bootleg => "Bootleg",
+            AlbumTypes.Others => "Others",
             //AlbumType.Undefined or AlbumType.Various => string.Empty
             _ => string.Empty
         };

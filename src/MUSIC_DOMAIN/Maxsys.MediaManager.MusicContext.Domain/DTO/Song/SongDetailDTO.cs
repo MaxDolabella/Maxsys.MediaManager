@@ -1,4 +1,6 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
+﻿using Maxsys.MediaManager.MusicContext.Domain.Enums;
+
+namespace Maxsys.MediaManager.MusicContext.Domain.DTO;
 
 public readonly record struct SongDetailDTO(
     Guid CatalogId,
@@ -8,11 +10,11 @@ public readonly record struct SongDetailDTO(
     string CatalogName,
     string ArtistName,
     string AlbumName,
-    AlbumType AlbumType,
+    AlbumTypes AlbumType,
     string SongFullPath,
     int? SongTrackNumber,
     string SongTitle,
     int SongRating,
-    VocalGender SongVocalGender,
+    VocalGenders SongVocalGender,
     string? SongCoveredArtist,
     string? SongFeaturedArtist);

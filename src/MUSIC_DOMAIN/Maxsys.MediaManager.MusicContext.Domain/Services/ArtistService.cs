@@ -1,9 +1,10 @@
+using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
-public class ArtistService : IArtistService
+public class ArtistService : ServiceBase, IArtistService
 {
     private readonly IArtistRepository _repository;
 

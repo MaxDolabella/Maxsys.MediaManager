@@ -1,9 +1,9 @@
-﻿using FluentValidation.Results;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using FluentValidation.Results;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters
 {
@@ -45,7 +45,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Export folder creation has failed");
                 _logger.LogError($"Export folder creation has failed: {ex}");
             }
 

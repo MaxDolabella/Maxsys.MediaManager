@@ -6,20 +6,15 @@ internal class ArtistConfig : IEntityTypeConfiguration<Artist>
 {
     public void Configure(EntityTypeBuilder<Artist> builder)
     {
-        builder.ToTable("Artists")
-            .HasKey(artist => artist.Id);
+        builder.ToTable("Artists").HasKey(artist => artist.Id);
 
         // Properties
-        builder.Property(artist => artist.Name)
-            .HasMaxLength(50)
-            .IsRequired();
+        builder.Property(artist => artist.Name).HasMaxLength(50).IsRequired();
 
         // Navigation
-        builder.HasOne(artist => artist.Catalog)
-            .WithMany(catalog => catalog.Artists);
+        builder.HasOne(artist => artist.Catalog).WithMany(catalog => catalog.Artists);
 
         // Indexes
-        builder.HasIndex(artist => new { artist.Name, artist.CatalogId })
-            .IsUnique().HasDatabaseName($"AK_Artists_Name_Catalog");
+        builder.HasIndex(artist => new { artist.Name, artist.CatalogId }).IsUnique().HasDatabaseName($"AK_Artists_Name_Catalog");
     }
 }

@@ -1,10 +1,9 @@
-using FluentValidation.Results;
+using Maxsys.Core.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
-using Maxsys.ModelCore.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
-public interface ISongRepository : IRepositoryBase<Song>
+public interface ISongRepository : IRepository<Song>
 {
     /// <summary>
     /// Asynchronously checks whether a music is already registered, given a music path

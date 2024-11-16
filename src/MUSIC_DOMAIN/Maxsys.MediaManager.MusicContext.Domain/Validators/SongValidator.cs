@@ -1,10 +1,9 @@
 ﻿using FluentValidation;
-using Maxsys.MediaManager.CoreDomain.Validators;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Validators;
 
-public class SongValidator : EntityValidator<Song>
+public class SongValidator : AbstractValidator<Song>
 {
     private readonly ISongRepository _repository;
 
@@ -104,6 +103,11 @@ public class SongValidator : EntityValidator<Song>
     #endregion Validators
 
     #region Rules
+
+    public void AddRuleForId()
+    {
+        RuleFor(x => x.Id).NotEmpty();
+    }
 
     public void AddRuleForFullPath()
     {

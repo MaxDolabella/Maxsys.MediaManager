@@ -1,4 +1,5 @@
-﻿using Maxsys.DataCore.Interfaces;
+﻿using Maxsys.Core.Extensions;
+using Maxsys.Core.Interfaces.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
@@ -22,7 +23,7 @@ public static class IoCExtensions
 
     public static IServiceCollection ConfigureUnitOfWork(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
     {
-        services.Add<IUnitOfWork, UnitOfWork>(lifetime);
+        services.Add<IUnitOfWork, AppUnitOfWork>(lifetime);
 
         return services;
     }

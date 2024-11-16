@@ -1,6 +1,4 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Models;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Logging;
@@ -13,29 +11,29 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
 {
     public partial class RegisterMusicView : UserControl, IView
     {
-        private readonly RegisterMusicViewModel _viewModel;
+        //private readonly RegisterMusicViewModel _viewModel;
 
-        public RegisterMusicView(
-            ILogger<RegisterMusicView> logger,
-            IDialogService dialogService,
-            IMainContentCloser contentCloser,
-            IRegisterMusicAppService appService)
-        {
-            InitializeComponent();
+        //public RegisterMusicView(
+        //    ILogger<RegisterMusicView> logger,
+        //    IDialogService dialogService,
+        //    IMainContentCloser contentCloser,
+        //    IRegisterMusicAppService appService)
+        //{
+        //    InitializeComponent();
 
-            DataContext = _viewModel = new(logger, dialogService, contentCloser, appService);
+        //    DataContext = _viewModel = new(logger, dialogService, contentCloser, appService);
 
-            dgvMusics.SelectionChanged += DgvMusics_SelectionChanged;
-            Loaded += async (s, o) => await _viewModel.LoadedCatalogsAsync();
-        }
+        //    dgvMusics.SelectionChanged += DgvMusics_SelectionChanged;
+        //    Loaded += async (s, o) => await _viewModel.LoadedCatalogsAsync();
+        //}
 
-        private void DgvMusics_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _viewModel.SelectedModels
-                = dgvMusics.SelectedItems.Cast<CreateMusicModel>().ToReadOnlyObservableCollection();
-        }
+        //private void DgvMusics_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    _viewModel.SelectedModels
+        //        = dgvMusics.SelectedItems.Cast<CreateMusicModel>().ToReadOnlyObservableCollection();
+        //}
 
-        #region Drag and Drop
+        //#region Drag and Drop
 
         private void OnDgvMusics_DragEnter(object sender, DragEventArgs e)
         {
@@ -55,14 +53,14 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
 
         private void OnDgvMusics_DragDrop(object sender, DragEventArgs e)
         {
-            // still check if the associated data from the file(s) can be used for this purpose
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                var dropDownObj = (string[])e.Data.GetData(DataFormats.FileDrop);
-                _viewModel.AddMp3FilesAction(dropDownObj);
-            }
+        //    // still check if the associated data from the file(s) can be used for this purpose
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        var dropDownObj = (string[])e.Data.GetData(DataFormats.FileDrop);
+        //        _viewModel.AddMp3FilesAction(dropDownObj);
+        //    }
         }
 
-        #endregion Drag and Drop
+        //#endregion Drag and Drop
     }
 }

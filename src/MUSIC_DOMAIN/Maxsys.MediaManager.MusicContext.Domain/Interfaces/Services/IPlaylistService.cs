@@ -1,8 +1,9 @@
 using FluentValidation.Results;
+using Maxsys.Core.Interfaces.Services;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
-public interface IPlaylistService
+public interface IPlaylistService : IService
 {
     ///// <summary>
     ///// Write Id3 tags on musics from a playlist and copies the files to a specific folder

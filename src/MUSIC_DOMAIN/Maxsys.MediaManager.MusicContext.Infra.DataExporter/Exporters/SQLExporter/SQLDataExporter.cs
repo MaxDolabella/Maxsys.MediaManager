@@ -1,4 +1,10 @@
-﻿using FluentValidation.Results;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using FluentValidation.Results;
 using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters;
@@ -6,12 +12,6 @@ using Maxsys.MediaManager.MusicContext.Infra.DataExporter.SQLValuesScript.Script
 using Maxsys.MediaManager.MusicContext.Infra.DataExporter.SQLValuesScript.Scripts.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 {
@@ -62,7 +62,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Retrieving data from database has failed");
                 _logger.LogError($"Retrieving data from database has failed: {ex}");
             }
             finally
@@ -95,7 +95,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Creating scripts has failed");
                 _logger.LogError($"Creating scripts has failed: {ex}");
             }
 
@@ -119,7 +119,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Export to file has failed");
                 _logger.LogError($"Export to file has failed: {ex}");
             }
 

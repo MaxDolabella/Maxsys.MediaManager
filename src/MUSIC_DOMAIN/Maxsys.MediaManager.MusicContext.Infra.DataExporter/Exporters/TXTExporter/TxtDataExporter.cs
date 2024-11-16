@@ -1,15 +1,15 @@
-﻿using FluentValidation.Results;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters;
-using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTExporter.DTOs;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.Results;
+using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
+using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters;
+using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTExporter.DTOs;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 {
@@ -43,7 +43,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Retrieving data from database has failed");
                 _logger.LogError($"Retrieving data from database has failed: {ex}");
             }
             finally
@@ -67,7 +67,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Creating contents has failed");
                 _logger.LogError($"Creating contents has failed: {ex}");
             }
 
@@ -91,7 +91,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             }
             catch (Exception ex)
             {
-                validationResult.AddFailure(ex);
+                validationResult.AddException(ex, "Exporting to file has failed");
                 _logger.LogError($"Exporting to file has failed: {ex}");
             }
 

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Maxsys.Core.Interfaces.Services;
 
 namespace Maxsys.MediaManager.CoreDomain.Interfaces.Services;
 
-public interface IFilePropertiesReader : IDisposable
+public interface IFilePropertiesReader : IService
 {
     /// <summary>
     /// Get the file name without extension.

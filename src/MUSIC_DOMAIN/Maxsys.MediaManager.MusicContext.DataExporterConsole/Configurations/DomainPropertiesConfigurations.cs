@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 
-namespace Maxsys.MediaManager.MusicContext.DataExporterConsole.Configurations
+namespace Maxsys.MediaManager.MusicContext.DataExporterConsole.Configurations;
+
+internal static class DomainPropertiesConfigurations
 {
-    internal static class DomainPropertiesConfigurations
+    internal static void SetDomainProperties(IConfiguration configuration)
     {
-        internal static void SetDomainProperties(IConfiguration configuration)
-        {
-            AppDomain.CurrentDomain.SetData("DataDirectory", configuration["CoreSettings:DataDirectory"]);
-        }
+        AppDomain.CurrentDomain.SetData("DataDirectory", configuration["CoreSettings:DataDirectory"]);
     }
 }

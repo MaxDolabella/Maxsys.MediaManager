@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.ComponentModel;
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using FluentValidation.Results;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
-using System.ComponentModel;
-using System.Linq;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
 
@@ -43,7 +43,7 @@ public abstract class ValidableViewModelBase : ObservableValidator, IValidableVi
         }
     }
 
-    public string Errors => ValidationResult is null ? string.Empty : string.Join(" | ", ValidationResult.GetErrorMessages());
+    public string Errors => ValidationResult is null ? string.Empty : string.Join(" | ", ValidationResult.Errors.Select(e => e.ErrorMessage));
 
     #endregion Validation
 }

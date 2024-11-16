@@ -13,7 +13,7 @@
         {
             if (length >= WORD_5050_CHARS.Length)
                 length = WORD_5050_CHARS.Length;
-            
+
             if (length < 0)
                 length = 0;
 

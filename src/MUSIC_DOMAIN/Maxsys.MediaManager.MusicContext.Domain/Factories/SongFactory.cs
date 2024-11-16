@@ -1,4 +1,6 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.Factories;
+﻿using Maxsys.MediaManager.MusicContext.Domain.Enums;
+
+namespace Maxsys.MediaManager.MusicContext.Domain.Factories;
 
 public static class SongFactory
 {
@@ -11,7 +13,7 @@ public static class SongFactory
         string? lyrics,
         string? comments,
         bool isBonusTrack,
-        VocalGender vocalGender,
+        VocalGenders vocalGender,
         string? coveredArtist,
         string? featuredArtist,
         byte stars10,

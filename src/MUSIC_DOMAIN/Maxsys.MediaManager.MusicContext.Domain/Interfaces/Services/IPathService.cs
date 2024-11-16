@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.DTO;
+﻿using Maxsys.Core.Interfaces.Services;
+using Maxsys.MediaManager.MusicContext.Domain.DTO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
@@ -6,7 +7,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 /// <summary>
 /// Provides methods for handle paths and file names for musics, albums and artists.
 /// </summary>
-public interface IPathService
+public interface IPathService : IService
 {
     /// <summary>
     /// Define the full album directory based on it's info, Artist and Song Catalog.<br/>

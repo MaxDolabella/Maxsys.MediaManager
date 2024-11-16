@@ -5,6 +5,8 @@ public class Song : MediaFile
 {
     #region PROPERTIES
 
+    public Guid AlbumId { get; protected set; }
+
     public string Title { get; protected set; }
     public int? TrackNumber { get; protected set; }
     public string? Lyrics { get; protected set; }
@@ -17,12 +19,11 @@ public class Song : MediaFile
     public SongProperties SongProperties { get; protected set; }
 
     // Navigation
-    public Guid AlbumId { get; protected set; }
 
     public Album Album { get; protected set; }
 
     // Collections
-    public ICollection<Composer> Composers { get; protected set; }
+    public List<Composer> Composers { get; protected set; } = [];
 
     #endregion PROPERTIES
 
@@ -56,8 +57,6 @@ public class Song : MediaFile
         SongDetails = musicDetails;
         Classification = classification;
         SongProperties = musicProperties;
-
-        Composers = new List<Composer>();
     }
 
     #endregion CONSTRUCTORS
@@ -66,8 +65,6 @@ public class Song : MediaFile
 
     public void AddComposer(Composer composer)
     {
-        Composers ??= new List<Composer>();
-
         if (!Composers.Any(x => x.Id == composer.Id))
             Composers.Add(composer);
     }

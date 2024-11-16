@@ -6,8 +6,10 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.SQLValuesScript.Sc
     // ComposerMusic {ComposersId, MusicsId}
     public class ComposerMusicScripts : InsertScriptBase<(Composer composer, Song music)>
     {
-        public ComposerMusicScripts() : base("INSERT INTO [dbo].[ComposerMusic] ([ComposersId],[MusicsId]) VALUES") { }
-        
+        public ComposerMusicScripts() : base("INSERT INTO [dbo].[ComposerMusic] ([ComposersId],[MusicsId]) VALUES")
+        {
+        }
+
         protected override string InsertValuesScript((Composer composer, Song music) obj)
             => $"({Value(obj.composer.Id)}, {Value(obj.music.Id)})";
     }

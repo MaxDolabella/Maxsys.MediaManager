@@ -1,12 +1,13 @@
+using AutoMapper;
+using Maxsys.Core.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
-using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories.Common;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 
 public class ArtistRepository : RepositoryBase<Artist>, IArtistRepository
 {
-    public ArtistRepository(MusicAppContext dbContext) : base(dbContext)
+    public ArtistRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
     public async Task<IReadOnlyList<ArtistDetailsDTO>> GetArtistDetailsAsync(CancellationToken token = default)

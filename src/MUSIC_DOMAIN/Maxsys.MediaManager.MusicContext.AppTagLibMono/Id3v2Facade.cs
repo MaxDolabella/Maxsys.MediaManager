@@ -53,13 +53,13 @@ public class Id3v2Facade
     /// </summary>
     /// <param name="owner">String containing the "Owner" data</param>
     /// <returns>String containing the text from the UFID frame, or null</returns>
-    private string GetUfidText(string owner)
+    private string? GetUfidText(string owner)
     {
         //Get the UFID frame, frame will be null if nonexistant
         var frame = UniqueFileIdentifierFrame.Get(_tags, owner, false);
 
         //If the frame existed: frame.Identifier is a bytevector, get a string
-        string result = frame?.Identifier.ToString();
+        var result = frame?.Identifier.ToString();
         return string.IsNullOrEmpty(result) ? null : result;
     }
 
@@ -109,10 +109,10 @@ public class Id3v2Facade
     /// <remarks>
     ///    This property is implemented using the "UFID:maxsys" frame.
     /// </remarks>
-    public string TrackId
+    public string? TrackId
     {
         get => GetUfidText(TRACK_ID_OWNER);
-        set => SetUfidText(TRACK_ID_OWNER, value);
+        set => SetUfidText(TRACK_ID_OWNER, value!);
     }
 
     /// <summary>

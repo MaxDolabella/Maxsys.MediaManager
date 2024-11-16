@@ -1,5 +1,8 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
+using Maxsys.MediaManager.MusicContext.WPF.Commands;
+using Maxsys.MediaManager.MusicContext.WPF.Commands.MainWindow;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
@@ -15,24 +18,31 @@ public static class IoCExtensions
 {
     internal static IServiceCollection AddUIServices(this IServiceCollection services, IConfiguration configuration)
     {
-        if (services == null) throw new ArgumentNullException(nameof(services));
-
         services.ConfigureLogger(configuration);
 
         // AppServices
-        services.ConfigureAppServicesByReflection();
+        //services.ConfigureAppServicesByReflection();
 
         // Views
-        services.ConfigureViewsByReflection();
+        //services.ConfigureViewsByReflection();
 
         // Others services
-        services.ConfigureMainViewServices();
+        //services.ConfigureMainViewServices();
+
+        // Commands
+        //services.ConfigureCommands();
 
         // NavigationStore
         services.AddSingleton<NavigationStore>();
+        //services.AddSingleton<MainWindowViewModel>();
+
+        //services.AddSingleton<IMainContentCloser, MainWindowContentCloser>();
+
+        //services.AddSingleton<IMainContentOwner, MainWindowContentOwner>();
+        //services.AddSingleton<IAppCloser, MainWindowAppCloser>();
 
         // Main Window as Singleton
-        services.AddSingleton<MainWindow>();
+        //services.AddSingleton<MainWindow>();
 
         return services;
     }
@@ -114,6 +124,15 @@ public static class IoCExtensions
 
         // Adding views as Transient
         views.ForEach(view => services.AddTransient(view));
+
+        return services;
+    }
+
+    private static IServiceCollection ConfigureCommands(this IServiceCollection services)
+    {
+        services.AddTransient<CloseMainContentCommand>();
+        services.AddTransient<OpenViewCommand>();
+        services.AddTransient<CloseAppCommand>();
 
         return services;
     }

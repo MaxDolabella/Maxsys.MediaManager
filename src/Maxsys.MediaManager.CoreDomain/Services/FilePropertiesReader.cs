@@ -1,10 +1,10 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
-using System;
-using System.IO;
+﻿using System.IO;
+using Maxsys.Core.Services;
+using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
 
 namespace Maxsys.MediaManager.CoreDomain.Services;
 
-public class FilePropertiesReader : IFilePropertiesReader
+public class FilePropertiesReader : ServiceBase, IFilePropertiesReader
 {
     /// <summary>
     /// Get the file name without extension.
@@ -30,13 +30,4 @@ public class FilePropertiesReader : IFilePropertiesReader
     /// <returns>The extension of the specified path (including the period "."), or null, or Empty. If path is null, GetExtension(String) returns null. If path does not have extension information, GetExtension(String) returns Empty.</returns>
     public string GetFileExtension(string fullPath)
         => Path.GetExtension(fullPath);
-
-    #region DIPOSABLE IMPLEMENTATION
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-    }
-
-    #endregion DIPOSABLE IMPLEMENTATION
 }

@@ -23,7 +23,7 @@ namespace Maxsys.MediaManager.MusicContext.DataExporterConsole
                 .ConfigureServices((context, services) =>
                 {
                     DomainPropertiesConfigurations.SetDomainProperties(context.Configuration);
-                    IoCConfigurations.AddConfigurations(services, context.Configuration);
+                    IoCExtensions.AddConfigurations(services, context.Configuration);
                     services.ConfigureDataExporters();
                 })
                 .Build();

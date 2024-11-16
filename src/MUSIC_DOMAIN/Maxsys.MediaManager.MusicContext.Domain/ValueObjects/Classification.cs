@@ -1,9 +1,6 @@
-using Maxsys.ModelCore;
-using System;
-
 namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 
-public class Classification : ValueObject<Classification>
+public class Classification : IEquatable<Classification?>
 {
     public const double BASE_DIF = 400.0;
 
@@ -16,8 +13,7 @@ public class Classification : ValueObject<Classification>
     #region CONSTRUCTORS
 
     protected Classification()
-    {
-    }
+    { }
 
     /// <summary>
     /// Constructor for <see cref="Classification"/> class
@@ -78,7 +74,7 @@ public class Classification : ValueObject<Classification>
     /// <returns>A rating from 0 to 10.</returns>
     public static byte RatingPointsToStars10(int ratingPoints)
     {
-        var stars0_10 = System.Math.Round(ratingPoints / BASE_DIF, 0);
+        var stars0_10 = Math.Round(ratingPoints / BASE_DIF, 0);
         if (stars0_10 > 10) stars0_10 = 10;
         if (stars0_10 < 0) stars0_10 = 0;
 
@@ -116,7 +112,7 @@ public class Classification : ValueObject<Classification>
     /// <returns>an int number represents the Rating points from the stars number</returns>
     public static int Stars10ToRatingPoints(byte stars10)
     {
-        var ratingPoints = (stars10 < 0 || stars10 > 10)
+        var ratingPoints = (stars10 is < 0 or > 10)
             ? 0
             : Convert.ToInt32(stars10 * BASE_DIF);
 
@@ -127,14 +123,17 @@ public class Classification : ValueObject<Classification>
 
     #region OVERRIDES
 
-    protected override bool EqualsCore(Classification other)
+    public bool Equals(Classification? other)
     {
-        return Rating == other.Rating;
+        return other is not null
+            && Rating == other.Rating;
     }
 
-    protected override int GetHashCodeCore()
+    public override bool Equals(object? obj) => Equals(obj as Classification);
+
+    public override int GetHashCode()
     {
-        return Rating.GetHashCode();
+        return HashCode.Combine(Rating);
     }
 
     #endregion OVERRIDES

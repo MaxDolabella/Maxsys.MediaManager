@@ -1,16 +1,16 @@
-using Maxsys.ModelCore;
+using Maxsys.Core.Entities;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
 [System.Diagnostics.DebuggerDisplay("{Name}[{Items.Count} items]")]
-public class Playlist : EntityBase
+public class Playlist : Entity<Guid>
 {
     #region PROPERTIES
 
     public string Name { get; protected set; }
 
     // Collections
-    public IEnumerable<PlaylistItem> Items { get; protected set; }
+    public List<PlaylistItem> Items { get; protected set; } = [];
 
     #endregion PROPERTIES
 
@@ -23,8 +23,6 @@ public class Playlist : EntityBase
     {
         Id = id;
         Name = name;
-
-        Items = new List<PlaylistItem>();
     }
 
     #endregion CONSTRUCTORS

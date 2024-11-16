@@ -1,7 +1,9 @@
-﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
+﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Windows;
 
 namespace Maxsys.MediaManager.MusicContext.WPF
@@ -13,13 +15,16 @@ namespace Maxsys.MediaManager.MusicContext.WPF
     {
         private readonly MainWindowViewModel _viewModel;
 
-        public MainWindow(ILogger<MainWindow> logger, IHost host)
+        public MainWindow(ILogger<MainWindow> logger, ILogger<MainWindowViewModel> viewModelLogger, 
+            NavigationStore navigationStore, IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-            DataContext = _viewModel = new(logger, host, new MainWindowContentOwner(this), new MainWindowAppCloser(this));
+            _viewModel = new MainWindowViewModel(viewModelLogger, navigationStore, new MainWindowContentOwner(this), new MainWindowAppCloser(this), serviceProvider);
 
-            Loaded += async (o, s) => { await _viewModel.LoadedCatalogsAsync(); };
+            DataContext = _viewModel; //= new(logger, host, new MainWindowContentOwner(this), new MainWindowAppCloser(this));
+
+            //Loaded += async (o, s) => { await _viewModel.LoadedCatalogsAsync(); };
         }
     }
 

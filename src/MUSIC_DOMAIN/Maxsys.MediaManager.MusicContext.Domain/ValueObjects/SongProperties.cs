@@ -1,9 +1,6 @@
-﻿using Maxsys.ModelCore;
-using System;
+﻿namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 
-namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
-
-public class SongProperties : ValueObject<SongProperties>
+public class SongProperties : IEquatable<SongProperties?>
 {
     #region PROPERTIES
 
@@ -25,33 +22,31 @@ public class SongProperties : ValueObject<SongProperties>
 
     #endregion CONSTRUCTORS
 
-    #region OVERRIDES
-
-    protected override bool EqualsCore(SongProperties other)
-    {
-        return Duration == other.Duration
-            && BitRate == other.BitRate;
-    }
-
-    protected override int GetHashCodeCore()
-    {
-        unchecked
-        {
-            int hashCode = Duration.GetHashCode();
-            hashCode = (hashCode * 397) ^ BitRate.GetHashCode();
-            return hashCode;
-        }
-    }
-
-    #endregion OVERRIDES
-
     #region METHODS
 
     internal void Update(SongProperties another)
     {
-        this.Duration = another.Duration;
-        this.BitRate = another.BitRate;
+        Duration = another.Duration;
+        BitRate = another.BitRate;
     }
 
     #endregion METHODS
+
+    #region OVERRIDES
+
+    public bool Equals(SongProperties? other)
+    {
+        return other is not null
+            && Duration == other.Duration
+            && BitRate == other.BitRate;
+    }
+
+    public override bool Equals(object? obj) => Equals(obj as SongProperties);
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Duration, BitRate);
+    }
+
+    #endregion OVERRIDES
 }
