@@ -1,17 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using System.Reflection;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
 using Maxsys.MediaManager.MusicContext.WPF.Commands.MainWindow;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 

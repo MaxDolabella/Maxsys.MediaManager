@@ -1,5 +1,4 @@
 ﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Services
 {

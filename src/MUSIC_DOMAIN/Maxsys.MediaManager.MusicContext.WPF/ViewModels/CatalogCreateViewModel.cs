@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.CoreDomain.Commands;
+﻿using Maxsys.Core.Extensions;
+using Maxsys.MediaManager.CoreDomain.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;

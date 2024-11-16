@@ -1,16 +1,14 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using System;
+using System.Linq;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.MediaManager.MusicContext.WPF.Commands;
 using Maxsys.MediaManager.MusicContext.WPF.Commands.MainWindow;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
-using Maxsys.ModelCore.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using System;
-using System.Linq;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Extensions;
 
@@ -42,7 +40,7 @@ public static class IoCExtensions
         //services.AddSingleton<IAppCloser, MainWindowAppCloser>();
 
         // Main Window as Singleton
-        //services.AddSingleton<MainWindow>();
+        services.AddSingleton<MainWindow>();
 
         return services;
     }

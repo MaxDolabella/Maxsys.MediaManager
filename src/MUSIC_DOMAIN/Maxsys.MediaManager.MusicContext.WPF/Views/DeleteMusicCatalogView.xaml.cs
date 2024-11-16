@@ -1,10 +1,5 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
-using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.Logging;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Views
 {

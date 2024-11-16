@@ -1,8 +1,5 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.Logging;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Views
 {
@@ -27,7 +24,6 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
 
         //private void FixDataGridMusicsColumnsSize()
         //{
-
         //    for (int i = 0; i < DataGridMusics.Columns.Count; i++)
         //    {
         //        var col = DataGridMusics.Columns[i];
@@ -36,7 +32,6 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
         //            ? new DataGridLength(1, DataGridLengthUnitType.Star)
         //            : DataGridLength.Auto;
         //    }
-
 
         //    DataGridMusics.UpdateLayout();
         //}

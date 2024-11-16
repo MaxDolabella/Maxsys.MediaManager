@@ -1,11 +1,6 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
-using Maxsys.ModelCore.Interfaces.Services;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Views
 {
@@ -53,12 +48,12 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Views
 
         private void OnDgvMusics_DragDrop(object sender, DragEventArgs e)
         {
-        //    // still check if the associated data from the file(s) can be used for this purpose
-        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        //    {
-        //        var dropDownObj = (string[])e.Data.GetData(DataFormats.FileDrop);
-        //        _viewModel.AddMp3FilesAction(dropDownObj);
-        //    }
+            //    // still check if the associated data from the file(s) can be used for this purpose
+            //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //    {
+            //        var dropDownObj = (string[])e.Data.GetData(DataFormats.FileDrop);
+            //        _viewModel.AddMp3FilesAction(dropDownObj);
+            //    }
         }
 
         //#endregion Drag and Drop

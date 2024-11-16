@@ -1,11 +1,11 @@
-﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
-using Maxsys.ModelCore.Interfaces.Services;
-using System;
+﻿using System;
 using System.Windows.Threading;
+using Maxsys.Core.Services;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Services
 {
-    public class MainWindowToolbarDialogService : IDialogService
+    public class MainWindowToolbarDialogService : ServiceBase, IDialogService
     {
         #region Fields & Consts
 
@@ -62,11 +62,14 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Services
 
         #region DIPOSABLE IMPLEMENTATION
 
-        public void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            _timer.Tick -= DispatcherTimer_Tick;
+            if (!_disposed && disposing)
+            {
+                _timer.Tick -= DispatcherTimer_Tick;
+            }
 
-            GC.SuppressFinalize(this);
+            base.Dispose(disposing);
         }
 
         #endregion DIPOSABLE IMPLEMENTATION

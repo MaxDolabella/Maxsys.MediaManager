@@ -13,10 +13,6 @@
 	<Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="C:\Users\T-GAMER\.nuget\packages\maxsys.core.data\12.0.0\contentFiles\any\net8.0\PackageAssets\logo.ico" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<Using Include="Maxsys.MediaManager.CoreDomain" />
 		

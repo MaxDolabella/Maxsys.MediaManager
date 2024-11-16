@@ -1,11 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using System.Threading.Tasks;
+using FluentValidation.Results;
 using Maxsys.MediaManager.CoreDomain.Commands;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
-using Maxsys.ModelCore.Interfaces.Services;
+using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 

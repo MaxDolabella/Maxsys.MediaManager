@@ -1,6 +1,6 @@
-﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
-using System;
+﻿using System;
 using System.Windows;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Services
 {

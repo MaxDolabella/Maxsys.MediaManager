@@ -1,10 +1,9 @@
-﻿using Maxsys.ModelCore.Interfaces.Services;
-using System;
-using System.Windows;
+﻿using System.Windows;
+using Maxsys.Core.Services;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Services
 {
-    public class MainWindowDialogService : IDialogService
+    public class MainWindowDialogService : ServiceBase, IDialogService
     {
         public MainWindowDialogService(MainWindow window)
         {
@@ -13,6 +12,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Services
 
         // TODO Make Owner readonly
         public object Owner { get; set; }
+
         private MainWindow Window => (MainWindow)Owner;//Owner is not DependencyObject dObj ? null : Window.GetWindow(dObj);
 
         public void ShowMessage(MessageType messageType, string message, string title = null)
@@ -28,11 +28,5 @@ namespace Maxsys.MediaManager.MusicContext.WPF.Services
 
             _ = MessageBox.Show(Window, message, title, MessageBoxButton.OK, messageBoxImage);
         }
-
-        #region DIPOSABLE IMPLEMENTATION
-
-        public void Dispose() => GC.SuppressFinalize(this);
-
-        #endregion DIPOSABLE IMPLEMENTATION
     }
 }
