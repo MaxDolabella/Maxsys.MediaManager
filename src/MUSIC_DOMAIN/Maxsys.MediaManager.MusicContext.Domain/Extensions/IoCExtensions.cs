@@ -15,6 +15,9 @@ public static class IoCExtensions
     /// </summary>
     public static IServiceCollection AddDomainDependencyInjection(this IServiceCollection services, IConfiguration configuration, ServiceLifetime lifetime = ServiceLifetime.Scoped)
     {
+        services.AddAutoMapper([typeof(IDomainEntry)]);
+
+
         services.ConfigureOptions(configuration);
 
         services.ConfigureServices(lifetime);

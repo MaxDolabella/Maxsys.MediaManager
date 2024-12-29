@@ -22,7 +22,7 @@ namespace Maxsys.MediaManager.MusicContext.WPF
             _host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    //NativeInjectorBootstrapper.RegisterServices(services, context.Configuration);
+                    NativeInjectorBootstrapper.RegisterServices(services, context.Configuration);
 
                     IoCExtensions.AddUIServices(services, context.Configuration);
                 })

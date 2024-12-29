@@ -13,16 +13,16 @@ namespace Maxsys.MediaManager.MusicContext.WPF
     //      services.AddSingleton<IMainContentCloser, MainWindowContentCloser>();
     public partial class MainWindow : Window
     {
-        private readonly MainWindowViewModel _viewModel;
+        //private readonly MainWindowViewModel _viewModel;
 
-        public MainWindow(ILogger<MainWindow> logger, ILogger<MainWindowViewModel> viewModelLogger, 
-            NavigationStore navigationStore, IServiceProvider serviceProvider)
+        public MainWindow(/*ILogger<MainWindow> logger, ILogger<MainWindowViewModel> viewModelLogger, 
+            NavigationStore navigationStore, IServiceProvider serviceProvider*/)
         {
             InitializeComponent();
 
-            _viewModel = new MainWindowViewModel(viewModelLogger, navigationStore, new MainWindowContentOwner(this), new MainWindowAppCloser(this), serviceProvider);
+            //_viewModel = new MainWindowViewModel(viewModelLogger, navigationStore, new MainWindowContentOwner(this), new MainWindowAppCloser(this), serviceProvider);
 
-            DataContext = _viewModel; //= new(logger, host, new MainWindowContentOwner(this), new MainWindowAppCloser(this));
+            //DataContext = _viewModel; //= new(logger, host, new MainWindowContentOwner(this), new MainWindowAppCloser(this));
 
             //Loaded += async (o, s) => { await _viewModel.LoadedCatalogsAsync(); };
         }

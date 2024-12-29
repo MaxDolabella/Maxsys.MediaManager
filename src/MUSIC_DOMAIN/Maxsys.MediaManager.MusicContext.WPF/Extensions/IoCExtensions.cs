@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
+using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.MediaManager.MusicContext.WPF.Commands;
 using Maxsys.MediaManager.MusicContext.WPF.Commands.MainWindow;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
@@ -20,18 +25,22 @@ public static class IoCExtensions
 
         // AppServices
         //services.ConfigureAppServicesByReflection();
+        //services.AddTransient<ICatalogCreateAppService, CatalogCreateAppService>();
 
         // Views
         //services.ConfigureViewsByReflection();
+        //services.AddTransient<ICatalogCreateViewModel, CatalogCreateViewModel>();
 
         // Others services
         //services.ConfigureMainViewServices();
 
         // Commands
         //services.ConfigureCommands();
+        //services.AddTransient<CreateCatalogAsyncCommand>();
+        
 
         // NavigationStore
-        services.AddSingleton<NavigationStore>();
+        //services.AddSingleton<NavigationStore>();
         //services.AddSingleton<MainWindowViewModel>();
 
         //services.AddSingleton<IMainContentCloser, MainWindowContentCloser>();

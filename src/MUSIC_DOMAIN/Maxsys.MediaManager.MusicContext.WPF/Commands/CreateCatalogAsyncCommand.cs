@@ -17,7 +17,7 @@ public class CreateCatalogAsyncCommand : AsyncCommandBase
     private readonly IDialogService _dialogService;
 
     public CreateCatalogAsyncCommand(
-        ILogger logger,
+        ILogger<CreateCatalogAsyncCommand> logger,
         ICatalogCreateViewModel viewModel,
         ICatalogCreateAppService appService,
         IDialogService dialogService,
