@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Maxsys.Core.EventSourcing;
 using ModelBuilderExtensions;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
@@ -24,6 +25,8 @@ public class MusicAppContext : DbContext
         modelBuilder.DateTimeToDateConvention();
         modelBuilder.StringToVarcharConvention();
         //modelBuilder.StringMaxLength100Convention();
+
+        modelBuilder.Ignore<DomainEvent>();
 
         #endregion Custom Conventions
 
