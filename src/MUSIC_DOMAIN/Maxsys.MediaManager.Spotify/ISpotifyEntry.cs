@@ -3,7 +3,6 @@
 public interface ISpotifyEntry
 { }
 
-
 /*
 
 // Pre
@@ -20,7 +19,6 @@ let base64 = CryptoJS.enc.Base64.stringify(rawStr)
 // set local variable to be used in Auth Header
 pm.environment.set("encodedIdAndKey", base64)
 
-
 https://accounts.spotify.com/api/token
 Form grant_type: client_credentials
 Header: Auth: Basic {{encodedIdAndKey}}
@@ -31,6 +29,5 @@ const jsonData = pm.response.json();
 if(jsonData.access_token){
     pm.environment.set("spotify_access_token", jsonData.access_token);
 }
-
 
 */

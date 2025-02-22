@@ -11,6 +11,10 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<Using Include="Maxsys.MediaManager.Spotify.Common" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Maxsys.Core.Data" Version="15.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.2" />

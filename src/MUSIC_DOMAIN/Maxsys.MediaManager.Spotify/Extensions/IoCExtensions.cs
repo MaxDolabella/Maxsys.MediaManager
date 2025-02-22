@@ -1,5 +1,6 @@
 ﻿using Maxsys.MediaManager.Spotify.Authentication;
 using Maxsys.MediaManager.Spotify.Options;
+using Maxsys.MediaManager.Spotify.Searching;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,7 @@ public static class IoCExtensions
 
         services.AddHttpClient();
         services.AddScoped<ITokenProvider, TokenProvider>();
+        services.AddScoped<ISearchService, SearchService>();
 
         return services;
     }
