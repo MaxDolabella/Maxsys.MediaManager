@@ -20,6 +20,8 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
         builder.Property(song => song.TrackNumber).IsRequired(false);
         builder.Property(song => song.Lyrics).HasMaxLength(5000).IsRequired(false);
         builder.Property(song => song.Comments).HasMaxLength(300).IsRequired(false);
+        builder.Property(song => song.SpotifyId).HasMaxLength(50).IsRequired(false);
+        builder.Property(song => song.ISRC).HasMaxLength(12).IsFixedLength(true).IsRequired(false);
 
         // Navigation
         builder.HasOne(song => song.Album).WithMany(album => album.Songs);

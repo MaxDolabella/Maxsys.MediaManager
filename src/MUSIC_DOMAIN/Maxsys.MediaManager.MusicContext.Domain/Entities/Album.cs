@@ -24,6 +24,7 @@ public class Album : Entity<Guid>
     // TODO criar uma classe pra não repetir no banco
     public byte[] AlbumCover { get; protected set; }
 
+    public string? SpotifyId { get; protected set; }
     // Navigation
 
     public Artist Artist { get; protected set; }
@@ -35,6 +36,11 @@ public class Album : Entity<Guid>
 
     public string GetYearName()
         => $"{(Year.HasValue ? $"({Year.Value}) " : string.Empty)}{Name}";
+
+    public void SetSpotifyId(string? id)
+    {
+        SpotifyId = id;
+    }
 
     #region CONSTRUCTORS
 

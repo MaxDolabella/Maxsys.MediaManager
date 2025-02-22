@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
@@ -9,31 +9,26 @@
     <Authors>Max Dolabella</Authors>
     <AssemblyName>Maxsys.MediaManager.Music_Data</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
-	<ImplicitUsings>enable</ImplicitUsings>
-	<Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
-	<ItemGroup>
-		<Using Include="Maxsys.MediaManager.CoreDomain" />
-		
-		<Using Include="Microsoft.EntityFrameworkCore" />
-		<Using Include="Maxsys.MediaManager.MusicContext.Domain.DTO" />
-		<Using Include="Maxsys.MediaManager.MusicContext.Domain.Entities" />
-		<Using Include="Maxsys.MediaManager.MusicContext.Domain.ValueObjects" />
-
-		<Using Remove="System.Net.Http" />
-		<Using Remove="System.IO" />
-	</ItemGroup>
-  
+  <ItemGroup>
+    <Using Include="Maxsys.MediaManager.CoreDomain" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="Maxsys.MediaManager.MusicContext.Domain.DTO" />
+    <Using Include="Maxsys.MediaManager.MusicContext.Domain.Entities" />
+    <Using Include="Maxsys.MediaManager.MusicContext.Domain.ValueObjects" />
+    <Using Remove="System.Net.Http" />
+    <Using Remove="System.IO" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
     <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
   </ItemGroup>
-  
   <ItemGroup>
     <PackageReference Include="Maxsys.Core.Data" Version="15.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.2" />
   </ItemGroup>
-
+  
 </Project>

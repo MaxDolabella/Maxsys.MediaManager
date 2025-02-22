@@ -15,6 +15,7 @@ internal class AlbumConfig : IEntityTypeConfiguration<Album>
         builder.Property(album => album.Genre).HasMaxLength(50).IsRequired();
         builder.Property(album => album.AlbumType).IsRequired();
         builder.Property(album => album.AlbumCover).IsRequired(); // If doesn't exits, byte[] must be empty
+        builder.Property(album => album.SpotifyId).HasMaxLength(50).IsRequired(false);
 
         // Navigation
         builder.HasOne(album => album.Artist).WithMany(artist => artist.Albums);

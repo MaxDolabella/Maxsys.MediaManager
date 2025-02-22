@@ -10,6 +10,7 @@ internal class ArtistConfig : IEntityTypeConfiguration<Artist>
 
         // Properties
         builder.Property(artist => artist.Name).HasMaxLength(50).IsRequired();
+        builder.Property(artist => artist.SpotifyId).HasMaxLength(50).IsRequired(false);
 
         // Navigation
         builder.HasOne(artist => artist.Catalog).WithMany(catalog => catalog.Artists);
