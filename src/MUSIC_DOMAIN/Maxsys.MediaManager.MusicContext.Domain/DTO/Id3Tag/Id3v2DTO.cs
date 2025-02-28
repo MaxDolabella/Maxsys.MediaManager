@@ -19,8 +19,8 @@ public struct Id3v2DTO : IEquatable<Id3v2DTO?>
         string? lyrics,
         string? coveredArtist,
         string? featuredArtist,
-        string[] composers,
-        byte[] coverPicture)
+        string[]? composers,
+        byte[]? coverPicture)
     {
         FullPath = fullPath ?? throw new ArgumentNullException(nameof(fullPath));
         Title = title ?? throw new ArgumentNullException(nameof(title));

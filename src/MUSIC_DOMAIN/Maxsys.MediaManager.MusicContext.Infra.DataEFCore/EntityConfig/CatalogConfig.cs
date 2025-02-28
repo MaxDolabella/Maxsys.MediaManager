@@ -6,12 +6,13 @@ internal class CatalogConfig : IEntityTypeConfiguration<Catalog>
 {
     public void Configure(EntityTypeBuilder<Catalog> builder)
     {
-        builder.ToTable("Catalogs").HasKey(catalog => catalog.Id);
+        builder.ToTable("Catalog").HasKey(e => e.Id);
 
         // Properties
-        builder.Property(catalog => catalog.Name).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.Id).IsRequired();
+        builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
 
         // Indexes
-        builder.HasIndex(catalog => catalog.Name).IsUnique().HasDatabaseName("AK_Catalogs_Name");
+        builder.HasIndex(e => e.Name).IsUnique().HasDatabaseName("AK_Catalog_Name");
     }
 }

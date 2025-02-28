@@ -2,6 +2,7 @@
 using Maxsys.Core.Interfaces.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
+using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context.Interceptors;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,8 +46,14 @@ public static class IoCExtensions
     /// </summary>
     public static void ConfigureContext(this IServiceCollection services, IConfiguration configuration)
     {
-        var baseConn = configuration.GetConnectionString(nameof(MusicAppContext));
+        var conn = configuration.GetConnectionString(nameof(MusicAppContext));
 
-        services.AddDbContext<MusicAppContext>(options => options.UseSqlServer(baseConn));
+        services.AddScoped<AuditableEntityInterceptor>();
+
+        services.AddDbContext<MusicAppContext>((sp, options) =>
+        {
+            options.AddInterceptors(sp.GetRequiredService<AuditableEntityInterceptor>());
+            options.UseSqlServer(conn);
+        });
     }
 }

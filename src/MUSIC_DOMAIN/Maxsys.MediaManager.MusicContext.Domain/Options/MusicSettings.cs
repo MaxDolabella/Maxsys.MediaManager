@@ -9,7 +9,7 @@ public class MusicSettings
     /// <br/>
     /// Example: <code>D:\Music\</code>
     /// </summary>
-    public string MusicLibraryFolder { get; set; }
+    public Uri MusicLibraryFolder { get; set; }
 
     /// <summary>
     /// Defines the name of playlists folder.

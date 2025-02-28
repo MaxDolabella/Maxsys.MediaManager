@@ -1,10 +1,11 @@
 using System;
 using Maxsys.Core.Entities;
+using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.CoreDomain.Interfaces.Services;
 
 namespace Maxsys.MediaManager.CoreDomain;
 
-public abstract class MediaFile : Entity<Guid>
+public abstract class MediaFile : Entity<Guid>, IAuditableEntity
 {
     #region PROPERTIES
 
@@ -12,7 +13,7 @@ public abstract class MediaFile : Entity<Guid>
     /// Path limit is 248 characters.
     /// Path+Filename limit is 260 characters.
     /// </summary>
-    public string FullPath { get; protected set; }
+    public Uri FullPath { get; protected set; }
 
     public string OriginalFileName { get; protected set; } // private set?
 
@@ -21,12 +22,12 @@ public abstract class MediaFile : Entity<Guid>
     /// <summary>
     /// Automatic value
     /// </summary>
-    public DateTime CreatedDate { get; protected set; }
+    public DateTime CreatedAt { get; protected set; }
 
     /// <summary>
     /// Automatic value
     /// </summary>
-    public DateTime UpdatedDate { get; protected set; }
+    public DateTime? LastUpdateAt { get; protected set; }
 
     #endregion PROPERTIES
 
@@ -35,7 +36,7 @@ public abstract class MediaFile : Entity<Guid>
     protected MediaFile()
     { }
 
-    protected MediaFile(Guid id, string fullPath, string originalFileName, long fileSize)
+    protected MediaFile(Guid id, Uri fullPath, string originalFileName, long fileSize)
     {
         Id = id;
         FullPath = fullPath;
@@ -45,15 +46,12 @@ public abstract class MediaFile : Entity<Guid>
 
     #endregion CONSTRUCTORS
 
-    public void SetCreatedDate(DateTime date)
-        => CreatedDate = date;
+    public void SetCreatedAt(DateTime date) => CreatedAt = date;
+    public void SetLastUpdateAt(DateTime date) => LastUpdateAt = date;
 
-    public void SetUpdatedDate(DateTime date)
-     => UpdatedDate = date;
-
-    public void UpdateFilePropertiesFrom(IFilePropertiesReader propertiesReader, string fileToUpdateFrom)
+    public async Task UpdateFilePropertiesFromAsync(IFilePropertiesReader propertiesReader, Uri fileToUpdateFrom)
     {
-        OriginalFileName = propertiesReader.GetFileNameWithoutExtension(fileToUpdateFrom);
-        FileSize = propertiesReader.GetFileSize(fileToUpdateFrom);
+        OriginalFileName = await propertiesReader.GetFileNameWithoutExtensionAsync(fileToUpdateFrom);
+        FileSize = await propertiesReader.GetFileSizeAsync(fileToUpdateFrom);
     }
 }

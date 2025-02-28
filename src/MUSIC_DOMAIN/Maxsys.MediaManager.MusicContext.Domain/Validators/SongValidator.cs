@@ -28,7 +28,7 @@ public class SongValidator : AbstractValidator<Song>
             token);
     }
 
-    private async Task<bool> IsUniqueFullPathAsync(Song music, string fullPath, CancellationToken token = default)
+    private async Task<bool> IsUniqueFullPathAsync(Song music, Uri fullPath, CancellationToken token = default)
     {
         return !await _repository.AnyAsync(x
             => x.Id != music.Id // Exclude current music from query for updating scenario
@@ -111,7 +111,7 @@ public class SongValidator : AbstractValidator<Song>
 
     public void AddRuleForFullPath()
     {
-        RuleFor(mediaFile => mediaFile.FullPath).NotEmpty()
+        RuleFor(mediaFile => mediaFile.FullPath.AbsolutePath).NotEmpty()
             .MaximumLength(260).WithMessage("Path lenght must be lower than 260.");
         // .Must(FileMustExist).WithMessage("File must exist.")
         // .When(music => string.IsNullOrWhiteSpace(music.GetOriginalFilePath()))

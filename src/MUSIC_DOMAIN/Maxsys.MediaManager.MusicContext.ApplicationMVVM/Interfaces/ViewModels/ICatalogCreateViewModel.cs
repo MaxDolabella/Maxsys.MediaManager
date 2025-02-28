@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Maxsys.MediaManager.CoreDomain.Commands;
+using CommunityToolkit.Mvvm.Input;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Catalog;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
@@ -15,7 +15,7 @@ public interface ICatalogCreateViewModel : IValidableViewModel
 
     IReadOnlyList<CatalogDetailViewModel> Catalogs { get; }
 
-    IAsyncCommand SaveCommand { get; }
+    IAsyncRelayCommand SaveCommand { get; }
 
     Task LoadCatalogsAsync(CancellationToken cancellation = default);
 }

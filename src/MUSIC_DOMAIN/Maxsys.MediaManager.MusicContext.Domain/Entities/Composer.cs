@@ -1,15 +1,16 @@
+using System.Diagnostics;
 using Maxsys.Core.Entities;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
-[System.Diagnostics.DebuggerDisplay("{Name}")]
+[DebuggerDisplay("{Name}")]
 public class Composer : Entity<Guid>
 {
     #region PROPERTIES
 
     public string Name { get; protected set; }
 
-    // Collections
+    // Navigation
     public List<Song> Songs { get; protected set; } = [];
 
     #endregion PROPERTIES

@@ -6,6 +6,7 @@
     <StartupObject></StartupObject>
     <ApplicationIcon></ApplicationIcon>
     <AssemblyName>Maxsys.MediaManager.Music_DataExporter</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

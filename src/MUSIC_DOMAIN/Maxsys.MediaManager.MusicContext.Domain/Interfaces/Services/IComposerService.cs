@@ -2,5 +2,5 @@ using Maxsys.Core.Interfaces.Services;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
-public interface IComposerService : IService
+public interface IComposerService : IService<Composer, Guid>
 { }

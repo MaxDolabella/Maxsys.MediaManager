@@ -3,6 +3,8 @@
   <PropertyGroup>
     <!-- DOTNET_ENVIRONMENT must be 'Development' -->
     <EnvironmentName>Development</EnvironmentName>
+    <Platforms>AnyCPU;x64</Platforms>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
   
   <Choose>

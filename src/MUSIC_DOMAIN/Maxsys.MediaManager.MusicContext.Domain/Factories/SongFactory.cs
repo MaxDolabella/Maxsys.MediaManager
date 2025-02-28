@@ -5,6 +5,7 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Factories;
 public static class SongFactory
 {
     public static Song Create(
+        Guid id,
         Guid albumId,
         string originalFileName,
         string fullPath,
@@ -12,6 +13,7 @@ public static class SongFactory
         int? trackNumber,
         string? lyrics,
         string? comments,
+        string? spotifyID,
         bool isBonusTrack,
         VocalGenders vocalGender,
         string? coveredArtist,
@@ -33,7 +35,7 @@ public static class SongFactory
         var songProperties = new SongProperties(duration, bitrate);
 
         var music = new Song(
-            GuidGen.NewSequentialGuid(),
+            id,
             albumId,
             originalFileName,
             fullPath,
@@ -42,15 +44,42 @@ public static class SongFactory
             trackNumber,
             lyrics,
             comments,
+            spotifyID,
             songDetails,
             classification,
             songProperties);
 
         // Add composers
         if (composers != null)
+        {
             foreach (var composer in composers)
+            {
                 music.AddComposer(composer);
+            }
+        }
 
         return music;
     }
+
+    public static Song Create(
+        Guid albumId,
+        string originalFileName,
+        string fullPath,
+        string title,
+        int? trackNumber,
+        string? lyrics,
+        string? comments,
+        string? spotifyID,
+        bool isBonusTrack,
+        VocalGenders vocalGender,
+        string? coveredArtist,
+        string? featuredArtist,
+        byte stars10,
+        long fileSize,
+        TimeSpan duration,
+        int bitrate,
+        IEnumerable<Composer>? composers = null)
+        => Create(GuidGen.NewSequentialGuid(), albumId, originalFileName, fullPath, title, trackNumber, lyrics, comments,
+            spotifyID, isBonusTrack, vocalGender, coveredArtist, featuredArtist, stars10,
+            fileSize, duration, bitrate, composers);
 }

@@ -1,5 +1,5 @@
-﻿using Maxsys.MediaManager.CoreDomain.Commands;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.WPF.Commands.Abstrations;
 
 namespace Maxsys.MediaManager.MusicContext.WPF.Commands;
 

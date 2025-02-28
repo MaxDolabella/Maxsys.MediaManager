@@ -11,7 +11,7 @@ public readonly record struct SongDetailDTO(
     string ArtistName,
     string AlbumName,
     AlbumTypes AlbumType,
-    string SongFullPath,
+    Uri SongFullPath,
     int? SongTrackNumber,
     string SongTitle,
     int SongRating,

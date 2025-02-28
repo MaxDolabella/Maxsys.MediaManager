@@ -6,15 +6,17 @@ internal class PlaylistConfig : IEntityTypeConfiguration<Playlist>
 {
     public void Configure(EntityTypeBuilder<Playlist> builder)
     {
-        builder.ToTable("Playlists").HasKey(playlist => playlist.Id);
+        builder.ToTable("Playlist").HasKey(e => e.Id);
 
         // Properties
-        builder.Property(playlist => playlist.Name).HasMaxLength(50).IsRequired();
+        builder.Property(p => p.Id).IsRequired();
+        builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.SpotifyRef).HasMaxLength(50).IsRequired(false);
 
         // Navigation
-        builder.HasMany(playlist => playlist.Items).WithOne(item => item.Playlist);
+        // builder.HasMany(e => e.Items).WithOne(item => item.Playlist);
 
         // Indexes
-        builder.HasIndex(playlist => playlist.Name).IsUnique().HasDatabaseName($"AK_Playlists_Name");
+        builder.HasIndex(e => e.Name).IsUnique().HasDatabaseName($"AK_Playlist_Name");
     }
 }

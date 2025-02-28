@@ -16,10 +16,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Maxsys.Core" Version="12.0.0" />
+    <Using Include="Maxsys.Core" />
+    <Using Include="System.Threading.Tasks" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Maxsys.Core" Version="14.1.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-    <PackageReference Include="System.Resources.Extensions" Version="9.0.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>

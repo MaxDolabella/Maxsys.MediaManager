@@ -10,17 +10,17 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters;
 /// </summary>
 public sealed class M3UPlaylistFileExporter : ServiceBase, IPlaylistFileExporter
 {
-    public async Task<ValidationResult> ExportFileAsync(IEnumerable<string> songFiles, string destFolder, string playlistName, CancellationToken token = default)
+    public async Task<OperationResult> ExportFileAsync(IEnumerable<string> songFiles, Uri destFolder, string playlistName, CancellationToken token = default)
     {
-        var playlistPath = Path.Combine(destFolder, $"{playlistName}.m3u");
+        var playlistPath = Path.Combine(destFolder.AbsolutePath, $"{playlistName}.m3u");
         var contents = new List<string>(songFiles.Count() + 1)
         {
             "#EXTM3U"
         };
 
-        contents.AddRange(songFiles.Select(songPath => Path.GetRelativePath(destFolder, songPath)));
+        contents.AddRange(songFiles.Select(songPath => Path.GetRelativePath(destFolder.AbsolutePath, songPath)));
 
-        ValidationResult result = new();
+        OperationResult result = new();
         try
         {
             await File.WriteAllLinesAsync(playlistPath, contents, token);
@@ -28,7 +28,7 @@ public sealed class M3UPlaylistFileExporter : ServiceBase, IPlaylistFileExporter
         catch (Exception ex)
         {
             // TODO Log???
-            result.AddError($"An error ocurred while exporting file: {ex.Message}");
+            result.AddException(ex, "An error ocurred while exporting file");
         }
 
         return result;

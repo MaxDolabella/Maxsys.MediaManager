@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             {
                 _logger.LogDebug("Retrieving data from database...");
 
-                catalogs = await _context.Catalogs
+                catalogs = await _context.Set<Catalog>()
                     .AsNoTracking()
                     .Select(c => $"{c.Id}\t{c.Name}")
                     .ToListAsync();

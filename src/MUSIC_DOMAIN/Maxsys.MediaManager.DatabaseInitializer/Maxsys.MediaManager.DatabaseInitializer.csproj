@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Seed\Album.json" />
+    <None Remove="Seed\AlbumCover.json" />
+    <None Remove="Seed\Artist.json" />
+    <None Remove="Seed\Catalog.json" />
+    <None Remove="Seed\Composer.json" />
+    <None Remove="Seed\ComposerMusic.json" />
+    <None Remove="Seed\Playlist.json" />
+    <None Remove="Seed\PlaylistItem.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Seed\Album.json" />
+    <EmbeddedResource Include="Seed\AlbumCover.json" />
+    <EmbeddedResource Include="Seed\Artist.json" />
+    <EmbeddedResource Include="Seed\Catalog.json" />
+    <EmbeddedResource Include="Seed\Composer.json" />
+    <EmbeddedResource Include="Seed\ComposerMusic.json" />
+    <EmbeddedResource Include="Seed\Playlist.json" />
+    <EmbeddedResource Include="Seed\PlaylistItem.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataEFCore\Maxsys.MediaManager.MusicContext.Infra.DataEFCore.csproj" />
+  </ItemGroup>
+
+</Project>

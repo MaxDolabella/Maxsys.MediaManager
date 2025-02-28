@@ -1,19 +1,17 @@
+using System.Linq.Expressions;
+using AutoMapper;
+using Maxsys.Core.Interfaces.Data;
 using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
-public class ComposerService : ServiceBase, IComposerService
+public class ComposerService : ServiceBase<Composer, IComposerRepository, Guid>, IComposerService
 {
-    private readonly IComposerRepository _repository;
+    public ComposerService(IComposerRepository repository, IUnitOfWork uow, IMapper mapper)
+        : base(repository, uow, mapper)
+    { }
 
-    #region CONTRUCTORS
-
-    public ComposerService(IComposerRepository repository)
-    {
-        _repository = repository;
-    }
-
-    #endregion CONTRUCTORS
+    protected override Expression<Func<Composer, bool>> IdSelector(Guid id) => x => x.Id == id;
 }

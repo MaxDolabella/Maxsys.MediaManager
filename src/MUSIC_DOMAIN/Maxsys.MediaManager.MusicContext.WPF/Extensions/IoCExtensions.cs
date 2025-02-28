@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Maxsys.MediaManager.CoreDomain.Interfaces;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Services;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
 using Maxsys.MediaManager.MusicContext.WPF.Commands;
 using Maxsys.MediaManager.MusicContext.WPF.Commands.MainWindow;
 using Maxsys.MediaManager.MusicContext.WPF.Services;

@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
-using FluentValidation.Results;
-using Maxsys.MediaManager.CoreDomain.Commands;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
+using Maxsys.MediaManager.MusicContext.WPF.Commands.Abstrations;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Microsoft.Extensions.Logging;
 
@@ -20,8 +18,7 @@ public class CreateCatalogAsyncCommand : AsyncCommandBase
         ILogger<CreateCatalogAsyncCommand> logger,
         ICatalogCreateViewModel viewModel,
         ICatalogCreateAppService appService,
-        IDialogService dialogService,
-        IErrorHandler errorHandler) : base(errorHandler)
+        IDialogService dialogService)
     {
         _logger = logger;
         _viewModel = viewModel;
@@ -39,27 +36,27 @@ public class CreateCatalogAsyncCommand : AsyncCommandBase
         await _viewModel.LoadCatalogsAsync();
     }
 
-    private void OnMusicCatalogSaveFail(ValidationResult validationResult)
+    private void OnMusicCatalogSaveFail(string errors)
     {
-        var message = $"Error while registering Song Catalog: {validationResult}";
+        var message = $"Error while registering Song Catalog: {errors}";
 
         _dialogService.ShowMessage(MessageType.Error, message);
         _logger.LogError(message);
     }
 
-    public override bool CanExecute()
+    public override bool CanExecute(object? parameter)
     {
         return !string.IsNullOrWhiteSpace(_viewModel.CatalogName);
     }
 
-    public override async Task ExecuteAsync()
+    public override async Task ExecuteAsync(object? parameter)
     {
         _logger.LogInformation("Registering Catalog [{CatalogName}].", _viewModel.CatalogName);
 
         // Validate Model
         if (!_viewModel.IsValid)
         {
-            OnMusicCatalogSaveFail(_viewModel.ValidationResult);
+            OnMusicCatalogSaveFail(_viewModel.Errors);
             return;
         }
 
@@ -68,6 +65,6 @@ public class CreateCatalogAsyncCommand : AsyncCommandBase
         if (validationResult.IsValid)
             await OnMusicCatalogSaved();
         else
-            OnMusicCatalogSaveFail(validationResult);
+            OnMusicCatalogSaveFail(validationResult.ToString());
     }
 }

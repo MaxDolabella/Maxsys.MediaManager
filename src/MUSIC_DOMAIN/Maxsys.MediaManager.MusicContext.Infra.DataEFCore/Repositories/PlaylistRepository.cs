@@ -53,6 +53,12 @@ public class PlaylistRepository : RepositoryBase<Playlist>, IPlaylistRepository
             or EntityState.Deleted);
     }
 
+    public Task<Playlist?> GetToExportAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return DbSet.Include(x => x.Items).ThenInclude(x => x.Song)
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+    }
+
     //public async Task<IEnumerable<Playlist>> GetAllWithDependenciesAsync(CancellationToken token = default)
     //{
     //    return await DbSet

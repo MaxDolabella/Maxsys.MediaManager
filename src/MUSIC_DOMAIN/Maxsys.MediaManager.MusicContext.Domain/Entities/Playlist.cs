@@ -1,15 +1,17 @@
+using System.Diagnostics;
 using Maxsys.Core.Entities;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
-[System.Diagnostics.DebuggerDisplay("{Name}[{Items.Count} items]")]
+[DebuggerDisplay("{Name}[{Items.Count} items]")]
 public class Playlist : Entity<Guid>
 {
     #region PROPERTIES
 
     public string Name { get; protected set; }
+    public string? SpotifyRef { get; protected set; }
 
-    // Collections
+    // Navigation
     public List<PlaylistItem> Items { get; protected set; } = [];
 
     #endregion PROPERTIES
@@ -19,10 +21,11 @@ public class Playlist : Entity<Guid>
     protected Playlist()
     { }
 
-    internal Playlist(Guid id, string name)
+    internal Playlist(Guid id, string name, string? spotifyRef)
     {
         Id = id;
         Name = name;
+        SpotifyRef = spotifyRef;
     }
 
     #endregion CONSTRUCTORS

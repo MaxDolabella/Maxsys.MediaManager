@@ -6,12 +6,13 @@ internal class ComposerConfig : IEntityTypeConfiguration<Composer>
 {
     public void Configure(EntityTypeBuilder<Composer> builder)
     {
-        builder.ToTable("Composers").HasKey(composer => composer.Id);
+        builder.ToTable("Composer").HasKey(e => e.Id);
 
         // Properties
-        builder.Property(composer => composer.Name).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.Id).IsRequired();
+        builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
 
         // Indexes
-        builder.HasIndex(composer => composer.Name).IsUnique().HasDatabaseName($"AK_Composers_Name");
+        builder.HasIndex(e => e.Name).IsUnique().HasDatabaseName($"AK_Composer_Name");
     }
 }

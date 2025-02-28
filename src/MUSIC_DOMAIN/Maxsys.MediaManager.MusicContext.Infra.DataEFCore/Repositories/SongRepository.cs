@@ -11,12 +11,12 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
     public SongRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
-    public async Task<Song?> GetByPathAsync(string musicPath, CancellationToken token = default)
+    public async Task<Song?> GetByPathAsync(Uri musicPath, CancellationToken token = default)
     {
         return await DbSet.FirstOrDefaultAsync(m => m.FullPath == musicPath);
     }
 
-    public async Task<bool> PathExistsAsync(string musicPath, CancellationToken token = default)
+    public async Task<bool> PathExistsAsync(Uri musicPath, CancellationToken token = default)
     {
         return await DbSet.AsNoTracking()
             .AnyAsync(music => music.FullPath == musicPath);
@@ -26,7 +26,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
     {
         return await DbSet.AsNoTracking()
             .Include(e => e.Album)
-            .OrderBy(e => e.Album.AlbumDirectory)
+            .OrderBy(e => e.Album.Directory)
             .Select(e => new SongInfoDTO
             {
                 SongId = e.Id,

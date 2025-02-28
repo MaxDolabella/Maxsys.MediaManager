@@ -19,12 +19,12 @@ public sealed class PathService : ServiceBase, IPathService
         _musicSettings = musicSettingsOptions.Value;
     }
 
-    public string DefineAlbumDirectory(DefineAlbumDirectoryDTO dto)
+    public Uri DefineAlbumDirectory(DefineAlbumDirectoryParams dto)
     {
-        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryParams)} must be valid.");
 
         var libFolder = _musicSettings.MusicLibraryFolder;
-        var artistDirectory = Path.Combine(libFolder!,
+        var artistDirectory = Path.Combine(libFolder.AbsolutePath,
                                            dto.MusicCatalogName,
                                            dto.ArtistName);
 
@@ -44,21 +44,21 @@ public sealed class PathService : ServiceBase, IPathService
             ? $"({dto.AlbumYear.Value}) {name}"
             : name;
 
-        return Path.Combine(artistDirectory, albumTypeFolder, albumFolder);
+        return new Uri(Path.Combine(artistDirectory, albumTypeFolder, albumFolder));
     }
 
-    public string DefineSongFilePath(DefineSongFileNameDTO dto)
+    public Uri DefineSongFilePath(DefineSongFileNameParams dto)
     {
-        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryParams)} must be valid.");
 
         var fileName = DefineSongFileName(dto);
 
-        return Path.Combine(dto.AlbumDirectory, fileName + ".mp3");
+        return new Uri(Path.Combine(dto.AlbumDirectory, fileName + ".mp3"));
     }
 
-    public string DefineSongFileName(DefineSongFileNameDTO dto)
+    public string DefineSongFileName(DefineSongFileNameParams dto)
     {
-        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryDTO)} must be valid.");
+        if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryParams)} must be valid.");
 
         var track = dto.SongTrackNumber.HasValue
             ? $"{dto.SongTrackNumber.Value:00} " : string.Empty;
@@ -79,25 +79,20 @@ public sealed class PathService : ServiceBase, IPathService
         return IOHelper.ReplaceAndRemoveInvalidFileNameChars(fileName);
     }
 
-    public string GetCatalogDirectory(string musicCatalogName)
+    public Uri GetCatalogDirectory(string musicCatalogName)
     {
-        if (string.IsNullOrWhiteSpace(musicCatalogName))
-            throw new ArgumentException($"'{nameof(musicCatalogName)}' must be valid.",
-                nameof(musicCatalogName));
+        ArgumentException.ThrowIfNullOrWhiteSpace(musicCatalogName, nameof(musicCatalogName));
 
-        return Path.Combine(_musicSettings.MusicLibraryFolder, musicCatalogName);
+        return new Uri(Path.Combine(_musicSettings.MusicLibraryFolder.AbsolutePath, musicCatalogName));
     }
 
-    public string GetArtistDirectory(DefineArtistFolderDTO dto)
+    public Uri GetArtistDirectory(DefineArtistFolderParams dto)
     {
-        if (!dto.IsValid())
-            throw new ArgumentException($"'{nameof(dto)}' must be valid.", nameof(dto));
-
-        return Path.Combine(GetCatalogDirectory(dto.MusicCatalogName), dto.ArtistName);
+        return new Uri(Path.Combine(GetCatalogDirectory(dto.MusicCatalogName).AbsolutePath, dto.ArtistName));
     }
 
-    public string GetDefaultPlaylistDirectory()
+    public Uri GetDefaultPlaylistDirectory()
     {
-        return Path.Combine(_musicSettings.MusicLibraryFolder, _musicSettings.PlaylistFolderName);
+        return new Uri(Path.Combine(_musicSettings.MusicLibraryFolder.AbsolutePath, _musicSettings.PlaylistFolderName));
     }
 }

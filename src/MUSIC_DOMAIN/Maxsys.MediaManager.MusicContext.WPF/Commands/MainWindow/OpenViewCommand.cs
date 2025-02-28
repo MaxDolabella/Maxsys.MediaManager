@@ -1,5 +1,5 @@
-﻿using Maxsys.MediaManager.CoreDomain.Commands;
-using Maxsys.MediaManager.CoreDomain.Interfaces;
+﻿using Maxsys.MediaManager.CoreDomain.Interfaces;
+using Maxsys.MediaManager.MusicContext.WPF.Commands.Abstrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;

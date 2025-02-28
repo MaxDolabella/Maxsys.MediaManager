@@ -134,7 +134,7 @@ public class AlbumValidator : AbstractValidator<Album>
 
     public void RuleForAlbumDirectory()
     {
-        RuleFor(x => x.AlbumDirectory).NotEmpty()
+        RuleFor(x => x.Directory.AbsolutePath).NotEmpty()
             .MaximumLength(200)
                 .WithMessage("{PropertyName} lenght must be lower than 200.");
     }

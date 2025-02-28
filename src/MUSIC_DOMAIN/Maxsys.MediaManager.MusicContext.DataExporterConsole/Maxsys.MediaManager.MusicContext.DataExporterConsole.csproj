@@ -6,6 +6,7 @@
     <ApplicationIcon>Assets\Icon\icon-256.ico</ApplicationIcon>
     <AssemblyName>Music_DataExporter</AssemblyName>
     <EnvironmentName>Development</EnvironmentName>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

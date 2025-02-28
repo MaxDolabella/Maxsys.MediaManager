@@ -6,7 +6,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
 {
     #region CTOR
 
-    public Id3v2TagsDTO(string fullPath, string title, byte stars10, string album
+    public Id3v2TagsDTO(Uri fullPath, string title, byte stars10, string album
         , string[] genres, string[] performers, int? trackNumber, short? year
         , string? comments, string? lyrics, string? coveredArtist, string? featuredArtist
         , string[] composers, byte[] coverPicture)
@@ -63,7 +63,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
 
     #region PROPS
 
-    public string FullPath { get; private set; }
+    public Uri FullPath { get; private set; }
 
     // Not nullable values
 
@@ -187,7 +187,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
     }
 
     // TODO Apagar?
-    public Id3v2TagsDTO ToFile(string fileToTag)
+    public Id3v2TagsDTO ToFile(Uri fileToTag)
     {
         if (this == Empty) return Empty;
 

@@ -1,28 +1,27 @@
-using FluentValidation.Results;
-using Maxsys.Core.Helpers;
+using System.Linq.Expressions;
+using AutoMapper;
+using Maxsys.Core.Interfaces.Data;
 using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
+using IOHelper2 = Maxsys.MediaManager.CoreDomain.Helpers.IOHelper2;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
 /// <inheritdoc cref="ISongService"/>
-public class SongService : ServiceBase, ISongService
+public class SongService : ServiceBase<Song, ISongRepository, Guid>, ISongService
 {
-    private readonly ISongRepository _repository;
     private readonly ITagService _tagService;
 
-    #region CONTRUCTORS
-
-    public SongService(ISongRepository repository, ITagService tagService)
+    public SongService(ISongRepository repository, IUnitOfWork uow, IMapper mapper, ITagService tagService)
+        : base(repository, uow, mapper)
     {
-        _repository = repository;
         _tagService = tagService;
     }
 
-    #endregion CONTRUCTORS
+    protected override Expression<Func<Song, bool>> IdSelector(Guid id) => x => x.Id == id;
 
     //public override async Task<ValidationResult> AddAsync(Song obj)
     //{
@@ -52,58 +51,54 @@ public class SongService : ServiceBase, ISongService
     //    return validationResult;
     //}
 
-    public async Task<Song> GetByPathAsync(string songPath, CancellationToken token = default)
-        => await _repository.GetByPathAsync(songPath, token);
+    public Task<Song?> GetByPathAsync(Uri songPath, CancellationToken cancellationToken = default)
+        => _repository.GetByPathAsync(songPath, cancellationToken);
 
-    public async ValueTask<ValidationResult> ReplaceToLibraryAsync(string replacingFile, string libraryFile, CancellationToken token = default)
+    public ValueTask<OperationResult> ReplaceToLibraryAsync(Uri replacingFile, Uri libraryFile, CancellationToken cancellationToken = default)
+        => IOHelper2.MoveOrOverwriteFileAsync(replacingFile, libraryFile, setAsReadOnly: true);
+
+    public ValueTask<OperationResult> MoveToLibraryAsync(Uri sourceFile, Uri libraryFile, CancellationToken cancellationToken = default)
+        => IOHelper2.MoveFileAsync(sourceFile, libraryFile, setAsReadOnly: true, cancellationToken: cancellationToken);
+
+    public async Task<IReadOnlyList<SongRankDTO>> GetAllSongRanksAsync(CancellationToken cancellationToken = default)
+        => await _repository.ToListAsync<SongRankDTO>(null, cancellationToken);
+
+    public async Task<IReadOnlyList<SongRankDTO>> GetAllSongRankByRatingRangeAsync(int minimumRating, int maximumRating, CancellationToken cancellationToken = default)
     {
-        var validationResult = new ValidationResult();
+        return await _repository.GetAllSongRankByRatingRangeAsync(minimumRating, maximumRating, cancellationToken);
+    }
 
-        if (replacingFile != libraryFile)
+    public async ValueTask<OperationResult> UpdateSongRankAsync(SongRankDTO songRank, CancellationToken cancellationToken = default)
+    {
+        if (!songRank.RatingHasChanged())
         {
-            var result = await IOHelper.MoveOrOverwriteFileAsync(replacingFile, libraryFile, setAsReadOnly: true);
-            if (!result.IsValid)
-                validationResult.AddError($"Error replacing the file: {result}");
+            return new();
         }
 
-        return validationResult;
-    }
-
-    public async ValueTask<ValidationResult> MoveToLibraryAsync(string sourceFile, string libraryFile, CancellationToken token = default)
-    {
-        var validationResult = new ValidationResult();
-
-        if (sourceFile != libraryFile)
+        var entry = await _repository.GetByIdAsync([songRank.Id], true, cancellationToken);
+        if (entry is null)
         {
-            var result = await IOHelper.MoveFileAsync(sourceFile, libraryFile, setAsReadOnly: true, cancellationToken: token);
-            if (!result.IsValid)
-                validationResult.AddError($"Error moving the file: {result}");
+            return new(new Notification(GenericMessages.ITEM_NOT_FOUND, ResultTypes.Warning));
         }
 
-        return validationResult;
-    }
+        entry.Classification.UpdateRating(songRank.CurrentRatingPoints);
 
-    public async Task<IReadOnlyList<SongRankDTO>> GetAllSongRanksAsync(CancellationToken token = default)
-    {
-        return await _repository.GetAllSongRanksAsync(token);
-    }
+        await _repository.UpdateAsync(entry, cancellationToken);
 
-    public async Task<IReadOnlyList<SongRankDTO>> GetAllSongRankByRatingRangeAsync(int minimumRating, int maximumRating, CancellationToken token = default)
-    {
-        return await _repository.GetAllSongRankByRatingRangeAsync(minimumRating, maximumRating, token);
-    }
-
-    public async ValueTask<ValidationResult> UpdateSongRankAsync(SongRankDTO songRank, CancellationToken token = default)
-    {
-        ValidationResult result = new();
-
-        if (songRank.RatingHasChanged())
+        var result = await _uow.SaveChangesAsync(cancellationToken);
+        if (!result.IsValid)
         {
-            if (!await _repository.UpdateSongRankAsync(songRank, token))
-                return result.AddError("Error while updating rating.");
+            return result;
+        }
 
-            if (songRank.Stars10HasChanged())
-                result = _tagService.WriteRating(songRank.FullPath, songRank.GetStars10());
+        if (songRank.Stars10HasChanged())
+        {
+            var tagResult = await _tagService.WriteRatingAsync(songRank.FullPath, songRank.GetStars10());
+            if (!tagResult.IsValid)
+            {
+                result.AddNotification(new Notification("Rank was updated, but tagging has failed", ResultTypes.Warning));
+                result.AddNotifications(tagResult.Notifications);
+            }
         }
 
         return result;

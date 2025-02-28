@@ -24,10 +24,10 @@ public class SongProperties : IEquatable<SongProperties?>
 
     #region METHODS
 
-    internal void Update(SongProperties another)
+    internal void Update(TimeSpan duration, int bitRate)
     {
-        Duration = another.Duration;
-        BitRate = another.BitRate;
+        Duration = duration;
+        BitRate = bitRate;
     }
 
     #endregion METHODS

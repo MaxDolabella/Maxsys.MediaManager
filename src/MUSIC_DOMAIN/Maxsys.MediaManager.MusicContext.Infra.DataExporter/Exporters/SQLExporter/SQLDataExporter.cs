@@ -44,12 +44,12 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             {
                 _logger.LogDebug("Retrieving data from database...");
 
-                catalogs = await _context.Catalogs.AsNoTracking().ToListAsync();
-                artists = await _context.Artists.AsNoTracking().ToListAsync();
-                albums = await _context.Albums.AsNoTracking().ToListAsync();
-                musics = await _context.Songs.Include(m => m.Composers).AsNoTracking().ToListAsync();
-                composers = await _context.Composers.AsNoTracking().ToListAsync();
-                playlists = await _context.Playlists.AsNoTracking().ToListAsync();
+                catalogs = await _context.Set<Catalog>().AsNoTracking().ToListAsync();
+                artists = await _context.Set<Artist>().AsNoTracking().ToListAsync();
+                albums = await _context.Set<Album>().AsNoTracking().ToListAsync();
+                musics = await _context.Set<Song>().Include(m => m.Composers).AsNoTracking().ToListAsync();
+                composers = await _context.Set<Composer>().AsNoTracking().ToListAsync();
+                playlists = await _context.Set<Playlist>().AsNoTracking().ToListAsync();
 
                 composerMusic = musics
                     .Where(m => m.Composers.Any())

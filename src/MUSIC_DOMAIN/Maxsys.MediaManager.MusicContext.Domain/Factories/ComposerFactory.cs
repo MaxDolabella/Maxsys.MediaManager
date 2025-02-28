@@ -2,8 +2,9 @@
 
 public static class ComposerFactory
 {
+    public static Composer Create(Guid id, string name)
+        => new(id, name);
+
     public static Composer Create(string name)
-    {
-        return new Composer(GuidGen.NewSequentialGuid(), name);
-    }
+        => Create(GuidGen.NewSequentialGuid(), name);
 }

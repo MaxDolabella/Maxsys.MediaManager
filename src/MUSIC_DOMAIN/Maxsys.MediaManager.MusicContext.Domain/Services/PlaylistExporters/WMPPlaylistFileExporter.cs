@@ -10,13 +10,13 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Services.PlaylistExporters;
 /// </summary>
 public sealed class WMPPlaylistFileExporter : ServiceBase, IPlaylistFileExporter
 {
-    public async Task<ValidationResult> ExportFileAsync(IEnumerable<string> songFiles, string destFolder, string playlistName, CancellationToken token = default)
+    public async Task<OperationResult> ExportFileAsync(IEnumerable<string> songFiles, Uri destFolder, string playlistName, CancellationToken token = default)
     {
-        var path = Path.Combine(destFolder, $"{playlistName}.wpl");
+        var path = Path.Combine(destFolder.AbsolutePath, $"{playlistName}.wpl");
         var contents = GetContents(songFiles
-            .Select(songPath => Path.GetRelativePath(destFolder, songPath)), playlistName);
+            .Select(songPath => Path.GetRelativePath(destFolder.AbsolutePath, songPath)), playlistName);
 
-        ValidationResult result = new();
+        OperationResult result = new();
         try
         {
             await File.WriteAllTextAsync(path, contents, token);
@@ -24,7 +24,7 @@ public sealed class WMPPlaylistFileExporter : ServiceBase, IPlaylistFileExporter
         catch (Exception ex)
         {
             // TODO Log???
-            result.AddError($"An error ocurred while exporting file: {ex.Message}");
+            result.AddException(ex, "An error ocurred while exporting file");
         }
 
         return result;

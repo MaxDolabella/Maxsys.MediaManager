@@ -22,7 +22,6 @@ namespace Maxsys.MediaManager.MusicContext.DataExporterConsole
             _host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    DomainPropertiesConfigurations.SetDomainProperties(context.Configuration);
                     IoCExtensions.AddConfigurations(services, context.Configuration);
                     services.ConfigureDataExporters();
                 })

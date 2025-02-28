@@ -6,13 +6,15 @@ internal class PlaylistItemConfig : IEntityTypeConfiguration<PlaylistItem>
 {
     public void Configure(EntityTypeBuilder<PlaylistItem> builder)
     {
-        builder.ToTable("PlaylistItems").HasKey(playlistItem => new { playlistItem.PlaylistId, playlistItem.SongId });
+        builder.ToTable("PlaylistItem").HasKey(e => new { e.PlaylistId, e.SongId });
 
         // Properties
-        builder.Property(playlistItem => playlistItem.Order).IsRequired(false);
+        builder.Property(e => e.PlaylistId).IsRequired();
+        builder.Property(e => e.SongId).IsRequired();
+        builder.Property(e => e.Order).IsRequired(false);
 
         // Navigation
-        builder.HasOne(playlistItem => playlistItem.Song).WithMany();
-        builder.HasOne(playlistItem => playlistItem.Playlist).WithMany(playlist => playlist.Items);
+        builder.HasOne(e => e.Song).WithMany().IsRequired();
+        builder.HasOne(e => e.Playlist).WithMany(n => n.Items).IsRequired();
     }
 }

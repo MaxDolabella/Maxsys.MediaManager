@@ -6,46 +6,45 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
 {
     public void Configure(EntityTypeBuilder<Song> builder)
     {
-        builder.ToTable("Songs").HasKey(song => song.Id);
+        builder.ToTable("Song").HasKey(e => e.Id);
 
         // MediaFile
-        builder.Property(mediaFile => mediaFile.FullPath).IsRequired().HasMaxLength(260).HasColumnName("MediaFile_FullPath");
-        builder.Property(mediaFile => mediaFile.OriginalFileName).IsRequired().HasMaxLength(100).HasColumnName("MediaFile_OriginalFileName");
-        builder.Property(mediaFile => mediaFile.FileSize).IsRequired().HasColumnName("MediaFile_FileSize");
-        builder.Property(mediaFile => mediaFile.CreatedDate).IsRequired().HasColumnType("datetime2").HasColumnName("MediaFile_CreatedDate");
-        builder.Property(mediaFile => mediaFile.UpdatedDate).IsRequired().HasColumnType("datetime2").HasColumnName("MediaFile_UpdatedDate");
+        builder.ConfigureMediaFile();
 
         // Properties
-        builder.Property(song => song.Title).HasMaxLength(100).IsRequired();
-        builder.Property(song => song.TrackNumber).IsRequired(false);
-        builder.Property(song => song.Lyrics).HasMaxLength(5000).IsRequired(false);
-        builder.Property(song => song.Comments).HasMaxLength(300).IsRequired(false);
+        builder.Property(e => e.Id).IsRequired();
+        builder.Property(e => e.Title).HasMaxLength(100).IsRequired();
+        builder.Property(e => e.TrackNumber).IsRequired(false);
+        builder.Property(e => e.Lyrics).HasMaxLength(5000).IsRequired(false);
+        builder.Property(e => e.Comments).HasMaxLength(300).IsRequired(false);
+        builder.Property(e => e.SpotifyID).HasMaxLength(50).IsRequired(false);
+
 
         // Navigation
-        builder.HasOne(song => song.Album).WithMany(album => album.Songs);
-        builder.HasMany(song => song.Composers).WithMany(composer => composer.Songs);
+        builder.HasOne(e => e.Album).WithMany(n => n.Songs).IsRequired();
+        builder.HasMany(e => e.Composers).WithMany(n => n.Songs);
 
         // Value Objects
-        builder.OwnsOne(song => song.SongDetails, valueObj =>
+        builder.OwnsOne(e => e.SongDetails, oBuild =>
         {
-            valueObj.Property(songDetails => songDetails.IsBonusTrack).IsRequired();
-            valueObj.Property(songDetails => songDetails.VocalGender).IsRequired();
-            valueObj.Property(songDetails => songDetails.CoveredArtist).HasMaxLength(50).IsRequired(false);
-            valueObj.Property(songDetails => songDetails.FeaturedArtist).HasMaxLength(50).IsRequired(false);
+            oBuild.Property(o => o.IsBonusTrack).IsRequired();
+            oBuild.Property(o => o.VocalGender).IsRequired();
+            oBuild.Property(o => o.CoveredArtist).HasMaxLength(50).IsRequired(false);
+            oBuild.Property(o => o.FeaturedArtist).HasMaxLength(50).IsRequired(false);
         });
 
-        builder.OwnsOne(song => song.SongProperties, valueObj =>
+        builder.OwnsOne(e => e.SongProperties, oBuild =>
         {
-            valueObj.Property(songProperties => songProperties.Duration).IsRequired();
-            valueObj.Property(songProperties => songProperties.BitRate).IsRequired();
+            oBuild.Property(o => o.Duration).IsRequired();
+            oBuild.Property(o => o.BitRate).IsRequired();
         });
 
-        builder.OwnsOne(song => song.Classification, valueObj =>
+        builder.OwnsOne(e => e.Classification, oBuild =>
         {
-            valueObj.Property(classification => classification.Rating).IsRequired();
+            oBuild.Property(o => o.Rating).IsRequired();
         });
 
         // Indexes
-        builder.HasIndex(mediaFile => mediaFile.FullPath).IsUnique().HasDatabaseName($"AK_Musics_FullPath");
+        builder.HasIndex(mediaFile => mediaFile.FullPath).IsUnique().HasDatabaseName($"AK_Music_FullPath");
     }
 }

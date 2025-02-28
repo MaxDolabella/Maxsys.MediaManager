@@ -1,7 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
-using FluentValidation.Results;
+using Maxsys.Core;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
 
 namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractions;
@@ -9,22 +10,13 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels.Abstractio
 /// <summary>
 /// Inherits <see cref="ObservableValidator"/>.
 /// <br/>
-/// Contains <see cref="ValidationResult">ValidationResult</see>,
+/// Contains <see cref="OperationResult">ValidationResult</see>,
 /// <see cref="IsValid">IsValid</see> and <see cref="Errors">Errors</see>
 /// properties.
 /// </summary>
 public abstract class ValidableViewModelBase : ObservableValidator, IValidableViewModel
 {
-    private ValidationResult? _validationResult;
-
-    #region Validation
-
-    [Browsable(false)]
-    public ValidationResult? ValidationResult
-    {
-        get => _validationResult;
-        set => SetProperty(ref _validationResult, value, nameof(Errors));
-    }
+    private IEnumerable<string>? _errors;
 
     [Browsable(false)]
     public bool IsValid
@@ -33,17 +25,18 @@ public abstract class ValidableViewModelBase : ObservableValidator, IValidableVi
         {
             ValidateAllProperties();
 
-            ValidationResult = new ValidationResult(
-                GetErrors().Select(x => new ValidationFailure(string.Empty, x.ErrorMessage)));
+            var errorrArray = GetErrors();
+
+            _errors = errorrArray.Any()
+                ? errorrArray.Where(vr => !string.IsNullOrEmpty(vr.ErrorMessage)).Select(vr => vr.ErrorMessage!)
+                : null;
 
             OnPropertyChanged(nameof(Errors));
             OnPropertyChanged();
 
-            return ValidationResult.IsValid;
+            return _errors?.Any() != true;
         }
     }
 
-    public string Errors => ValidationResult is null ? string.Empty : string.Join(" | ", ValidationResult.Errors.Select(e => e.ErrorMessage));
-
-    #endregion Validation
+    public string Errors => _errors is null ? string.Empty : string.Join(" | ", _errors);
 }

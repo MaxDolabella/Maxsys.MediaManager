@@ -1,0 +1,382 @@
+[
+  {
+    "Id": "9A2E1A2B-AF40-A31E-1D2A-39F0F946C5BD",
+    "Name": "Ad Sluijter"
+  },
+  {
+    "Id": "3DACDDD2-313F-579A-025B-39F0F946C5BD",
+    "Name": "Adrian Smith"
+  },
+  {
+    "Id": "824D1EF8-94C1-4CDE-1615-39F0F946C5BD",
+    "Name": "After Forever"
+  },
+  {
+    "Id": "289B40FA-C00F-B37A-DCD7-39F0F946C5BD",
+    "Name": "Aila Leppikangas"
+  },
+  {
+    "Id": "FCFBC9CC-59A4-4A68-71A9-39F0F946C5BD",
+    "Name": "Alex Dickson"
+  },
+  {
+    "Id": "367CE99F-0224-01EB-5C7E-39F0F946C5BD",
+    "Name": "Alfred Koffler"
+  },
+  {
+    "Id": "7E23A0BB-1FF1-E503-D360-39F0F946C5BD",
+    "Name": "Andi Deris"
+  },
+  {
+    "Id": "8BD92E0C-B24C-B4F5-FC98-39F0F946C5BD",
+    "Name": "Antti Niskala"
+  },
+  {
+    "Id": "C95FC59F-8ACA-B9D8-D039-39F0F946C5BD",
+    "Name": "Aquiles Priester"
+  },
+  {
+    "Id": "2FEB354A-916F-76EF-A481-39F0F946C5BD",
+    "Name": "Blaze Bayley"
+  },
+  {
+    "Id": "4D3B2A68-0981-B8F3-B2C0-39F0F946C5BD",
+    "Name": "Bob Hartman"
+  },
+  {
+    "Id": "1DC7F82C-5B1C-98A5-AF52-39F0F946C5BD",
+    "Name": "Bob Wray"
+  },
+  {
+    "Id": "081E61FD-D35A-588C-D782-39F0F946C5BD",
+    "Name": "Brian Tatler"
+  },
+  {
+    "Id": "CA5F8555-5E5E-02A8-30EC-39F0F946C5BD",
+    "Name": "Bruce Dickinson"
+  },
+  {
+    "Id": "911A28AE-44D7-1AA9-66B2-39F0F946C5BD",
+    "Name": "Charlotte Wessels"
+  },
+  {
+    "Id": "C017924C-A203-51D3-8BD3-39F0F946C5BD",
+    "Name": "Clive Burr"
+  },
+  {
+    "Id": "3DAFF7C8-362B-7401-12BC-39F0F946C5BD",
+    "Name": "Coen Janssen"
+  },
+  {
+    "Id": "A53B8317-A0A1-FEEE-D7EA-39F0F946C5BD",
+    "Name": "Dani Nolden"
+  },
+  {
+    "Id": "67AFD08C-0E98-1225-1232-39F0F946C5BD",
+    "Name": "Daniel Lamego"
+  },
+  {
+    "Id": "89167368-4E28-F322-60A6-39F0F946C5BD",
+    "Name": "Dave Bermudez"
+  },
+  {
+    "Id": "38D1D986-FB45-83FC-7383-39F0F946C5BD",
+    "Name": "Dave Murray"
+  },
+  {
+    "Id": "4566ABF1-6810-B760-E18F-39F0F946C5BD",
+    "Name": "Dave Mustaine"
+  },
+  {
+    "Id": "052E8ECB-0806-ABC5-8BD4-39F0F946C5BD",
+    "Name": "David Readman"
+  },
+  {
+    "Id": "574D13A1-BBEC-D94A-5A1E-39F0F946C5BD",
+    "Name": "Eddie Casillas"
+  },
+  {
+    "Id": "CAA6AE32-34D1-4938-D1F3-39F0F946C5BD",
+    "Name": "Edguy"
+  },
+  {
+    "Id": "ABFD3372-EAB8-EF7A-5046-39F0F946C5BD",
+    "Name": "Eduardo Martinez"
+  },
+  {
+    "Id": "33799B98-2690-BA21-E993-39F0F946C5BD",
+    "Name": "Emppu Vuorinen"
+  },
+  {
+    "Id": "E595BDCD-42E2-0C02-DD12-39F0F946C5BD",
+    "Name": "Erkka Korhonen"
+  },
+  {
+    "Id": "D343C180-81E8-78A9-7B84-39F0F946C5BD",
+    "Name": "Fábio Laguna"
+  },
+  {
+    "Id": "071B06C3-6BCF-FA42-ABC7-39F0F946C5BD",
+    "Name": "Floor Jansen"
+  },
+  {
+    "Id": "1099183E-D9A6-96A1-0150-39F0F946C5BD",
+    "Name": "Gaúcho da Fronteira"
+  },
+  {
+    "Id": "3AA029B8-D48C-70A4-8064-39F0F946C5BD",
+    "Name": "Gilberto Barreto"
+  },
+  {
+    "Id": "01FD8C02-FCFD-7E60-2EAC-39F0F946C5BD",
+    "Name": "Glenn Danzig"
+  },
+  {
+    "Id": "75C07929-6034-FCBF-CC82-39F0F946C5BD",
+    "Name": "Guns N' Roses"
+  },
+  {
+    "Id": "B8377537-30B3-1514-EA55-39F0F946C5BD",
+    "Name": "Humberto Gessinger"
+  },
+  {
+    "Id": "FDAF45B8-4863-FCE4-D23A-39F0F946C5BD",
+    "Name": "James Hetfield"
+  },
+  {
+    "Id": "932ECCB1-DEF4-E231-DB7C-39F0F946C5BD",
+    "Name": "Janick Gers"
+  },
+  {
+    "Id": "A8786A33-A9EA-B192-398B-39F0F946C5BD",
+    "Name": "Janne Joutsenniemi"
+  },
+  {
+    "Id": "A3703981-3C7B-5CDA-9A65-39F0F946C5BD",
+    "Name": "Jarkko Ahola"
+  },
+  {
+    "Id": "EA05B7A2-CC7F-8A33-3C10-39F0F946C5BD",
+    "Name": "Jay Walsh"
+  },
+  {
+    "Id": "ABD87750-FB86-C12A-2951-39F0F946C5BD",
+    "Name": "Jeff Singer"
+  },
+  {
+    "Id": "14E91DB3-5718-CE07-48A4-39F0F946C5BD",
+    "Name": "Jens Ludwig"
+  },
+  {
+    "Id": "AAD897A8-0E10-FA09-3576-39F0F946C5BD",
+    "Name": "Jeroen Simons"
+  },
+  {
+    "Id": "8F621CD4-3E45-1791-BE87-39F0F946C5BD",
+    "Name": "Jimmy Kresic"
+  },
+  {
+    "Id": "9D8B252E-0382-D79C-1135-39F0F946C5BD",
+    "Name": "João José Monteiro"
+  },
+  {
+    "Id": "3A4CFA5F-44A6-60EB-9351-39F0F946C5BD",
+    "Name": "John Slater"
+  },
+  {
+    "Id": "BB6696BF-8B5C-2AA9-3ACD-39F0F946C5BD",
+    "Name": "Kai Hansen"
+  },
+  {
+    "Id": "88588994-2F3B-AE9A-6A15-39F0F946C5BD",
+    "Name": "Katra Solopuro"
+  },
+  {
+    "Id": "C0994E98-8EEF-F773-49E0-39F0F946C5BD",
+    "Name": "Kimmo Blom"
+  },
+  {
+    "Id": "A08E1BC0-D3A8-7BA2-113F-39F0F946C5BD",
+    "Name": "Kirk Hammett"
+  },
+  {
+    "Id": "6BEC6E84-0E2C-CC1C-1265-39F0F946C5BD",
+    "Name": "Lars Ulrich"
+  },
+  {
+    "Id": "9EB0FABF-76AC-91C1-E87D-39F0F946C5BD",
+    "Name": "Lawrence Paterson"
+  },
+  {
+    "Id": "1E306F12-4831-2B4E-14E7-39F0F946C5BD",
+    "Name": "Magnus Karlsson"
+  },
+  {
+    "Id": "09346FD2-2932-172E-3116-39F0F946C5BD",
+    "Name": "Marcia Fonseca"
+  },
+  {
+    "Id": "81D39C5D-3AB5-6C16-B088-39F0F946C5BD",
+    "Name": "Marco Hietala"
+  },
+  {
+    "Id": "71DFAA15-D354-B7E6-6D2D-39F0F946C5BD",
+    "Name": "Marcus Grosskopf"
+  },
+  {
+    "Id": "C9D70D24-70AB-E82F-201A-39F0F946C5BD",
+    "Name": "Mark Jansen"
+  },
+  {
+    "Id": "A44E09E8-708B-F663-38DC-39F0F946C5BD",
+    "Name": "Markus Grosskopf"
+  },
+  {
+    "Id": "2C1CBAFA-73BF-4003-859C-39F0F946C5BD",
+    "Name": "Martijn Westerholt"
+  },
+  {
+    "Id": "88ECDF55-1952-ABBF-33C9-39F0F946C5BD",
+    "Name": "Mat Sinner"
+  },
+  {
+    "Id": "6F7D3E33-7E7B-7EA0-4930-39F0F946C5BD",
+    "Name": "Max Dolabella"
+  },
+  {
+    "Id": "CCDCAA4F-030B-E334-A28F-39F0F946C5BD",
+    "Name": "Michael Kiske"
+  },
+  {
+    "Id": "DD1FDD11-2598-966D-6FF5-39F0F946C5BD",
+    "Name": "Michael Polchowicz"
+  },
+  {
+    "Id": "3643E196-D185-D8B6-1818-39F0F946C5BD",
+    "Name": "Michael Weikath"
+  },
+  {
+    "Id": "A7B936BE-32D1-CD42-AEC1-39F0F946C5BD",
+    "Name": "Mikee Goodman"
+  },
+  {
+    "Id": "08DD8EFA-5C0B-9534-C216-39F0F946C5BD",
+    "Name": "Moisés França"
+  },
+  {
+    "Id": "F449C71E-4C2C-5B70-DAD3-39F0F946C5BD",
+    "Name": "Nando Fernandes"
+  },
+  {
+    "Id": "B7AB8E17-C9CD-61A0-BD2D-39F0F946C5BD",
+    "Name": "Nando Mello"
+  },
+  {
+    "Id": "ABC0A7BB-15D8-936E-783D-39F0F946C5BD",
+    "Name": "Nico Bermudez"
+  },
+  {
+    "Id": "3F6ADAA5-E8F5-D83F-8EFB-39F0F946C5BD",
+    "Name": "Nino Laurenne"
+  },
+  {
+    "Id": "52932C9B-C3D5-E14F-9EC4-39F0F946C5BD",
+    "Name": "Paul Di'Anno"
+  },
+  {
+    "Id": "9034F6BB-EB72-E21A-E0A8-39F0F946C5BD",
+    "Name": "Paulo Casarin"
+  },
+  {
+    "Id": "BF5050FE-D5C3-939D-45D5-39F0F946C5BD",
+    "Name": "Risto Asikainen"
+  },
+  {
+    "Id": "D312692C-CE1E-627A-E840-39F0F946C5BD",
+    "Name": "Rob Naylor"
+  },
+  {
+    "Id": "73FA6F1E-A66D-453C-945D-39F0F946C5BD",
+    "Name": "Robert Sall"
+  },
+  {
+    "Id": "3DE55AD4-F5D8-9F70-BC89-39F0F946C5BD",
+    "Name": "Roland Grapow"
+  },
+  {
+    "Id": "6519C6C8-ADB2-F14E-34A7-39F0F946C5BD",
+    "Name": "Roy Z"
+  },
+  {
+    "Id": "352F09AB-3D69-1EB6-4441-39F0F946C5BD",
+    "Name": "Sami Vauhkonen"
+  },
+  {
+    "Id": "33CF7288-A5D1-E2B8-03DF-39F0F946C5BD",
+    "Name": "Samuel Hudson"
+  },
+  {
+    "Id": "1CF4C3B2-9300-1E5F-3FF5-39F0F946C5BD",
+    "Name": "Sascha Gerstner"
+  },
+  {
+    "Id": "47AB42DD-FAD5-BD9C-03E1-39F0F946C5BD",
+    "Name": "Sascha Paeth"
+  },
+  {
+    "Id": "7402D221-3D8D-A0BB-D503-39F0F946C5BD",
+    "Name": "Sauli Kivilahti"
+  },
+  {
+    "Id": "E6838374-AC34-4759-134C-39F0F946C5BD",
+    "Name": "Sean Harris"
+  },
+  {
+    "Id": "6ACEF4C8-8F51-D61D-2FF7-39F0F946C5BD",
+    "Name": "Shadowside"
+  },
+  {
+    "Id": "A62CD3B1-D3B4-1883-7A2E-39F0F946C5BD",
+    "Name": "Simone Simons"
+  },
+  {
+    "Id": "5C98101F-9584-9E86-F3A7-39F0F946C5BD",
+    "Name": "Steve Harris"
+  },
+  {
+    "Id": "BD835400-AD70-8874-5311-39F0F946C5BD",
+    "Name": "Steve Wray"
+  },
+  {
+    "Id": "9A38D979-0D98-8B63-FB7F-39F0F946C5BD",
+    "Name": "Tobias Sammet"
+  },
+  {
+    "Id": "8C42A663-1E8F-77C6-3503-39F0F946C5BD",
+    "Name": "Tom Naumann"
+  },
+  {
+    "Id": "1C7CD44D-FE5D-021E-0380-39F0F946C5BD",
+    "Name": "Torsti Spoof"
+  },
+  {
+    "Id": "AEF47860-13AE-DF7E-82B6-39F0F946C5BD",
+    "Name": "Tuomas Holopainen"
+  },
+  {
+    "Id": "2324E177-D554-B4AB-7B55-39F0F946C5BD",
+    "Name": "Uli Kusch"
+  },
+  {
+    "Id": "B45B68A5-4238-73FF-1B28-39F0F946C5BD",
+    "Name": "Vainê Darde"
+  },
+  {
+    "Id": "3EEBD19C-B7E0-DEDD-5ADA-39F0F946C5BD",
+    "Name": "Vangelis"
+  },
+  {
+    "Id": "258B8ED7-9BFA-06BA-E7BD-39F0F946C5BD",
+    "Name": "William Blake"
+  }
+]

@@ -8,14 +8,15 @@ public static class AlbumFactory
     /// Factory for Album
     /// </summary>
     /// <param name="artistId">Required. Id of Album artist.</param>
-    /// <param name="albumDirectory">is the artist directory in library (based on <see cref="Artist"/> properties)</param>
+    /// <param name="directory">is the artist directory in library (based on <see cref="Artist"/> properties)</param>
     /// <param name="name">Required. Album name.</param>
     /// <param name="year">Optional. Album year</param>
     /// <param name="genre">Required. Album genre.</param>
     /// <param name="albumCover">Album cover picture.</param>
     /// <param name="albumType">Album type.</param>
-    public static Album Create(Guid artistId, string albumDirectory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType)
-    {
-        return new Album(GuidGen.NewSequentialGuid(), artistId, albumDirectory, name, year, genre, albumCover, albumType);
-    }
+    public static Album Create(Guid id, Guid artistId, string directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID)
+        => new(id, artistId, new(directory), name, year, genre, albumCover, albumType, spotifyID);
+
+    public static Album Create(Guid artistId, string directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID)
+        => Create(GuidGen.NewSequentialGuid(), artistId, new(directory), name, year, genre, albumCover, albumType, spotifyID);
 }

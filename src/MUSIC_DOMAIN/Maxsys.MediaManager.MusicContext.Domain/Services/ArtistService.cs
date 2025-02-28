@@ -1,33 +1,17 @@
+using System.Linq.Expressions;
+using AutoMapper;
+using Maxsys.Core.Interfaces.Data;
 using Maxsys.Core.Services;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Services;
 
-public class ArtistService : ServiceBase, IArtistService
+public class ArtistService : ServiceBase<Artist, IArtistRepository, Guid>, IArtistService
 {
-    private readonly IArtistRepository _repository;
+    public ArtistService(IArtistRepository repository, IUnitOfWork uow, IMapper mapper)
+        : base(repository, uow, mapper)
+    { }
 
-    #region CONTRUCTORS
-
-    public ArtistService(IArtistRepository repository)
-    {
-        _repository = repository;
-    }
-
-    #endregion CONTRUCTORS
-
-    //public override async Task<ValidationResult> AddAsync(Artist entity)
-    //{
-    //    var validationResult = new ValidationResult();
-    //    var validator = new ArtistValidator(_repository).SetRulesForNewArtist();
-
-    //    validationResult = await validator.ValidateAsync(entity);
-    //    if (!validationResult.IsValid) return validationResult;
-
-    //    var isAdded = await _repository.AddAsync(entity);
-    //    if (!isAdded) validationResult.AddFailure($"{nameof(Artist)} could not be added.");
-
-    //    return validationResult;
-    //}
+    protected override Expression<Func<Artist, bool>> IdSelector(Guid id) => x => x.Id == id;
 }

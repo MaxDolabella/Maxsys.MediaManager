@@ -2,8 +2,9 @@
 
 public static class ArtistFactory
 {
-    public static Artist Create(Guid musicCatalogId, string name)
-    {
-        return new Artist(GuidGen.NewSequentialGuid(), musicCatalogId, name);
-    }
+    public static Artist Create(Guid id, Guid musicCatalogId, string name, string? spotifyID)
+        => new(id, musicCatalogId, name, spotifyID);
+
+    public static Artist Create(Guid musicCatalogId, string name, string? spotifyID)
+        => Create(GuidGen.NewSequentialGuid(), musicCatalogId, name, spotifyID);
 }

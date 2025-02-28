@@ -1,10 +1,8 @@
 ﻿using System;
-using FluentValidation.Results;
-using Maxsys.Core.Helpers;
 using Maxsys.Core.Services;
+using Maxsys.MediaManager.CoreDomain.Helpers;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
-using TaglibCore;
 
 namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services;
 
@@ -12,18 +10,18 @@ namespace Maxsys.MediaManager.MusicContext.AppTagLibMono.Services;
 /// Implements <see cref="ITagService"/> using <see href="https://github.com/mono/taglib-sharp">Taglib-Sharp</see>
 /// </summary>
 /// <inheritdoc cref="ITagService"/>
-public class TagLibService : ServiceBase, ITagService
+public sealed class TagLibService : ServiceBase, ITagService
 {
-    public ValidationResult WriteTags(Id3v2DTO dto)
+    public ValueTask<OperationResult> WriteTagsAsync(Id3v2DTO id3)
     {
-        var validationResult = new ValidationResult();
-        var fileFullPath = dto.FullPath;
-
-        IOHelper.RemoveReadOnlyAttribute(fileFullPath);
+        var result = new OperationResult();
+        var filePath = new Uri(id3.FullPath);
 
         try
         {
-            using (var mp3 = TagLib.File.Create(fileFullPath))
+            IOHelper2.RemoveReadOnlyAttribute(filePath);
+
+            using (var mp3 = TagLib.File.Create(id3.FullPath))
             {
                 // clear old tags
                 mp3.RemoveTags(TagLib.TagTypes.AllTags);
@@ -33,46 +31,45 @@ public class TagLibService : ServiceBase, ITagService
 
                 // Not nullable values
                 //mp3Tags.TrackId = id3Tags.TrackId;
-                tags.Title = dto.Title;
-                tags.Artist = dto.Artist;
-                tags.Album = dto.Album;
-                tags.Genre = dto.Genre;
-                tags.Stars10 = dto.Rating10;
+                tags.Title = id3.Title;
+                tags.Artist = id3.Artist;
+                tags.Album = id3.Album;
+                tags.Genre = id3.Genre;
+                tags.Stars10 = id3.Rating10;
 
                 // Nullable values
-                tags.TrackNumber = dto.TrackNumber;
-                tags.Year = dto.Year;
-                tags.Composers = dto.Composers;
-                tags.Comments = dto.Comments;
-                tags.Lyrics = dto.Lyrics;
-                tags.OriginalArtist = dto.CoveredArtist;
-                tags.InvolvedPeople = dto.FeaturedArtist;
-                tags.CoverPicture = dto.CoverPicture;
+                tags.TrackNumber = id3.TrackNumber;
+                tags.Year = id3.Year;
+                tags.Composers = id3.Composers;
+                tags.Comments = id3.Comments;
+                tags.Lyrics = id3.Lyrics;
+                tags.OriginalArtist = id3.CoveredArtist;
+                tags.InvolvedPeople = id3.FeaturedArtist;
+                tags.CoverPicture = id3.CoverPicture;
 
                 tags.SetInfoTag();
 
                 mp3.Save();
             }
+
+            IOHelper2.InsertReadOnlyAttribute(filePath);
         }
         catch (Exception ex)
         {
-            validationResult.AddException(ex, $"Error at tagging Mp3 File: {ex.Message}");
+            result.AddException(ex, AppMessages.ERROR_WHILE_TAGGING);
         }
 
-        IOHelper.InsertReadOnlyAttribute(fileFullPath);
-
-        return validationResult;
+        return ValueTask.FromResult(result);
     }
 
-    public Id3v2DTO ReadTags(string filePath)
+    public ValueTask<OperationResult<Id3v2DTO?>> ReadTagsAsync(Uri filePath)
     {
-        using (var mp3 = TagLib.File.Create(filePath))
+        using (var mp3 = TagLib.File.Create(filePath.AbsolutePath))
         {
             var tags = Id3v2Facade.Create(mp3, false);
 
-            return tags is null
-                ? Id3v2DTO.Empty
-                : new Id3v2DTO(fullPath: filePath
+            var id3 = tags is not null
+                ? new Id3v2DTO(fullPath: filePath.AbsolutePath
                     , title: tags.Title
                     , trackNumber: tags.TrackNumber
                     , stars10: tags.Stars10
@@ -85,19 +82,25 @@ public class TagLibService : ServiceBase, ITagService
                     , coveredArtist: tags.OriginalArtist
                     , featuredArtist: tags.InvolvedPeople
                     , composers: tags.Composers
-                    , coverPicture: tags.CoverPicture);
+                    , coverPicture: tags.CoverPicture)
+                : Id3v2DTO.Empty;
+
+            // TODO melhorar essa lógica. Se não tem id3, retorna notification?
+            var result = new OperationResult<Id3v2DTO?>(id3);
+
+            return ValueTask.FromResult(result);
         }
     }
 
-    public ValidationResult WriteRating(string filePath, byte stars10)
+    public ValueTask<OperationResult> WriteRatingAsync(Uri filePath, byte stars10)
     {
-        var validationResult = new ValidationResult();
-
-        IOHelper.RemoveReadOnlyAttribute(filePath);
+        var result = new OperationResult();
 
         try
         {
-            using (var mp3 = TagLib.File.Create(filePath))
+            IOHelper2.RemoveReadOnlyAttribute(filePath);
+
+            using (var mp3 = TagLib.File.Create(filePath.AbsolutePath))
             {
                 var tags = Id3v2Facade.Create(mp3, true);
 
@@ -105,35 +108,27 @@ public class TagLibService : ServiceBase, ITagService
 
                 mp3.Save();
             }
-            //using (var mp3 = TagLib.File.Create(filePath))
-            //{
-            //    // Getting the tags
-            //    var v2 = mp3.GetTag(TagLib.TagTypes.Id3v2, true) as TagLib.Id3v2.Id3v2Tag;
 
-            //    PopularimeterHelper.WriteFromStars10(v2, stars10);
-
-            //    mp3.Save();
-            //}
+            IOHelper2.InsertReadOnlyAttribute(filePath);
         }
         catch (Exception ex)
         {
-            validationResult.AddException(ex, $"Error at tagging Mp3 File: {ex.Message}");
+            result.AddException(ex, AppMessages.ERROR_WHILE_TAGGING);
         }
 
-        IOHelper.InsertReadOnlyAttribute(filePath);
-
-        return validationResult;
+        return ValueTask.FromResult(result);
     }
 
-    public ValidationResult WritePlaylistTags(Id3v2PlaylistItemDTO dto)
+    public ValueTask<OperationResult> WritePlaylistTagsAsync(Id3v2PlaylistItemDTO id3)
     {
-        var validationResult = new ValidationResult();
-
-        IOHelper.RemoveReadOnlyAttribute(dto.FullPath);
+        var result = new OperationResult();
+        var filePath = new Uri(id3.FullPath);
 
         try
         {
-            using (var mp3 = TagLib.File.Create(dto.FullPath))
+            IOHelper2.RemoveReadOnlyAttribute(filePath);
+
+            using (var mp3 = TagLib.File.Create(id3.FullPath))
             {
                 // clear old tags
                 mp3.RemoveTags(TagLib.TagTypes.AllTags);
@@ -142,26 +137,26 @@ public class TagLibService : ServiceBase, ITagService
                 var tags = Id3v2Facade.Create(mp3, true);
 
                 // Applying values
-                tags.Title = dto.Title;
-                tags.Artist = dto.PlaylistName;
-                tags.Album = dto.PlaylistName;
-                tags.TrackNumber = (int?)dto.TrackNumber;
-                tags.Genre = dto.Genre;
-                tags.CoverPicture = dto.CoverPicture;
-                tags.Stars10 = dto.Stars10;
+                tags.Title = id3.Title;
+                tags.Artist = id3.PlaylistName;
+                tags.Album = id3.PlaylistName;
+                tags.TrackNumber = (int?)id3.TrackNumber;
+                tags.Genre = id3.Genre;
+                tags.CoverPicture = id3.CoverPicture;
+                tags.Stars10 = id3.Stars10;
 
                 tags.SetInfoTag();
 
                 mp3.Save();
             }
+
+            IOHelper2.InsertReadOnlyAttribute(filePath);
         }
         catch (Exception ex)
         {
-            validationResult.AddException(ex, $"Error at tagging Mp3 File: {ex.Message}");
+            result.AddException(ex, AppMessages.ERROR_WHILE_TAGGING);
         }
 
-        IOHelper.InsertReadOnlyAttribute(dto.FullPath);
-
-        return validationResult;
+        return ValueTask.FromResult(result);
     }
 }

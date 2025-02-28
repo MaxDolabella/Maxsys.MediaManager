@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using Maxsys.MediaManager.MusicContext.Domain.Entities;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
 using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters;
 using Maxsys.MediaManager.MusicContext.Infra.DataExporter.Exporters.TXTFullExporter.DTOs;
@@ -102,13 +103,13 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
 
         private static async Task<IReadOnlyCollection<SongTxtFullDTO>> GetDTOs(MusicAppContext context)
         {
-            var query = context.Songs
+            var query = context.Set<Song>()
                     .AsNoTrackingWithIdentityResolution()
                     .Include(song => song.Album.Artist.Catalog)
                     .OrderBy(song => song.FullPath)
                     .Select(song => new SongTxtFullDTO(
                         song.Id,
-                        song.FullPath,
+                        song.FullPath.AbsolutePath,
                         song.TrackNumber,
                         song.Title,
                         song.Comments,

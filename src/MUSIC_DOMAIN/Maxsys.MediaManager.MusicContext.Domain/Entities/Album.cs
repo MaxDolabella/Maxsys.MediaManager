@@ -1,9 +1,10 @@
+using System.Diagnostics;
 using Maxsys.Core.Entities;
 using Maxsys.MediaManager.MusicContext.Domain.Enums;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
-[System.Diagnostics.DebuggerDisplay("[{Id.ToString().Substring(0,4)}] {Name}")]
+[DebuggerDisplay("[{Id.ToString().Substring(0,4)}] {Name}")]
 public class Album : Entity<Guid>
 {
     #region PROPERTIES
@@ -14,7 +15,7 @@ public class Album : Entity<Guid>
     /// Path limit is 248 characters.
     /// Path+Filename limit is 260 characters.
     /// </summary>
-    public string AlbumDirectory { get; protected set; }
+    public Uri Directory { get; protected set; }
 
     public string Name { get; protected set; }
     public short? Year { get; protected set; }
@@ -23,13 +24,15 @@ public class Album : Entity<Guid>
 
     // TODO criar uma classe pra não repetir no banco
     public byte[] AlbumCover { get; protected set; }
+    public string? SpotifyID { get; protected set; }
 
-    // Navigation
+    #region Navigation
 
     public Artist Artist { get; protected set; }
 
-    // Collections
     public List<Song> Songs { get; protected set; } = [];
+
+    #endregion Navigation
 
     #endregion PROPERTIES
 
@@ -41,10 +44,10 @@ public class Album : Entity<Guid>
     protected Album()
     { }
 
-    internal Album(Guid id, Guid artistId, string albumDirectory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType) : this()
+    internal Album(Guid id, Guid artistId, Uri directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyRef) : this()
     {
-        (Id, ArtistId, AlbumDirectory, Name, Year, Genre, AlbumCover, AlbumType) =
-        (id, artistId, albumDirectory, name, year, genre, albumCover, albumType);
+        (Id, ArtistId, Directory, Name, Year, Genre, AlbumCover, AlbumType, SpotifyID) =
+        (id, artistId, directory, name, year, genre, albumCover, albumType, spotifyRef);
     }
 
     #endregion CONSTRUCTORS

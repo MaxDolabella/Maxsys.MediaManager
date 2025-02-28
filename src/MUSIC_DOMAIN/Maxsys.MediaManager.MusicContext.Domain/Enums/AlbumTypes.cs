@@ -2,6 +2,39 @@
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Enums;
 
+
+/// <summary>
+/// <list type="bullet">
+/// <item>
+///     <term>0.<see cref="Undefined"/></term>
+///     <description>Undefined Albuns<para/>Most used for musics without albums. "Misc - Iron Maiden".</description>
+/// </item>
+/// <item>
+///     <term>1.<see cref="Studio"/></term>
+///     <description>Studio Albuns<para/>"Brave New World".</description>
+/// </item>
+/// <item>
+///     <term>2.<see cref="Live"/></term>
+///     <description>Live Albuns<para/>"Rock In Rio".</description>
+/// </item>
+/// <item>
+///     <term>3.<see cref="Compilation"/></term>
+///     <description>Compilations Albuns<para/>"The Best of" Albuns.</description>
+/// </item>
+/// <item>
+///     <term>4.<see cref="Bootleg"/></term>
+///     <description>Compilations Albuns<para/>"The Best of" Albuns.</description>
+/// </item>
+/// <item>
+///     <term>9.<see cref="Various"/></term>
+///     <description>Various Artists Albuns<para/>"Female Metal".</description>
+/// </item>
+/// <item>
+///     <term>10.<see cref="Others"/></term>
+///     <description>Other Types Albuns<para/>Other Types.</description>
+/// </item>
+/// </list>
+/// </summary>
 public enum AlbumTypes : byte
 {
     /// <summary>

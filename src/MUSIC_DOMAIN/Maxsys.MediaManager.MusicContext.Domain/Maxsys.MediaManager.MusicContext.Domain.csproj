@@ -10,6 +10,7 @@
 
 
 	<ItemGroup>
+		<Using Include="Maxsys.Core" />
 		<Using Include="Maxsys.MediaManager.CoreDomain" />
 		<Using Include="Maxsys.MediaManager.MusicContext.Domain.Entities" />
 		<Using Include="Maxsys.MediaManager.MusicContext.Domain.ValueObjects" />

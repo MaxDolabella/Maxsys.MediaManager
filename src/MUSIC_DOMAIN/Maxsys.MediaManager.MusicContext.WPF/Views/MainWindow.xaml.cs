@@ -1,10 +1,4 @@
-﻿using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Store;
-using Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels;
-using Maxsys.MediaManager.MusicContext.WPF.Services;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Maxsys.MediaManager.MusicContext.WPF
 {

@@ -6,20 +6,22 @@ internal class AlbumConfig : IEntityTypeConfiguration<Album>
 {
     public void Configure(EntityTypeBuilder<Album> builder)
     {
-        builder.ToTable("Albums").HasKey(album => album.Id);
+        builder.ToTable("Album").HasKey(e => e.Id);
 
         // Properties
-        builder.Property(album => album.AlbumDirectory).HasMaxLength(200).IsRequired();
-        builder.Property(album => album.Name).HasMaxLength(50).IsRequired();
-        builder.Property(album => album.Year).IsRequired(false);
-        builder.Property(album => album.Genre).HasMaxLength(50).IsRequired();
-        builder.Property(album => album.AlbumType).IsRequired();
-        builder.Property(album => album.AlbumCover).IsRequired(); // If doesn't exits, byte[] must be empty
+        builder.Property(e => e.Id).IsRequired();
+        builder.Property(e => e.Directory).HasMaxLength(200).IsRequired();
+        builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.Year).IsRequired(false);
+        builder.Property(e => e.Genre).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.AlbumType).IsRequired();
+        builder.Property(e => e.AlbumCover).IsRequired(); // If doesn't exits, byte[] must be empty
+        builder.Property(e => e.SpotifyID).HasMaxLength(50).IsRequired(false);
 
         // Navigation
-        builder.HasOne(album => album.Artist).WithMany(artist => artist.Albums);
+        builder.HasOne(e => e.Artist).WithMany(n => n.Albums).IsRequired();
 
         // Indexes
-        builder.HasIndex(album => new { album.ArtistId, album.Name }).IsUnique().HasDatabaseName($"AK_Albums_ArtistAlbumName");
+        builder.HasIndex(e => new { e.ArtistId, e.Name }).IsUnique().HasDatabaseName($"AK_Album_ArtistAlbumName");
     }
 }

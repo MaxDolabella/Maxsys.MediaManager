@@ -1,6 +1,8 @@
+using System.Diagnostics;
+
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
-[System.Diagnostics.DebuggerDisplay("{Id.ToString().Substring(0, 4)} - {Title}")]
+[DebuggerDisplay($"{{GetDebuggerDisplay(),nq}}")]
 public class Song : MediaFile
 {
     #region PROPERTIES
@@ -11,19 +13,23 @@ public class Song : MediaFile
     public int? TrackNumber { get; protected set; }
     public string? Lyrics { get; protected set; }
     public string? Comments { get; protected set; }
+    public string? SpotifyID { get; protected set; }
 
-    // Value Objects
+    #region Value Objects
+
     public Classification Classification { get; protected set; }
-
     public SongDetails SongDetails { get; protected set; }
     public SongProperties SongProperties { get; protected set; }
 
-    // Navigation
+    #endregion Value Objects
 
-    public Album Album { get; protected set; }
+    #region Navigation
 
-    // Collections
+    public Album Album { get; protected set; } = null!;
+
     public List<Composer> Composers { get; protected set; } = [];
+
+    #endregion Navigation
 
     #endregion PROPERTIES
 
@@ -42,10 +48,11 @@ public class Song : MediaFile
         int? trackNumber,
         string? lyrics,
         string? comments,
+        string? spotifyRef,
         SongDetails musicDetails,
         Classification classification,
         SongProperties musicProperties)
-        : base(id, fullPath, originalFileName, fileSize)
+        : base(id, new(fullPath), originalFileName, fileSize)
     {
         AlbumId = albumId;
 
@@ -53,10 +60,12 @@ public class Song : MediaFile
         TrackNumber = trackNumber;
         Lyrics = lyrics;
         Comments = comments;
+        SpotifyID = spotifyRef;
 
         SongDetails = musicDetails;
         Classification = classification;
         SongProperties = musicProperties;
+        SpotifyID = spotifyRef;
     }
 
     #endregion CONSTRUCTORS
@@ -69,17 +78,22 @@ public class Song : MediaFile
             Composers.Add(composer);
     }
 
-    public void UpdateSongProperties(SongProperties newSongProperties)
+    public void UpdateSongProperties(TimeSpan duration, int bitRate)
     {
-        SongProperties.Update(newSongProperties);
+        SongProperties.Update(duration, bitRate);
     }
 
-    public void UpdateAlbum(Guid newAlbumId, string newFullPath, int? trackNumber)
+    public void UpdateAlbum(Guid albumId, Uri fullPath, int? trackNumber)
     {
-        AlbumId = newAlbumId;
-        FullPath = newFullPath;
+        AlbumId = albumId;
+        FullPath = fullPath;
         TrackNumber = trackNumber;
     }
 
     #endregion METHODS
+
+    private string GetDebuggerDisplay()
+    {
+        return $"{Id.ToString().Substring(0, 4)} - {Title}";
+    }
 }

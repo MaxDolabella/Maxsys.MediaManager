@@ -1,8 +1,9 @@
+using System.Diagnostics;
 using Maxsys.Core.Entities;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
-[System.Diagnostics.DebuggerDisplay("Order={Order}|[{Id}")]
+[DebuggerDisplay("Order={Order}|[{Id}")]
 public class PlaylistItem : Entity, IComparable, IComparable<PlaylistItem>
 {
     // ID = { PlaylistId, Id }
@@ -14,10 +15,12 @@ public class PlaylistItem : Entity, IComparable, IComparable<PlaylistItem>
 
     public short? Order { get; protected set; }
 
-    // Navigation
+    #region Navigation
 
     public Playlist Playlist { get; protected set; }
     public Song Song { get; protected set; }
+
+    #endregion Navigation
 
     #endregion PROPERTIES
 
@@ -37,9 +40,9 @@ public class PlaylistItem : Entity, IComparable, IComparable<PlaylistItem>
 
     public int CompareTo(object? obj)
     {
-        return obj is not PlaylistItem playlistItem || playlistItem is null
-            ? 1
-            : CompareTo(playlistItem);
+        return obj is PlaylistItem playlistItem
+            ? CompareTo(playlistItem)
+            : 1;
     }
 
     public int CompareTo(PlaylistItem? other)

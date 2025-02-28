@@ -64,7 +64,7 @@ public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
                 ArtistName = e.Artist.Name,
                 AlbumId = e.Id,
                 AlbumName = e.Name,
-                AlbumDirectory = e.AlbumDirectory
+                AlbumDirectory = e.Directory
             })
             .OrderBy(m => m.AlbumDirectory)
             .ToListAsync(token);
@@ -83,7 +83,7 @@ public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
                 AlbumName = e.Name,
                 AlbumType = e.AlbumType,
                 AlbumYear = e.Year,
-                AlbumDirectory = e.AlbumDirectory,
+                AlbumDirectory = e.Directory,
                 AlbumMusicCount = e.Songs.Count()
             })
             .OrderBy(m => m.AlbumDirectory)

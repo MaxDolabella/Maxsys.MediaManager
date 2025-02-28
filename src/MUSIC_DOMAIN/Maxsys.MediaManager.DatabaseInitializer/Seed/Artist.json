@@ -1,0 +1,367 @@
+[
+  {
+    "Id": "A24700AC-0AEF-FEB7-A55B-39FF4C606A48",
+    "Name": "Ad Infinitum",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "54516F79-EC90-71A2-800C-39F0F8FEAAD7",
+    "Name": "After Forever",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "7D61E0C8-7B62-6CA0-512B-39FF4A013183",
+    "Name": "Amaranthe",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "5562843F-AED0-3DCA-05D6-39F0F8FEAAD7",
+    "Name": "Andi Deris",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "ADAACB6E-B785-5623-335F-39F0F8FEAAD7",
+    "Name": "Angra",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "A50A03B0-4C37-F005-8943-39F0F8FEAAD7",
+    "Name": "Ari Koivunen",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "57412E8A-E2B2-4637-9C1D-9D99C5AD9CEE",
+    "Name": "ArtTestes",
+    "MusicCatalogId": "FF2C2621-7BAF-4747-AE8C-9045FD48D387"
+  },
+  {
+    "Id": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "Name": "Avantasia",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "BAC46DFF-3D84-3F28-5540-3A00FE741517",
+    "Name": "Battlelore",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "CD66773A-7C39-385C-D5AC-39F0F8FEAAD7",
+    "Name": "Beto Vazquez Infinity",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "0B7A4B15-E1BF-DACC-B519-39F0F8FEAAD7",
+    "Name": "Blaze Bayley",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "Name": "Bruce Dickinson",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "7BF21737-0AF9-4616-B705-883A97327425",
+    "Name": "Bullet",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "BDD97E3B-F10B-F0EC-F51D-39F0F8FEAAD7",
+    "Name": "David Bowie",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "Name": "Delain",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "61F3F550-7C25-0009-309D-39F0F8FEAAD7",
+    "Name": "Detonator",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "2A119799-5781-79E7-AD87-39F0F8FEAAD7",
+    "Name": "Diante Do Trono",
+    "MusicCatalogId": "99685EA7-CFCF-FDAB-9F6F-39F0F7EFB2BE"
+  },
+  {
+    "Id": "8FD8925E-1D39-F5CB-EF36-39F0F8FEAAD7",
+    "Name": "Dio",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "C479E319-0592-F86B-14EB-39F0F8FEAAD7",
+    "Name": "Disturbed",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "B02C0B97-6FF0-A2B8-1E5D-39F0F8FEAAD7",
+    "Name": "Diversos",
+    "MusicCatalogId": "C1EE4B5C-CC4F-663D-58B2-39F0F7EFB2BE"
+  },
+  {
+    "Id": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "Name": "Diversos",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "4CA9124C-844D-468A-8A06-39F0F8FEAAD7",
+    "Name": "Diversos",
+    "MusicCatalogId": "99685EA7-CFCF-FDAB-9F6F-39F0F7EFB2BE"
+  },
+  {
+    "Id": "9757F8A6-B288-834E-FDD6-39F0F8FEAAD7",
+    "Name": "Diversos",
+    "MusicCatalogId": "1B944C82-EF8C-C5CF-D6A6-39F0F7EFB2BE"
+  },
+  {
+    "Id": "B8E1AF86-CFDA-131D-A122-39F0F8FEAAD7",
+    "Name": "Ecliptyka",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "Name": "Edguy",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "85994A1F-3BAD-5407-FFCB-39F0F8FEAAD7",
+    "Name": "Engenheiros Do Hawaii",
+    "MusicCatalogId": "1B944C82-EF8C-C5CF-D6A6-39F0F7EFB2BE"
+  },
+  {
+    "Id": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "Name": "Epica",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "74819268-0494-B86D-983F-39F0F8FEAAD7",
+    "Name": "Fernanda Brum",
+    "MusicCatalogId": "99685EA7-CFCF-FDAB-9F6F-39F0F7EFB2BE"
+  },
+  {
+    "Id": "94E26C3A-8B25-46E6-A190-481BEC0FB5ED",
+    "Name": "Follow The Cipher",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "E745B36D-C52D-49C3-8F39-0792BA29781E",
+    "Name": "GAMES",
+    "MusicCatalogId": "D1DEC074-E0A3-4F09-8992-F13C3A6F0EBF"
+  },
+  {
+    "Id": "CCBF2BF0-16F2-1E47-7EC9-39F0F8FEAAD7",
+    "Name": "Grupo Hágios",
+    "MusicCatalogId": "99685EA7-CFCF-FDAB-9F6F-39F0F7EFB2BE"
+  },
+  {
+    "Id": "548B1331-A5BE-0B3A-65DA-39F0F8FEAAD7",
+    "Name": "Guns N' Roses",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "E38A676D-56AD-DD6C-C968-39F0F8FEAAD7",
+    "Name": "Halestorm",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "FDD37981-82C8-ACDE-A0AC-39F0F8FEAAD7",
+    "Name": "HammerFall",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "64B61A62-393E-DD0D-57BC-39F0F8FEAAD7",
+    "Name": "Hangar",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "305C0ECB-B1FE-1FFD-D408-39F0F8FEAAD7",
+    "Name": "HB",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "Name": "Helloween",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "34DAC87D-0CCB-5286-2FEC-39F0F8FEAAD7",
+    "Name": "Hibria",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "AED970F4-3347-FD4E-7EBC-39F0F8FEAAD7",
+    "Name": "Hysterica",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "C44A7FB1-4135-E05F-FD34-39F0F8FEAAD7",
+    "Name": "Indigo Dying",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "Name": "Iron Maiden",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "98066C93-A9D2-5577-E6ED-39F0F8FEAAD7",
+    "Name": "Katra",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "4890BD4C-7B50-1426-4BB5-39F0F8FEAAD7",
+    "Name": "Kiske-Somerville",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "F214A747-AE46-A444-0900-39F0F8FEAAD7",
+    "Name": "Kobra And The Lotus",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "86AC4FC4-217B-1027-783D-39F0F8FEAAD7",
+    "Name": "Lethal Dose",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "03147F14-5A00-4BD0-3254-39F0F8FEAAD7",
+    "Name": "Lullacry",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "F142AA5B-B218-5D2D-5877-39F0F8FEAAD7",
+    "Name": "Maid Of The Mist",
+    "MusicCatalogId": "6134D4B4-136C-26CE-24FB-39F0F7EFB2BE"
+  },
+  {
+    "Id": "70CFF445-4DF8-2992-01B2-39F0F8FEAAD7",
+    "Name": "Massacration",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "834C1DE5-ED42-FE6C-39B6-39F0F8FEAAD7",
+    "Name": "Mastercastle",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "1053D072-43F7-773A-E13A-39F0F8FEAAD7",
+    "Name": "Metallica",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "74EB4EDA-7E1D-4513-A670-7C2289FFE419",
+    "Name": "New Years Day",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "Name": "Nightwish",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "26D714ED-32FA-4B49-D83F-3A00FE4123F3",
+    "Name": "No Copyright",
+    "MusicCatalogId": "D1DEC074-E0A3-4F09-8992-F13C3A6F0EBF"
+  },
+  {
+    "Id": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "Name": "Pink Cream 69",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "2BE31871-BEF4-A312-1C55-39F0F8FEAAD7",
+    "Name": "Place Vendome",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "489368BE-0151-CC9F-85D7-39F0F8FEAAD7",
+    "Name": "Primal Fear",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "A1033556-8DCE-4B65-83D3-8D84D69B5D24",
+    "Name": "SATV Music",
+    "MusicCatalogId": "D1DEC074-E0A3-4F09-8992-F13C3A6F0EBF"
+  },
+  {
+    "Id": "29BA9962-DA1A-24E5-3039-39F0F8FEAAD7",
+    "Name": "Scarlet Haw",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "C13917B5-0FFE-8583-090A-39F0F8FEAAD7",
+    "Name": "Shadowside",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "8E0345DB-4B34-E83C-61CD-39F0F8FEAAD7",
+    "Name": "Sirenia",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "3580191A-0C5D-6FA5-ECAC-39F0F8FEAAD7",
+    "Name": "Stratovarius",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "699D5BD6-F1D0-9121-67E4-3A0542DAD010",
+    "Name": "Symfobia",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "Name": "Tarja",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "9572B064-B42C-4234-A538-567EBFEF97FD",
+    "Name": "The Dark Element",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "468981CD-4712-A46E-CBD0-39F0F8FEAAD7",
+    "Name": "The Pretty Reckless",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "120B66A1-1CE2-49EA-D5FE-39F0F8FEAAD7",
+    "Name": "Theatre Of Tragedy",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "F55D1B7B-5411-90A1-6304-39F0F8FEAAD7",
+    "Name": "Tribuzy",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "488DDFAB-6757-899D-66E9-39F0F8FEAAD7",
+    "Name": "Trillium",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "9638B10D-235E-6FC3-F5A2-39F0F8FEAAD7",
+    "Name": "Unisonic",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "C489640B-C8D8-A47B-5878-39F0F8FEAAD7",
+    "Name": "UnSun",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "BA0A3163-904D-CA55-9A6D-39F0F8FEAAD7",
+    "Name": "Wicked Sensation",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "19EE32BA-8949-B816-F224-39F0F8FEAAD7",
+    "Name": "Within Temptation",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  },
+  {
+    "Id": "E4F1C72C-29DF-1C78-1CD7-39F0F8FEAAD7",
+    "Name": "Xandria",
+    "MusicCatalogId": "ECB76A61-BADD-D42D-8C46-39F0F7EFB2BE"
+  }
+]

@@ -1,0 +1,2045 @@
+[
+  {
+    "Id": "92E9DE53-1F0A-4DD3-BE14-075FD0623330",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Live\\(2005) Death On The Road",
+    "Name": "Death On The Road",
+    "Year": 2005,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "7A8432D1-55CF-4870-BDE1-0B457144ED86",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Studio\\(2013) Colours in the Dark",
+    "Name": "Colours in the Dark",
+    "Year": 2013,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "0AFF10F7-2E0D-4B46-AAD6-0E77F45EDC54",
+    "ArtistId": "7BF21737-0AF9-4616-B705-883A97327425",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bullet\\Studio\\(2018) Dust To Gold",
+    "Name": "Dust To Gold",
+    "Year": 2018,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "C8317461-E4DF-429B-96BE-153DE11AC03B",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Studio\\(2016) The Shadow Self",
+    "Name": "The Shadow Self",
+    "Year": 2016,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E53B1F79-E278-4CB8-BAEA-15AF2B609E82",
+    "ArtistId": "9572B064-B42C-4234-A538-567EBFEF97FD",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\The Dark Element\\Studio\\(2019) Songs the Night Sings",
+    "Name": "Songs the Night Sings",
+    "Year": 2019,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "10276F76-B18E-4086-84BB-1AA8941A48B9",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Studio\\(2007) My Winter Storm",
+    "Name": "My Winter Storm",
+    "Year": 2007,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "F6C73D1A-09E8-4E89-AC8F-285C64C1EBC2",
+    "ArtistId": "E745B36D-C52D-49C3-8F39-0792BA29781E",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\OST\\GAMES\\GTA OST",
+    "Name": "GTA OST",
+    "Genre": "Others",
+    "AlbumType": 0
+  },
+  {
+    "Id": "FB14E6FB-FFEE-4C00-9C27-2D4C55F2D477",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2001) The Metal Opera - Part 1",
+    "Name": "The Metal Opera - Part 1",
+    "Year": 2001,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "790BAFA4-0111-4394-8BC0-328C68FDBBE0",
+    "ArtistId": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Delain\\Studio\\(2020) Apocalypse and Chill",
+    "Name": "Apocalypse and Chill",
+    "Year": 2020,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7C4BED5C-7C80-4F23-819A-35775A3A458F",
+    "ArtistId": "57412E8A-E2B2-4637-9C1D-9D99C5AD9CEE",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\TESTES\\ArtTestes\\Others\\(2020) Album Teste",
+    "Name": "Album Teste",
+    "Year": 2020,
+    "Genre": "Others",
+    "AlbumType": 10
+  },
+  {
+    "Id": "49302F33-9889-4837-A249-37A086246CDB",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Live\\(2013) Showtime, Storytime",
+    "Name": "Showtime, Storytime",
+    "Year": 2013,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "3D7BB713-70BF-58B2-04BA-39F0F8D46BE0",
+    "ArtistId": "0B7A4B15-E1BF-DACC-B519-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Blaze Bayley\\Studio\\(2008) The Man Who Would Not Die",
+    "Name": "The Man Who Would Not Die",
+    "Year": 2008,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E972A780-8A70-6A4B-052B-39F0F8D46BE0",
+    "ArtistId": "C13917B5-0FFE-8583-090A-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Shadowside\\Studio\\(2012) Inner Monster Out",
+    "Name": "Inner Monster Out",
+    "Year": 2012,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "AE04EA52-3AB2-F94E-05E9-39F0F8D46BE0",
+    "ArtistId": "BA0A3163-904D-CA55-9A6D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Wicked Sensation\\Studio\\(2004) Exceptional",
+    "Name": "Exceptional",
+    "Year": 2004,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "1D63F68D-1B05-13A0-0838-39F0F8D46BE0",
+    "ArtistId": "489368BE-0151-CC9F-85D7-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Primal Fear\\Studio\\(1999) Jaws Of Death",
+    "Name": "Jaws Of Death",
+    "Year": 1999,
+    "Genre": "Speed Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "AF2EAB36-A3F8-F914-0889-39F0F8D46BE0",
+    "ArtistId": "34DAC87D-0CCB-5286-2FEC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hibria\\Studio\\(2004) Defying The Rules",
+    "Name": "Defying The Rules",
+    "Year": 2004,
+    "Genre": "Speed Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "32555BA5-C93B-198E-08FC-39F0F8D46BE0",
+    "ArtistId": "468981CD-4712-A46E-CBD0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\The Pretty Reckless\\Diversos - The Pretty Reckless",
+    "Name": "Diversos - The Pretty Reckless",
+    "Genre": "Alternative Rock",
+    "AlbumType": 0
+  },
+  {
+    "Id": "E524C542-088E-CB0F-0947-39F0F8D46BE0",
+    "ArtistId": "64B61A62-393E-DD0D-57BC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hangar\\Studio\\(2011) Acoustic But Plugged In!",
+    "Name": "Acoustic But Plugged In!",
+    "Year": 2011,
+    "Genre": "Progressive Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E4EB7593-58FE-935C-09E6-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(1994) Balls To Picasso",
+    "Name": "Balls To Picasso",
+    "Year": 1994,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "D0FD1ECA-4994-422F-0B5E-39F0F8D46BE0",
+    "ArtistId": "AED970F4-3347-FD4E-7EBC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hysterica\\Studio\\(2012) The Art Of Metal",
+    "Name": "The Art Of Metal",
+    "Year": 2012,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E8AF2C8E-F19D-9AB2-0CC3-39F0F8D46BE0",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Diversos - Tarja",
+    "Name": "Diversos - Tarja",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "3BA9379D-6D86-BAC6-0CD6-39F0F8D46BE0",
+    "ArtistId": "E38A676D-56AD-DD6C-C968-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Halestorm\\Studio\\(2009) Halestorm",
+    "Name": "Halestorm",
+    "Year": 2009,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "C34068D3-2DB4-3C76-0DA2-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2003) Rabbit Don't Come Easy",
+    "Name": "Rabbit Don't Come Easy",
+    "Year": 2003,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6E935AC2-F344-EEAB-0DFF-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(2007) In10sity",
+    "Name": "In10sity",
+    "Year": 2007,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B7D26AAF-C0A0-2CE1-0E1F-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2011) Age Of The Joker",
+    "Name": "Age Of The Joker",
+    "Year": 2011,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A8015C82-26EC-3A44-0E6D-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2004) Hellfire Club",
+    "Name": "Hellfire Club",
+    "Year": 2004,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BC80D5DC-1A9E-F4B9-0F25-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2016) Ghostlights",
+    "Name": "Ghostlights",
+    "Year": 2016,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "3982EDFA-6EC2-C363-10F5-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Diversos - Bruce Dickinson",
+    "Name": "Diversos - Bruce Dickinson",
+    "Genre": "Heavy Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "3C81A68D-4E0E-8D6F-1100-39F0F8D46BE0",
+    "ArtistId": "E4F1C72C-29DF-1C78-1CD7-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Xandria\\Diversos - Xandria",
+    "Name": "Diversos - Xandria",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "8E0C3DBA-EE11-DFFA-14D7-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Live\\(1999) Scream For Me Brazil",
+    "Name": "Scream For Me Brazil",
+    "Year": 1999,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "8C0131FE-5F22-B2A3-17AF-39F0F8D46BE0",
+    "ArtistId": "C479E319-0592-F86B-14EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Disturbed\\Studio\\(2002) Believe",
+    "Name": "Believe",
+    "Year": 2002,
+    "Genre": "Nu Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BC25A7C6-14C7-3FD6-185A-39F0F8D46BE0",
+    "ArtistId": "19EE32BA-8949-B816-F224-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Within Temptation\\Diversos - Within Temptation",
+    "Name": "Diversos - Within Temptation",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "6A226ED4-2F05-2B27-193A-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2006) Rocket Ride",
+    "Name": "Rocket Ride",
+    "Year": 2006,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7480AF2F-FEB6-62D0-19EA-39F0F8D46BE0",
+    "ArtistId": "2A119799-5781-79E7-AD87-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Diante Do Trono\\Diversos - Diante Do Trono",
+    "Name": "Diversos - Diante Do Trono",
+    "Genre": "Gospel",
+    "AlbumType": 0
+  },
+  {
+    "Id": "28D6BFA9-7BB4-7639-1C46-39F0F8D46BE0",
+    "ArtistId": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Delain\\Studio\\(2009) April Rain",
+    "Name": "April Rain",
+    "Year": 2009,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "565E0392-E5DB-B687-1CFD-39F0F8D46BE0",
+    "ArtistId": "834C1DE5-ED42-FE6C-39B6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Mastercastle\\Studio\\(2009) The Phoenix",
+    "Name": "The Phoenix",
+    "Year": 2009,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "ADFE0F42-45A4-890C-1D67-39F0F8D46BE0",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2014) The Quantum Enigma",
+    "Name": "The Quantum Enigma",
+    "Year": 2014,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "1D502A4F-846C-3C2D-1E5E-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2011) Imaginaerum",
+    "Name": "Imaginaerum",
+    "Year": 2011,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "155CE594-FC3A-DC30-1EE6-39F0F8D46BE0",
+    "ArtistId": "834C1DE5-ED42-FE6C-39B6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Mastercastle\\Studio\\(2010) Last Desire",
+    "Name": "Last Desire",
+    "Year": 2010,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A59154EC-A12F-D054-1F37-39F0F8D46BE0",
+    "ArtistId": "C489640B-C8D8-A47B-5878-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\UnSun\\Studio\\(2008) The End Of Life",
+    "Name": "The End Of Life",
+    "Year": 2008,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BFADBCED-D0AD-01E6-1F4C-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2004) Once",
+    "Name": "Once",
+    "Year": 2004,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "05AEC069-EAF4-0E7D-2066-39F0F8D46BE0",
+    "ArtistId": "5562843F-AED0-3DCA-05D6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Andi Deris\\Studio\\(1997) Come In From The Rain",
+    "Name": "Come In From The Rain",
+    "Year": 1997,
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "EE4C3397-64DA-F296-206C-39F0F8D46BE0",
+    "ArtistId": "C479E319-0592-F86B-14EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Disturbed\\Studio\\(2005) Ten Thousand Fists",
+    "Name": "Ten Thousand Fists",
+    "Year": 2005,
+    "Genre": "Nu Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E3711B3A-E9EB-5CBF-21C1-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Heavy Metal",
+    "Name": "Heavy Metal",
+    "Genre": "Heavy Metal",
+    "AlbumType": 9
+  },
+  {
+    "Id": "BC4AF409-CB50-FCD7-226C-39F0F8D46BE0",
+    "ArtistId": "98066C93-A9D2-5577-E6ED-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Katra\\Studio\\(2008) Beast Within",
+    "Name": "Beast Within",
+    "Year": 2008,
+    "Genre": "Gothic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "2398C43C-34E3-B006-237A-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2005) Keeper Of The Seven Keys The Legacy",
+    "Name": "Keeper Of The Seven Keys The Legacy",
+    "Year": 2005,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E1E9CA52-731E-BABC-2455-39F0F8D46BE0",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2003) The Phantom Agony",
+    "Name": "The Phantom Agony",
+    "Year": 2003,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A4EE6B0C-191A-D9CE-252B-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Diversos - Helloween",
+    "Name": "Diversos - Helloween",
+    "Genre": "Power Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "AA5E71FD-A5A0-343B-25E3-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(2003) Dance Of Death",
+    "Name": "Dance Of Death",
+    "Year": 2003,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "98F0F992-6730-64B7-2618-39F0F8D46BE0",
+    "ArtistId": "305C0ECB-B1FE-1FFD-D408-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\HB\\Studio\\(2004) Uskon Puolesta",
+    "Name": "Uskon Puolesta",
+    "Year": 2004,
+    "Genre": "Christian Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "AD853392-4CFE-B70E-2625-39F0F8D46BE0",
+    "ArtistId": "86AC4FC4-217B-1027-783D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Lethal Dose\\Diversos - Lethal Dose",
+    "Name": "Diversos - Lethal Dose",
+    "Genre": "Heavy Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "87F3AA5D-CAA1-78AB-2656-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Power Metal",
+    "Name": "Power Metal",
+    "Genre": "Power Metal",
+    "AlbumType": 9
+  },
+  {
+    "Id": "535C5F78-D84A-98EB-27AD-39F0F8D46BE0",
+    "ArtistId": "C13917B5-0FFE-8583-090A-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Shadowside\\Studio\\(2005) Theatre Of Shadows",
+    "Name": "Theatre Of Shadows",
+    "Year": 2005,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7CF71319-3915-4DC4-280D-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1991) Pink Bubbles Go Ape",
+    "Name": "Pink Bubbles Go Ape",
+    "Year": 1991,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "451CCE6A-AD7F-BCF3-2818-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1981) Killers",
+    "Name": "Killers",
+    "Year": 1981,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "685DCB56-290E-26C2-28FC-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(1998) Vain Glory Opera",
+    "Name": "Vain Glory Opera",
+    "Year": 1998,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "80184F0B-DB79-4A92-2911-39F0F8D46BE0",
+    "ArtistId": "C44A7FB1-4135-E05F-FD34-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Indigo Dying\\Studio\\(2007) Indigo Dying",
+    "Name": "Indigo Dying",
+    "Year": 2007,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "893013E6-F718-AE02-2A99-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(2015) The Book Of Souls",
+    "Name": "The Book Of Souls",
+    "Year": 2015,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "88F24B9A-ED0A-7D23-2C92-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Female Metal",
+    "Name": "Female Metal",
+    "Genre": "Female Metal",
+    "AlbumType": 9
+  },
+  {
+    "Id": "834DAF85-068B-D096-2DDF-39F0F8D46BE0",
+    "ArtistId": "CCBF2BF0-16F2-1E47-7EC9-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Grupo Hágios\\Compilation\\(2000) Separados Para O Louvor",
+    "Name": "Separados Para O Louvor",
+    "Year": 2000,
+    "Genre": "Gospel",
+    "AlbumType": 3
+  },
+  {
+    "Id": "228EC058-F3F2-3F17-2FA8-39F0F8D46BE0",
+    "ArtistId": "ADAACB6E-B785-5623-335F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Angra\\Diversos - Angra",
+    "Name": "Diversos - Angra",
+    "Genre": "Progressive Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "2060F269-F7D3-7CD3-30AA-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Diversos - Avantasia",
+    "Name": "Diversos - Avantasia",
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "1354224C-AA35-117A-3572-39F0F8D46BE0",
+    "ArtistId": "64B61A62-393E-DD0D-57BC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hangar\\Studio\\(2007) The Reason Of Your Conviction",
+    "Name": "The Reason Of Your Conviction",
+    "Year": 2007,
+    "Genre": "Progressive Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "D2DC36D5-3600-E2E9-3642-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(2005) Tyranny Of Souls",
+    "Name": "Tyranny Of Souls",
+    "Year": 2005,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "5607AD91-B701-C003-364B-39F0F8D46BE0",
+    "ArtistId": "54516F79-EC90-71A2-800C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\After Forever\\Diversos - After Forever",
+    "Name": "Diversos - After Forever",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "75C84C11-82EE-4E22-3733-39F0F8D46BE0",
+    "ArtistId": "548B1331-A5BE-0B3A-65DA-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Guns N' Roses\\Studio\\(1987) Appetite For Destruction",
+    "Name": "Appetite For Destruction",
+    "Year": 1987,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "55479877-899D-5E81-381F-39F0F8D46BE0",
+    "ArtistId": "03147F14-5A00-4BD0-3254-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Lullacry\\Studio\\(2012) Where Angels Fear",
+    "Name": "Where Angels Fear",
+    "Year": 2012,
+    "Genre": "Gothic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7755D0DF-09B5-9B40-38EE-39F0F8D46BE0",
+    "ArtistId": "468981CD-4712-A46E-CBD0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\The Pretty Reckless\\Studio\\(2010) Light Me Up",
+    "Name": "Light Me Up",
+    "Year": 2010,
+    "Genre": "Alternative Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "19EC5D21-2D6D-6B98-390F-39F0F8D46BE0",
+    "ArtistId": "03147F14-5A00-4BD0-3254-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Lullacry\\Studio\\(2005) Vol. 4",
+    "Name": "Vol. 4",
+    "Year": 2005,
+    "Genre": "Gothic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A0E9CF64-D38D-F262-3974-39F0F8D46BE0",
+    "ArtistId": "3580191A-0C5D-6FA5-ECAC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Stratovarius\\Diversos - Stratovarius",
+    "Name": "Diversos - Stratovarius",
+    "Genre": "Power Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "470D84D2-BBAD-7328-3EB0-39F0F8D46BE0",
+    "ArtistId": "F55D1B7B-5411-90A1-6304-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tribuzy\\Diversos - Tribuzy",
+    "Name": "Diversos - Tribuzy",
+    "Genre": "Power Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "2286B832-1775-DDD1-3EB5-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1998) Virtual XI",
+    "Name": "Virtual XI",
+    "Year": 1998,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6643C0E2-8BBE-BF50-3F81-39F0F8D46BE0",
+    "ArtistId": "34DAC87D-0CCB-5286-2FEC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hibria\\Studio\\(2011) Blind Ride",
+    "Name": "Blind Ride",
+    "Year": 2011,
+    "Genre": "Speed Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "93A96F1B-3B92-7082-40F9-39F0F8D46BE0",
+    "ArtistId": "1053D072-43F7-773A-E13A-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Metallica\\Diversos - Metallica",
+    "Name": "Diversos - Metallica",
+    "Genre": "Thrash Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "7EA19403-5FD6-1C82-414E-39F0F8D46BE0",
+    "ArtistId": "2BE31871-BEF4-A312-1C55-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Place Vendome\\Studio\\(2017) Close To The Sun",
+    "Name": "Close To The Sun",
+    "Year": 2017,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "034BB6A5-B86E-C6CA-4237-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2014) Space Police -  Defenders Of The Crown",
+    "Name": "Space Police: Defenders Of The Crown",
+    "Year": 2014,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "C0BAC5DE-7966-A40C-42C0-39F0F8D46BE0",
+    "ArtistId": "305C0ECB-B1FE-1FFD-D408-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\HB\\Studio\\(2010) Pääkallonpaikka",
+    "Name": "Pääkallonpaikka",
+    "Year": 2010,
+    "Genre": "Christian Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7F88FB75-7AAE-47F0-42EE-39F0F8D46BE0",
+    "ArtistId": "9757F8A6-B288-834E-FDD6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\NACIONAL\\Diversos\\Nacional",
+    "Name": "Nacional",
+    "Genre": "Nacional",
+    "AlbumType": 9
+  },
+  {
+    "Id": "4A1F6E3F-4219-FF71-453C-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(1999) Theatre Of Salvation",
+    "Name": "Theatre Of Salvation",
+    "Year": 1999,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "F38B2CCE-1780-6F44-4575-39F0F8D46BE0",
+    "ArtistId": "489368BE-0151-CC9F-85D7-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Primal Fear\\Studio\\(2016) Rulebreaker",
+    "Name": "Rulebreaker",
+    "Year": 2016,
+    "Genre": "Speed Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "D2738EEA-8F32-FF11-468B-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2002) Century Child",
+    "Name": "Century Child",
+    "Year": 2002,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "0E2E092A-35CC-720A-4BC2-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(2010) The Final Frontier",
+    "Name": "The Final Frontier",
+    "Year": 2010,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "1537BA04-9111-2903-4D68-39F0F8D46BE0",
+    "ArtistId": "BA0A3163-904D-CA55-9A6D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Wicked Sensation\\Diversos - Wicked Sensation",
+    "Name": "Diversos - Wicked Sensation",
+    "Genre": "Hard Rock",
+    "AlbumType": 0
+  },
+  {
+    "Id": "389C4F1A-4C42-F268-4DF9-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Diversos - Edguy",
+    "Name": "Diversos - Edguy",
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "E81C90EA-7539-7B42-4F67-39F0F8D46BE0",
+    "ArtistId": "1053D072-43F7-773A-E13A-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Metallica\\Studio\\(1997) Reload",
+    "Name": "Reload",
+    "Year": 1997,
+    "Genre": "Thrash Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6C888503-54B1-F45C-4FBC-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2015) Endless Forms Most Beautiful",
+    "Name": "Endless Forms Most Beautiful",
+    "Year": 2015,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A9D7C2C1-220E-E129-51A1-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1998) Better Than Raw",
+    "Name": "Better Than Raw",
+    "Year": 1998,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "68515E11-5DEA-24BF-526D-39F0F8D46BE0",
+    "ArtistId": "548B1331-A5BE-0B3A-65DA-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Guns N' Roses\\Studio\\(1988) G N' R Lies",
+    "Name": "G N' R Lies",
+    "Year": 1988,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "326C1109-8A5B-6870-52E6-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(1990) Tattooed Millionaire",
+    "Name": "Tattooed Millionaire",
+    "Year": 1990,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7E21B48B-A7DF-DAD5-55C8-39F0F8D46BE0",
+    "ArtistId": "CD66773A-7C39-385C-D5AC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Beto Vazquez Infinity\\Studio\\(2001) Beto Vazquez Infinity",
+    "Name": "Beto Vazquez Infinity",
+    "Year": 2001,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "FE9AF582-B691-3851-572C-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1994) Master Of The Rings",
+    "Name": "Master Of The Rings",
+    "Year": 1994,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "51ED9098-0290-345D-5837-39F0F8D46BE0",
+    "ArtistId": "4CA9124C-844D-468A-8A06-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Diversos\\Louvores",
+    "Name": "Louvores",
+    "Genre": "Gospel",
+    "AlbumType": 9
+  },
+  {
+    "Id": "BBA0C232-04F2-B6B4-5885-39F0F8D46BE0",
+    "ArtistId": "70CFF445-4DF8-2992-01B2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Massacration\\Studio\\(2004) Gates Of Metal Fried Chicken Of Death",
+    "Name": "Gates Of Metal Fried Chicken Of Death",
+    "Year": 2004,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "30A71F79-D7BE-72BC-5917-39F0F8D46BE0",
+    "ArtistId": "2BE31871-BEF4-A312-1C55-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Place Vendome\\Studio\\(2009) Streets Of Fire",
+    "Name": "Streets Of Fire",
+    "Year": 2009,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A0E9565F-0C31-890A-5981-39F0F8D46BE0",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2005) Consign To Oblivion",
+    "Name": "Consign To Oblivion",
+    "Year": 2005,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BF9D6358-FDD5-989D-5B13-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1993) Chameleon",
+    "Name": "Chameleon",
+    "Year": 1993,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "F3E45F23-67F5-6BF3-5EBC-39F0F8D46BE0",
+    "ArtistId": "0B7A4B15-E1BF-DACC-B519-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Blaze Bayley\\Studio\\(2000) Silicon Messiah",
+    "Name": "Silicon Messiah",
+    "Year": 2000,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BB47AD71-D399-B7CA-6152-39F0F8D46BE0",
+    "ArtistId": "0B7A4B15-E1BF-DACC-B519-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Blaze Bayley\\Studio\\(2010) Promise And Terror",
+    "Name": "Promise And Terror",
+    "Year": 2010,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "8299397F-A49E-6677-617D-39F0F8D46BE0",
+    "ArtistId": "A50A03B0-4C37-F005-8943-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Ari Koivunen\\Studio\\(2007) Fuel For The Fire",
+    "Name": "Fuel For The Fire",
+    "Year": 2007,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "092A90C4-8AAF-0F23-655E-39F0F8D46BE0",
+    "ArtistId": "E38A676D-56AD-DD6C-C968-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Halestorm\\Diversos - Halestorm",
+    "Name": "Diversos - Halestorm",
+    "Genre": "Hard Rock",
+    "AlbumType": 0
+  },
+  {
+    "Id": "9D8459AE-1EF1-7EA1-659D-39F0F8D46BE0",
+    "ArtistId": "8FD8925E-1D39-F5CB-EF36-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Dio\\Diversos - Dio",
+    "Name": "Diversos - Dio",
+    "Genre": "Heavy Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "E8483C95-A0C0-09B5-65DF-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1996) The Time Of The Oath",
+    "Name": "The Time Of The Oath",
+    "Year": 1996,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "71F5CD63-4E5C-39CA-68B6-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(2006) A Matter Of Life And Death",
+    "Name": "A Matter Of Life And Death",
+    "Year": 2006,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "DF395791-F047-05E6-6DA0-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1984) Powerslave",
+    "Name": "Powerslave",
+    "Year": 1984,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "45D8B788-F0AA-FA50-7030-39F0F8D46BE0",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2007) The Divine Conspiracy",
+    "Name": "The Divine Conspiracy",
+    "Year": 2007,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "7B8AC189-2F3B-1E04-72A7-39F0F8D46BE0",
+    "ArtistId": "B8E1AF86-CFDA-131D-A122-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Ecliptyka\\Studio\\(2011) A Tale Of Decadence",
+    "Name": "A Tale Of Decadence",
+    "Year": 2011,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "4120819A-CB66-2562-7387-39F0F8D46BE0",
+    "ArtistId": "70CFF445-4DF8-2992-01B2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Massacration\\Studio\\(2009) Good Blood Headbanguers",
+    "Name": "Good Blood Headbanguers",
+    "Year": 2009,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "D2D88A45-29B5-5C89-74D5-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2010) 7 Sinners",
+    "Name": "7 Sinners",
+    "Year": 2010,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "CEEC116E-87C0-617A-75F4-39F0F8D46BE0",
+    "ArtistId": "34DAC87D-0CCB-5286-2FEC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hibria\\Studio\\(2013) Silent Revenge",
+    "Name": "Silent Revenge",
+    "Year": 2013,
+    "Genre": "Speed Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6D62B365-BDBC-94A1-7652-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1988) Seventh Son Of A Seventh Son",
+    "Name": "Seventh Son Of A Seventh Son",
+    "Year": 1988,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B5B262FE-0F96-8F6E-78B5-39F0F8D46BE0",
+    "ArtistId": "5562843F-AED0-3DCA-05D6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Andi Deris\\Diversos - Andi Deris",
+    "Name": "Diversos - Andi Deris",
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "6A05AE1E-CBBF-4A90-79DE-39F0F8D46BE0",
+    "ArtistId": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Delain\\Studio\\(2012) We Are The Others",
+    "Name": "We Are The Others",
+    "Year": 2012,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B64F88AA-F746-6BF9-7D97-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(1997) Accident Of Birth",
+    "Name": "Accident Of Birth",
+    "Year": 1997,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "48918520-2B51-5299-7E42-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2013) Straight Out Of Hell",
+    "Name": "Straight Out Of Hell",
+    "Year": 2013,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "98430C25-C56F-75A8-8085-39F0F8D46BE0",
+    "ArtistId": "B02C0B97-6FF0-A2B8-1E5D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ESTILOS\\Diversos\\Diversos Estilos",
+    "Name": "Diversos Estilos",
+    "Genre": "Others",
+    "AlbumType": 9
+  },
+  {
+    "Id": "80FD35F7-6742-0C2F-81E4-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(1989) Pink Cream 69",
+    "Name": "Pink Cream 69",
+    "Year": 1989,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "8521DE62-994E-DF59-83E1-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2002) The Metal Opera (Part 2)",
+    "Name": "The Metal Opera (Part 2)",
+    "Year": 2002,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "2A4C43EB-AF55-DB90-8407-39F0F8D46BE0",
+    "ArtistId": "C479E319-0592-F86B-14EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Disturbed\\Studio\\(2008) Indestructible",
+    "Name": "Indestructible",
+    "Year": 2008,
+    "Genre": "Nu Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "0681F65F-F707-5A67-870C-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1995) The X Factor",
+    "Name": "The X Factor",
+    "Year": 1995,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "23D2C398-F932-9218-8720-39F0F8D46BE0",
+    "ArtistId": "CCBF2BF0-16F2-1E47-7EC9-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Grupo Hágios\\Studio\\(1993) Pátria",
+    "Name": "Pátria",
+    "Year": 1993,
+    "Genre": "Gospel",
+    "AlbumType": 1
+  },
+  {
+    "Id": "F158FAED-1E07-0EC4-87C0-39F0F8D46BE0",
+    "ArtistId": "CCBF2BF0-16F2-1E47-7EC9-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Grupo Hágios\\Studio\\(1996) Mil Motivos",
+    "Name": "Mil Motivos",
+    "Year": 1996,
+    "Genre": "Gospel",
+    "AlbumType": 1
+  },
+  {
+    "Id": "577EED64-EF7A-F4BC-88A5-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(2000) Brave New World",
+    "Name": "Brave New World",
+    "Year": 2000,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "131755C9-D33B-4A4F-8A10-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Metal",
+    "Name": "Metal",
+    "Genre": "Heavy Metal",
+    "AlbumType": 9
+  },
+  {
+    "Id": "E35841A0-BFC0-5819-8A1A-39F0F8D46BE0",
+    "ArtistId": "F214A747-AE46-A444-0900-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Kobra And The Lotus\\Diversos - Kobra And The Lotus",
+    "Name": "Diversos - Kobra And The Lotus",
+    "Genre": "Female Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "6CAF3835-3EE2-54C6-8A4D-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2007) Dark Passion Play",
+    "Name": "Dark Passion Play",
+    "Year": 2007,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E28BC172-1466-055C-8AE3-39F0F8D46BE0",
+    "ArtistId": "4CA9124C-844D-468A-8A06-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Diversos\\Mizrahi",
+    "Name": "Mizrahi",
+    "Genre": "Mizrahi",
+    "AlbumType": 9
+  },
+  {
+    "Id": "EDF2278E-6830-9FB1-8E6D-39F0F8D46BE0",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2009) Desing Your Universe",
+    "Name": "Desing Your Universe",
+    "Year": 2009,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B0776FEA-15B6-2B2D-8EC1-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1990) No Prayer For The Dying",
+    "Name": "No Prayer For The Dying",
+    "Year": 1990,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "DF467B77-8D1A-63A1-9006-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(2001) Endangered",
+    "Name": "Endangered",
+    "Year": 2001,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "49EE9E44-5218-0C7E-95AC-39F0F8D46BE0",
+    "ArtistId": "548B1331-A5BE-0B3A-65DA-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Guns N' Roses\\Diversos - Guns N' Roses",
+    "Name": "Diversos - Guns N' Roses",
+    "Genre": "Hard Rock",
+    "AlbumType": 0
+  },
+  {
+    "Id": "215D7A12-2FDD-5CCA-96FA-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(1996) Skunkworks",
+    "Name": "Skunkworks",
+    "Year": 1996,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "46C80B32-065F-9184-97D5-39F0F8D46BE0",
+    "ArtistId": "0B7A4B15-E1BF-DACC-B519-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Blaze Bayley\\Studio\\(2004) Blood & Belief",
+    "Name": "Blood & Belief",
+    "Year": 2004,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6667DDC6-C313-26DB-98B3-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2007) Gambling With The Devil",
+    "Name": "Gambling With The Devil",
+    "Year": 2007,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "143D7E65-6854-E7A0-98FA-39F0F8D46BE0",
+    "ArtistId": "8E0345DB-4B34-E83C-61CD-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Sirenia\\Diversos - Sirenia",
+    "Name": "Diversos - Sirenia",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "35183AA0-060E-04BD-9A8C-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1987) Keeper Of The Seven Keys Part I",
+    "Name": "Keeper Of The Seven Keys Part I",
+    "Year": 1987,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "512B2BFA-8D76-9D73-9BB1-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Pop Rock",
+    "Name": "Pop Rock",
+    "Genre": "Pop Rock",
+    "AlbumType": 9
+  },
+  {
+    "Id": "23CDBC93-9EF7-4F19-9E47-39F0F8D46BE0",
+    "ArtistId": "A50A03B0-4C37-F005-8943-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Ari Koivunen\\Studio\\(2008) Becoming",
+    "Name": "Becoming",
+    "Year": 2008,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "009A1931-AB68-0D31-9E8A-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2000) The Dark Ride",
+    "Name": "The Dark Ride",
+    "Year": 2000,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "C00FB0DC-4710-9725-9FEB-39F0F8D46BE0",
+    "ArtistId": "120B66A1-1CE2-49EA-D5FE-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Theatre Of Tragedy\\Diversos - Theatre Of Tragedy",
+    "Name": "Diversos - Theatre Of Tragedy",
+    "Genre": "Gothic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "7EEC2F38-43BD-6649-A232-39F0F8D46BE0",
+    "ArtistId": "2BE31871-BEF4-A312-1C55-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Place Vendome\\Studio\\(2013) Thunder In The Distance",
+    "Name": "Thunder In The Distance",
+    "Year": 2013,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "8150F687-5538-ADC7-A374-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(1998) Electrified",
+    "Name": "Electrified",
+    "Year": 1998,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "07968C2C-D1F7-20CC-A4BD-39F0F8D46BE0",
+    "ArtistId": "61F3F550-7C25-0009-309D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Detonator\\Studio\\(2014) Metal Folclore - The Zoeira Never Ends",
+    "Name": "Metal Folclore - The Zoeira Never Ends",
+    "Year": 2014,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B24A39FC-8C15-0120-A76B-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2013) The Mystery Of Time",
+    "Name": "The Mystery Of Time",
+    "Year": 2013,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "51EC57CE-968E-8CA3-A926-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Compilation\\(2002) Best Of The B' Sides",
+    "Name": "Best Of The B' Sides",
+    "Year": 2002,
+    "Genre": "Heavy Metal",
+    "AlbumType": 3
+  },
+  {
+    "Id": "32CAF69F-611C-1AD0-A946-39F0F8D46BE0",
+    "ArtistId": "305C0ECB-B1FE-1FFD-D408-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\HB\\Studio\\(2008) Frozen Inside",
+    "Name": "Frozen Inside",
+    "Year": 2008,
+    "Genre": "Christian Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A6CB3773-E303-529D-AAAF-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Live\\(2001) Rock In Rio",
+    "Name": "Rock In Rio",
+    "Year": 2001,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "CFCDD6EF-967B-3B62-ABF5-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(2004) Thunderdome",
+    "Name": "Thunderdome",
+    "Year": 2004,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "36E1DF29-6E81-EB7E-AD3E-39F0F8D46BE0",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2016) The Holographic Principle",
+    "Name": "The Holographic Principle",
+    "Year": 2016,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "49AA5175-40BB-BB7C-B315-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Live\\(1997) Skunkworks Live",
+    "Name": "Skunkworks Live",
+    "Year": 1997,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "8C43CFC8-2229-5160-B538-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2008) The Scarecrow",
+    "Name": "The Scarecrow",
+    "Year": 2008,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "240F6804-3F6E-A46E-B6E0-39F0F8D46BE0",
+    "ArtistId": "74819268-0494-B86D-983F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Fernanda Brum\\Diversos - Fernanda Brum",
+    "Name": "Diversos - Fernanda Brum",
+    "Genre": "Gospel",
+    "AlbumType": 0
+  },
+  {
+    "Id": "46B44710-6761-9588-B8DF-39F0F8D46BE0",
+    "ArtistId": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Delain\\Studio\\(2014) The Human Contradiction",
+    "Name": "The Human Contradiction",
+    "Year": 2014,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B8A151C9-2024-E743-B911-39F0F8D46BE0",
+    "ArtistId": "FDD37981-82C8-ACDE-A0AC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\HammerFall\\Diversos - HammerFall",
+    "Name": "Diversos - HammerFall",
+    "Genre": "Power Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "75C18D8F-C851-DBB5-B9B6-39F0F8D46BE0",
+    "ArtistId": "488DDFAB-6757-899D-66E9-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Trillium\\Studio\\(2011) Alloy",
+    "Name": "Alloy",
+    "Year": 2011,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "1E56BBCB-B362-6C11-BB05-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2010) The Wicked Symphony",
+    "Name": "The Wicked Symphony",
+    "Year": 2010,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "D90A444E-9C0C-8F9C-BB39-39F0F8D46BE0",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(1998) The Chemical Wedding",
+    "Name": "The Chemical Wedding",
+    "Year": 1998,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A61792F6-6D17-606D-BB66-39F0F8D46BE0",
+    "ArtistId": "85994A1F-3BAD-5407-FFCB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\NACIONAL\\Engenheiros Do Hawaii\\Compilation\\(1997) O Melhor de Engenheiros Do Hawaii",
+    "Name": "O Melhor de Engenheiros Do Hawaii",
+    "Year": 1997,
+    "Genre": "Rock Nacional",
+    "AlbumType": 3
+  },
+  {
+    "Id": "90BFA85C-33C7-8D0C-BB82-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2000) Wishmaster",
+    "Name": "Wishmaster",
+    "Year": 2000,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "825CB4D3-4005-FBC0-BDA7-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Live\\(2009) Flight Six Six Six",
+    "Name": "Flight Six Six Six",
+    "Year": 2009,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "D83DA14D-14BF-52B5-C090-39F0F8D46BE0",
+    "ArtistId": "64B61A62-393E-DD0D-57BC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hangar\\Studio\\(2008) Last Time Was Just The Beginning...",
+    "Name": "Last Time Was Just The Beginning...",
+    "Year": 2008,
+    "Genre": "Progressive Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B11000B7-3F1F-3AFF-C24A-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Rock",
+    "Name": "Rock",
+    "Genre": "Rock",
+    "AlbumType": 9
+  },
+  {
+    "Id": "FD00FC58-D690-645C-C2DC-39F0F8D46BE0",
+    "ArtistId": "0B7A4B15-E1BF-DACC-B519-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Blaze Bayley\\Studio\\(2002) Tenth Dimension",
+    "Name": "Tenth Dimension",
+    "Year": 2002,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B3DE3BE1-EE49-1927-C449-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1982) The Number Of The Beast",
+    "Name": "The Number Of The Beast",
+    "Year": 1982,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "44B1A3AA-4FE1-5931-C599-39F0F8D46BE0",
+    "ArtistId": "9638B10D-235E-6FC3-F5A2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Unisonic\\Studio\\(2014) Light Of Dawn",
+    "Name": "Light Of Dawn",
+    "Year": 2014,
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "585E701B-01A0-3AB4-C61A-39F0F8D46BE0",
+    "ArtistId": "98066C93-A9D2-5577-E6ED-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Katra\\Studio\\(2010) Out Of The Ashes",
+    "Name": "Out Of The Ashes",
+    "Year": 2010,
+    "Genre": "Gothic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E8432FF9-751C-D700-C6FE-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1980) Iron Maiden",
+    "Name": "Iron Maiden",
+    "Year": 1980,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B93561BA-398B-AB57-CE67-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(1997) Kingdom Of Madness",
+    "Name": "Kingdom Of Madness",
+    "Year": 1997,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "375BE3A2-C91A-8B03-D270-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2015) My God-Given Right",
+    "Name": "My God-Given Right",
+    "Year": 2015,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "50ADA4C9-E335-311F-D2AD-39F0F8D46BE0",
+    "ArtistId": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Delain\\Compilation\\(2013) Interlude",
+    "Name": "Interlude",
+    "Year": 2013,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 3
+  },
+  {
+    "Id": "0A92692B-45C3-4B52-D788-39F0F8D46BE0",
+    "ArtistId": "9757F8A6-B288-834E-FDD6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\NACIONAL\\Diversos\\Rock Nacional",
+    "Name": "Rock Nacional",
+    "Genre": "Rock Nacional",
+    "AlbumType": 9
+  },
+  {
+    "Id": "FC660FF3-43A5-F248-D928-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(2000) Sonic Dynamite",
+    "Name": "Sonic Dynamite",
+    "Year": 2000,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "14BF6681-747A-1A67-DA45-39F0F8D46BE0",
+    "ArtistId": "C13917B5-0FFE-8583-090A-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Shadowside\\Studio\\(2017) Shades of Humanity",
+    "Name": "Shades of Humanity",
+    "Year": 2017,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BB450C13-2B17-5573-DCEF-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2001) Mandrake",
+    "Name": "Mandrake",
+    "Year": 2001,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A8EE440C-176F-81AC-DCFC-39F0F8D46BE0",
+    "ArtistId": "C13917B5-0FFE-8583-090A-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Shadowside\\Studio\\(2009) Dare To Dream",
+    "Name": "Dare To Dream",
+    "Year": 2009,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "9360E86A-A7BA-4AA7-DDAB-39F0F8D46BE0",
+    "ArtistId": "548B1331-A5BE-0B3A-65DA-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Guns N' Roses\\Studio\\(1991) Use Your Illusion II",
+    "Name": "Use Your Illusion II",
+    "Year": 1991,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E4A47CF7-2DC9-A4A0-DDF8-39F0F8D46BE0",
+    "ArtistId": "29BA9962-DA1A-24E5-3039-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Scarlet Haw\\Diversos - Scarlet Haw",
+    "Name": "Diversos - Scarlet Haw",
+    "Genre": "Heavy Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "853A0B28-8FB5-AF8C-E005-39F0F8D46BE0",
+    "ArtistId": "B02C0B97-6FF0-A2B8-1E5D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ESTILOS\\Diversos\\Pop-Dance-Eletro",
+    "Name": "Pop-Dance-Eletro",
+    "Genre": "Others",
+    "AlbumType": 9
+  },
+  {
+    "Id": "95320B2C-12D7-76BC-E085-39F0F8D46BE0",
+    "ArtistId": "4890BD4C-7B50-1426-4BB5-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Kiske-Somerville\\Studio\\(2015) City Of Heroes",
+    "Name": "City Of Heroes",
+    "Year": 2015,
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "45847406-AC22-CB2D-E219-39F0F8D46BE0",
+    "ArtistId": "03147F14-5A00-4BD0-3254-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Lullacry\\Studio\\(1999) Sweet Desire",
+    "Name": "Sweet Desire",
+    "Year": 1999,
+    "Genre": "Gothic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "5E080ACE-E5A2-A751-E361-39F0F8D46BE0",
+    "ArtistId": "5562843F-AED0-3DCA-05D6-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Andi Deris\\Studio\\(1999) Done By Mirrors",
+    "Name": "Done By Mirrors",
+    "Year": 1999,
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "89C600D2-4493-B20E-E5A5-39F0F8D46BE0",
+    "ArtistId": "548B1331-A5BE-0B3A-65DA-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Guns N' Roses\\Studio\\(1991) Use Your Illusion I",
+    "Name": "Use Your Illusion I",
+    "Year": 1991,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "9D9A9CDA-92A7-6DD2-E6B7-39F0F8D46BE0",
+    "ArtistId": "9638B10D-235E-6FC3-F5A2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Unisonic\\Studio\\(2012) Unisonic",
+    "Name": "Unisonic",
+    "Year": 2012,
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "0BE659A3-C1D2-B582-E81E-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Alternative Rock",
+    "Name": "Alternative Rock",
+    "Genre": "Alternative Rock",
+    "AlbumType": 9
+  },
+  {
+    "Id": "4C63427F-DAC8-FBDA-E8FC-39F0F8D46BE0",
+    "ArtistId": "4890BD4C-7B50-1426-4BB5-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Kiske-Somerville\\Studio\\(2010) Kiske-Somerville",
+    "Name": "Kiske\/Somerville",
+    "Year": 2010,
+    "Genre": "Hard Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "8ACFA4BF-B75A-1790-E904-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1992) Fear Of The Dark",
+    "Name": "Fear Of The Dark",
+    "Year": 1992,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "07BC4DC0-B643-3D60-E928-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1986) Somewhere In Time",
+    "Name": "Somewhere In Time",
+    "Year": 1986,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "EC3448C3-22E8-5AD8-EB18-39F0F8D46BE0",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Studio\\(2013) Ceremonial",
+    "Name": "Ceremonial",
+    "Year": 2013,
+    "Genre": "Hard Rock",
+    "AlbumType": 1
+  },
+  {
+    "Id": "1BEC237E-389C-DB37-EE31-39F0F8D46BE0",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2010) Angel Of Babylon",
+    "Name": "Angel Of Babylon",
+    "Year": 2010,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "8167F3F4-04C6-4AF6-EEAE-39F0F8D46BE0",
+    "ArtistId": "7F17DDB4-2DBE-1551-84C4-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Delain\\Studio\\(2006) Lucidity",
+    "Name": "Lucidity",
+    "Year": 2006,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "72B6B3DC-61D3-798D-EF85-39F0F8D46BE0",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(1998) Oceanborn",
+    "Name": "Oceanborn",
+    "Year": 1998,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6CBE65C5-05DF-8620-F19A-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2008) Tinnitus Sanctus",
+    "Name": "Tinnitus Sanctus",
+    "Year": 2008,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "B8D9C721-B09A-9426-F418-39F0F8D46BE0",
+    "ArtistId": "2BB9A94B-0CD9-5839-F948-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Edguy\\Studio\\(2000) Savage Poetry",
+    "Name": "Savage Poetry",
+    "Year": 2000,
+    "Genre": "Heavy Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "9A6F0CD6-9C09-1500-F890-39F0F8D46BE0",
+    "ArtistId": "64B61A62-393E-DD0D-57BC-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Hangar\\Studio\\(2009) Infallible",
+    "Name": "Infallible",
+    "Year": 2009,
+    "Genre": "Progressive Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "6AEF983E-1214-7C17-FD0C-39F0F8D46BE0",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1988) Keeper Of The Seven Keys Part II",
+    "Name": "Keeper Of The Seven Keys Part II",
+    "Year": 1988,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "4977A046-543B-DDC0-FD0F-39F0F8D46BE0",
+    "ArtistId": "40AE059B-2BC0-A57C-9DD3-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Diversos\\Hard Rock",
+    "Name": "Hard Rock",
+    "Genre": "Hard Rock",
+    "AlbumType": 9
+  },
+  {
+    "Id": "A108E59F-7503-386B-FEFE-39F0F8D46BE0",
+    "ArtistId": "BDD97E3B-F10B-F0EC-F51D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\David Bowie\\Diversos - David Bowie",
+    "Name": "Diversos - David Bowie",
+    "Genre": "Rock",
+    "AlbumType": 0
+  },
+  {
+    "Id": "AD272056-0073-1E43-FF7C-39F0F8D46BE0",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(1983) Piece Of Mind",
+    "Name": "Piece Of Mind",
+    "Year": 1983,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "93461D4B-C8DB-7C68-1FCC-39FF23519D72",
+    "ArtistId": "941A5DE9-48AC-9927-D958-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Epica\\Studio\\(2021) Omega",
+    "Name": "Omega",
+    "Year": 2021,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A3F2EA1C-91A1-DA02-D9A4-39FF2865E72D",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Studio\\(2021) Senjutsu",
+    "Name": "Senjutsu",
+    "Year": 2021,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "E0CC0AB2-4382-91A9-071A-39FF4A34EEBB",
+    "ArtistId": "7D61E0C8-7B62-6CA0-512B-39FF4A013183",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Amaranthe\\Diversos - Amaranthe",
+    "Name": "Diversos - Amaranthe",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "C0AF492A-13F6-3D8E-8FA1-39FF4C60A3B8",
+    "ArtistId": "A24700AC-0AEF-FEB7-A55B-39FF4C606A48",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Ad Infinitum\\Studio\\(2020) Chapter I - Monarchy",
+    "Name": "Chapter I - Monarchy",
+    "Year": 2020,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "4CEA9E77-C532-9936-A0B4-39FF4C6130C5",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(2021) Helloween",
+    "Name": "Helloween",
+    "Year": 2021,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "75AE1BE2-2A33-3CBC-473C-39FF4C628A51",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Diversos - Iron Maiden",
+    "Name": "Diversos - Iron Maiden",
+    "Genre": "Heavy Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "99B69529-677F-4142-53C6-39FF4C680A8E",
+    "ArtistId": "489368BE-0151-CC9F-85D7-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Primal Fear\\Studio\\(2020) Metal Commando",
+    "Name": "Metal Commando",
+    "Year": 2020,
+    "Genre": "Speed Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "4E6C3782-9E41-F7D2-68B9-39FF640532DA",
+    "ArtistId": "F142AA5B-B218-5D2D-5877-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\MAX\\Maid Of The Mist\\Studio\\(2012) Cap I - So Far Away",
+    "Name": "Cap I - So Far Away",
+    "Year": 2012,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "3D8D5F69-3B50-EAAC-E33E-39FF641005C5",
+    "ArtistId": "F142AA5B-B218-5D2D-5877-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\MAX\\Maid Of The Mist\\Studio\\(2015) Cap II - Angel of Death",
+    "Name": "Cap II - Angel of Death",
+    "Year": 2015,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "BCA1D495-5AEE-9B3A-26EE-39FF6410BDFE",
+    "ArtistId": "F142AA5B-B218-5D2D-5877-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\MAX\\Maid Of The Mist\\Studio\\(2017) Cap III - Out of the Sun",
+    "Name": "Cap III - Out of the Sun",
+    "Year": 2017,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "45C17F51-A994-F9B8-6BB8-39FF64114EA8",
+    "ArtistId": "F142AA5B-B218-5D2D-5877-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\MAX\\Maid Of The Mist\\Studio\\(2017) Cap IV - Out of the Sun (Remastered)",
+    "Name": "Cap IV - Out of the Sun (Remastered)",
+    "Year": 2017,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "0419476C-336D-356B-233F-39FF6411FB82",
+    "ArtistId": "F142AA5B-B218-5D2D-5877-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\MAX\\Maid Of The Mist\\Studio\\(2019) Cap V - Ghost of Your Madness",
+    "Name": "Cap V - Ghost of Your Madness",
+    "Year": 2019,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "EF59BCEF-3FBD-42A2-F8E1-3A00FE4DCE48",
+    "ArtistId": "A24700AC-0AEF-FEB7-A55B-39FF4C606A48",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Ad Infinitum\\Diversos - Ad Infinitum",
+    "Name": "Diversos - Ad Infinitum",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "9F99FC50-A4B3-F70C-C317-3A00FE747812",
+    "ArtistId": "BAC46DFF-3D84-3F28-5540-3A00FE741517",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Battlelore\\Diversos - Battlelore",
+    "Name": "Diversos - Battlelore",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "C6EF9E77-57FB-B2B1-6255-3A00FEA98EA2",
+    "ArtistId": "4CA9124C-844D-468A-8A06-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\GOSPEL\\Diversos\\Internacional",
+    "Name": "Internacional",
+    "Genre": "Gospel",
+    "AlbumType": 9
+  },
+  {
+    "Id": "DAA5D3D0-422B-560D-FB87-3A0141935DCC",
+    "ArtistId": "E745B36D-C52D-49C3-8F39-0792BA29781E",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\OST\\GAMES\\Compilation\\(1997) Ace Combat 2",
+    "Name": "Ace Combat 2",
+    "Year": 1997,
+    "Genre": "Others",
+    "AlbumType": 3
+  },
+  {
+    "Id": "7D523A53-D7A2-E695-BDDE-3A0542B37002",
+    "ArtistId": "03147F14-5A00-4BD0-3254-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Lullacry\\Diversos - Lullacry",
+    "Name": "Diversos - Lullacry",
+    "Genre": "Gothic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "505AF7A6-5CE2-F6A4-F67E-3A0542DB1875",
+    "ArtistId": "699D5BD6-F1D0-9121-67E4-3A0542DAD010",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Symfobia\\Symfobia - Diversos",
+    "Name": "Symfobia - Diversos",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "882733E1-EB91-4D9F-802F-48897A3B52AB",
+    "ArtistId": "54516F79-EC90-71A2-800C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\After Forever\\Studio\\(2007) After Forever",
+    "Name": "After Forever",
+    "Year": 2007,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "8E9C3353-9420-4DAB-A382-527E7395F38A",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Studio\\(1995) Alive In Studio A",
+    "Name": "Alive In Studio A",
+    "Year": 1995,
+    "Genre": "Heavy Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "4D015185-4C94-4EA2-8F31-797C525ACAF1",
+    "ArtistId": "A6A3D6AF-9F41-5123-D07D-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Avantasia\\Studio\\(2019) Moonglow",
+    "Name": "Moonglow",
+    "Year": 2019,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "68E3F533-2511-4182-9659-85337EF82BFA",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Live\\(2018) Act II",
+    "Name": "Act II",
+    "Year": 2018,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "461DFC1D-2365-4829-B25F-86D436FB2C38",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Live\\(1985) Live After Death",
+    "Name": "Live After Death",
+    "Year": 1985,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "11DDBF02-2178-49BE-991A-8895630A1EDB",
+    "ArtistId": "36CD9399-FFC9-F7B2-79EB-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Helloween\\Studio\\(1986) Walls Of Jericho",
+    "Name": "Walls Of Jericho",
+    "Year": 1986,
+    "Genre": "Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "436BF356-00FD-4EA7-B9B8-A41D8F03810E",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(1997) Angels Fall First",
+    "Name": "Angels Fall First",
+    "Year": 1997,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "A4103F28-FB96-450B-8D5F-AF5F2B7F9D03",
+    "ArtistId": "9572B064-B42C-4234-A538-567EBFEF97FD",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\The Dark Element\\Diversos - The Dark Element",
+    "Name": "Diversos - The Dark Element",
+    "Genre": "Symphonic Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "289D09D1-2867-417E-89A5-B1F54C547FC0",
+    "ArtistId": "74EB4EDA-7E1D-4513-A670-7C2289FFE419",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\New Years Day\\Diversos - New Years Day",
+    "Name": "Diversos - New Years Day",
+    "Genre": "Alternative Metal",
+    "AlbumType": 0
+  },
+  {
+    "Id": "BEACD17C-4982-4AD2-84C3-B4B30984AF5E",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Studio\\(2010) What Lies Beneath",
+    "Name": "What Lies Beneath",
+    "Year": 2010,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "ECDD596D-55F4-461D-A969-B4D46E5FFF4A",
+    "ArtistId": "1A079AA3-C94F-D159-80E2-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Bruce Dickinson\\Live\\(1995) Alive At The Marquee",
+    "Name": "Alive At The Marquee",
+    "Year": 1995,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "5C1B3C30-31FC-43E7-8359-B781E9EEE96D",
+    "ArtistId": "7D4CAA63-CA75-FEE2-00D0-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Nightwish\\Studio\\(2020) Human II Nature",
+    "Name": "Human II Nature",
+    "Year": 2020,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "34B84541-079B-4598-ACF5-BAEA7E90FF54",
+    "ArtistId": "FF25AB0B-6B0D-FDBF-9333-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Pink Cream 69\\Diversos - Pink Cream 69",
+    "Name": "Diversos - Pink Cream 69",
+    "Genre": "Hard Rock",
+    "AlbumType": 0
+  },
+  {
+    "Id": "97326FDE-0372-491E-855F-C4A8C82D44AD",
+    "ArtistId": "A1033556-8DCE-4B65-83D3-8D84D69B5D24",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\OST\\SATV Music\\Diversos",
+    "Name": "Diversos",
+    "Genre": "Others",
+    "AlbumType": 0
+  },
+  {
+    "Id": "B165C9C1-E576-4539-BC1C-D217F0CF8211",
+    "ArtistId": "A3D1A2C1-930A-7866-F53C-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Iron Maiden\\Live\\(1989) Maiden England",
+    "Name": "Maiden England",
+    "Year": 1989,
+    "Genre": "Heavy Metal",
+    "AlbumType": 2
+  },
+  {
+    "Id": "9100F3EA-9479-4AB7-900C-E2CDD4A4309D",
+    "ArtistId": "94E26C3A-8B25-46E6-A190-481BEC0FB5ED",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Follow The Cipher\\Studio\\(2018) Follow The Cipher",
+    "Name": "Follow The Cipher",
+    "Year": 2018,
+    "Genre": "Symphonic Power Metal",
+    "AlbumType": 1
+  },
+  {
+    "Id": "DB006249-0E63-4B2F-8A9B-E457767F08B9",
+    "ArtistId": "E745B36D-C52D-49C3-8F39-0792BA29781E",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\OST\\GAMES\\Diversos",
+    "Name": "Diversos",
+    "Genre": "Others",
+    "AlbumType": 0
+  },
+  {
+    "Id": "7945ABBA-C863-4F80-8EC0-F5D8131774EE",
+    "ArtistId": "B2213F56-6313-BA1F-560F-39F0F8FEAAD7",
+    "AlbumDirectory": "D:\\ARQUIVOS\\Music\\ROCK\\Tarja\\Studio\\(2019) In the Raw",
+    "Name": "In the Raw",
+    "Year": 2019,
+    "Genre": "Symphonic Metal",
+    "AlbumType": 1
+  }
+]

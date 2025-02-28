@@ -1,15 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>Maxsys.MediaManager.Music_AppTagLibMono</AssemblyName>
 	<Nullable>enable</Nullable>
+	<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Services\_notes.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="Maxsys.Core" />
+    <Using Include="TaglibCore" />
+    <Using Include="System.Threading.Tasks" />
+  </ItemGroup>
+	
   <ItemGroup>
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
   </ItemGroup>
