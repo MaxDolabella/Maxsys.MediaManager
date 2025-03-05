@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Platforms>x64</Platforms>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Using Include="Maxsys.MediaManager.Spotify.Common" />

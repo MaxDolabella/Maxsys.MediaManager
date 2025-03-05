@@ -62,6 +62,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxsys.MediaManager.DatabaseInitializer", "src\MUSIC_DOMAIN\Maxsys.MediaManager.DatabaseInitializer\Maxsys.MediaManager.DatabaseInitializer.csproj", "{E687EBA7-7C69-428E-BB54-2FEEEE300449}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxsys.MediaManager.Spotify", "src\MUSIC_DOMAIN\Maxsys.MediaManager.Spotify\Maxsys.MediaManager.Spotify.csproj", "{03AB8B83-37C7-FB34-F929-9FAD76105FBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -166,6 +168,14 @@ Global
 		{E687EBA7-7C69-428E-BB54-2FEEEE300449}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E687EBA7-7C69-428E-BB54-2FEEEE300449}.Release|x64.ActiveCfg = Release|Any CPU
 		{E687EBA7-7C69-428E-BB54-2FEEEE300449}.Release|x64.Build.0 = Release|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Debug|x64.Build.0 = Debug|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Release|x64.ActiveCfg = Release|Any CPU
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,6 +202,7 @@ Global
 		{B4D3358F-A981-4CBE-931C-11A3D77E5EE1} = {9C8AE272-9EE6-4B45-86F9-17E82F26CA4F}
 		{CCAA0943-5C9A-4849-A531-D7FF19D1CC7F} = {561CDF0C-356B-4EA2-97A2-98FB1EB6FD94}
 		{E687EBA7-7C69-428E-BB54-2FEEEE300449} = {B4D3358F-A981-4CBE-931C-11A3D77E5EE1}
+		{03AB8B83-37C7-FB34-F929-9FAD76105FBE} = {B4D3358F-A981-4CBE-931C-11A3D77E5EE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EE9D740-60B4-4C01-BFFC-29AD87A3CBBD}

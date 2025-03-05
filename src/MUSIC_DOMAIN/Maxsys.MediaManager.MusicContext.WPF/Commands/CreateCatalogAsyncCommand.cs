@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Maxsys.MediaManager.CoreDomain.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
-using Maxsys.MediaManager.MusicContext.WPF.Commands.Abstrations;
 using Maxsys.MediaManager.MusicContext.WPF.Services;
 using Microsoft.Extensions.Logging;
 

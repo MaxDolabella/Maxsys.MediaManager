@@ -1,57 +1,61 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <ApplicationIcon>Assets\Icon\icon-256.ico</ApplicationIcon>
-    <AssemblyName>Music_DataExporter</AssemblyName>
-    <EnvironmentName>Development</EnvironmentName>
-    <Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Platforms>x64</Platforms>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<OutputType>Exe</OutputType>
+		<ApplicationIcon>Assets\Icon\icon-256.ico</ApplicationIcon>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.json" />
+		<None Remove="appsettings.Production.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="appsettings.Development.json" />
-    <None Remove="appsettings.json" />
-    <None Remove="appsettings.Production.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="appsettings.Development.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="appsettings.Production.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="appsettings.Development.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.Production.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference
+            Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
+		<ProjectReference
+            Include="..\Maxsys.MediaManager.MusicContext.Infra.DataExporter\Maxsys.MediaManager.MusicContext.Infra.DataExporter.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataExporter\Maxsys.MediaManager.MusicContext.Infra.DataExporter.csproj" />
-  </ItemGroup>
+	<!--appsettings config begin-->
 
-  <!--appsettings config begin-->
-  
-  <!--  WARNING: 
+	<!--  
+    WARNING: 
         Make sure to add DOTNET_ENVIRONMENT variable, otherwise it will be set as 'Production'.
-        When publishing, DOTNET_ENVIRONMENT will be missing and when is missing it will be set as 'Production'.
-        BUT to copy the file appsettings.Production.json to output, the <EnvironmentName> must be setted to 'Production'.
+        When publishing, DOTNET_ENVIRONMENT will be missing and when is missing it will be set as
+    'Production'.
+        BUT to copy the file appsettings.Production.json to output, the <EnvironmentName> must be setted to
+    'Production'.
         Make sure to add <EnvironmentName>Production</EnvironmentName> in Publish Profile file.      
-  -->
+    -->
 
-  <ItemGroup Condition=" '$(EnvironmentName)' == 'Production' ">
-    <Content Include="appsettings.Production.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup Condition=" '$(EnvironmentName)' == 'Production' ">
+		<Content Include="appsettings.Production.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
-  </ItemGroup>
-  
-  <!--appsettings config end-->
+	<ItemGroup>
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+	</ItemGroup>
+
+	<!--appsettings config end-->
 
 </Project>

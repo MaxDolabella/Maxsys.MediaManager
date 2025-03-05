@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Maxsys.Core.Extensions;
+using Maxsys.MediaManager.CoreDomain.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Commands;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.Services;
 using Maxsys.MediaManager.MusicContext.ApplicationMVVM.Interfaces.ViewModels;
@@ -53,7 +54,7 @@ namespace Maxsys.MediaManager.MusicContext.ApplicationMVVM.ViewModels
 
         #region COMMANDS
 
-        public IAsyncRelayCommand SaveCommand { get; }
+        public IAsyncCommand SaveCommand { get; }
 
         #endregion COMMANDS
 

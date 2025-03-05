@@ -1,84 +1,84 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
- 
-  <PropertyGroup>
-    <!-- DOTNET_ENVIRONMENT must be 'Development' -->
-    <EnvironmentName>Development</EnvironmentName>
-    <Platforms>AnyCPU;x64</Platforms>
-	  <Nullable>enable</Nullable>
-  </PropertyGroup>
-  
-  <Choose>
-    <When Condition=" '$(EnvironmentName)' == 'Production' ">
-      <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <DisableWinExeOutputInference>false</DisableWinExeOutputInference>
-        <AssemblyName>Maxsys MediaManager Music</AssemblyName>
-        <Description></Description>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
-        <AssemblyName>Maxsys MediaManager Music Debug</AssemblyName>
-        <Description>Non Realease version</Description>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
 
-  <PropertyGroup>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <ApplicationIcon>Assets\icon\media-manager-music.ico</ApplicationIcon>
-    <Version>0.21.0-alpha</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<!-- DOTNET_ENVIRONMENT must be 'Development' -->
+		<EnvironmentName>Development</EnvironmentName>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Platforms>x64</Platforms>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>Assets\icon\media-manager-music.ico</ApplicationIcon>
+		<Version>0.21.0-alpha</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.ApplicationMVVM\Maxsys.MediaManager.MusicContext.ApplicationMVVM.csproj" />
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
-  </ItemGroup>
+	<Choose>
+		<When Condition=" '$(EnvironmentName)' == 'Production' ">
+			<PropertyGroup>
+				<OutputType>WinExe</OutputType>
+				<DisableWinExeOutputInference>false</DisableWinExeOutputInference>
+				<AssemblyName>Maxsys MediaManager Music</AssemblyName>
+				<Description></Description>
+			</PropertyGroup>
+		</When>
+		<Otherwise>
+			<PropertyGroup>
+				<OutputType>Exe</OutputType>
+				<DisableWinExeOutputInference>true</DisableWinExeOutputInference>
+				<AssemblyName>Maxsys MediaManager Music Debug</AssemblyName>
+				<Description>Non Realease version</Description>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
 
 
-  <!--appsettings config begin-->
+	<ItemGroup>
+		<ProjectReference Include="..\Maxsys.MediaManager.MusicContext.ApplicationMVVM\Maxsys.MediaManager.MusicContext.ApplicationMVVM.csproj" />
+		<ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
+	</ItemGroup>
 
-  <!--  WARNING:
+
+	<!--appsettings config begin-->
+
+	<!--  
+    WARNING:
         Make sure to add DOTNET_ENVIRONMENT variable, otherwise it will be set as 'Production'.
-        When publishing, DOTNET_ENVIRONMENT will be missing and when is missing it will be set as 'Production'.
-        BUT to copy the file appsettings.Production.json to output, the <EnvironmentName> must be setted to 'Production'.
+        When publishing, DOTNET_ENVIRONMENT will be missing and when is missing it will be set as
+    'Production'.
+        BUT to copy the file appsettings.Production.json to output, the <EnvironmentName> must be setted to
+    'Production'.
         Make sure to add <EnvironmentName>Production</EnvironmentName> in Publish Profile file.      
-  -->
+    -->
 
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup Condition=" '$(EnvironmentName)' == 'Production' ">
-    <Content Include="appsettings.Production.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup Condition=" '$(EnvironmentName)' == 'Production' ">
+		<Content Include="appsettings.Production.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup Condition=" '$(EnvironmentName)' == 'Development' ">
-    <Content Include="appsettings.Development.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup Condition=" '$(EnvironmentName)' == 'Development' ">
+		<Content Include="appsettings.Development.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <!--appsettings config end-->
-  
-  
-  <ItemGroup>
-	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
-  </ItemGroup>
+	<!--appsettings config end-->
 
-  <ItemGroup>
-    <None Remove="Resources\Images\mainWnd-music.png" />
-    <Resource Include="Resources\Images\mainWnd-music.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Assets\icon\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Resources\Images\mainWnd-music.png" />
+		<Resource Include="Resources\Images\mainWnd-music.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Assets\icon\" />
+	</ItemGroup>
 </Project>

@@ -1,23 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <AssemblyName>Maxsys.MediaManager.Music_App</AssemblyName>
-    <Nullable>enable</Nullable>
-    <Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Platforms>x64</Platforms>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataEFCore\Maxsys.MediaManager.MusicContext.Infra.DataEFCore.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
+		<ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataEFCore\Maxsys.MediaManager.MusicContext.Infra.DataEFCore.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Abstractions\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Models\Abstractions\" />
+	</ItemGroup>
 
 </Project>

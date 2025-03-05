@@ -23,9 +23,9 @@ public abstract class AsyncCommandBase : IAsyncCommand
         _errorHandler = errorHandler;
     }
 
-    public abstract bool CanExecute();
+    public abstract bool CanExecute(object? parameter = null);
 
-    public abstract Task ExecuteAsync();
+    public abstract Task ExecuteAsync(object? parameter = null);
 
     public void RaiseCanExecuteChanged()
     {
@@ -36,7 +36,7 @@ public abstract class AsyncCommandBase : IAsyncCommand
 
     bool ICommand.CanExecute(object? parameter)
     {
-        return !_isExecuting && CanExecute();
+        return !_isExecuting && CanExecute(parameter);
     }
 
     void ICommand.Execute(object? parameter)
@@ -44,12 +44,12 @@ public abstract class AsyncCommandBase : IAsyncCommand
         //ExecuteAsync().FireAndForgetSafeAsync(_errorHandler);
         Task.Run(async () =>
         {
-            if (CanExecute())
+            if (CanExecute(parameter))
             {
                 try
                 {
                     _isExecuting = true;
-                    await ExecuteAsync();
+                    await ExecuteAsync(parameter);
                 }
                 finally
                 {

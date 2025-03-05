@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace Maxsys.MediaManager.CoreDomain.Commands;
 
@@ -9,12 +8,8 @@ namespace Maxsys.MediaManager.CoreDomain.Commands;
 /// See <see href="https://johnthiriet.com/mvvm-going-async-with-async-command/">"MVVM - Going async with async command"
 /// article</see>.
 /// </summary>
-public interface IAsyncCommand : ICommand
-{
-    Task ExecuteAsync();
-
-    bool CanExecute();
-}
+public interface IAsyncCommand : IAsyncCommand<object>
+{ }
 
 /// <summary>
 /// Provides an interface to an Asynchronous Command.
@@ -22,9 +17,9 @@ public interface IAsyncCommand : ICommand
 /// See <see href="https://johnthiriet.com/mvvm-going-async-with-async-command/">"MVVM - Going async with async command"
 /// article</see>.
 /// </summary>
-public interface IAsyncCommand<T> : ICommand
+public interface IAsyncCommand<TParam> : ICommand
 {
-    Task ExecuteAsync(T? parameter);
+    Task ExecuteAsync(TParam? parameter);
 
-    bool CanExecute(T? parameter);
+    bool CanExecute(TParam? parameter);
 }
