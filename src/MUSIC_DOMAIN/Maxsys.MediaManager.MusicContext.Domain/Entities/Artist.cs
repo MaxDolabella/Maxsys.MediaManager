@@ -10,7 +10,7 @@ public class Artist : Entity<Guid>
 
     public Guid CatalogId { get; protected set; }
     public string Name { get; protected set; }
-    public string? SpotifyID { get; protected set; }
+    public SpotifyID? SpotifyID { get; protected set; }
 
     // Navigation
 
@@ -21,9 +21,12 @@ public class Artist : Entity<Guid>
 
     #endregion PROPERTIES
 
-    public void SetSpotifyId(string? id)
+    public void SetSpotifyID(string? id)
     {
-        SpotifyID = id;
+        if (SpotifyID != id)
+        {
+            SpotifyID = id;
+        }
     }
 
     #region CONSTRUCTORS

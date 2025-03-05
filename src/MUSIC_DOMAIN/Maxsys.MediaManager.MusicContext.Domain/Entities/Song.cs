@@ -14,7 +14,7 @@ public class Song : MediaFile
     public int? TrackNumber { get; protected set; }
     public string? Lyrics { get; protected set; }
     public string? Comments { get; protected set; }
-    public string? SpotifyID { get; protected set; }
+    public SpotifyID? SpotifyID { get; protected set; }
     public string? ISRC { get; protected set; }
 
     // Value Objects
@@ -90,9 +90,12 @@ public class Song : MediaFile
     }
 
 
-    public void SetSpotifyId(string? id)
+    public void SetSpotifyID(string? id)
     {
-        SpotifyID = id;
+        if (SpotifyID != id)
+        {
+            SpotifyID = id;
+        }
     }
 
     public void SetISRC(string? isrc)

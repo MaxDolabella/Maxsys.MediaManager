@@ -54,7 +54,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
             featuredArtist: song.SongDetails.FeaturedArtist,
 
             composers: song.Composers.Select(c => c.Name).ToArray(),
-            coverPicture: album.AlbumCover);
+            coverPicture: album.Cover);
     }
 
     public static readonly Id3v2TagsDTO Empty = new();
@@ -171,7 +171,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
         Performers = [album.Artist.Name];
         Genres = [album.Genre];
         Year = album.Year;
-        CoverPicture = album.AlbumCover;
+        CoverPicture = album.Cover;
 
         return this;
     }

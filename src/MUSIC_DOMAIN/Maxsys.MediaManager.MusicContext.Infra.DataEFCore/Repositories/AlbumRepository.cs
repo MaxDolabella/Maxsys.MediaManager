@@ -49,7 +49,7 @@ public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
                 AlbumName = a.Name,
                 AlbumYear = a.Year,
                 AlbumGenre = a.Genre,
-                AlbumCover = a.AlbumCover
+                AlbumCover = a.Cover
             })
             .FirstOrDefaultAsync(token);
     }
@@ -81,7 +81,7 @@ public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
                 CatalogName = e.Artist.Catalog.Name,
                 ArtistName = e.Artist.Name,
                 AlbumName = e.Name,
-                AlbumType = e.AlbumType,
+                AlbumType = e.Type,
                 AlbumYear = e.Year,
                 AlbumDirectory = e.Directory,
                 AlbumMusicCount = e.Songs.Count()

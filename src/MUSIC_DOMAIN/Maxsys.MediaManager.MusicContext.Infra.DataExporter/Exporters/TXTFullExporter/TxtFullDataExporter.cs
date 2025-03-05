@@ -125,7 +125,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
                         song.Album.Year,
                         song.Album.Name,
                         song.Album.Genre,
-                        song.Album.AlbumType,
+                        song.Album.Type,
                         song.Album.ArtistId,
                         song.Album.Artist.Name,
                         song.Album.Artist.CatalogId,

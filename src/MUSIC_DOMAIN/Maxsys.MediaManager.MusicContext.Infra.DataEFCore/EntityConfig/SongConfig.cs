@@ -1,3 +1,4 @@
+using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context.Converters;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig;
@@ -17,7 +18,8 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
         builder.Property(e => e.TrackNumber).IsRequired(false);
         builder.Property(e => e.Lyrics).HasMaxLength(5000).IsRequired(false);
         builder.Property(e => e.Comments).HasMaxLength(300).IsRequired(false);
-        builder.Property(e => e.SpotifyID).HasMaxLength(50).IsRequired(false);
+        builder.Property(e => e.SpotifyID).HasConversion(new SpotifyIDToStringValueConverter()).IsRequired(false);
+        builder.Property(e => e.ISRC).IsFixedLength().HasMaxLength(12).IsRequired(false);
 
 
         // Navigation

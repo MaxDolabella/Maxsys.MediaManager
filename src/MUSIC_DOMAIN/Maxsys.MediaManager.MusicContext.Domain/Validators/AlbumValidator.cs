@@ -23,7 +23,7 @@ public class AlbumValidator : AbstractValidator<Album>
 
     private bool IsValidYearGivenAlbumType(Album album, short? albumYear)
     {
-        bool isValid = (albumYear, album.AlbumType) switch
+        bool isValid = (albumYear, album.Type) switch
         {
             (not null, AlbumTypes.Studio
                 or AlbumTypes.Live
@@ -101,12 +101,12 @@ public class AlbumValidator : AbstractValidator<Album>
 
     public void RuleForAlbumCover()
     {
-        RuleFor(x => x.AlbumCover).NotNull();
+        RuleFor(x => x.Cover).NotNull();
     }
 
     public void RuleForAlbumType()
     {
-        RuleFor(x => x.AlbumType).NotNull().IsInEnum();
+        RuleFor(x => x.Type).NotNull().IsInEnum();
     }
 
     public void RuleForGenre()

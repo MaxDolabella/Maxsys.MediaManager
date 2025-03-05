@@ -9,7 +9,7 @@ public class Playlist : Entity<Guid>
     #region PROPERTIES
 
     public string Name { get; protected set; }
-    public string? SpotifyID { get; protected set; }
+    public SpotifyID? SpotifyID { get; protected set; }
 
     // Navigation
     public List<PlaylistItem> Items { get; protected set; } = [];
@@ -40,6 +40,14 @@ public class Playlist : Entity<Guid>
 
     public long SizeInBytes()
         => Items.Sum(i => i.Song.FileSize);
+
+    public void SetSpotifyID(string? id)
+    {
+        if (SpotifyID != id)
+        {
+            SpotifyID = id;
+        }
+    }
 
     #endregion METHODS
 }

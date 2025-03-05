@@ -20,11 +20,11 @@ public class Album : Entity<Guid>
     public string Name { get; protected set; }
     public short? Year { get; protected set; }
     public string Genre { get; protected set; }
-    public AlbumTypes AlbumType { get; protected set; }
+    public AlbumTypes Type { get; protected set; }
 
     // TODO criar uma classe pra não repetir no banco
-    public byte[] AlbumCover { get; protected set; }
-    public string? SpotifyID { get; protected set; }
+    public byte[] Cover { get; protected set; }
+    public SpotifyID? SpotifyID { get; protected set; }
     
     // Navigation
 
@@ -36,9 +36,12 @@ public class Album : Entity<Guid>
     public string GetYearName()
         => $"{(Year.HasValue ? $"({Year.Value}) " : string.Empty)}{Name}";
 
-    public void SetSpotifyId(string? id)
+    public void SetSpotifyID(string? id)
     {
-        SpotifyID = id;
+        if (SpotifyID != id)
+        {
+            SpotifyID = id;
+        }
     }
 
     #region CONSTRUCTORS
@@ -48,8 +51,8 @@ public class Album : Entity<Guid>
 
     internal Album(Guid id, Guid artistId, Uri directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID) : this()
     {
-        (Id, ArtistId, Directory, Name, Year, Genre, AlbumCover, AlbumType, SpotifyID) =
-        (id, artistId, directory, name, year, genre, albumCover, albumType, spotifyID);
+        (Id, ArtistId, Directory, Name, Year, Genre, Cover, Type, SpotifyID) =
+        (id, artistId, directory, name, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
     }
 
     #endregion CONSTRUCTORS

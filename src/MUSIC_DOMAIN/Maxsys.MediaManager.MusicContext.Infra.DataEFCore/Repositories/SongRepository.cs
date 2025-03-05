@@ -53,7 +53,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
                 CatalogName = e.Album.Artist.Catalog.Name,
                 ArtistName = e.Album.Artist.Name,
                 AlbumName = e.Album.Name,
-                AlbumType = e.Album.AlbumType,
+                AlbumType = e.Album.Type,
                 SongFullPath = e.FullPath,
                 SongTrackNumber = e.TrackNumber,
                 SongTitle = e.Title,

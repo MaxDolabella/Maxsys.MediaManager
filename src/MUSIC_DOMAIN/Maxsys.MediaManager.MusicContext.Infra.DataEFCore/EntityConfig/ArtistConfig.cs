@@ -1,3 +1,4 @@
+using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context.Converters;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Maxsys.MediaManager.MusicContext.Infra.DataEFCore.EntityConfig;
@@ -11,7 +12,7 @@ internal class ArtistConfig : IEntityTypeConfiguration<Artist>
         // Properties
         builder.Property(p => p.Id).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
-        builder.Property(e => e.SpotifyID).HasMaxLength(50).IsRequired(false);
+        builder.Property(e => e.SpotifyID).HasConversion(new SpotifyIDToStringValueConverter()).IsRequired(false);
 
         // Navigation
         builder.HasOne(e => e.Catalog).WithMany(n => n.Artists).IsRequired();
