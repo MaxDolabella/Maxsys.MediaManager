@@ -14,6 +14,7 @@ public static class SongFactory
         string? lyrics,
         string? comments,
         string? spotifyID,
+        string? isrc,
         bool isBonusTrack,
         VocalGenders vocalGender,
         string? coveredArtist,
@@ -45,6 +46,7 @@ public static class SongFactory
             lyrics,
             comments,
             spotifyID,
+            isrc,
             songDetails,
             classification,
             songProperties);
@@ -70,6 +72,7 @@ public static class SongFactory
         string? lyrics,
         string? comments,
         string? spotifyID,
+        string? isrc,
         bool isBonusTrack,
         VocalGenders vocalGender,
         string? coveredArtist,
@@ -80,6 +83,6 @@ public static class SongFactory
         int bitrate,
         IEnumerable<Composer>? composers = null)
         => Create(GuidGen.NewSequentialGuid(), albumId, originalFileName, fullPath, title, trackNumber, lyrics, comments,
-            spotifyID, isBonusTrack, vocalGender, coveredArtist, featuredArtist, stars10,
+            spotifyID, isrc, isBonusTrack, vocalGender, coveredArtist, featuredArtist, stars10,
             fileSize, duration, bitrate, composers);
 }

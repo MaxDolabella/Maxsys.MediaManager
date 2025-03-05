@@ -1,26 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>Maxsys.MediaManager.Music_Domain</AssemblyName>
-	  <Nullable>enable</Nullable>
-	  <ImplicitUsings>enable</ImplicitUsings>
-    <Platforms>x64</Platforms>
-  </PropertyGroup>
-
+	<PropertyGroup>
+		<Platforms>x64</Platforms>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<Using Include="Maxsys.Core" />
 		<Using Include="Maxsys.MediaManager.CoreDomain" />
 		<Using Include="Maxsys.MediaManager.MusicContext.Domain.Entities" />
 		<Using Include="Maxsys.MediaManager.MusicContext.Domain.ValueObjects" />
-		
+
 		<Using Remove="System.Net.Http" />
 		<Using Remove="System.IO" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference
+            Include="..\..\Maxsys.MediaManager.CoreDomain\Maxsys.MediaManager.CoreDomain.csproj" />
+	</ItemGroup>
 
 </Project>

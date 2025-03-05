@@ -11,7 +11,7 @@ internal class PlaylistConfig : IEntityTypeConfiguration<Playlist>
         // Properties
         builder.Property(p => p.Id).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
-        builder.Property(e => e.SpotifyRef).HasMaxLength(50).IsRequired(false);
+        builder.Property(e => e.SpotifyID).HasMaxLength(50).IsRequired(false);
 
         // Navigation
         // builder.HasMany(e => e.Items).WithOne(item => item.Playlist);

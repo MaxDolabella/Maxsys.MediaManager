@@ -1,28 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>Maxsys.MediaManager.Music_AppTagLibMono</AssemblyName>
-	<Nullable>enable</Nullable>
-	<Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Platforms>x64</Platforms>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Services\_notes.txt" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Services\_notes.txt" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Maxsys.Core" />
-    <Using Include="TaglibCore" />
-    <Using Include="System.Threading.Tasks" />
-  </ItemGroup>
-	
-  <ItemGroup>
-    <PackageReference Include="TagLibSharp" Version="2.3.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="Maxsys.Core" />
+		<Using Include="TaglibCore" />
+		<Using Include="System.Threading.Tasks" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="TagLibSharp" Version="2.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference
+            Include="..\Maxsys.MediaManager.MusicContext.Domain\Maxsys.MediaManager.MusicContext.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

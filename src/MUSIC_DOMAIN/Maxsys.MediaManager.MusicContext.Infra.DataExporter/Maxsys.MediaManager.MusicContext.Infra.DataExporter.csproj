@@ -1,17 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <StartupObject></StartupObject>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyName>Maxsys.MediaManager.Music_DataExporter</AssemblyName>
-    <Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Platforms>x64</Platforms>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
-    <ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataEFCore\Maxsys.MediaManager.MusicContext.Infra.DataEFCore.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC\Maxsys.MediaManager.MusicContext.Infra.CrossCutting.IoC.csproj" />
+		<ProjectReference Include="..\Maxsys.MediaManager.MusicContext.Infra.DataEFCore\Maxsys.MediaManager.MusicContext.Infra.DataEFCore.csproj" />
+	</ItemGroup>
 
 </Project>
