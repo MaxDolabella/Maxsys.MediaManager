@@ -9,7 +9,7 @@ public class Playlist : Entity<Guid>
     #region PROPERTIES
 
     public string Name { get; protected set; }
-    public string? SpotifyRef { get; protected set; }
+    public string? SpotifyID { get; protected set; }
 
     // Navigation
     public List<PlaylistItem> Items { get; protected set; } = [];
@@ -21,11 +21,11 @@ public class Playlist : Entity<Guid>
     protected Playlist()
     { }
 
-    internal Playlist(Guid id, string name, string? spotifyRef)
+    internal Playlist(Guid id, string name, string? spotifyID)
     {
         Id = id;
         Name = name;
-        SpotifyRef = spotifyRef;
+        SpotifyID = spotifyID;
     }
 
     #endregion CONSTRUCTORS

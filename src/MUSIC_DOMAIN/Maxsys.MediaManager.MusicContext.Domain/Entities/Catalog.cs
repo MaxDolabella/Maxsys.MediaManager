@@ -10,6 +10,7 @@ public class Catalog : Entity<Guid>
 
     public string Name { get; protected set; }
 
+    // Collections
     public List<Artist> Artists { get; protected set; } = [];
 
     #endregion PROPERTIES

@@ -15,12 +15,10 @@ public class PlaylistItem : Entity, IComparable, IComparable<PlaylistItem>
 
     public short? Order { get; protected set; }
 
-    #region Navigation
+    // Navigation
 
     public Playlist Playlist { get; protected set; }
     public Song Song { get; protected set; }
-
-    #endregion Navigation
 
     #endregion PROPERTIES
 

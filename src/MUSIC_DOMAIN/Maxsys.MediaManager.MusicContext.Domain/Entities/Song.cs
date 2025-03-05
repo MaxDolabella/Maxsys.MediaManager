@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Maxsys.Core.Exceptions;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Entities;
 
@@ -14,22 +15,19 @@ public class Song : MediaFile
     public string? Lyrics { get; protected set; }
     public string? Comments { get; protected set; }
     public string? SpotifyID { get; protected set; }
+    public string? ISRC { get; protected set; }
 
-    #region Value Objects
-
+    // Value Objects
     public Classification Classification { get; protected set; }
     public SongDetails SongDetails { get; protected set; }
     public SongProperties SongProperties { get; protected set; }
 
-    #endregion Value Objects
+    // Navigation
 
-    #region Navigation
-
-    public Album Album { get; protected set; } = null!;
+    public Album Album { get; protected set; }
 
     public List<Composer> Composers { get; protected set; } = [];
 
-    #endregion Navigation
 
     #endregion PROPERTIES
 
@@ -48,7 +46,8 @@ public class Song : MediaFile
         int? trackNumber,
         string? lyrics,
         string? comments,
-        string? spotifyRef,
+        string? spotifyID,
+        string? isrc,
         SongDetails musicDetails,
         Classification classification,
         SongProperties musicProperties)
@@ -60,12 +59,12 @@ public class Song : MediaFile
         TrackNumber = trackNumber;
         Lyrics = lyrics;
         Comments = comments;
-        SpotifyID = spotifyRef;
+        SpotifyID = spotifyID;
+        ISRC = isrc;
 
         SongDetails = musicDetails;
         Classification = classification;
         SongProperties = musicProperties;
-        SpotifyID = spotifyRef;
     }
 
     #endregion CONSTRUCTORS
@@ -90,10 +89,27 @@ public class Song : MediaFile
         TrackNumber = trackNumber;
     }
 
-    #endregion METHODS
+
+    public void SetSpotifyId(string? id)
+    {
+        SpotifyID = id;
+    }
+
+    public void SetISRC(string? isrc)
+    {
+        isrc = isrc?.Replace("-", string.Empty).Trim().ToUpper();
+        if (isrc is not null && isrc.Length != 12)
+        {
+            throw new DomainException("ISRC must be 12 length alphanumeric.");
+        }
+
+        ISRC = isrc;
+    }
 
     private string GetDebuggerDisplay()
     {
         return $"{Id.ToString().Substring(0, 4)} - {Title}";
     }
+
+    #endregion METHODS
 }
