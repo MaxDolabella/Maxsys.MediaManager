@@ -21,17 +21,17 @@ public class TagLibMusicPropertiesReader : ServiceBase, ISongPropertiesReader
 
     #region IMusicPropertiesReader Implementation
 
-    public ValueTask<TimeSpan> GetMusicDurationAsync(Uri mp3Path)
+    public ValueTask<TimeSpan> GetMusicDurationAsync(string mp3Path)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(mp3Path?.AbsolutePath, nameof(mp3Path));
+        ArgumentException.ThrowIfNullOrWhiteSpace(mp3Path, nameof(mp3Path));
 
-        if (!File.Exists(mp3Path.AbsolutePath))
+        if (!File.Exists(mp3Path))
         {
-            throw new FileNotFoundException(message: null, fileName: mp3Path.AbsolutePath);
+            throw new FileNotFoundException(message: null, fileName: mp3Path);
         }
 
         TimeSpan duration;
-        using (var mp3 = TagLib.File.Create(mp3Path.AbsolutePath))
+        using (var mp3 = TagLib.File.Create(mp3Path))
         {
             duration = mp3.Properties.Duration;
         }
@@ -39,17 +39,17 @@ public class TagLibMusicPropertiesReader : ServiceBase, ISongPropertiesReader
         return ValueTask.FromResult(duration);
     }
 
-    public ValueTask<int> GetMusicBitrateAsync(Uri mp3Path)
+    public ValueTask<int> GetMusicBitrateAsync(string mp3Path)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(mp3Path?.AbsolutePath, nameof(mp3Path));
+        ArgumentException.ThrowIfNullOrWhiteSpace(mp3Path, nameof(mp3Path));
 
-        if (!File.Exists(mp3Path.AbsolutePath))
+        if (!File.Exists(mp3Path))
         {
-            throw new FileNotFoundException(message: null, fileName: mp3Path.AbsolutePath);
+            throw new FileNotFoundException(message: null, fileName: mp3Path);
         }
 
         int bitrate;
-        using (var mp3 = TagLib.File.Create(mp3Path.AbsolutePath))
+        using (var mp3 = TagLib.File.Create(mp3Path))
         {
             bitrate = mp3.Properties.AudioBitrate;
         }
@@ -61,11 +61,11 @@ public class TagLibMusicPropertiesReader : ServiceBase, ISongPropertiesReader
 
     #region IFilePropertiesReader Implementation
 
-    public Task<string> GetFileNameWithoutExtensionAsync(Uri fullPath) => _filePropertiesReader.GetFileNameWithoutExtensionAsync(fullPath);
+    public Task<string> GetFileNameWithoutExtensionAsync(string fullPath) => _filePropertiesReader.GetFileNameWithoutExtensionAsync(fullPath);
 
-    public Task<string> GetFileExtensionAsync(Uri fullPath) => _filePropertiesReader.GetFileExtensionAsync(fullPath);
+    public Task<string> GetFileExtensionAsync(string fullPath) => _filePropertiesReader.GetFileExtensionAsync(fullPath);
 
-    public Task<long> GetFileSizeAsync(Uri fullPath) => _filePropertiesReader.GetFileSizeAsync(fullPath);
+    public Task<long> GetFileSizeAsync(string fullPath) => _filePropertiesReader.GetFileSizeAsync(fullPath);
 
     #endregion IFilePropertiesReader Implementation
 

@@ -28,11 +28,11 @@ public class SongValidator : AbstractValidator<Song>
             token);
     }
 
-    private async Task<bool> IsUniqueFullPathAsync(Song music, Uri fullPath, CancellationToken token = default)
+    private async Task<bool> IsPathUniqueAsync(Song music, string fullPath, CancellationToken token = default)
     {
         return !await _repository.AnyAsync(x
             => x.Id != music.Id // Exclude current music from query for updating scenario
-            && x.FullPath == music.FullPath,
+            && x.Path == music.Path,
             token);
     }
 
@@ -111,17 +111,23 @@ public class SongValidator : AbstractValidator<Song>
 
     public void AddRuleForFullPath()
     {
-        RuleFor(mediaFile => mediaFile.FullPath.AbsolutePath).NotEmpty()
-            .MaximumLength(260).WithMessage("Path lenght must be lower than 260.");
+        RuleFor(mediaFile => mediaFile.Path)
+            .Must(x => x.Length > 0)
+                .WithMessage("'Path' is required.")
+            .Must(x => x.Length <= 255)
+                .WithMessage($"'Path' length must be lower than {255}.");
         // .Must(FileMustExist).WithMessage("File must exist.")
         // .When(music => string.IsNullOrWhiteSpace(music.GetOriginalFilePath()))
-        //.Matches(RegexHelper.REGEX_PATTERN_FOR_VALID_FILENAME).WithMessage("{PropertyName} must be a valid filename")
+        // .Matches(RegexHelper.REGEX_PATTERN_FOR_VALID_FILENAME).WithMessage("{PropertyName} must be a valid filename")
     }
 
     public void AddRuleForOriginalFileName()
     {
-        RuleFor(mediaFile => mediaFile.OriginalFileName).NotEmpty()
-            .MaximumLength(100);
+        RuleFor(mediaFile => mediaFile.OriginalFile)
+            .Must(x => x.Length > 0)
+                .WithMessage("'OriginalFile' is required.")
+            .Must(x => x.Length <= 100)
+                .WithMessage($"'OriginalFile' length must be lower than {100}.");
     }
 
     public void AddRuleForTitle()
@@ -194,8 +200,8 @@ public class SongValidator : AbstractValidator<Song>
 
     public void AddRuleForWetherIsUniqueFullPathAsync()
     {
-        RuleFor(x => x.FullPath)
-            .MustAsync(IsUniqueFullPathAsync)
+        RuleFor(x => x.Path)
+            .MustAsync(IsPathUniqueAsync)
             .WithMessage("File Path '{PropertyValue}' already exists. Must be unique.");
     }
 

@@ -12,7 +12,7 @@ internal class ArtistConfig : IEntityTypeConfiguration<Artist>
         // Properties
         builder.Property(p => p.Id).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
-        builder.Property(e => e.SpotifyID).HasConversion(new SpotifyIDToStringValueConverter()).IsRequired(false);
+        builder.Property(e => e.SpotifyID).HasConversion<SpotifyIDToStringValueConverter>().IsRequired(false);
 
         // Navigation
         builder.HasOne(e => e.Catalog).WithMany(n => n.Artists).IsRequired();

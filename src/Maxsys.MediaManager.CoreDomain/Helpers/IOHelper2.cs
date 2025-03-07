@@ -6,12 +6,13 @@ using System.Threading;
 
 namespace Maxsys.MediaManager.CoreDomain.Helpers;
 
+// TODO move to CORE (update IOHelper)
 /// <summary>
 /// Provides static methods for file operations like Copy, Move and Delete
 /// </summary>
 public static class IOHelper2
 {
-    #region Attibutes
+    #region Attributes
 
     public static void InsertAttribute(ref FileAttributes attributesFlags, FileAttributes insert)
     {
@@ -27,29 +28,29 @@ public static class IOHelper2
     /// Removes the <see cref="FileAttributes.ReadOnly">ReadOnly attribute</see> from the file
     /// </summary>
     /// <param name="filePath">Is the path of the file</param>
-    public static void RemoveReadOnlyAttribute(Uri filePath)
+    public static void RemoveReadOnlyAttribute(string filePath)
     {
-        var attributes = File.GetAttributes(filePath.AbsolutePath);
+        var attributes = File.GetAttributes(filePath);
 
         RemoveAttribute(ref attributes, FileAttributes.ReadOnly);
 
-        File.SetAttributes(filePath.AbsolutePath, attributes);
+        File.SetAttributes(filePath, attributes);
     }
 
     /// <summary>
     /// Inserts the <see cref="FileAttributes.ReadOnly">ReadOnly attribute</see> from the file
     /// </summary>
     /// <param name="filePath">Is the path of the file</param>
-    public static void InsertReadOnlyAttribute(Uri filePath)
+    public static void InsertReadOnlyAttribute(string filePath)
     {
-        var attributes = File.GetAttributes(filePath.AbsolutePath);
+        var attributes = File.GetAttributes(filePath);
 
         InsertAttribute(ref attributes, FileAttributes.ReadOnly);
 
-        File.SetAttributes(filePath.AbsolutePath, attributes);
+        File.SetAttributes(filePath, attributes);
     }
 
-    #endregion Attibutes
+    #endregion Attributes
 
     #region File Operations
 
@@ -63,7 +64,7 @@ public static class IOHelper2
     /// <param name="setAsReadOnly">if true, sets destination file to ReadOnly Attribute.
     /// if false, then the ReadOnly Attribute will be not changed. Default is true.</param>
     /// <returns>a <see cref="OperationResult"/> of the operation.</returns>
-    public static OperationResult MoveFile(Uri sourceFileName, Uri destFileName, bool setAsReadOnly = true)
+    public static OperationResult MoveFile(string sourceFileName, string destFileName, bool setAsReadOnly = true)
     {
         if (sourceFileName == destFileName)
         {
@@ -109,7 +110,7 @@ public static class IOHelper2
     /// <param name="setAsReadOnly">if true, sets destination file to ReadOnly Attribute.
     /// if false, then the ReadOnly Attribute will be not changed. Default is true.</param>
     /// <returns>a <see cref="OperationResult"/> of the operation.</returns>
-    public static OperationResult MoveOrOverwriteFile(Uri sourceFileName, Uri destFileName, bool setAsReadOnly = true)
+    public static OperationResult MoveOrOverwriteFile(string sourceFileName, string destFileName, bool setAsReadOnly = true)
     {
         if (sourceFileName == destFileName)
         {
@@ -128,15 +129,15 @@ public static class IOHelper2
     /// </summary>
     /// <param name="fileName">The name of the file to be deleted. Wildcard characters are not supported.</param>
     /// <returns></returns>
-    public static OperationResult DeleteFile(Uri fileName)
+    public static OperationResult DeleteFile(string fileName)
     {
         var result = new OperationResult();
         try
         {
-            if (File.Exists(fileName.AbsolutePath))
+            if (File.Exists(fileName))
             {
                 RemoveReadOnlyAttribute(fileName);
-                File.Delete(fileName.AbsolutePath);
+                File.Delete(fileName);
             }
         }
         catch (Exception ex)
@@ -157,7 +158,7 @@ public static class IOHelper2
     /// <param name="setAsReadOnly">if true, sets destination file to ReadOnly Attribute.
     /// if false, then the ReadOnly Attribute will be not changed. Default is true.</param>
     /// <returns>a <see cref="OperationResult"/> of the operation.</returns>
-    public static OperationResult CopyFile(Uri sourceFileName, Uri destFileName, bool setAsReadOnly = true)
+    public static OperationResult CopyFile(string sourceFileName, string destFileName, bool setAsReadOnly = true)
     {
         if (sourceFileName == destFileName)
         {
@@ -166,12 +167,12 @@ public static class IOHelper2
 
         var result = new OperationResult();
 
-        if (!File.Exists(destFileName.AbsolutePath))
+        if (!File.Exists(destFileName))
         {
             try
             {
-                _ = Directory.CreateDirectory(Path.GetDirectoryName(destFileName.AbsolutePath)!);
-                File.Copy(sourceFileName.AbsolutePath, destFileName.AbsolutePath);
+                _ = Directory.CreateDirectory(Path.GetDirectoryName(destFileName)!);
+                File.Copy(sourceFileName, destFileName);
                 if (setAsReadOnly)
                 {
                     InsertReadOnlyAttribute(destFileName);
@@ -204,7 +205,7 @@ public static class IOHelper2
     /// <param name="setAsReadOnly">if true, sets destination file to ReadOnly Attribute.
     /// if false, then the ReadOnly Attribute will be not changed. Default is true.</param>
     /// <returns>a <see cref="OperationResult"/> of the operation.</returns>
-    public static async ValueTask<OperationResult> MoveFileAsync(Uri sourceFileName, Uri destFileName, bool setAsReadOnly = true, CancellationToken cancellationToken = default)
+    public static async ValueTask<OperationResult> MoveFileAsync(string sourceFileName, string destFileName, bool setAsReadOnly = true, CancellationToken cancellationToken = default)
     {
         if (sourceFileName == destFileName)
         {
@@ -250,7 +251,7 @@ public static class IOHelper2
     /// <param name="setAsReadOnly">if true, sets destination file to ReadOnly Attribute.
     /// if false, then the ReadOnly Attribute will be not changed. Default is true.</param>
     /// <returns>a <see cref="OperationResult"/> of the operation.</returns>
-    public static async ValueTask<OperationResult> MoveOrOverwriteFileAsync(Uri sourceFileName, Uri destFileName, bool setAsReadOnly = true)
+    public static async ValueTask<OperationResult> MoveOrOverwriteFileAsync(string sourceFileName, string destFileName, bool setAsReadOnly = true)
     {
         if (sourceFileName == destFileName)
         {
@@ -274,7 +275,7 @@ public static class IOHelper2
     /// <param name="setAsReadOnly">if true, sets destination file to ReadOnly Attribute.
     /// if false, then the ReadOnly Attribute will be not changed. Default is true.</param>
     /// <returns>a <see cref="OperationResult"/> of the operation.</returns>
-    public static async ValueTask<OperationResult> CopyFileAsync(Uri sourceFileName, Uri destFileName, bool setAsReadOnly = true, CancellationToken cancellationToken = default)
+    public static async ValueTask<OperationResult> CopyFileAsync(string sourceFileName, string destFileName, bool setAsReadOnly = true, CancellationToken cancellationToken = default)
     {
         if (sourceFileName == destFileName)
         {
@@ -283,11 +284,11 @@ public static class IOHelper2
 
         var result = new OperationResult();
 
-        if (!File.Exists(destFileName.AbsolutePath))
+        if (!File.Exists(destFileName))
         {
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(destFileName.AbsolutePath)!);
+                Directory.CreateDirectory(Path.GetDirectoryName(destFileName)!);
 
                 await InternalCopyFileAsync(sourceFileName, destFileName, cancellationToken);
 
@@ -311,12 +312,12 @@ public static class IOHelper2
     /// </summary>
     /// <param name="fileName">The name of the file to be deleted. Wildcard characters are not supported.</param>
     /// <returns></returns>
-    public static async ValueTask<OperationResult> DeleteFileAsync(Uri fileName, CancellationToken cancellationToken = default)
+    public static async ValueTask<OperationResult> DeleteFileAsync(string fileName, CancellationToken cancellationToken = default)
     {
         var result = new OperationResult();
         try
         {
-            if (File.Exists(fileName.AbsolutePath))
+            if (File.Exists(fileName))
             {
                 RemoveReadOnlyAttribute(fileName);
 
@@ -333,23 +334,23 @@ public static class IOHelper2
 
     #region Internal operations
 
-    private static async Task InternalDeleteAsync(Uri fileName, CancellationToken cancellationToken)
+    private static async Task InternalDeleteAsync(string fileName, CancellationToken cancellationToken)
     {
         await Task.Factory.StartNew(() =>
         {
-            using (_ = new FileStream(fileName.AbsolutePath, FileMode.Open, FileAccess.Read, FileShare.None, 1, FileOptions.DeleteOnClose | FileOptions.Asynchronous))
+            using (_ = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None, 1, FileOptions.DeleteOnClose | FileOptions.Asynchronous))
             { /*delete on close*/ }
         }, cancellationToken);
     }
 
-    private static async Task InternalCopyFileAsync(Uri sourceFileName, Uri destFileName, CancellationToken cancellationToken)
+    private static async Task InternalCopyFileAsync(string sourceFileName, string destFileName, CancellationToken cancellationToken)
     {
         var fileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
         var bufferSize = 4096;
 
-        using (var srcStream = new FileStream(sourceFileName.AbsolutePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, fileOptions))
+        using (var srcStream = new FileStream(sourceFileName, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, fileOptions))
         {
-            using (var dstStream = new FileStream(destFileName.AbsolutePath, FileMode.CreateNew, FileAccess.Write, FileShare.None, bufferSize, fileOptions))
+            using (var dstStream = new FileStream(destFileName, FileMode.CreateNew, FileAccess.Write, FileShare.None, bufferSize, fileOptions))
             {
                 await srcStream.CopyToAsync(dstStream, bufferSize, cancellationToken);
             }
@@ -362,9 +363,9 @@ public static class IOHelper2
 
     #region Path Operations
 
-    public static Uri RemoveInvalidDirectoryChars(Uri directoryPath)
+    public static string RemoveInvalidDirectoryChars(string directoryPath)
     {
-        var path = new StringBuilder(directoryPath.AbsoluteUri);
+        var path = new StringBuilder(directoryPath);
 
         var invalidPathChars = Path.GetInvalidPathChars();
         foreach (char c in invalidPathChars)
@@ -375,9 +376,9 @@ public static class IOHelper2
         return new(path.ToString());
     }
 
-    public static Uri ReplaceInvalidDirectoryChars(Uri directoryPath)
+    public static string ReplaceInvalidDirectoryChars(string directoryPath)
     {
-        var path = new StringBuilder(directoryPath.AbsoluteUri);
+        var path = new StringBuilder(directoryPath);
         path.Replace("<", "(")
             .Replace(">", ")")
             .Replace("|", "-")
@@ -390,12 +391,12 @@ public static class IOHelper2
         return new(path.ToString());
     }
 
-    public static Uri ReplaceAndRemoveInvalidDirectoryChars(Uri directoryPath)
+    public static string ReplaceAndRemoveInvalidDirectoryChars(string directoryPath)
         => RemoveInvalidDirectoryChars(ReplaceInvalidDirectoryChars(directoryPath));
 
-    public static Uri RemoveInvalidFileNameChars(Uri filePath)
+    public static string RemoveInvalidFileNameChars(string filePath)
     {
-        var path = new StringBuilder(filePath.AbsoluteUri);
+        var path = new StringBuilder(filePath);
 
         var invalidFileChars = Path.GetInvalidFileNameChars();
         foreach (char c in invalidFileChars)
@@ -406,9 +407,9 @@ public static class IOHelper2
         return new(path.ToString());
     }
 
-    public static Uri ReplaceInvalidFileNameChars(Uri filePath)
+    public static string ReplaceInvalidFileNameChars(string filePath)
     {
-        var path = new StringBuilder(filePath.AbsoluteUri);
+        var path = new StringBuilder(filePath);
         path.Replace("<", "(")
             .Replace(">", ")")
             .Replace("|", "-")
@@ -423,7 +424,7 @@ public static class IOHelper2
         return new(path.ToString());
     }
 
-    public static Uri ReplaceAndRemoveInvalidFileNameChars(Uri filePath)
+    public static string ReplaceAndRemoveInvalidFileNameChars(string filePath)
         => RemoveInvalidFileNameChars(ReplaceInvalidFileNameChars(filePath));
 
     #endregion Path Operations

@@ -19,7 +19,7 @@ public static class SongFactory
         VocalGenders vocalGender,
         string? coveredArtist,
         string? featuredArtist,
-        byte stars10,
+        int rating,
         long fileSize,
         TimeSpan duration,
         int bitrate,
@@ -32,7 +32,7 @@ public static class SongFactory
         featuredArtist = string.IsNullOrWhiteSpace(featuredArtist) ? null : featuredArtist;
 
         var songDetails = new SongDetails(isBonusTrack, vocalGender, coveredArtist, featuredArtist);
-        var classification = new Classification(stars10);
+        var classification = new Classification(rating);
         var songProperties = new SongProperties(duration, bitrate);
 
         var music = new Song(

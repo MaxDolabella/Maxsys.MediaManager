@@ -15,7 +15,7 @@ public class Album : Entity<Guid>
     /// Path limit is 248 characters.
     /// Path+Filename limit is 260 characters.
     /// </summary>
-    public Uri Directory { get; protected set; }
+    public string Directory { get; protected set; }
 
     public string Name { get; protected set; }
     public short? Year { get; protected set; }
@@ -24,8 +24,9 @@ public class Album : Entity<Guid>
 
     // TODO criar uma classe pra não repetir no banco
     public byte[] Cover { get; protected set; }
+
     public SpotifyID? SpotifyID { get; protected set; }
-    
+
     // Navigation
 
     public Artist Artist { get; protected set; }
@@ -49,10 +50,10 @@ public class Album : Entity<Guid>
     protected Album()
     { }
 
-    internal Album(Guid id, Guid artistId, Uri directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID) : this()
+    internal Album(Guid id, Guid artistId, string directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID) : this()
     {
         (Id, ArtistId, Directory, Name, Year, Genre, Cover, Type, SpotifyID) =
-        (id, artistId, directory, name, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
+        (id, artistId, new(directory), name, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
     }
 
     #endregion CONSTRUCTORS

@@ -106,10 +106,10 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter
             var query = context.Set<Song>()
                     .AsNoTrackingWithIdentityResolution()
                     .Include(song => song.Album.Artist.Catalog)
-                    .OrderBy(song => song.FullPath)
+                    .OrderBy(song => song.Path)
                     .Select(song => new SongTxtDTO(
                         song.Id,
-                        song.FullPath.AbsolutePath,
+                        song.Path,
                         song.TrackNumber,
                         song.Title,
                         song.Classification.Rating,

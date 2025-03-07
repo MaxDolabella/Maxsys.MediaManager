@@ -6,5 +6,5 @@ namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
 public interface IPlaylistFileExporter : IService
 {
-    Task<OperationResult> ExportFileAsync(IEnumerable<string> songFiles, Uri destFolder, string playlistName, CancellationToken token = default);
+    Task<OperationResult> ExportFileAsync(IEnumerable<string> songFiles, string destFolder, string playlistName, CancellationToken token = default);
 }

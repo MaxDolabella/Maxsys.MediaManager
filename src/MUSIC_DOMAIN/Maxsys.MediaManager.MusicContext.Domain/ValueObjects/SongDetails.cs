@@ -1,4 +1,5 @@
-﻿using Maxsys.MediaManager.MusicContext.Domain.Enums;
+﻿using Maxsys.Core.Extensions;
+using Maxsys.MediaManager.MusicContext.Domain.Enums;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 
@@ -46,5 +47,6 @@ public class SongDetails : IEquatable<SongDetails?>
         return HashCode.Combine(IsBonusTrack, VocalGender, CoveredArtist, FeaturedArtist);
     }
 
+    public override string ToString() => this.ToJson()!;
     #endregion OVERRIDES
 }

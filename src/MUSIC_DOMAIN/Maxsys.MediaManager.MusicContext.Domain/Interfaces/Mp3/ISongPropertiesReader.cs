@@ -9,12 +9,12 @@ public interface ISongPropertiesReader : IFilePropertiesReader
     /// </summary>
     /// <param name="mp3Path">is the mp3 file path</param>
     /// <returns>a <see cref="TimeSpan"/> with music duration</returns>
-    ValueTask<TimeSpan> GetMusicDurationAsync(Uri mp3Path);
+    ValueTask<TimeSpan> GetMusicDurationAsync(string mp3Path);
 
     /// <summary>
     /// Gets the music bitrate given a mp3 path
     /// </summary>
     /// <param name="mp3Path">is the mp3 file path</param>
     /// <returns>an <see cref="int"/> that represents the bitrate of the music</returns>
-    ValueTask<int> GetMusicBitrateAsync(Uri mp3Path);
+    ValueTask<int> GetMusicBitrateAsync(string mp3Path);
 }

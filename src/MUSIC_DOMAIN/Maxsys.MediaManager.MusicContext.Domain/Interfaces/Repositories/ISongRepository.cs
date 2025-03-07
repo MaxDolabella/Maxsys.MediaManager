@@ -10,10 +10,10 @@ public interface ISongRepository : IRepository<Song>
     /// </summary>
     /// <param name="songPath">is the music path to find.</param>
     /// <returns><see langword="true"/> if music exists in music records. Othewise, <see langword="false"/>.</returns>
-    Task<bool> PathExistsAsync(Uri songPath, CancellationToken token = default);
+    Task<bool> PathExistsAsync(string songPath, CancellationToken token = default);
 
     // TODO Obter o DTO
-    Task<Song?> GetByPathAsync(Uri songPath, CancellationToken token = default);
+    Task<Song?> GetByPathAsync(string songPath, CancellationToken token = default);
 
     /// <summary>
     /// Asynchronously returns a readonly list of <see cref="SongInfoDTO"/>.

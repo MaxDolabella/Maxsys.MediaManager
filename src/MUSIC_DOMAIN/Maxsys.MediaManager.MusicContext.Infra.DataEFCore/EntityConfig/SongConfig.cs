@@ -18,13 +18,16 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
         builder.Property(e => e.TrackNumber).IsRequired(false);
         builder.Property(e => e.Lyrics).HasMaxLength(5000).IsRequired(false);
         builder.Property(e => e.Comments).HasMaxLength(300).IsRequired(false);
-        builder.Property(e => e.SpotifyID).HasConversion(new SpotifyIDToStringValueConverter()).IsRequired(false);
+        builder.Property(e => e.SpotifyID).HasConversion<SpotifyIDToStringValueConverter>().IsRequired(false);
         builder.Property(e => e.ISRC).IsFixedLength().HasMaxLength(12).IsRequired(false);
-
 
         // Navigation
         builder.HasOne(e => e.Album).WithMany(n => n.Songs).IsRequired();
-        builder.HasMany(e => e.Composers).WithMany(n => n.Songs);
+        builder.HasMany(e => e.Composers).WithMany(n => n.Songs)
+            .UsingEntity<Dictionary<string, object>>(
+                $"{nameof(Composer)}{nameof(Song)}", // Join table name
+                p => p.HasOne<Composer>().WithMany().HasForeignKey($"{nameof(Composer)}Id"), //[ComposerId] uniqueidentifier NOT NULL,
+                p => p.HasOne<Song>().WithMany().HasForeignKey($"{nameof(Song)}Id"));   //[SongId] uniqueidentifier NOT NULL,
 
         // Value Objects
         builder.OwnsOne(e => e.SongDetails, oBuild =>
@@ -47,6 +50,6 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
         });
 
         // Indexes
-        builder.HasIndex(mediaFile => mediaFile.FullPath).IsUnique().HasDatabaseName($"AK_Music_FullPath");
+        builder.HasIndex(mediaFile => mediaFile.Path).IsUnique().HasDatabaseName($"AK_Music_FullPath");
     }
 }

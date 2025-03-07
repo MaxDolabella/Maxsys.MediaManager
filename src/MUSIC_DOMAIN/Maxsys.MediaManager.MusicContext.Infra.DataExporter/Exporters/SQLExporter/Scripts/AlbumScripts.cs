@@ -12,7 +12,7 @@ namespace Maxsys.MediaManager.MusicContext.Infra.DataExporter.SQLValuesScript.Sc
         // (N'c10bcd7f-f45e-bd68-8bdc-39f8ef4a0d4c', N'D:\TEMP\_DEV\TESTES_MM\Song\CAT 1\C1 Art1\Studio\(2000) C1A1 Alb1', N'C1A1 Alb1', 2000, N'Heavy Metal', 1, 0x, N'e2948c92-ebcc-47ee-587e-39f8ef4a0c4e')
         protected override string InsertValuesScript(Album obj)
         {
-            return $"({Value(obj.Id)}, {Value(obj.Directory.AbsolutePath)}, {Value(obj.Name)}, {Value(obj.Year)}, {Value(obj.Genre)}, {Value((byte)obj.Type)}, {Value(obj.Cover)}, {Value(obj.ArtistId)})";
+            return $"({Value(obj.Id)}, {Value(obj.Directory)}, {Value(obj.Name)}, {Value(obj.Year)}, {Value(obj.Genre)}, {Value((byte)obj.Type)}, {Value(obj.Cover)}, {Value(obj.ArtistId)})";
         }
     }
 }

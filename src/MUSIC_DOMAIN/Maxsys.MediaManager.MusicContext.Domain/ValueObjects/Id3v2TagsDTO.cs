@@ -6,16 +6,23 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
 {
     #region CTOR
 
-    public Id3v2TagsDTO(Uri fullPath, string title, byte stars10, string album
+    public Id3v2TagsDTO(string fullPath, string title, byte stars10, string album
         , string[] genres, string[] performers, int? trackNumber, short? year
         , string? comments, string? lyrics, string? coveredArtist, string? featuredArtist
         , string[] composers, byte[] coverPicture)
     {
-        FullPath = fullPath ?? throw new ArgumentNullException(nameof(fullPath));
-        Title = title ?? throw new ArgumentNullException(nameof(title));
-        Performers = performers ?? throw new ArgumentNullException(nameof(performers));
-        Album = album ?? throw new ArgumentNullException(nameof(album));
-        Genres = genres ?? throw new ArgumentNullException(nameof(genres));
+        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath, nameof(fullPath));
+        ArgumentException.ThrowIfNullOrWhiteSpace(title, nameof(title));
+        ArgumentException.ThrowIfNullOrWhiteSpace(album, nameof(album));
+        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath, nameof(fullPath));
+        if (performers is null) throw new ArgumentNullException(nameof(performers));
+        if (genres is null) throw new ArgumentNullException(nameof(genres));
+
+        FullPath = new(fullPath);
+        Title = title;
+        Performers = performers;
+        Album = album;
+        Genres = genres;
         Stars10 = stars10;
         TrackNumber = trackNumber;
         Year = year;
@@ -37,7 +44,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
         var artist = album.Artist;
 
         return new Id3v2TagsDTO(
-            fullPath: song.FullPath,
+            fullPath: song.Path.ToString(),
             title: song.Title,
             stars10: song.Classification.GetStars10(),
 
@@ -63,7 +70,7 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
 
     #region PROPS
 
-    public Uri FullPath { get; private set; }
+    public string FullPath { get; private set; }
 
     // Not nullable values
 
@@ -187,11 +194,11 @@ public struct Id3v2TagsDTO : IEquatable<Id3v2TagsDTO?>
     }
 
     // TODO Apagar?
-    public Id3v2TagsDTO ToFile(Uri fileToTag)
+    public Id3v2TagsDTO ToFile(string fileToTag)
     {
         if (this == Empty) return Empty;
 
-        FullPath = fileToTag;
+        FullPath = new(fileToTag);
 
         return this;
     }

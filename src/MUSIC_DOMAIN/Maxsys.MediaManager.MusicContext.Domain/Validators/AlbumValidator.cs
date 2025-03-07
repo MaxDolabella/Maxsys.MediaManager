@@ -134,9 +134,11 @@ public class AlbumValidator : AbstractValidator<Album>
 
     public void RuleForAlbumDirectory()
     {
-        RuleFor(x => x.Directory.AbsolutePath).NotEmpty()
-            .MaximumLength(200)
-                .WithMessage("{PropertyName} lenght must be lower than 200.");
+        RuleFor(x => x.Directory)
+            .Must(x => x.Length > 0)
+                .WithMessage("'Directory' is required.")
+            .Must(x => x.Length <= 100)
+                .WithMessage($"'Directory' length must be lower than {100}.");
     }
 
     public void RuleForUniqueNameFromArtist()

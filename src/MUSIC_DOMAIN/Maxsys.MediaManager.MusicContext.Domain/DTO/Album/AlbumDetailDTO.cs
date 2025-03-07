@@ -9,4 +9,4 @@ public readonly record struct AlbumDetailDTO(Guid AlbumId,
                                              AlbumTypes AlbumType,
                                              int? AlbumYear,
                                              int AlbumMusicCount,
-                                             Uri AlbumDirectory);
+                                             string AlbumDirectory);

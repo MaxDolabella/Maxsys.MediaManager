@@ -97,7 +97,7 @@ public class PlaylistService : ServiceBase<Playlist, IPlaylistRepository, Guid>,
     /// <inheritdoc/>
     public async Task<OperationResult> ExportPlaylistFileAsync(Guid id,
         IPlaylistFileExporter playlistFileExporter,
-        Uri? destRootFolder = null,
+        string? destRootFolder = null,
         CancellationToken cancellationToken = default)
     {
         var playlist = await _repository.GetToExportAsync(id, cancellationToken);
@@ -107,14 +107,14 @@ public class PlaylistService : ServiceBase<Playlist, IPlaylistRepository, Guid>,
         }
 
         destRootFolder ??= _pathService.GetDefaultPlaylistDirectory();
-        var dir = Directory.CreateDirectory(destRootFolder.AbsolutePath);
+        var dir = Directory.CreateDirectory(destRootFolder);
 
         var playlistName = playlist.Name;
         var songFiles = playlist.Items
-            .Select(item => item.Song.FullPath.AbsolutePath)
+            .Select(item => item.Song.Path)
             .Reverse()
             .ToList();
 
-        return await playlistFileExporter.ExportFileAsync(songFiles, new Uri(dir.FullName), playlistName, cancellationToken);
+        return await playlistFileExporter.ExportFileAsync(songFiles, dir.FullName, playlistName, cancellationToken);
     }
 }

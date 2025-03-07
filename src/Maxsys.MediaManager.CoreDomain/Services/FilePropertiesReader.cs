@@ -13,11 +13,11 @@ public class FilePropertiesReader : ServiceBase, IFilePropertiesReader
     /// <example>'D:\SomeFolder\SomeFile.jpg' returns 'SomeFile'</example>
     /// <param name="fullPath">the full path of the file</param>
     /// <returns>string that represents a name of a file</returns>
-    public Task<string> GetFileNameWithoutExtensionAsync(Uri fullPath)
+    public Task<string> GetFileNameWithoutExtensionAsync(string fullPath)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath?.AbsolutePath, nameof(fullPath));
+        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath, nameof(fullPath));
 
-        return Task.FromResult(Path.GetFileNameWithoutExtension(fullPath.AbsolutePath));
+        return Task.FromResult(Path.GetFileNameWithoutExtension(fullPath));
     }
 
     /// <summary>
@@ -25,16 +25,16 @@ public class FilePropertiesReader : ServiceBase, IFilePropertiesReader
     /// </summary>
     /// <param name="fullPath">the full path of the file</param>
     /// <returns>a file size in bytes</returns>
-    public Task<long> GetFileSizeAsync(Uri fullPath)
+    public Task<long> GetFileSizeAsync(string fullPath)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath?.AbsolutePath, nameof(fullPath));
+        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath, nameof(fullPath));
 
-        if (!File.Exists(fullPath.AbsolutePath))
+        if (!File.Exists(fullPath))
         {
-            throw new FileNotFoundException(message: null, fileName: fullPath.AbsolutePath);
+            throw new FileNotFoundException(message: null, fileName: fullPath);
         }
 
-        return Task.FromResult(_ = new FileInfo(fullPath.AbsolutePath).Length);
+        return Task.FromResult(_ = new FileInfo(fullPath).Length);
     }
 
     /// <summary>
@@ -42,10 +42,10 @@ public class FilePropertiesReader : ServiceBase, IFilePropertiesReader
     /// </summary>
     /// <param name="fullPath">The path string from which to get the extension.</param>
     /// <returns>The extension of the specified path (including the period "."), or null, or Empty. If path is null, GetExtension(String) returns null. If path does not have extension information, GetExtension(String) returns Empty.</returns>
-    public Task<string> GetFileExtensionAsync(Uri fullPath)
+    public Task<string> GetFileExtensionAsync(string fullPath)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath?.AbsolutePath, nameof(fullPath));
+        ArgumentException.ThrowIfNullOrWhiteSpace(fullPath, nameof(fullPath));
 
-        return Task.FromResult(Path.GetExtension(fullPath.AbsolutePath));
+        return Task.FromResult(Path.GetExtension(fullPath));
     }
 }

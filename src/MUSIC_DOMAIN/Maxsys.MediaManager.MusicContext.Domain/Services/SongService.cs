@@ -51,14 +51,14 @@ public class SongService : ServiceBase<Song, ISongRepository, Guid>, ISongServic
     //    return validationResult;
     //}
 
-    public Task<Song?> GetByPathAsync(Uri songPath, CancellationToken cancellationToken = default)
+    public Task<Song?> GetByPathAsync(string songPath, CancellationToken cancellationToken = default)
         => _repository.GetByPathAsync(songPath, cancellationToken);
 
-    public ValueTask<OperationResult> ReplaceToLibraryAsync(Uri replacingFile, Uri libraryFile, CancellationToken cancellationToken = default)
-        => IOHelper2.MoveOrOverwriteFileAsync(replacingFile, libraryFile, setAsReadOnly: true);
+    public ValueTask<OperationResult> ReplaceToLibraryAsync(string replacingFile, string libraryFile, CancellationToken cancellationToken = default)
+        => IOHelper2.MoveOrOverwriteFileAsync(replacingFile.ToString(), libraryFile.ToString(), setAsReadOnly: true);
 
-    public ValueTask<OperationResult> MoveToLibraryAsync(Uri sourceFile, Uri libraryFile, CancellationToken cancellationToken = default)
-        => IOHelper2.MoveFileAsync(sourceFile, libraryFile, setAsReadOnly: true, cancellationToken: cancellationToken);
+    public ValueTask<OperationResult> MoveToLibraryAsync(string sourceFile, string libraryFile, CancellationToken cancellationToken = default)
+        => IOHelper2.MoveFileAsync(sourceFile.ToString(), libraryFile.ToString(), setAsReadOnly: true, cancellationToken: cancellationToken);
 
     public async Task<IReadOnlyList<SongRankDTO>> GetAllSongRanksAsync(CancellationToken cancellationToken = default)
         => await _repository.ToListAsync<SongRankDTO>(null, cancellationToken);
@@ -93,7 +93,7 @@ public class SongService : ServiceBase<Song, ISongRepository, Guid>, ISongServic
 
         if (songRank.Stars10HasChanged())
         {
-            var tagResult = await _tagService.WriteRatingAsync(songRank.FullPath, songRank.GetStars10());
+            var tagResult = await _tagService.WriteRatingAsync(songRank.FullPath.ToString(), songRank.GetStars10());
             if (!tagResult.IsValid)
             {
                 result.AddNotification(new Notification("Rank was updated, but tagging has failed", ResultTypes.Warning));

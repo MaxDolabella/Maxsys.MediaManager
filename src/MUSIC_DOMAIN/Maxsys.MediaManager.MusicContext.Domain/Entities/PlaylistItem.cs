@@ -27,7 +27,7 @@ public class PlaylistItem : Entity, IComparable, IComparable<PlaylistItem>
     protected PlaylistItem()
     { }
 
-    internal PlaylistItem(Guid playlistId, Guid songId, short? order)
+    public PlaylistItem(Guid playlistId, Guid songId, short? order)
     {
         (PlaylistId, SongId, Order) = (playlistId, songId, order);
     }

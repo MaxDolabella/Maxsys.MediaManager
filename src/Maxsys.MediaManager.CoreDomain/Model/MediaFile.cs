@@ -13,9 +13,9 @@ public abstract class MediaFile : Entity<Guid>, IAuditableEntity
     /// Path limit is 248 characters.
     /// Path+Filename limit is 260 characters.
     /// </summary>
-    public Uri FullPath { get; protected set; }
+    public string Path { get; protected set; }
 
-    public string OriginalFileName { get; protected set; } // private set?
+    public string OriginalFile { get; protected set; } // private set?
 
     public long FileSize { get; protected set; } // private set?
 
@@ -36,11 +36,11 @@ public abstract class MediaFile : Entity<Guid>, IAuditableEntity
     protected MediaFile()
     { }
 
-    protected MediaFile(Guid id, Uri fullPath, string originalFileName, long fileSize)
+    protected MediaFile(Guid id, string fullPath, string originalFileName, long fileSize)
     {
         Id = id;
-        FullPath = fullPath;
-        OriginalFileName = originalFileName;
+        Path = new(fullPath);
+        OriginalFile = new(originalFileName);
         FileSize = fileSize;
     }
 
@@ -49,9 +49,9 @@ public abstract class MediaFile : Entity<Guid>, IAuditableEntity
     public void SetCreatedAt(DateTime date) => CreatedAt = date;
     public void SetLastUpdateAt(DateTime date) => LastUpdateAt = date;
 
-    public async Task UpdateFilePropertiesFromAsync(IFilePropertiesReader propertiesReader, Uri fileToUpdateFrom)
+    public async Task UpdateFilePropertiesFromAsync(IFilePropertiesReader propertiesReader, string fileToUpdateFrom)
     {
-        OriginalFileName = await propertiesReader.GetFileNameWithoutExtensionAsync(fileToUpdateFrom);
+        OriginalFile = new(await propertiesReader.GetFileNameWithoutExtensionAsync(fileToUpdateFrom));
         FileSize = await propertiesReader.GetFileSizeAsync(fileToUpdateFrom);
     }
 }

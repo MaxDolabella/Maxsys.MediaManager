@@ -12,11 +12,12 @@
 		<None Remove="Seed\Album.json" />
 		<None Remove="Seed\AlbumCover.json" />
 		<None Remove="Seed\Artist.json" />
+		<None Remove="Seed\ArtistSpotifyIds.json" />
 		<None Remove="Seed\Catalog.json" />
 		<None Remove="Seed\Composer.json" />
-		<None Remove="Seed\ComposerMusic.json" />
 		<None Remove="Seed\Playlist.json" />
 		<None Remove="Seed\PlaylistItem.json" />
+		<None Remove="Seed\Song.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,11 +33,13 @@
 		<EmbeddedResource Include="Seed\Album.json" />
 		<EmbeddedResource Include="Seed\AlbumCover.json" />
 		<EmbeddedResource Include="Seed\Artist.json" />
+		<EmbeddedResource Include="Seed\ArtistSpotifyIds.json" />
 		<EmbeddedResource Include="Seed\Catalog.json" />
 		<EmbeddedResource Include="Seed\Composer.json" />
-		<EmbeddedResource Include="Seed\ComposerMusic.json" />
+		<EmbeddedResource Include="Seed\ComposerSong.json" />
 		<EmbeddedResource Include="Seed\Playlist.json" />
 		<EmbeddedResource Include="Seed\PlaylistItem.json" />
+		<EmbeddedResource Include="Seed\Song.json" />
 	</ItemGroup>
 
 	<ItemGroup>

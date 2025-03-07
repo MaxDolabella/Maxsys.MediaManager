@@ -27,4 +27,6 @@ public class Composer : Entity<Guid>
     }
 
     #endregion CONSTRUCTORS
+
+    public override string ToString() => Name;
 }

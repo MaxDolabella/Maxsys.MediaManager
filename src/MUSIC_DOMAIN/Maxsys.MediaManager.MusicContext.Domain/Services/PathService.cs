@@ -19,12 +19,12 @@ public sealed class PathService : ServiceBase, IPathService
         _musicSettings = musicSettingsOptions.Value;
     }
 
-    public Uri DefineAlbumDirectory(DefineAlbumDirectoryParams dto)
+    public string DefineAlbumDirectory(DefineAlbumDirectoryParams dto)
     {
         if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryParams)} must be valid.");
 
         var libFolder = _musicSettings.MusicLibraryFolder;
-        var artistDirectory = Path.Combine(libFolder.AbsolutePath,
+        var artistDirectory = Path.Combine(libFolder,
                                            dto.MusicCatalogName,
                                            dto.ArtistName);
 
@@ -44,16 +44,16 @@ public sealed class PathService : ServiceBase, IPathService
             ? $"({dto.AlbumYear.Value}) {name}"
             : name;
 
-        return new Uri(Path.Combine(artistDirectory, albumTypeFolder, albumFolder));
+        return Path.Combine(artistDirectory, albumTypeFolder, albumFolder);
     }
 
-    public Uri DefineSongFilePath(DefineSongFileNameParams dto)
+    public string DefineSongFilePath(DefineSongFileNameParams dto)
     {
         if (!dto.IsValid()) throw new ArgumentException($"{nameof(DefineAlbumDirectoryParams)} must be valid.");
 
         var fileName = DefineSongFileName(dto);
 
-        return new Uri(Path.Combine(dto.AlbumDirectory, fileName + ".mp3"));
+        return Path.Combine(dto.AlbumDirectory, fileName + ".mp3");
     }
 
     public string DefineSongFileName(DefineSongFileNameParams dto)
@@ -79,20 +79,22 @@ public sealed class PathService : ServiceBase, IPathService
         return IOHelper.ReplaceAndRemoveInvalidFileNameChars(fileName);
     }
 
-    public Uri GetCatalogDirectory(string musicCatalogName)
+    public string GetCatalogDirectory(string musicCatalogName)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(musicCatalogName, nameof(musicCatalogName));
 
-        return new Uri(Path.Combine(_musicSettings.MusicLibraryFolder.AbsolutePath, musicCatalogName));
+        return Path.Combine(_musicSettings.MusicLibraryFolder, musicCatalogName);
     }
 
-    public Uri GetArtistDirectory(DefineArtistFolderParams dto)
+    public string GetArtistDirectory(DefineArtistFolderParams dto)
     {
-        return new Uri(Path.Combine(GetCatalogDirectory(dto.MusicCatalogName).AbsolutePath, dto.ArtistName));
+        var catDir = GetCatalogDirectory(dto.MusicCatalogName);
+
+        return Path.Combine(catDir, dto.ArtistName);
     }
 
-    public Uri GetDefaultPlaylistDirectory()
+    public string GetDefaultPlaylistDirectory()
     {
-        return new Uri(Path.Combine(_musicSettings.MusicLibraryFolder.AbsolutePath, _musicSettings.PlaylistFolderName));
+        return Path.Combine(_musicSettings.MusicLibraryFolder, _musicSettings.PlaylistFolderName);
     }
 }

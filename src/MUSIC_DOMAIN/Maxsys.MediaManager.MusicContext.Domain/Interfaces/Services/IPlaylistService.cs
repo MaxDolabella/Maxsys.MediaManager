@@ -21,5 +21,5 @@ public interface IPlaylistService : IService<Playlist, Guid>
 
     */
 
-    Task<OperationResult> ExportPlaylistFileAsync(Guid id, IPlaylistFileExporter playlistFileExporter, Uri? destRootFolder = null, CancellationToken cancellationToken = default);
+    Task<OperationResult> ExportPlaylistFileAsync(Guid id, IPlaylistFileExporter playlistFileExporter, string? destRootFolder = null, CancellationToken cancellationToken = default);
 }

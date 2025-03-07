@@ -11,15 +11,15 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
     public SongRepository(MusicAppContext context, IMapper mapper) : base(context, mapper)
     { }
 
-    public async Task<Song?> GetByPathAsync(Uri musicPath, CancellationToken token = default)
+    public async Task<Song?> GetByPathAsync(string musicPath, CancellationToken token = default)
     {
-        return await DbSet.FirstOrDefaultAsync(m => m.FullPath == musicPath);
+        return await DbSet.FirstOrDefaultAsync(m => m.Path == musicPath);
     }
 
-    public async Task<bool> PathExistsAsync(Uri musicPath, CancellationToken token = default)
+    public async Task<bool> PathExistsAsync(string musicPath, CancellationToken token = default)
     {
         return await DbSet.AsNoTracking()
-            .AnyAsync(music => music.FullPath == musicPath);
+            .AnyAsync(music => music.Path == musicPath);
     }
 
     public async Task<IReadOnlyList<SongInfoDTO>> GetSongInfosAsync(CancellationToken token = default)
@@ -54,7 +54,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
                 ArtistName = e.Album.Artist.Name,
                 AlbumName = e.Album.Name,
                 AlbumType = e.Album.Type,
-                SongFullPath = e.FullPath,
+                SongFullPath = e.Path,
                 SongTrackNumber = e.TrackNumber,
                 SongTitle = e.Title,
                 SongRating = e.Classification.Rating,
@@ -74,7 +74,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
                x.Id,
                x.Album.Artist.Name,
                x.Album.Name,
-               x.FullPath,
+               x.Path.ToString(),
                x.Title,
                x.Classification.Rating))
             .ToListAsync(token);
@@ -89,7 +89,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
                x.Id,
                x.Album.Artist.Name,
                x.Album.Name,
-               x.FullPath,
+               x.Path.ToString(),
                x.Title,
                x.Classification.Rating))
             .ToListAsync(token);

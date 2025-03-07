@@ -1,5 +1,6 @@
 ﻿using System;
 using Maxsys.Core.Services;
+using Maxsys.MediaManager.CoreDomain;
 using Maxsys.MediaManager.CoreDomain.Helpers;
 using Maxsys.MediaManager.MusicContext.Domain.DTO;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Mp3;
@@ -15,7 +16,7 @@ public sealed class TagLibService : ServiceBase, ITagService
     public ValueTask<OperationResult> WriteTagsAsync(Id3v2DTO id3)
     {
         var result = new OperationResult();
-        var filePath = new Uri(id3.FullPath);
+        var filePath = id3.FullPath;
 
         try
         {
@@ -92,7 +93,7 @@ public sealed class TagLibService : ServiceBase, ITagService
         }
     }
 
-    public ValueTask<OperationResult> WriteRatingAsync(Uri filePath, byte stars10)
+    public ValueTask<OperationResult> WriteRatingAsync(string filePath, byte stars10)
     {
         var result = new OperationResult();
 
@@ -100,7 +101,7 @@ public sealed class TagLibService : ServiceBase, ITagService
         {
             IOHelper2.RemoveReadOnlyAttribute(filePath);
 
-            using (var mp3 = TagLib.File.Create(filePath.AbsolutePath))
+            using (var mp3 = TagLib.File.Create(filePath))
             {
                 var tags = Id3v2Facade.Create(mp3, true);
 
@@ -122,7 +123,7 @@ public sealed class TagLibService : ServiceBase, ITagService
     public ValueTask<OperationResult> WritePlaylistTagsAsync(Id3v2PlaylistItemDTO id3)
     {
         var result = new OperationResult();
-        var filePath = new Uri(id3.FullPath);
+        var filePath = id3.FullPath;
 
         try
         {

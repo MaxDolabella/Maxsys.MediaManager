@@ -82,10 +82,10 @@ public class Song : MediaFile
         SongProperties.Update(duration, bitRate);
     }
 
-    public void UpdateAlbum(Guid albumId, Uri fullPath, int? trackNumber)
+    public void UpdateAlbum(Guid albumId, string path, int? trackNumber)
     {
         AlbumId = albumId;
-        FullPath = fullPath;
+        Path = path;
         TrackNumber = trackNumber;
     }
 

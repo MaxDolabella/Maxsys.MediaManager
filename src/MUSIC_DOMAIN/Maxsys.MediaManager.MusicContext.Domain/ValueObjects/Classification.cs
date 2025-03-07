@@ -123,6 +123,8 @@ public class Classification : IEquatable<Classification?>
 
     #region OVERRIDES
 
+    public override string ToString() => Rating.ToString();
+
     public bool Equals(Classification? other)
     {
         return other is not null

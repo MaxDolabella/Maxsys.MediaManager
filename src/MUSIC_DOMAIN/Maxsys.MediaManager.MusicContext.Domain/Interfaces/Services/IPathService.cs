@@ -25,7 +25,7 @@ public interface IPathService : IService
     /// </summary>
     /// <param name="dto">DTO with information for path creation.</param>
     /// <returns>The folder path of the artist.</returns>
-    Uri DefineAlbumDirectory(DefineAlbumDirectoryParams dto);
+    string DefineAlbumDirectory(DefineAlbumDirectoryParams dto);
 
     /// <summary>
     /// Define a mp3 file name wihtout extension given parameters.<br/>
@@ -45,7 +45,7 @@ public interface IPathService : IService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns>a music file path.</returns>
-    Uri DefineSongFilePath(DefineSongFileNameParams dto);
+    string DefineSongFilePath(DefineSongFileNameParams dto);
 
     /// <summary>
     /// Define and gets the directory of a specific <see cref="Catalog"/>.<br/>
@@ -55,7 +55,7 @@ public interface IPathService : IService
     /// <param name="catalogName">is the name of the <see cref="Catalog"/>
     /// to retrieve the directory.</param>
     /// <returns>the directory of the <see cref="Catalog"/>.</returns>
-    Uri GetCatalogDirectory(string catalogName);
+    string GetCatalogDirectory(string catalogName);
 
     /// <summary>
     /// Define and gets the directory of a specific <see cref="Artist"/>.<br/>
@@ -66,7 +66,7 @@ public interface IPathService : IService
     /// <see cref="Artist.Name"/> and <see cref="Catalog.Name"/>
     /// to retrieve the directory.</param>
     /// <returns>the directory of the <see cref="Artist"/>.</returns>
-    Uri GetArtistDirectory(DefineArtistFolderParams dto);
+    string GetArtistDirectory(DefineArtistFolderParams dto);
 
     /// <summary>
     /// Gets the default playist directory.
@@ -77,5 +77,5 @@ public interface IPathService : IService
     /// <code>"D:\Songs\Playlists\"</code>
     /// </summary>
     /// <returns>the default playist directory.</returns>
-    Uri GetDefaultPlaylistDirectory();
+    string GetDefaultPlaylistDirectory();
 }

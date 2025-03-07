@@ -1,4 +1,6 @@
-﻿namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
+﻿using Maxsys.Core.Extensions;
+
+namespace Maxsys.MediaManager.MusicContext.Domain.ValueObjects;
 
 public class SongProperties : IEquatable<SongProperties?>
 {
@@ -33,7 +35,7 @@ public class SongProperties : IEquatable<SongProperties?>
     #endregion METHODS
 
     #region OVERRIDES
-
+    public override string ToString() => this.ToJson()!;
     public bool Equals(SongProperties? other)
     {
         return other is not null

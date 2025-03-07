@@ -16,7 +16,7 @@ public interface ITagService : IService
     /// <param name="filePath">is the file path of the mp3</param>
     /// <param name="stars10">is the stars (0-10) to write on file</param>
     /// <returns></returns>
-    ValueTask<OperationResult> WriteRatingAsync(Uri filePath, byte stars10);
+    ValueTask<OperationResult> WriteRatingAsync(string filePath, byte stars10);
 
     /// <summary>
     /// Write Id3 tags on file.
