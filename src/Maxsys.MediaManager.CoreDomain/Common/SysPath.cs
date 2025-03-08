@@ -2,16 +2,16 @@
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Maxsys.MediaManager.CoreDomain_;
+namespace Maxsys.Core;
 
 // Created by https://claude.ai/
-public struct SystemPath : IEquatable<SystemPath>
+public struct SysPath : IEquatable<SysPath>
 {
     public const int MAXIMUM_LENGTH = 256;
     private readonly string _path;
     private readonly string _originalString;
 
-    public SystemPath(string path)
+    public SysPath(string path)
     {
         _originalString = path;
         _path = NormalizePath(path ?? string.Empty);
@@ -36,7 +36,7 @@ public struct SystemPath : IEquatable<SystemPath>
     public string DirectoryName => Path.GetDirectoryName(_path)?.Replace('\\', '/') ?? string.Empty;
     public string OriginalString => _originalString;
 
-    public SystemPath Combine(string path)
+    public SysPath Combine(string path)
     {
         if (string.IsNullOrEmpty(path))
             return this;
@@ -44,12 +44,12 @@ public struct SystemPath : IEquatable<SystemPath>
         var normalizedPath = NormalizePath(path);
 
         if (Path.IsPathRooted(normalizedPath) || Regex.IsMatch(normalizedPath, @"^[a-zA-Z]:/"))
-            return new SystemPath(normalizedPath);
+            return new SysPath(normalizedPath);
 
-        return new SystemPath(string.IsNullOrEmpty(_path) ? normalizedPath : $"{_path}/{normalizedPath}");
+        return new SysPath(string.IsNullOrEmpty(_path) ? normalizedPath : $"{_path}/{normalizedPath}");
     }
 
-    public SystemPath Combine(SystemPath path)
+    public SysPath Combine(SysPath path)
     {
         return Combine(path.ToString());
     }
@@ -62,17 +62,17 @@ public struct SystemPath : IEquatable<SystemPath>
 
     public string ToSystemPath() => _path.Replace('/', Path.DirectorySeparatorChar);
 
-    public override bool Equals(object? obj) => obj is SystemPath other && Equals(other);
+    public override bool Equals(object? obj) => obj is SysPath other && Equals(other);
 
-    public bool Equals(SystemPath other) => string.Equals(_path, other._path, StringComparison.OrdinalIgnoreCase);
+    public bool Equals(SysPath other) => string.Equals(_path, other._path, StringComparison.OrdinalIgnoreCase);
 
     public override int GetHashCode() => StringComparer.OrdinalIgnoreCase.GetHashCode(_path);
 
-    public static bool operator ==(SystemPath left, SystemPath right) => left.Equals(right);
+    public static bool operator ==(SysPath left, SysPath right) => left.Equals(right);
 
-    public static bool operator !=(SystemPath left, SystemPath right) => !left.Equals(right);
+    public static bool operator !=(SysPath left, SysPath right) => !left.Equals(right);
 
-    public static explicit operator string(SystemPath path) => path.ToString();
+    public static explicit operator string(SysPath path) => path.ToString();
                   
-    public static explicit operator SystemPath(string path) => new SystemPath(path);
+    public static explicit operator SysPath(string path) => new SysPath(path);
 }
