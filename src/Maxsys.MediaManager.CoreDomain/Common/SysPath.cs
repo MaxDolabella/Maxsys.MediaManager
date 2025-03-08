@@ -7,9 +7,13 @@ namespace Maxsys.Core;
 // Created by https://claude.ai/
 public struct SysPath : IEquatable<SysPath>
 {
+    #region Fields & Consts
+
     public const int MAXIMUM_LENGTH = 256;
     private readonly string _path;
     private readonly string _originalString;
+
+    #endregion Fields & Consts
 
     public SysPath(string path)
     {
@@ -17,28 +21,36 @@ public struct SysPath : IEquatable<SysPath>
         _path = NormalizePath(path ?? string.Empty);
     }
 
+    #region Properties
+
+    public readonly bool IsFile => !IsPathEmpty() && Path.HasExtension(_path);
+
+    public readonly bool IsFullPath
+        => !IsPathEmpty()
+        && (Path.IsPathRooted(_path) || Regex.IsMatch(_path, @"^[a-zA-Z]:/"));
+
+    public readonly string Extension => IsFile ? Path.GetExtension(_path) : string.Empty;
+
+    public readonly string FileName => IsFile ? Path.GetFileName(_path) : string.Empty;
+
+    public readonly string DirectoryName => Path.GetDirectoryName(_path)?.Replace('\\', '/') ?? string.Empty;
+    public readonly string OriginalString => _originalString;
+
+    #endregion Properties
+
+    #region Methods - Class
+
+    private readonly bool IsPathEmpty() => string.IsNullOrWhiteSpace(_path);
+
     private static string NormalizePath(string path)
     {
         // Replace backslashes with forward slashes
         return path.Replace('\\', '/').TrimEnd('/');
     }
 
-    public bool IsFile => !string.IsNullOrEmpty(_path) && Path.HasExtension(_path);
-
-    public bool IsFullPath => !string.IsNullOrEmpty(_path) &&
-                              (Path.IsPathRooted(_path) ||
-                               Regex.IsMatch(_path, @"^[a-zA-Z]:/"));
-
-    public string Extension => IsFile ? Path.GetExtension(_path) : string.Empty;
-
-    public string FileName => IsFile ? Path.GetFileName(_path) : string.Empty;
-
-    public string DirectoryName => Path.GetDirectoryName(_path)?.Replace('\\', '/') ?? string.Empty;
-    public string OriginalString => _originalString;
-
     public SysPath Combine(string path)
     {
-        if (string.IsNullOrEmpty(path))
+        if (IsPathEmpty())
             return this;
 
         var normalizedPath = NormalizePath(path);
@@ -46,7 +58,7 @@ public struct SysPath : IEquatable<SysPath>
         if (Path.IsPathRooted(normalizedPath) || Regex.IsMatch(normalizedPath, @"^[a-zA-Z]:/"))
             return new SysPath(normalizedPath);
 
-        return new SysPath(string.IsNullOrEmpty(_path) ? normalizedPath : $"{_path}/{normalizedPath}");
+        return new SysPath(IsPathEmpty() ? normalizedPath : $"{_path}/{normalizedPath}");
     }
 
     public SysPath Combine(SysPath path)
@@ -54,25 +66,35 @@ public struct SysPath : IEquatable<SysPath>
         return Combine(path.ToString());
     }
 
-    public override string ToString() => _path;
+    public readonly bool Exists() => Path.Exists(_path);
 
-    public bool Exists() => Path.Exists(_path);
+    public readonly int Length() => _path.Length;
 
-    public int Length() => _path.Length;
+    public readonly string ToSystemPath() => _path.Replace('/', Path.DirectorySeparatorChar);
 
-    public string ToSystemPath() => _path.Replace('/', Path.DirectorySeparatorChar);
+    #endregion Methods - Class
 
-    public override bool Equals(object? obj) => obj is SysPath other && Equals(other);
+    #region Methods - System
 
-    public bool Equals(SysPath other) => string.Equals(_path, other._path, StringComparison.OrdinalIgnoreCase);
+    public override readonly string ToString() => _path;
 
-    public override int GetHashCode() => StringComparer.OrdinalIgnoreCase.GetHashCode(_path);
+    public override readonly bool Equals(object? obj) => obj is SysPath other && Equals(other);
+
+    public readonly bool Equals(SysPath other) => string.Equals(_path, other._path, StringComparison.OrdinalIgnoreCase);
+
+    public override readonly int GetHashCode() => StringComparer.OrdinalIgnoreCase.GetHashCode(_path);
+
+    #endregion Methods - System
+
+    #region Operators
 
     public static bool operator ==(SysPath left, SysPath right) => left.Equals(right);
 
     public static bool operator !=(SysPath left, SysPath right) => !left.Equals(right);
 
     public static explicit operator string(SysPath path) => path.ToString();
-                  
+
     public static explicit operator SysPath(string path) => new SysPath(path);
+
+    #endregion Operators
 }
