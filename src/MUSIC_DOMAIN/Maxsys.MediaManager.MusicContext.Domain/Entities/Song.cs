@@ -85,7 +85,7 @@ public class Song : MediaFile
     public void UpdateAlbum(Guid albumId, string path, int? trackNumber)
     {
         AlbumId = albumId;
-        Path = path;
+        Path = new SysPath(path);
         TrackNumber = trackNumber;
     }
 

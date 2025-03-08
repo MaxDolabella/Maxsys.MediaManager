@@ -54,6 +54,12 @@ public static class IoCExtensions
         {
             options.AddInterceptors(sp.GetRequiredService<AuditableEntityInterceptor>());
             options.UseSqlServer(conn);
+
+#if DEBUG
+            options.LogTo(Console.Write, Microsoft.Extensions.Logging.LogLevel.Information);
+            options.EnableSensitiveDataLogging();
+#endif
+
         });
     }
 }

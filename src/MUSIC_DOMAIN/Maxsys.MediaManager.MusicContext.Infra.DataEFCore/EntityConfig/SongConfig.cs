@@ -50,6 +50,6 @@ internal class SongConfig : IEntityTypeConfiguration<Song>
         });
 
         // Indexes
-        builder.HasIndex(mediaFile => mediaFile.Path).IsUnique().HasDatabaseName($"AK_Music_FullPath");
+        //builder.HasIndex(mediaFile => mediaFile.Path).IsUnique().HasDatabaseName($"AK_Music_FullPath");
     }
 }

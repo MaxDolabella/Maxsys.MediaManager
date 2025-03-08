@@ -45,6 +45,20 @@ public class Album : Entity<Guid>
         }
     }
 
+
+    public void SetCover(byte[] newCover)
+    {
+        if (newCover?.Any() != true)
+        {
+            throw new Maxsys.Core.Exceptions.DomainException("'Cover' cannot be null or empty.");
+        }
+
+        if (Cover != newCover)
+        {
+            Cover = newCover;
+        }
+    }
+
     #region CONSTRUCTORS
 
     protected Album()

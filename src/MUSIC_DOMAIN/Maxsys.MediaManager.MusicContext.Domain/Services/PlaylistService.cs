@@ -111,7 +111,7 @@ public class PlaylistService : ServiceBase<Playlist, IPlaylistRepository, Guid>,
 
         var playlistName = playlist.Name;
         var songFiles = playlist.Items
-            .Select(item => item.Song.Path)
+            .Select(item => item.Song.Path.ToString())
             .Reverse()
             .ToList();
 

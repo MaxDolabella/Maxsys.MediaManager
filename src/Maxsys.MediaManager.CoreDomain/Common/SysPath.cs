@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using IOPath = System.IO.Path;
 using System.Text.RegularExpressions;
 
 namespace Maxsys.Core;
@@ -23,17 +23,18 @@ public struct SysPath : IEquatable<SysPath>
 
     #region Properties
 
-    public readonly bool IsFile => !IsPathEmpty() && Path.HasExtension(_path);
+    public readonly bool IsFile => !IsPathEmpty() && IOPath.HasExtension(_path);
 
     public readonly bool IsFullPath
         => !IsPathEmpty()
-        && (Path.IsPathRooted(_path) || Regex.IsMatch(_path, @"^[a-zA-Z]:/"));
+        && (IOPath.IsPathRooted(_path) || Regex.IsMatch(_path, @"^[a-zA-Z]:/"));
 
-    public readonly string Extension => IsFile ? Path.GetExtension(_path) : string.Empty;
+    public readonly string Path => _path;
+    public readonly string Extension => IsFile ? IOPath.GetExtension(_path) : string.Empty;
 
-    public readonly string FileName => IsFile ? Path.GetFileName(_path) : string.Empty;
+    public readonly string FileName => IsFile ? IOPath.GetFileName(_path) : string.Empty;
 
-    public readonly string DirectoryName => Path.GetDirectoryName(_path)?.Replace('\\', '/') ?? string.Empty;
+    public readonly string DirectoryName => IOPath.GetDirectoryName(_path)?.Replace('\\', '/') ?? string.Empty;
     public readonly string OriginalString => _originalString;
 
     #endregion Properties
@@ -55,7 +56,7 @@ public struct SysPath : IEquatable<SysPath>
 
         var normalizedPath = NormalizePath(path);
 
-        if (Path.IsPathRooted(normalizedPath) || Regex.IsMatch(normalizedPath, @"^[a-zA-Z]:/"))
+        if (IOPath.IsPathRooted(normalizedPath) || Regex.IsMatch(normalizedPath, @"^[a-zA-Z]:/"))
             return new SysPath(normalizedPath);
 
         return new SysPath(IsPathEmpty() ? normalizedPath : $"{_path}/{normalizedPath}");
@@ -66,17 +67,15 @@ public struct SysPath : IEquatable<SysPath>
         return Combine(path.ToString());
     }
 
-    public readonly bool Exists() => Path.Exists(_path);
+    public readonly bool Exists() => IOPath.Exists(_path);
 
     public readonly int Length() => _path.Length;
-
-    public readonly string ToSystemPath() => _path.Replace('/', Path.DirectorySeparatorChar);
 
     #endregion Methods - Class
 
     #region Methods - System
 
-    public override readonly string ToString() => _path;
+    public override readonly string ToString() => _path.Replace('/', IOPath.DirectorySeparatorChar);
 
     public override readonly bool Equals(object? obj) => obj is SysPath other && Equals(other);
 

@@ -13,7 +13,7 @@ public abstract class MediaFile : Entity<Guid>, IAuditableEntity
     /// Path limit is 248 characters.
     /// Path+Filename limit is 260 characters.
     /// </summary>
-    public string Path { get; protected set; }
+    public SysPath Path { get; protected set; }
 
     public string OriginalFile { get; protected set; } // private set?
 
@@ -39,7 +39,7 @@ public abstract class MediaFile : Entity<Guid>, IAuditableEntity
     protected MediaFile(Guid id, string fullPath, string originalFileName, long fileSize)
     {
         Id = id;
-        Path = new(fullPath);
+        Path = new SysPath(fullPath);
         OriginalFile = new(originalFileName);
         FileSize = fileSize;
     }

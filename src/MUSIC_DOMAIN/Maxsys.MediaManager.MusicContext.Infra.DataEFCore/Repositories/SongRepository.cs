@@ -13,13 +13,13 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
 
     public async Task<Song?> GetByPathAsync(string musicPath, CancellationToken token = default)
     {
-        return await DbSet.FirstOrDefaultAsync(m => m.Path == musicPath);
+        return await DbSet.FirstOrDefaultAsync(m => m.Path.ToString() == musicPath);
     }
 
     public async Task<bool> PathExistsAsync(string musicPath, CancellationToken token = default)
     {
         return await DbSet.AsNoTracking()
-            .AnyAsync(music => music.Path == musicPath);
+            .AnyAsync(music => music.Path.ToString() == musicPath);
     }
 
     public async Task<IReadOnlyList<SongInfoDTO>> GetSongInfosAsync(CancellationToken token = default)
@@ -54,7 +54,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
                 ArtistName = e.Album.Artist.Name,
                 AlbumName = e.Album.Name,
                 AlbumType = e.Album.Type,
-                SongFullPath = e.Path,
+                SongFullPath = e.Path.ToString(),
                 SongTrackNumber = e.TrackNumber,
                 SongTitle = e.Title,
                 SongRating = e.Classification.Rating,

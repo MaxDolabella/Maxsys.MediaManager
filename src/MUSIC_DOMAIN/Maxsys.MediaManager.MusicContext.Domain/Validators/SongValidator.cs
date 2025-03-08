@@ -35,6 +35,13 @@ public class SongValidator : AbstractValidator<Song>
             && x.Path == music.Path,
             token);
     }
+    private async Task<bool> IsSysPathUniqueAsync(Song music, SysPath path, CancellationToken token = default)
+    {
+        return !await _repository.AnyAsync(x
+            => x.Id != music.Id // Exclude current music from query for updating scenario
+            && x.Path == music.Path,
+            token);
+    }
 
     #endregion Private Methods
 
@@ -112,9 +119,9 @@ public class SongValidator : AbstractValidator<Song>
     public void AddRuleForFullPath()
     {
         RuleFor(mediaFile => mediaFile.Path)
-            .Must(x => x.Length > 0)
+            .Must(x => x.Length() > 0)
                 .WithMessage("'Path' is required.")
-            .Must(x => x.Length <= 255)
+            .Must(x => x.Length() <= 255)
                 .WithMessage($"'Path' length must be lower than {255}.");
         // .Must(FileMustExist).WithMessage("File must exist.")
         // .When(music => string.IsNullOrWhiteSpace(music.GetOriginalFilePath()))
@@ -201,7 +208,7 @@ public class SongValidator : AbstractValidator<Song>
     public void AddRuleForWetherIsUniqueFullPathAsync()
     {
         RuleFor(x => x.Path)
-            .MustAsync(IsPathUniqueAsync)
+            .MustAsync(IsSysPathUniqueAsync)
             .WithMessage("File Path '{PropertyValue}' already exists. Must be unique.");
     }
 
