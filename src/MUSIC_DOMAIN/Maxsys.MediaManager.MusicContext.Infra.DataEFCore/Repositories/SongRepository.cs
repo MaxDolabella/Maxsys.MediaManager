@@ -26,7 +26,7 @@ public class SongRepository : RepositoryBase<Song>, ISongRepository
     {
         return await DbSet.AsNoTracking()
             .Include(e => e.Album)
-            .OrderBy(e => e.Album.Directory)
+            .OrderBy(e => e.Album.Directory.OriginalString)
             .Select(e => new SongInfoDTO
             {
                 SongId = e.Id,

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Maxsys.Core;
 using Maxsys.Core.Data;
 using Maxsys.MediaManager.MusicContext.Domain.Interfaces.Repositories;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context;
@@ -64,7 +65,7 @@ public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
                 ArtistName = e.Artist.Name,
                 AlbumId = e.Id,
                 AlbumName = e.Name,
-                AlbumDirectory = e.Directory
+                AlbumDirectory = e.Directory.ToString()
             })
             .OrderBy(m => m.AlbumDirectory)
             .ToListAsync(token);
@@ -83,7 +84,7 @@ public class AlbumRepository : RepositoryBase<Album>, IAlbumRepository
                 AlbumName = e.Name,
                 AlbumType = e.Type,
                 AlbumYear = e.Year,
-                AlbumDirectory = e.Directory,
+                AlbumDirectory = e.Directory.ToString(),
                 AlbumMusicCount = e.Songs.Count()
             })
             .OrderBy(m => m.AlbumDirectory)

@@ -15,7 +15,7 @@ public class Album : Entity<Guid>
     /// Path limit is 248 characters.
     /// Path+Filename limit is 260 characters.
     /// </summary>
-    public string Directory { get; protected set; }
+    public SysPath Directory { get; protected set; }
 
     public string Name { get; protected set; }
     public short? Year { get; protected set; }
@@ -53,7 +53,7 @@ public class Album : Entity<Guid>
     internal Album(Guid id, Guid artistId, string directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID) : this()
     {
         (Id, ArtistId, Directory, Name, Year, Genre, Cover, Type, SpotifyID) =
-        (id, artistId, new(directory), name, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
+        (id, artistId, new SysPath(directory), name, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
     }
 
     #endregion CONSTRUCTORS

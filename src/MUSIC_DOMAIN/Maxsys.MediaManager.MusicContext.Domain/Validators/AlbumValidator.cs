@@ -135,9 +135,9 @@ public class AlbumValidator : AbstractValidator<Album>
     public void RuleForAlbumDirectory()
     {
         RuleFor(x => x.Directory)
-            .Must(x => x.Length > 0)
+            .Must(x => x.Length() > 0)
                 .WithMessage("'Directory' is required.")
-            .Must(x => x.Length <= 100)
+            .Must(x => x.Length() <= 100)
                 .WithMessage($"'Directory' length must be lower than {100}.");
     }
 

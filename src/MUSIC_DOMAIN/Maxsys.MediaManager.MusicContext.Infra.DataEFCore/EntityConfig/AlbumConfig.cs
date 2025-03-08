@@ -1,3 +1,4 @@
+using Maxsys.Core.Data.ValueConversion;
 using Maxsys.MediaManager.MusicContext.Infra.DataEFCore.Context.Converters;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,7 +12,7 @@ internal class AlbumConfig : IEntityTypeConfiguration<Album>
 
         // Properties
         builder.Property(e => e.Id).IsRequired();
-        builder.Property(e => e.Directory)/*.HasConversion<SystemPathToStringValueConverter>()*/.HasMaxLength(160).IsRequired();
+        builder.Property(e => e.Directory).HasConversion<SysPathToStringValueConverter>().HasMaxLength(160).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
         builder.Property(e => e.Year).IsRequired(false);
         builder.Property(e => e.Genre).HasMaxLength(50).IsRequired();
