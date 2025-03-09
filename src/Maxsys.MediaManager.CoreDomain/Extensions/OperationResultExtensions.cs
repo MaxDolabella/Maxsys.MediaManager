@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maxsys.Core;
 
-// TODO mover para Core (atual: v14.1)
+// TODO: Mover para Core (atual: v14.1)
 public static class OperationResultExtensions
 {
     public static void AddException(this OperationResult result, Exception exception, ResultTypes resultType = ResultTypes.Error)

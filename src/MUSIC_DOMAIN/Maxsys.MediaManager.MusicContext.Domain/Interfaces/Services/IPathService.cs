@@ -3,7 +3,6 @@ using Maxsys.MediaManager.MusicContext.Domain.DTO;
 
 namespace Maxsys.MediaManager.MusicContext.Domain.Interfaces.Services;
 
-// TODO replaces strings to URI?
 /// <summary>
 /// Provides methods for handle paths and file names for musics, albums and artists.
 /// </summary>

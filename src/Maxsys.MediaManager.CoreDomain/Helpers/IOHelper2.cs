@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Maxsys.MediaManager.CoreDomain.Helpers;
 
-// TODO move to CORE (update IOHelper)
+// TODO: Mover para Core (update IOHelper)
 /// <summary>
 /// Provides static methods for file operations like Copy, Move and Delete
 /// </summary>

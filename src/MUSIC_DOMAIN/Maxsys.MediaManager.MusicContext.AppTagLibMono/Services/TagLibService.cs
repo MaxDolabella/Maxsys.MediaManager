@@ -63,14 +63,14 @@ public sealed class TagLibService : ServiceBase, ITagService
         return ValueTask.FromResult(result);
     }
 
-    public ValueTask<OperationResult<Id3v2DTO?>> ReadTagsAsync(Uri filePath)
+    public ValueTask<OperationResult<Id3v2DTO?>> ReadTagsAsync(string filePath)
     {
-        using (var mp3 = TagLib.File.Create(filePath.AbsolutePath))
+        using (var mp3 = TagLib.File.Create(filePath))
         {
             var tags = Id3v2Facade.Create(mp3, false);
 
             var id3 = tags is not null
-                ? new Id3v2DTO(fullPath: filePath.AbsolutePath
+                ? new Id3v2DTO(fullPath: filePath
                     , title: tags.Title
                     , trackNumber: tags.TrackNumber
                     , stars10: tags.Stars10

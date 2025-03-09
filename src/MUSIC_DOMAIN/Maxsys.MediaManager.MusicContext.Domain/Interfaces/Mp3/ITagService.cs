@@ -41,5 +41,5 @@ public interface ITagService : IService
     /// </summary>
     /// <param name="filePath">the path of the file</param>
     /// <returns><see cref="Id3v2TagsDTO"/> struct with id3v2 tag values</returns>
-    ValueTask<OperationResult<Id3v2DTO?>> ReadTagsAsync(Uri filePath);
+    ValueTask<OperationResult<Id3v2DTO?>> ReadTagsAsync(string filePath);
 }
