@@ -56,8 +56,8 @@ public static class IoCExtensions
             options.UseSqlServer(conn);
 
 #if DEBUG
-            options.LogTo(Console.Write, Microsoft.Extensions.Logging.LogLevel.Information);
-            options.EnableSensitiveDataLogging();
+            // options.LogTo(Console.Write, Microsoft.Extensions.Logging.LogLevel.Information);
+            // options.EnableSensitiveDataLogging();
 #endif
 
         });

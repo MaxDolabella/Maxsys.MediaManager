@@ -68,7 +68,6 @@ public class SearchService : HttpClientBase, ISearchService
 
         if (filters.Year.HasValue)
         {
-            //remaster track:Doxy artist:Miles Davis
             queryTerm.AppendFormat("%20year:{0}", filters.Year);
         }
 
