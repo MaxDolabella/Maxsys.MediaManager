@@ -14,9 +14,9 @@ public static class AlbumFactory
     /// <param name="genre">Required. Album genre.</param>
     /// <param name="cover">Album cover picture.</param>
     /// <param name="type">Album type.</param>
-    public static Album Create(Guid id, Guid artistId, string directory, string name, short? year, string genre, byte[] cover, AlbumTypes type, string? spotifyID)
-        => new(id, artistId, new(directory), name, year, genre, cover, type, spotifyID);
+    public static Album Create(Guid id, Guid artistId, string directory, string name, string? shortName, short? year, string genre, byte[] cover, AlbumTypes type, string? spotifyID)
+        => new(id, artistId, new(directory), name, shortName, year, genre, cover, type, spotifyID);
 
-    public static Album Create(Guid artistId, string directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID)
-        => Create(GuidGen.NewSequentialGuid(), artistId, new(directory), name, year, genre, albumCover, albumType, spotifyID);
+    public static Album Create(Guid artistId, string directory, string name, string? shortName, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID)
+        => Create(GuidGen.NewSequentialGuid(), artistId, new(directory), name, shortName, year, genre, albumCover, albumType, spotifyID);
 }

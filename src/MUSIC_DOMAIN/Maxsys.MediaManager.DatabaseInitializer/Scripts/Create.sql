@@ -39,6 +39,7 @@ CREATE TABLE [Album] (
     [ArtistId] uniqueidentifier NOT NULL,
     [Directory] varchar(160) NOT NULL,
     [Name] varchar(50) NOT NULL,
+    [ShortName] varchar(15) NULL,
     [Year] smallint NULL,
     [Genre] varchar(50) NOT NULL,
     [Type] tinyint NOT NULL,

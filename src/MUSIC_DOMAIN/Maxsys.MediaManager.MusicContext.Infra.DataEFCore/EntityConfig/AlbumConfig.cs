@@ -14,6 +14,7 @@ internal class AlbumConfig : IEntityTypeConfiguration<Album>
         builder.Property(e => e.Id).IsRequired();
         builder.Property(e => e.Directory).HasConversion<SysPathToStringValueConverter>().HasMaxLength(160).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.ShortName).HasMaxLength(15).IsRequired(false);
         builder.Property(e => e.Year).IsRequired(false);
         builder.Property(e => e.Genre).HasMaxLength(50).IsRequired();
         builder.Property(e => e.Type).IsRequired();

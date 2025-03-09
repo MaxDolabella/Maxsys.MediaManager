@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text;
 using Maxsys.Core.Entities;
 using Maxsys.MediaManager.MusicContext.Domain.Enums;
 
@@ -18,6 +19,16 @@ public class Album : Entity<Guid>
     public SysPath Directory { get; protected set; }
 
     public string Name { get; protected set; }
+
+    /// <summary>
+    /// Nome curto até 15 chars
+    /// <para/>
+    /// Ex: 'Red Hot Chilli Pepers' => 'RHCP'
+    /// <br/>
+    /// Ex: 'Engenheiros do Hawaii' => 'Engenheiros'
+    /// </summary>
+    public string? ShortName { get; protected set; }
+
     public short? Year { get; protected set; }
     public string Genre { get; protected set; }
     public AlbumTypes Type { get; protected set; }
@@ -34,8 +45,23 @@ public class Album : Entity<Guid>
 
     #endregion PROPERTIES
 
+    /// <summary>
+    /// Ex.: "Album without year"
+    /// <br/>
+    /// Ex.: "(2005) Album with year"
+    /// </summary>
     public string GetYearName()
-        => $"{(Year.HasValue ? $"({Year.Value}) " : string.Empty)}{Name}";
+    {
+        var sb = new StringBuilder();
+        if (Year.HasValue)
+        {
+            sb.AppendFormat("({0}) ", Year.Value);
+        }
+
+        sb.Append(Name);
+
+        return sb.ToString();
+    }
 
     public void SetSpotifyID(string? id)
     {
@@ -44,7 +70,6 @@ public class Album : Entity<Guid>
             SpotifyID = id;
         }
     }
-
 
     public void SetCover(byte[] newCover)
     {
@@ -61,13 +86,13 @@ public class Album : Entity<Guid>
 
     #region CONSTRUCTORS
 
-    protected Album()
+    public Album()
     { }
 
-    internal Album(Guid id, Guid artistId, string directory, string name, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID) : this()
+    internal Album(Guid id, Guid artistId, string directory, string name, string? shortName, short? year, string genre, byte[] albumCover, AlbumTypes albumType, string? spotifyID) : this()
     {
-        (Id, ArtistId, Directory, Name, Year, Genre, Cover, Type, SpotifyID) =
-        (id, artistId, new SysPath(directory), name, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
+        (Id, ArtistId, Directory, Name, ShortName, Year, Genre, Cover, Type, SpotifyID) =
+        (id, artistId, new SysPath(directory), name, shortName, year, genre, albumCover, albumType, (SpotifyID?)spotifyID);
     }
 
     #endregion CONSTRUCTORS

@@ -65,11 +65,12 @@ public class AlbumValidator : AbstractValidator<Album>
     public AlbumValidator SetRulesForCreation()
     {
         RuleForName();
+        RuleForShortName();
         RuleForYear();
         RuleForGenre();
-        RuleForAlbumType();
-        RuleForAlbumCover();
-        RuleForAlbumDirectory();
+        RuleForType();
+        RuleForCover();
+        RuleForDirectory();
         RuleForArtist();
         RuleForUniqueNameFromArtist();
 
@@ -99,12 +100,12 @@ public class AlbumValidator : AbstractValidator<Album>
             .When(x => x.ArtistId == default);
     }
 
-    public void RuleForAlbumCover()
+    public void RuleForCover()
     {
         RuleFor(x => x.Cover).NotNull();
     }
 
-    public void RuleForAlbumType()
+    public void RuleForType()
     {
         RuleFor(x => x.Type).NotNull().IsInEnum();
     }
@@ -131,8 +132,15 @@ public class AlbumValidator : AbstractValidator<Album>
             .Matches(RegexHelper.GetPattern(RegexHelper.Pattern.Letters | RegexHelper.Pattern.Numbers | RegexHelper.Pattern.Spaces | RegexHelper.Pattern.Hyphen | RegexHelper.Pattern.Parentesis | RegexHelper.Pattern.Commas | RegexHelper.Pattern.Dots))
                 .WithMessage("{PropertyName} must contain only letters, numbers, and following symbols: (),.- [space]");
     }
+    
+    public void RuleForShortName()
+    {
+        RuleFor(x => x.ShortName).MaximumLength(15)
+            .Matches(RegexHelper.GetPattern(RegexHelper.Pattern.Letters | RegexHelper.Pattern.Numbers | RegexHelper.Pattern.Spaces | RegexHelper.Pattern.Hyphen | RegexHelper.Pattern.Parentesis | RegexHelper.Pattern.Commas | RegexHelper.Pattern.Dots))
+                .WithMessage("{PropertyName} must contain only letters, numbers, and following symbols: (),.- [space]");
+    }
 
-    public void RuleForAlbumDirectory()
+    public void RuleForDirectory()
     {
         RuleFor(x => x.Directory)
             .Must(x => x.Length() > 0)

@@ -22,10 +22,12 @@ await using (var scope = host.Services.CreateAsyncScope())
     var context = scope.ServiceProvider.GetRequiredService<MusicAppContext>();
 
     // Create Script
-    // Console.WriteLine(context.Database.GenerateCreateScript());
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.WriteLine(context.Database.GenerateCreateScript());
 
+    Console.ForegroundColor = ConsoleColor.DarkGreen;
     await context.Database.EnsureDeletedAsync();
     await context.Database.EnsureCreatedAsync();
 
-
+    Console.ResetColor();
 }

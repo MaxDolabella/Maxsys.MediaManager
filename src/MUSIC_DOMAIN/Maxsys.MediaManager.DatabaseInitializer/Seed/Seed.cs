@@ -47,7 +47,7 @@ internal static class Seed
 
             var albumsCoverJson = GetJsonItems<AlbumCoverJson>("AlbumCover");
             var albums = GetJsonItems<AlbumJson, Album>("Album", json =>
-                AlbumFactory.Create(json.Id, json.ArtistId, json.AlbumDirectory, json.Name,
+                AlbumFactory.Create(json.Id, json.ArtistId, json.AlbumDirectory, json.Name, shortName: null,
                     json.Year, json.Genre, albumsCoverJson.First(x => x.Id == json.Id).AlbumCover,
                     (AlbumTypes)json.AlbumType, null));
 
@@ -106,7 +106,6 @@ internal static class Seed
 
             var composerSongsInsertValues = GetJsonItems<ComposerSongJson>("ComposerSong").Select(x => $"('{x.ComposersId}', '{x.MusicsId}')").Chunk(1000);
             var composerSongsInsertScripts = composerSongsInsertValues.Select(x => $"INSERT INTO ComposerSong VALUES {string.Join(',', x)}");
-
 
             await context.SaveChangesAsync(cancellationToken);
             foreach (var script in composerSongsInsertScripts)
